@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Cloud Native Operational Excellence (CNOE)',
+  title: 'CNOE',
   tagline: 'Modernizing your Developer Platform',
   url: 'https://cnoe.io',
   baseUrl: '/',
