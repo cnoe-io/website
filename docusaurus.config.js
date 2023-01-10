@@ -8,16 +8,18 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'CNOE',
   tagline: 'Modernizing your Developer Platform',
-  url: 'https://cnoe.io',
-  baseUrl: '/',
+  url: 'https://cnoe-io.github.io',
+  baseUrl: '/website/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
+  trailingSlash: false,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'cnoe-io', // Usually your GitHub org/user name.
-  projectName: '', // Usually your repo name.
+  projectName: 'website', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
