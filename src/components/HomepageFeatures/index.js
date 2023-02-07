@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 const FeatureList = [
   {
     title: 'Cloud Native',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/cloudnative.svg').default,
     description: (
       <>
         CNOE is developed around open source CNCF projects that are deemed
@@ -15,7 +15,7 @@ const FeatureList = [
   },
   {
     title: 'Community Best Practices',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/community.svg').default,
     description: (
       <>
         CNOE relies on community consensus on selecting and configuring
@@ -25,7 +25,7 @@ const FeatureList = [
   },
   {
     title: 'Modular',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('@site/static/img/modular.svg').default,
     description: (
       <>
       CNOE aims to allow its users to pick and choose what core technologies they want to 
@@ -39,7 +39,7 @@ function Feature({Svg, title, description}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <Svg color="#00568c" className={styles.featureSvg} role="img" />
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>

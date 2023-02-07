@@ -37,3 +37,17 @@ The CNOE working group will operate based on the following tenets.
 1. **Standardized to the infrastructure, customizable by the developers**: CNOE aims at addressing the usability requirements of its stakeholders. While the requirements of the platform could be enforced by the security engineers and infrastructure operators, the usability of it needs to be guaranteed by platform operators and application developers.
 
 1. **Built to be shared**: All CNOE deliverables including the reference architecture and the deployment packages will be developed out in the open and by collaboration of all its participating members and with the goal of making it sharable and usable by the larger open source community of interest.
+
+## What CNOE is not
+
+1. not only a unified control plane but building blocks for them to expand and extend the unified control plane
+
+1. not only a CI/CD tool but other components and capabilities that extend and enhance the integration and delivery of applications
+
+1. not new technologies or set of managed services, but a way to interact and integrate. There is still an expectation that companies will need to fund and operate the various open source tools used within the IDP
+
+1. not new technologies or set of managed services, but a way to interact and integrate. There is still an expectation that companies will need to fund and operate the various open source tools used within the IDP
+
+1. not installers or proprietary packaging mechanisms. it will be fully open source and customizable and available to use by any one
+
+1. not responsible for operationalizing of the toolchain. There is still an expectation that companies will need to fund and operate the various open source tools used within the IDP
