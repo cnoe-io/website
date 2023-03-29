@@ -32,6 +32,7 @@ const InteractiveDiagram = () => {
   // and here we don't need to call React.useState because it has been
   // separated into its own variable
   const [promptText, setPromptText] = useState("");
+  const [promptTitle, setPromptTitle] = useState("");
   const [isShow, setIsShow] = useState("none");
   return (
     <div className={styles.interactivediagramcontainer}>
@@ -39,28 +40,20 @@ const InteractiveDiagram = () => {
         <div className={styles.toprow}>
           <div className={styles.toprowsensor}></div>
           <div className={styles.toprow1}>
-            Top Deployment Targets <br /> (Cloud/ On-prem / Edge)
+            Deployment Targets <br /> (Cloud / On Prem / Edge)
           </div>
           <div className={styles.toprow2}>Bottom This is text behind</div>
         </div>
         <div className={styles.inner}></div>
         <div className={styles.bottomrow}>
           <div className={styles.bottomleftcol}>
-            <div
-              className={styles.bottomleftcolleft}
-              onClick={() => {
-                setIsShow("block");
-                setPromptText("Signing");
-              }}
-            >
-              Signing
-            </div>
             <div className={styles.bottomleftcolright}>
               <div
                 className={styles.cell}
                 onClick={() => {
                   setIsShow("block");
-                  setPromptText("Packaging/Templating");
+                  setPromptTitle("Packaging / Templating");
+                  setPromptText("Packaging up the functional set of tools endorsed and usable by the CNOE community. It should leave enough room for configurability of the system Needs to take away misconceptions and bad practices as part of configurability best practices.");
                 }}
               >
                 Packaging/Templating
@@ -70,6 +63,7 @@ const InteractiveDiagram = () => {
                 onClick={() => {
                   setIsShow("block");
                   setPromptText("Code Repository");
+                  setPromptTitle("Code Repository");
                 }}
               >
                 Code Repository
@@ -79,6 +73,7 @@ const InteractiveDiagram = () => {
                 onClick={() => {
                   setIsShow("block");
                   setPromptText("Config Repository");
+                  setPromptTitle("Config Repository");
                 }}
               >
                 Config Repository
@@ -88,6 +83,7 @@ const InteractiveDiagram = () => {
                 onClick={() => {
                   setIsShow("block");
                   setPromptText("Artifact Registries");
+                  setPromptTitle("Artifact Registries");
                 }}
               >
                 Artifact Registries
@@ -97,10 +93,21 @@ const InteractiveDiagram = () => {
                 onClick={() => {
                   setIsShow("block");
                   setPromptText("Secret Repository");
+                  setPromptTitle("Secret Repository");
                 }}
               >
                 Secret Repository
               </div>
+            </div>
+            <div
+              className={styles.bottomleftcolleft}
+              onClick={() => {
+                setIsShow("block");
+                setPromptTitle("Signing");
+                setPromptText("Cryptographic signing of artifacts, be they source code commits, configurations, binaries or other, allow for verification of the consistency and integrity of the data they contain.");
+              }}
+            >
+              Signing
             </div>
           </div>
           <div className={styles.bottomrightcol}>
@@ -109,7 +116,8 @@ const InteractiveDiagram = () => {
                 className={styles.cell}
                 onClick={() => {
                   setIsShow("block");
-                  setPromptText("Developer Portal");
+                  setPromptTitle("Developer Portal");
+                  setPromptText("Software catalog of all components, systems and domains.");
                 }}
               >
                 Developer Portal
@@ -119,6 +127,7 @@ const InteractiveDiagram = () => {
                 onClick={() => {
                   setIsShow("block");
                   setPromptText("Identity and Access");
+                  setPromptTitle("Identity and Access");
                 }}
               >
                 Identity and Access
@@ -129,6 +138,7 @@ const InteractiveDiagram = () => {
                   onClick={() => {
                     setIsShow("block");
                     setPromptText("Infra as Code");
+                  setPromptTitle("Infra as Code");
                   }}
                 >
                   Infra as <br /> Code
@@ -138,6 +148,7 @@ const InteractiveDiagram = () => {
                   onClick={() => {
                     setIsShow("block");
                     setPromptText("Continuous Delivery");
+                  setPromptTitle("Continuous Delivery");
                   }}
                 >
                   Continuous <br /> Delivery
@@ -147,6 +158,7 @@ const InteractiveDiagram = () => {
                   onClick={() => {
                     setIsShow("block");
                     setPromptText("Workflow Orchestration");
+                  setPromptTitle("Workflow Orchestration");
                   }}
                 >
                   Workflow <br /> Orchestration
@@ -156,6 +168,7 @@ const InteractiveDiagram = () => {
                   onClick={() => {
                     setIsShow("block");
                     setPromptText("Service Discovery");
+                  setPromptTitle("Service Discovery");
                   }}
                 >
                   Service <br /> Discovery
@@ -166,6 +179,7 @@ const InteractiveDiagram = () => {
                 onClick={() => {
                   setIsShow("block");
                   setPromptText("Secret Management");
+                  setPromptTitle("Secret Management");
                 }}
               >
                 Secret Management
@@ -175,6 +189,7 @@ const InteractiveDiagram = () => {
                 onClick={() => {
                   setIsShow("block");
                   setPromptText("Validation");
+                  setPromptTitle("Validation");
                 }}
               >
                 Validation
@@ -184,6 +199,7 @@ const InteractiveDiagram = () => {
                 onClick={() => {
                   setIsShow("block");
                   setPromptText("Compute Platform");
+                  setPromptTitle("Compute Platform");
                 }}
               >
                 Compute Platform
@@ -194,6 +210,7 @@ const InteractiveDiagram = () => {
               onClick={() => {
                 setIsShow("block");
                 setPromptText("Observability");
+                  setPromptTitle("Observability");
               }}
             >
               Observability
@@ -206,6 +223,7 @@ const InteractiveDiagram = () => {
           <div className={styles.closeIcon} onClick={() => setIsShow("none")}>
             X
           </div>
+          <div className={styles.promptHeader}>{promptTitle}</div>
           <div className={styles.promptBody}>{promptText}</div>
         </div>
       </div>
@@ -221,7 +239,9 @@ export default function Home() {
       description="The CNOE website />"
     >
       <HomepageHeader />
+      <hr/>
       <InteractiveDiagram />
+      <hr/>
       <main>
         <MissionVision />
         <HomepageFeatures />

@@ -27,7 +27,7 @@
 .interactivediagramcontainer {
   position: relative;
   width: 100vw;
-  background-color: #303846;
+  background-color: var(--ifm-background-color);
   text-align: center;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -35,6 +35,7 @@
   color: var(--ifm-color-primary);
   min-height: 405px;
   max-height: 465px;
+  border-color: var(--ifm-color-info-foreground-contrast);
 }
 
 .popUpPrompt {
@@ -55,32 +56,42 @@
   top: 20%;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 5px;
+  overflow-y: scroll;
 }
 
 .closeIcon {
-  color: black;
-  text-align: right;
-  border: 1px solid black;
+  color: grey;
+  text-align: center;
+  border: 1px;
   width: 25px;
   cursor: pointer;
-  padding-right: 5px;
-  background-color: rgba(222, 222, 222, 1);
-  box-shadow: 1px 1px 1px black;
+  background-color: var(--ifm-background-color);
 }
 .closeIcon:hover {
   background-color: rgba(200, 200, 200, 1);
 }
 
-.promptBody {
-  color: black;
+.promptHeader {
+  color: Black;
 }
+
+.promptBody {
+  color: #1C1E21;
+  font-size: 95%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  text-align: left;
+  border: 5px;
+  padding: 10px;
+}
+
 .diagramcontent {
   width: 70vw;
-  background-color: white;
+  background-color: var(--ifm-background-color);
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  border: 2px black solid;
+  border: 2px solid;
   height: 50vh;
   white-space: nowrap;
   padding: 15px;
@@ -97,7 +108,7 @@
   grid-template: 1fr / 1fr;
   place-items: center;
   height: 20%;
-  border: 2px solid black;
+  border: 2px solid;
   width: 94%;
   margin-right: auto;
   margin-left: auto;
@@ -130,8 +141,9 @@
   height: 100%;
   width: 100%;
   z-index: 2;
-  background-color: #00568c;
+  background-color: var(--ifm-color-primary);
   color: white;
+  border-color: var(--ifm-color-primary-dark);
 }
 
 .diagramcontent .bottomrow {
@@ -145,7 +157,7 @@
   width: 40%;
   height: 80%;
   overflow: hidden;
-  border: 2px dotted black;
+  border: 2px dotted;
   margin-right: -15px;
   padding: 10px;
   padding-right: 30px;
@@ -157,17 +169,17 @@
   display: inline-block;
   height: 98%;
   overflow: hidden;
-  border: 2px solid black;
+  border: 2px solid;
   writing-mode: vertical-lr;
   padding-left: 10px;
   padding-right: 5px;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .diagramcontent .bottomrow .bottomleftcol .bottomleftcolright .cell {
   width: 100%;
   height: 17.5%;
-  border: 2px solid black;
+  border: 2px solid;
   overflow: hidden;
   margin-top: 5px;
 }
@@ -185,7 +197,7 @@
   width: 55%;
   padding: 0px;
   height: 100%;
-  border: 2px dotted black;
+  border: 2px dotted;
   padding: 10px;
   padding-left: 20px;
   padding-right: 10px;
@@ -203,7 +215,7 @@
   display: inline-block;
   height: 100%;
   overflow: hidden;
-  border: 2px solid black;
+  border: 2px solid;
   writing-mode: vertical-lr;
   padding-left: 5px;
   padding-right: 5px;
@@ -215,7 +227,7 @@
 .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .cell {
   width: 98.5%;
   height: 14%;
-  border: 2px solid black;
+  border: 2px solid;
   overflow: hidden;
   margin-bottom: 5px;
 }
@@ -227,13 +239,13 @@
   width: 23.5%;
   height: 100%;
   display: inline-block;
-  border: 2px solid black;
+  border: 2px solid;
   margin: 4px;
   font-size: 12px;
 }
 .endcell {
   width: 23.5%;
-  border: 2px solid black;
+  border: 2px solid;
   height: 100%;
   display: inline-block;
   overflow: hidden;
