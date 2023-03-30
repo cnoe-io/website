@@ -71,6 +71,11 @@ const config = {
             position: 'left',
             label: 'Introduction',
           },
+          {
+            to: '/docs/category/technology-capabilities',
+            position: 'left',
+            label: 'Technology Capabilities',
+          },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/cnoe-io',
