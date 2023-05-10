@@ -1,15 +1,16 @@
 ---
 sidebar_position: 17
-description: The runtime environments that product apps and services run on.<br/>
+description: The runtime environments that product apps and services run on.
 ---
 
 # Deployment Targets
 
-- These are the runtime environments that product apps and services run on. They could also be abstractions hiding the details and fidelity of the underlying environments from the product developers. 
-- An example of something that we might want to hide from users is the region or locality of the environment.
+These are the runtime environments that product apps and services run on. This includes static content or data published for distribution.
+- Often abstractions hiding the details of underlying environments from the product developers.
+  - Regions or localities are a good example of what one might want to mask.
 - Common deployment targets include:
   - Kubernetes
   - Lambda
-  - Virtual Machines (EC2)
-  - Elastic Container Service (ECS)
-
+  - Virtual Machines
+  - Elastic Container Service
+  - Static Content

@@ -20,7 +20,8 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Deployment Targets");
                     setPromptText(parse(`
-                    The runtime environments that product apps and services run on.<br/>
+                    <p>The runtime environments that product apps and services run on.
+                    This includes static content or data published for distribution.</p>
                     <b><a href="docs/capabilities/deployment-targets">Read More ></a></b>
                   `));
               }}>
@@ -36,8 +37,7 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Packaging / Templating");
                   setPromptText(parse(`
-                    Ensures the delivery of a packaged up and functional set of software or tools.
-                    <br/>
+                    <p>Ensures the delivery of a packaged up and functional set of software or tools.</p>
                     <b><a href="docs/capabilities/packaging-and-templating">Read More ></a></b>
                   `));
                 }}
@@ -50,8 +50,7 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Code Repository");
                   setPromptText(parse(`
-                    Enable developers to collaborate on code asynchronously while keeping historical lineage of changes.
-                    <br/>
+                    <p>Enable developers to collaborate on code asynchronously while keeping historical lineage of changes.</p>
                     <b><a href="docs/capabilities/code-repository">Read More ></a></b>
                   `));
                 }}
@@ -64,8 +63,7 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Config Repository");
                   setPromptText(parse(`
-                    Enable developers to collaborate on configuration asynchronously while keeping historical lineage of changes.
-                    <br/>
+                    <p>Canonical data store for application configuration.</p>
                     <b><a href="docs/capabilities/config-repository">Read More ></a></b>
                   `));
                 }}
@@ -92,8 +90,7 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Secret Repository");
                   setPromptText(parse(`
-                    Secrets repositories are secure long term storage locations for sensitive data. 
-                    <br/>
+                    <p>Secrets repositories are secure long term storage locations for sensitive data.</p>
                     <b><a href="docs/capabilities/secret-repository">Read More ></a></b>
                   `));
                 }}
@@ -107,8 +104,7 @@ export default function InteractiveDiagram() {
                 setIsShow("block");
                 setPromptTitle("Signing");
                 setPromptText(parse(`
-                    Cryptographic signing of artifacts, be they source code commits, configurations, binaries or other, allow for verification of the consistency and integrity of the data they contain.
-                    <br/>
+                    <p>Cryptographic signing of artifacts to allow for verification of the consistency and integrity of the data they contain.</p>
                     <b><a href="docs/capabilities/signing">Read More ></a></b>
                 `));
               }}
@@ -124,8 +120,7 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Developer Portal");
                   setPromptText(parse(`
-                    Software catalog of all components, systems and domains.
-                    <br/>
+                    <p>Software catalog of all components, systems and domains.</p>
                     <b><a href="docs/capabilities/developer-portal">Read More ></a></b>
                   `));
                 }}
@@ -138,8 +133,7 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Identity and Access");
                   setPromptText(parse(`
-                    A service that can be used to wire up Authentication and Authorization in a common well understood manner.
-                    <br/>
+                    <p>A service that can be used to wire up Authentication and Authorization in a common well understood manner.</p>
                     <b><a href="docs/capabilities/identity-and-access">Read More ></a></b>
                   `));
                 }}
@@ -153,8 +147,7 @@ export default function InteractiveDiagram() {
                     setIsShow("block");
                     setPromptTitle("Infra as Code");
                     setPromptText(parse(`
-                    Tooling required to spin up infrastructure resources for a given application.
-                    <br/>
+                    <p>Tooling required to spin up infrastructure resources for a given application.</p>
                     <b><a href="docs/capabilities/infra-as-code">Read More ></a></b>
                     `));
                   }}
@@ -167,8 +160,7 @@ export default function InteractiveDiagram() {
                     setIsShow("block");
                     setPromptTitle("Continuous Delivery");
                     setPromptText(parse(`
-                    CD gets infrastructure and application resources into a state, ready for receiving production workload.
-                    <br/>
+                    <p>CD gets infrastructure and application resources into a state, ready for receiving production workload.</p>
                     <b><a href="docs/capabilities/continuous-delivery">Read More ></a></b>
                     `));
                   }}
@@ -181,8 +173,7 @@ export default function InteractiveDiagram() {
                     setIsShow("block");
                     setPromptTitle("Workflow Orchestration");
                     setPromptText(parse(`
-                    The orchestration process to get artifacts ready for rollout
-                    <br/>
+                    <p>The orchestration process to get applications ready for delivery.</p>
                     <b><a href="docs/capabilities/workflow-orchestration">Read More ></a></b>
                     `));
                   }}
@@ -195,8 +186,7 @@ export default function InteractiveDiagram() {
                     setIsShow("block");
                     setPromptTitle("Service Discovery");
                     setPromptText(parse(`
-                    It allows for the dynamic lookup or querying of a producer’s interface/API details by consumers of that service. It also allows for the dynamic lookup or querying of a producer’s interface/API details by consumers of that service.
-                    <br/>
+                    <p>Allows for the dynamic lookup or querying of service details.</p>
                     <b><a href="docs/capabilities/service-discovery">Read More ></a></b>
                     `));
                   }}
@@ -210,8 +200,7 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Secret Management");
                   setPromptText(parse(`
-                    Secrets Management aims to shift this important responsibility to the platform where it can be implemented and audited in one place rather than many.
-                    <br/>
+                    <p>Secrets Management manages the life cycle and distribution of secrets safely and securely.</p>
                     <b><a href="docs/capabilities/secret-management">Read More ></a></b>
                   `));
                 }}
@@ -224,8 +213,7 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Validation");
                   setPromptText(parse(`
-                    It ensures artifacts used in deployments are the ones expected.
-                    <br/>
+                    <p>Validation ensures that API specifications are abided. Can be used in conjunction with admission control to enable security controls</p>
                     <b><a href="docs/capabilities/validation">Read More ></a></b>
                   `));
                 }}
@@ -238,8 +226,7 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Compute Platform");
                   setPromptText(parse(`
-                    The platform runtime.
-                    <br/>
+                    <p>The runtime used by the platform. Hosts the platform capabilities or their integration points.</p>
                     <b><a href="docs/capabilities/compute-platform">Read More ></a></b>
                   `));
                 }}
@@ -253,8 +240,7 @@ export default function InteractiveDiagram() {
                 setIsShow("block");
                   setPromptTitle("Observability");
                   setPromptText(parse(`
-                    Monitors, reports, and alerts on the overall well-being of the system.
-                    <br/>
+                    <p>Monitors, reports, and alerts on the overall well-being of the system.</p>
                     <b><a href="docs/capabilities/observability">Read More ></a></b>
                   `));
               }}
