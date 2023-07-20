@@ -1,0 +1,34 @@
+[
+  {
+    "label": "Label 1",
+    "innerLabel": "Inner 1"
+  },
+  {
+    "label": "Label 2",
+    "innerLabel": "Inner 2"
+  },
+  {
+    "label": "Label 3",
+    "innerLabel": "Inner 3"
+  },
+  {
+    "label": "Label 4",
+    "innerLabel": "Inner 4"
+  },
+  {
+    "label": "Label 5",
+    "innerLabel": "Inner 5"
+  },
+  {
+    "label": "Label 6",
+    "innerLabel": "Inner 6"
+  },
+  {
+    "label": "Label 7",
+    "innerLabel": "Inner 7"
+  },
+  {
+    "label": "Label 8",
+    "innerLabel": "Inner 8"
+  }
+]
