@@ -8,7 +8,7 @@
             transition: transform 0.3s;
         }
         .radar:hover {
-            fill: #aaa;
+            fill: #bbb;
             transform: scale(1.1);
         }
         .container {
@@ -18,7 +18,7 @@
             gap: 20px;
             justify-items: center;
         }
-        .label, .innerLabel {
+        .label, .innerLabel, .innerLabel2 {
             font-family: 'Comic Sans MS', sans-serif;
             opacity: 0;
             transition: opacity 1s ease-out;
@@ -51,13 +51,44 @@
         .styled-select select:hover {
             color: #5a5a5a;
         }
+
+        .ring {
+            stroke-width: 2px;
+            fill: none;
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+
+        .ring.outer {
+            stroke: #D9D9D9;
+        }
+
+        .ring.middle {
+            stroke: #A3A3A3;
+        }
+
+        .ring.inner {
+            stroke: #707070;
+        }
+
+        #legend {
+            padding: 10px;
+            background-color: #D9D9D9;
+            border: 1px solid #A3A3A3;
+            font-family: 'Comic Sans MS', sans-serif;
+            border-radius: 10px;
+        }
+
+        #legend div {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="styled-select">
         <select id="jsonSelect" onchange="loadRadarData()">
-            <option value="labels.json">8 Quadrants</option>
-            <option value="labels4.json">4 Quadrants</option>
+            <option value="labels-ab.json">Adobe</option>
+            <option value="labels-ad.json">Autodesk</option>
             <!-- Add more options as needed -->
         </select>
     </div>
@@ -70,7 +101,7 @@
     </div>
 
     <script>
-        var width = 500,
+        var width = 550,
             height = 500;
         var radius = 220;
 
@@ -123,6 +154,40 @@
                 .delay(200 * labelsData.length + 1000) // Set delay to appear after the quadrants
                 .style("opacity", 1);
 
+            svg.selectAll(".innerLabel2")
+                .data(labelsData)
+                .enter().append("text")
+                .attr("class", "innerLabel2")
+                .attr("x", function(d, i) { return (radius / 2) * Math.cos((angles[i] + angles[(i + 1) % angles.length]) / 2 - Math.PI / 2); })
+                .attr("y", function(d, i) { return (radius / 2) * Math.sin((angles[i] + angles[(i + 1) % angles.length]) / 2 - Math.PI / 2) + 25; }) // adjusted y-position for the second label
+                .text(function(d) { return d.innerlabel2; }) // assuming each element in labelsData has an innerLabel2 property
+                .style("text-anchor", "middle")
+                .transition()
+                .delay(200 * labelsData.length + 1200) // Slightly longer delay for the second label to appear after the first one
+                .style("opacity", 1);
+
+            svg.append('circle')
+                .attr('class', 'ring outer')
+                .attr('r', radius)
+                .transition()
+                .delay(200 * labelsData.length + 1000) // Set delay to appear after the quadrants
+                .style("opacity", 1);
+
+            svg.append('circle')
+                .attr('class', 'ring middle')
+                .attr('r', radius * 2/3)
+                .transition()
+                .delay(200 * labelsData.length + 1000) // Set delay to appear after the quadrants
+                .style("opacity", 1);
+
+            svg.append('circle')
+                .attr('class', 'ring inner')
+                .attr('r', radius / 3)
+                .transition()
+                .delay(200 * labelsData.length + 1000) // Set delay to appear after the quadrants
+                .style("opacity", 1);
+
+
             // Add animation to roll open the quadrants
             path.transition()
                 .delay(function(d, i) { return i * 200; }) // Set delay to create one by one effect
@@ -135,7 +200,32 @@
                     };
                 });
 
-            // Rest of the code...
+            let colorData = [
+                {label: "Operation", color: "#4287f5"},
+                {label: "Application", color: "#f54242"},
+                {label: "Packaging", color: "#42f554"},
+                {label: "Security", color: "#f5e842"}
+            ];
+
+            var legend = d3.select("body").append("div")
+                    .attr("id", "legend")
+                    .style("position", "absolute")
+                    .style("top", "10px")
+                    .style("right", "10px");
+
+            colorData.forEach((d, i) => {
+                var legendRow = legend.append("div");
+
+                legendRow.append("span")
+                        .style("display", "inline-block")
+                        .style("width", "10px")
+                        .style("height", "10px")
+                        .style("margin-right", "5px")
+                        .style("background-color", d.color);
+
+                legendRow.append("span")
+                        .text(d.label);
+            });
         }
 
         function loadRadarData() {
@@ -148,18 +238,18 @@
             // Fetch the selected JSON file and redraw the radars
             d3.json(jsonFile, function(error, labelsData) {
                 if (error) throw error;
-                createRadar('radar1', labelsData, labelsData.length/2);
-                createRadar('radar2', labelsData, labelsData.length/2);
-                createRadar('radar3', labelsData, labelsData.length/2);
-                createRadar('radar4', labelsData, labelsData.length/2);
+                createRadar('radar1', labelsData.operation, labelsData.operation.length/2);
+                createRadar('radar2', labelsData.application, labelsData.application.length/2);
+                createRadar('radar3', labelsData.security, labelsData.security.length/2);
+                createRadar('radar4', labelsData.maintenance, labelsData.maintenance.length/2);
             });
         }
 
-        d3.json("labels.json", function(labelsData) {
-            createRadar('radar1', labelsData, labelsData.length/2);
-            createRadar('radar2', labelsData, labelsData.length/2);
-            createRadar('radar3', labelsData, labelsData.length/2);
-            createRadar('radar4', labelsData, labelsData.length/2);
+        d3.json("labels-ab.json", function(labelsData) {
+                createRadar('radar1', labelsData.operation, labelsData.operation.length/2);
+                createRadar('radar2', labelsData.application, labelsData.application.length/2);
+                createRadar('radar3', labelsData.security, labelsData.security.length/2);
+                createRadar('radar4', labelsData.maintenance, labelsData.maintenance.length/2);
         });
     </script>
 </body>
