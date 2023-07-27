@@ -57,13 +57,12 @@ function Legend() {
 
 const Radar = () => {
     const [data, setData] = useState({});
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState({});
     const [selectedKey, setSelectedKey] = useState({});
 
     const FullMap = new Map([
       ['Adobe', '/website/data/adobe.json'],
       ['Autodesk', '/website/data/autodesk.json'],
-      ['Salesforce', 'Value 3'],
       ['SAP', 'Value 4'],
       ['Ad', 'Value 5'],
     ]);
@@ -96,29 +95,29 @@ const Radar = () => {
             <Layout title="Radar" >
               <Legend/>
               <div className="container margin-vert--lg" style={{ flexGrow: 1 }}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={3}>
-                      <FilterableList />
-                    </Grid>
-                    <Grid item xs={8}>
-                        <div className={styles.container}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <RadarChart colors={["--ifm-color-radar-opeartion"]} data={data.operation} quadrants={data.operation.length}/>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <RadarChart colors={["--ifm-color-radar-application"]} data={data.application} quadrants={data.application.length}/>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <RadarChart colors={["--ifm-color-radar-security"]} data={data.security} quadrants={data.security.length}/>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <RadarChart colors={["--ifm-color-radar-maintenance"]} data={data.maintenance} quadrants={data.maintenance.length}/>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </Grid>
+                <Grid container spacing={2}>
+                  <Grid item xs={3}>
+                    <FilterableList />
                   </Grid>
+                  <Grid item xs={8}>
+                      <div className={styles.container}>
+                          <Grid container spacing={2}>
+                              <Grid item xs={12}>
+                                  <RadarChart colors={["--ifm-color-radar-opeartion"]} data={data.operation} quadrants={data.operation.length}/>
+                              </Grid>
+                              <Grid item xs={12}>
+                                  <RadarChart colors={["--ifm-color-radar-application"]} data={data.application} quadrants={data.application.length}/>
+                              </Grid>
+                              <Grid item xs={12}>
+                                  <RadarChart colors={["--ifm-color-radar-security"]} data={data.security} quadrants={data.security.length}/>
+                              </Grid>
+                              <Grid item xs={12}>
+                                  <RadarChart colors={["--ifm-color-radar-maintenance"]} data={data.maintenance} quadrants={data.maintenance.length}/>
+                              </Grid>
+                          </Grid>
+                      </div>
+                  </Grid>
+                </Grid>
               </div>
             </Layout>
         );
@@ -157,11 +156,17 @@ const Radar = () => {
                   borderColor: 'var(--ifm-color-search-radar-border)',
                 },
               },
+              '& .MuiFormLabel-root.Mui-focused': {
+                color: 'var(--ifm-color-primary)',
+                '& fieldset': {
+                  borderColor: 'var(--ifm-color-primary)',
+                },
+              },
               '&:hover fieldset': {
-                borderColor: 'var(--ifm-color-search-radar-border-hover)', // Change border color on hover
+                borderColor: 'var(--ifm-color-search-radar-border-hover)',
               },
               '& .MuiInputBase-input': {
-                color: 'var(--ifm-color-content)', // Change input color
+                color: 'var(--ifm-color-content)',
               },
             }}
           />
@@ -170,7 +175,11 @@ const Radar = () => {
               <ListItem button key={index} onClick={() => handleListItemClick(key, value)}>
                 <ListItemText
                   primary={key}
-                  primaryTypographyProps={{ style: { fontWeight: (key === selectedKey || (Object.keys(selectedKey).length == 0 && index === 0)) ? 'bold' : 'normal' } }}
+                  primaryTypographyProps={{ style: {
+                      fontWeight: (key === selectedKey || (Object.keys(selectedKey).length == 0 && index === 0)) ? 'bold' : 'normal',
+                      color:  (key === selectedKey || (Object.keys(selectedKey).length == 0 && index === 0)) ? 'var(--ifm-color-primary)' : 'var(--ifm-color-content)',
+                  }
+                  }}
                 />
               </ListItem>
             ))}
