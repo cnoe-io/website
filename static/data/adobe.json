@@ -1,38 +1,50 @@
 {
   "operation": [
     {
-      "label": "AdOps 1",
-      "innerLabel": "Opt 1"
+      "label": "Infrastructure as Code",
+      "innerLabel": "Terraform",
+      "innerLabel2": "CloudFormation",
+      "innerLabel3": "ACK"
     },
     {
-      "label": "AdOps 2",
-      "innerLabel": "Opt 2"
+      "label": "Container Orchestrator",
+      "innerLabel": "EKS",
+      "innerLabel": "AKS",
+      "innerLabel": "self-managed Kubernetes",
+      "innerLabel": "ROSA",
+      "innerLabel": "ARO"
     },
     {
-      "label": "AdOps 3",
-      "innerLabel": "Opt 3",
+      "label": "Container Orchestrator Lifecycle Managment",
+      "innerLabel": "Custom automation standardized on Cluster API",
       "innerlabel2": "noOpt 0"
     },
     {
-      "label": "AdOps 4",
-      "innerLabel": "Opt 4"
+      "label": "Container Host operating system",
+      "innerLabel": "FlatCar OS"
     },
     {
-      "label": "AdOps 5",
-      "innerLabel": "Opt 5"
+      "label": "Container Images operating sytem",
+      "innerLabel": "Alpine",
+      "innerLabel2": "Ubuntu",
+      "innerLabel3": "CentOS"
     },
     {
-      "label": "AdOps 6",
-      "innerLabel": "Opt 6",
-      "innerlabel2": "noOpt 1"
+      "label": "Network Ingress/Egress",
+      "innerLabel": "TBD"
     },
     {
-      "label": "AdOps 7",
-      "innerLabel": "Opt 7"
+      "label": "Service Dashboards",
+      "innerLabel": "Grafana"
     },
     {
-      "label": "AdOps 8",
-      "innerLabel": "Opt 8"
+      "label": "Scalability / Elasticity",
+      "innerLabel": "Cluster Autoscalar",
+      "innerLabel": "Horizontal Pod Autosclar (HPA)"
+    },
+    {
+      "label": "FinOps Strategy",
+      "innerLabel": "Kubecost"
     }
   ],
   "application": [
