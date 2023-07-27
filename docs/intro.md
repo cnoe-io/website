@@ -46,8 +46,6 @@ The CNOE working group will operate based on the following tenets.
 
 1. not new technologies or set of managed services, but a way to interact and integrate. There is still an expectation that companies will need to fund and operate the various open source tools used within the IDP
 
-1. not new technologies or set of managed services, but a way to interact and integrate. There is still an expectation that companies will need to fund and operate the various open source tools used within the IDP
-
 1. not installers or proprietary packaging mechanisms. it will be fully open source and customizable and available to use by any one
 
 1. not responsible for operationalizing of the toolchain. There is still an expectation that companies will need to fund and operate the various open source tools used within the IDP
