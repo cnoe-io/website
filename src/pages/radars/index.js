@@ -159,6 +159,9 @@ const Radar = () => {
               '&:hover fieldset': {
                 borderColor: 'var(--ifm-color-search-radar-border-hover)', // Change border color on hover
               },
+              '& .MuiInputBase-input': {
+                color: 'var(--ifm-color-content)', // Change input color
+              },
             }}
           />
           <List>
