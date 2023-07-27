@@ -84,7 +84,7 @@ const config = {
           {
             to: '/radars',
             position: 'left',
-            label: 'Radars',
+            label: 'Technology Radars',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {

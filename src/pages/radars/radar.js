@@ -107,7 +107,6 @@ const RadarChart = ({ colors = ['lightgray', 'black', "black"], data, quadrants 
 
   return (
     <svg
-      className={styles.radar}
       width={650}
       height={600}
       ref={d3Container}

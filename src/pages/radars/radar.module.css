@@ -6,11 +6,6 @@
   gap: 100px; /* optional: add some gap between the radars */
 }
 
-.radar {
-  position: relative;
-  padding: 50;
-}
-
 .pagecontainer {
   display: flex;
   padding: 0 15px; /* padding on the sides */
@@ -20,5 +15,5 @@
   position: fixed;
   top: 0;
   zIndex: 1;
-  margin: 90px;
+  margin-top: 90px;
 }

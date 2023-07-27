@@ -18,6 +18,7 @@ import ListItemText from '@mui/material/ListItemText';
 function fetchData(path) {
     return fetch(path)
 }
+
 function Legend() {
   return (
     <Stack
@@ -141,7 +142,7 @@ const Radar = () => {
       };
 
       return (
-        <div>
+        <div className={styles.fixed}>
           <TextField
             label="Search"
             variant="outlined"
