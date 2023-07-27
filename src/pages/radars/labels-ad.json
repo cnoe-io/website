@@ -1,0 +1,74 @@
+{
+  "operation": [
+    {
+      "label": "Operation 1",
+      "innerLabel": "Ops 1"
+    },
+    {
+      "label": "Operation 2",
+      "innerLabel": "Ops 2"
+    },
+    {
+      "label": "Operation 3",
+      "innerLabel": "Ops 3"
+    },
+    {
+      "label": "Operation 4",
+      "innerLabel": "Ops 4"
+    },
+    {
+      "label": "Operation 5",
+      "innerLabel": "Ops 5"
+    },
+    {
+      "label": "Operation 6",
+      "innerLabel": "Ops 6"
+    }
+  ],
+  "application": [
+    {
+      "label": "Application 1",
+      "innerLabel": "Apps 1"
+    },
+    {
+      "label": "Application 2",
+      "innerLabel": "Apps 2"
+    },
+    {
+      "label": "Application 3",
+      "innerLabel": "Apps 3"
+    }
+  ],
+  "security": [
+    {
+      "label": "Security 1",
+      "innerLabel": "Sec 1"
+    },
+    {
+      "label": "Security 2",
+      "innerLabel": "Sec 2"
+    },
+    {
+      "label": "Security 3",
+      "innerLabel": "Sec 3"
+    },
+    {
+      "label": "Security 4",
+      "innerLabel": "Sec 4"
+    },
+    {
+      "label": "Security 5",
+      "innerLabel": "Sec 5"
+    }
+  ],
+  "maintenance": [
+    {
+      "label": "Maintain 1",
+      "innerLabel": "Maintain 1"
+    },
+    {
+      "label": "Maintain 3",
+      "innerLabel": "Maintain 3"
+    }
+  ]
+}

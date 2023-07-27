@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* align the radars in a column */
+  gap: 100px; /* optional: add some gap between the radars */
+}
+
+.radar {
+  position: relative;
+  padding: 50;
+}
+
+.pagecontainer {
+  display: flex;
+  padding: 0 15px; /* padding on the sides */
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  zIndex: 1;
+  margin: 90px;
+}

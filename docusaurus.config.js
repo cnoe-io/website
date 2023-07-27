@@ -81,6 +81,11 @@ const config = {
             position: 'left',
             label: 'Reference Implementation'
           },
+          {
+            to: '/radars',
+            position: 'left',
+            label: 'Radars',
+          },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/cnoe-io',
