@@ -12,55 +12,23 @@ import {
 
 import TextField from '@mui/material/TextField';
 import List from '@mui/material/List';
+import Checkbox from '@mui/material/Checkbox';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 function fetchData(path) {
     return fetch(path)
-}
-
-function Legend() {
-  return (
-    <Stack
-      direction="column"
-      justifyContent="flex-start"
-      alignItems="flex-start"
-      spacing={1}
-      className="margin-vert--lg"
-      sx={{
-        position: 'fixed',
-        right: 8,
-        backgroundColor: '--ifm-background-surface-color',
-        padding: 1,
-        zIndex: 1,
-      }}
-    >
-      <Stack direction="row" spacing={1}>
-        <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'primary.main' }} />
-        <Typography variant="body2">Operation</Typography>
-      </Stack>
-      <Stack direction="row" spacing={1}>
-        <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'success.main' }} />
-        <Typography variant="body2">Application</Typography>
-      </Stack>
-      <Stack direction="row" spacing={1}>
-        <Box sx={{ width: 16, height: 16,borderRadius: '50%', backgroundColor: 'error.main' }} />
-        <Typography variant="body2">Security</Typography>
-      </Stack>
-      <Stack direction="row" spacing={1}>
-        <Box sx={{ width: 16, height: 16,borderRadius: '50%', backgroundColor: 'warning.main' }} />
-        <Typography variant="body2">Maintenance</Typography>
-      </Stack>
-    </Stack>
-  );
 }
 
 const Radar = () => {
     const [data, setData] = useState({});
     const [isLoading, setLoading] = useState({});
     const [selectedKey, setSelectedKey] = useState({});
+    const [details, setDetails] = useState(false);
 
     const FullMap = new Map([
+      ['Sample', '/website/data/sample.json'],
       ['Adobe', '/website/data/adobe.json'],
       ['Autodesk', '/website/data/autodesk.json'],
       ['SAP', 'Value 4'],
@@ -103,16 +71,16 @@ const Radar = () => {
                       <div className={styles.container}>
                           <Grid container spacing={2}>
                               <Grid item xs={12}>
-                                  <RadarChart colors={["--ifm-color-radar-opeartion"]} data={data.operation} quadrants={data.operation.length}/>
+                                  <RadarChart details={details} colors={["--ifm-color-radar-opeartion"]} data={data.operation} quadrants={data.operation.length}/>
                               </Grid>
                               <Grid item xs={12}>
-                                  <RadarChart colors={["--ifm-color-radar-application"]} data={data.application} quadrants={data.application.length}/>
+                                  <RadarChart details={details} colors={["--ifm-color-radar-application"]} data={data.application} quadrants={data.application.length}/>
                               </Grid>
                               <Grid item xs={12}>
-                                  <RadarChart colors={["--ifm-color-radar-security"]} data={data.security} quadrants={data.security.length}/>
+                                  <RadarChart details={details} colors={["--ifm-color-radar-security"]} data={data.security} quadrants={data.security.length}/>
                               </Grid>
                               <Grid item xs={12}>
-                                  <RadarChart colors={["--ifm-color-radar-maintenance"]} data={data.maintenance} quadrants={data.maintenance.length}/>
+                                  <RadarChart details={details} colors={["--ifm-color-radar-maintenance"]} data={data.maintenance} quadrants={data.maintenance.length}/>
                               </Grid>
                           </Grid>
                       </div>
@@ -122,6 +90,65 @@ const Radar = () => {
             </Layout>
         );
     }
+
+    const Legend = () => {
+        const handleChangeDetails = (event) => {
+          setDetails(event.target.checked);
+        };
+
+        return (
+          <Stack
+            direction="column"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            spacing={1}
+            className="margin-vert--lg"
+            sx={{
+              position: 'fixed',
+              right: 8,
+              backgroundColor: '--ifm-background-surface-color',
+              padding: 1,
+              zIndex: 1,
+            }}
+          >
+            <Stack>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={details}
+                      onChange={handleChangeDetails}
+                      color="primary"
+                      sx={{
+                       '& .MuiCheckbox-root': {
+                            color: 'var(--ifm-color-search-radar-label)',
+                        },
+
+                      }}
+                    />
+                  }
+                  label="Show Details"
+                />
+            </Stack>
+            <Stack direction="row" spacing={1}>
+              <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'primary.main' }} />
+              <Typography variant="body2">Operation</Typography>
+            </Stack>
+            <Stack direction="row" spacing={1}>
+              <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'success.main' }} />
+              <Typography variant="body2">Application</Typography>
+            </Stack>
+            <Stack direction="row" spacing={1}>
+              <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'error.main' }} />
+              <Typography variant="body2">Security</Typography>
+            </Stack>
+            <Stack direction="row" spacing={1}>
+              <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'warning.main' }} />
+              <Typography variant="body2">Maintenance</Typography>
+            </Stack>
+          </Stack>
+        );
+    }
+
 
     const FilterableList = () => {
       const [searchTerm, setSearchTerm] = useState('');
@@ -149,7 +176,7 @@ const Radar = () => {
             onChange={handleChange}
             sx={{
               '& .MuiFormLabel-root': {
-                  color: 'var(--ifm-color-search-radar-label)',
+                  color: 'var(--ifm-color-seMuiCheckboxarch-radar-label)',
               },
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {
@@ -189,7 +216,7 @@ const Radar = () => {
     }
 
     useEffect(() => {
-     fetchData('/website/data/adobe.json')
+     fetchData('/website/data/sample.json')
         .then(response => {
         if (!response.ok) { throw new Error(response.statusText); }
         return response.json();
