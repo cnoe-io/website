@@ -23,9 +23,9 @@ const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, q
 
       // Draw the circle
       const path = svg.append("g")
-        .style("fill", `var(${colors[0]})`)
-        .attr("fill-opacity", 1)
-        .attr("stroke", "var(--ifm-background-surface-color)")
+        .style("stroke", `var(${colors[0]})`)
+        .attr("fill-opacity", 0.8)
+        .attr("fill", `var(${colors[0]})`)
         .attr("stroke-width", 2)
         .attr("stroke-opacity", 0)
         .attr("transform", `translate(${width / 2}, ${height / 2})`)
@@ -50,7 +50,7 @@ const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, q
           };
         })
         .attrTween("fill-opacity", function() {
-          return d3.interpolate(0.9, 1);  // Interpolate the opacity of the fill color
+          return d3.interpolate(0.9, 0.2);  // Interpolate the opacity of the fill color
         })
         .attrTween("stroke-opacity", function() {
           return d3.interpolate(0.9, 1);  // Interpolate the opacity of the stroke color
@@ -61,14 +61,14 @@ const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, q
               d3.select(this)
                 .transition()
                 .duration(200)
-                .attr("fill", colors[1])
+                .attr("fill-opacity", 0.6)
                 .attr('transform', 'scale(1.1)');
             })
             .on('mouseout', function() {
               d3.select(this)
                 .transition()
                 .duration(200)
-                .attr("fill", colors[0])
+                .attr("fill-opacity", 0.2)
                 .attr('transform', 'scale(1)');
             });
 
@@ -98,7 +98,8 @@ const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, q
                 .attr("y", height / 2 - 20) // 20px above the center
                 .attr("width", 496)
                 .attr("height", 40) // the rectangle will be 40px high, 20px below and above the center
-                .attr("fill", "rgba(255, 255, 255, 0.8)");
+                .attr("fill", `var(${colors[0]})`)
+                .attr("fill-opacity", 0.7);
 
               for (let i = 1; i <= 2; i++) {
                 svg.append("circle")
@@ -106,7 +107,7 @@ const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, q
                   .attr("cy", height / 2)
                   .attr("r", (maxRadius / 3) * i)
                   .style("fill", "none")
-                  .style("stroke", "black");
+                  .style("stroke", `var(${colors[0]})`);
               }
 
               // Add the text labels
@@ -115,6 +116,7 @@ const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, q
                   .attr("x", (i==4) ? width /  2 : maxRadius / 4 * i + (10*i))
                   .attr("y", height / 2 + 5)
                   .style("text-anchor", "middle")
+                  .attr("fill", "var(--ifm-color-content-inverse)")
                   .text(labels[i-1]);
 
                 if (i == 4) continue;
@@ -122,6 +124,7 @@ const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, q
                   .attr("x", width - (maxRadius / 4 * i + (10*i)))
                   .attr("y", height / 2 + 5)
                   .style("text-anchor", "middle")
+                  .attr("fill", "var(--ifm-color-content-inverse)")
                   .text(labels[i-1]);
               }
             }
@@ -132,7 +135,7 @@ const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, q
               .data(data)
               .join("text")
               .attr("dy", "-1.5em")
-              .attr("fill", "var(--ifm-color-content)")
+              .attr("fill", "var(--ifm-color-primary)")
               .style("text-anchor", "middle")
               .attr("transform", (d, i) => {
                 const angle = ((i * 2 + 1) * Math.PI / data.length) - (Math.PI / 2);
@@ -148,7 +151,7 @@ const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, q
               .data(data)
               .join("text")
               .attr("dy", "0.35em")
-              .attr("fill", "white")
+              .attr("fill", "var(--ifm-color-content)")
               .style("text-anchor", "middle")
               .attr("transform", (d, i) => {
                 const angle = ((i * 2 + 1) * Math.PI / data.length) - (Math.PI / 2);

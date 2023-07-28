@@ -73,6 +73,7 @@ const config = {
           },
           {
             to: '/docs/category/technology-capabilities',
+            docId: 'capabilties',
             position: 'left',
             label: 'Technology Capabilities',
           },
@@ -83,6 +84,7 @@ const config = {
           },
           {
             to: '/radars',
+            docId: 'radars',
             position: 'left',
             label: 'Technology Radars',
           },
