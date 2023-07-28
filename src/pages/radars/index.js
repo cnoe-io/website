@@ -14,6 +14,7 @@ import TextField from '@mui/material/TextField';
 import List from '@mui/material/List';
 import Checkbox from '@mui/material/Checkbox';
 import ListItem from '@mui/material/ListItem';
+import Slider from '@mui/material/Slider';
 import ListItemText from '@mui/material/ListItemText';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
@@ -26,6 +27,7 @@ const Radar = () => {
     const [isLoading, setLoading] = useState({});
     const [selectedKey, setSelectedKey] = useState({});
     const [details, setDetails] = useState(false);
+    const [size, setSize] = useState(500);
 
     const FullMap = new Map([
       ['Sample', '/website/data/sample.json'],
@@ -71,16 +73,16 @@ const Radar = () => {
                       <div className={styles.container}>
                           <Grid container spacing={2}>
                               <Grid item xs={12}>
-                                  <RadarChart details={details} colors={["--ifm-color-radar-opeartion"]} data={data.operation} quadrants={data.operation.length}/>
+                                  <RadarChart size={size} details={details} colors={["--ifm-color-radar-opeartion"]} data={data.operation} quadrants={data.operation.length}/>
                               </Grid>
                               <Grid item xs={12}>
-                                  <RadarChart details={details} colors={["--ifm-color-radar-application"]} data={data.application} quadrants={data.application.length}/>
+                                  <RadarChart size={size} details={details} colors={["--ifm-color-radar-application"]} data={data.application} quadrants={data.application.length}/>
                               </Grid>
                               <Grid item xs={12}>
-                                  <RadarChart details={details} colors={["--ifm-color-radar-security"]} data={data.security} quadrants={data.security.length}/>
+                                  <RadarChart size={size} details={details} colors={["--ifm-color-radar-security"]} data={data.security} quadrants={data.security.length}/>
                               </Grid>
                               <Grid item xs={12}>
-                                  <RadarChart details={details} colors={["--ifm-color-radar-maintenance"]} data={data.maintenance} quadrants={data.maintenance.length}/>
+                                  <RadarChart size={size} details={details} colors={["--ifm-color-radar-maintenance"]} data={data.maintenance} quadrants={data.maintenance.length}/>
                               </Grid>
                           </Grid>
                       </div>
@@ -129,21 +131,35 @@ const Radar = () => {
                   label="Show Details"
                 />
             </Stack>
-            <Stack direction="row" spacing={1}>
-              <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'primary.main' }} />
-              <Typography variant="body2">Operation</Typography>
+            <Stack width={150}>
+                <RadiusSlider/>
             </Stack>
-            <Stack direction="row" spacing={1}>
-              <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'success.main' }} />
-              <Typography variant="body2">Application</Typography>
-            </Stack>
-            <Stack direction="row" spacing={1}>
-              <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'error.main' }} />
-              <Typography variant="body2">Security</Typography>
-            </Stack>
-            <Stack direction="row" spacing={1}>
-              <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'warning.main' }} />
-              <Typography variant="body2">Maintenance</Typography>
+            <Stack
+              direction="column"
+              spacing={1}
+              border={1}
+              sx={{
+                padding: 1,
+                zIndex: 1,
+                borderRadius: '5%',
+              }}
+            >
+                <Stack direction="row" spacing={1}>
+                  <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'primary.main' }} />
+                  <Typography variant="body2">Operation</Typography>
+                </Stack>
+                <Stack direction="row" spacing={1}>
+                  <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'success.main' }} />
+                  <Typography variant="body2">Application</Typography>
+                </Stack>
+                <Stack direction="row" spacing={1}>
+                  <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'error.main' }} />
+                  <Typography variant="body2">Security</Typography>
+                </Stack>
+                <Stack direction="row" spacing={1}>
+                  <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'warning.main' }} />
+                  <Typography variant="body2">Maintenance</Typography>
+                </Stack>
             </Stack>
           </Stack>
         );
@@ -211,6 +227,37 @@ const Radar = () => {
               </ListItem>
             ))}
           </List>
+        </div>
+      );
+    }
+
+    const RadiusSlider = ({ onChange }) => {
+
+      const handleRadiusChange = (event, newValue) => {
+        setSize(newValue);
+      };
+
+      const marks = [
+        { value: 250, label: '250' },
+        { value: 500, label: '500' },
+        { value: 750, label: '750' },
+        { value: 1000, label: '1000' },
+      ];
+
+      return (
+        <div>
+          <Typography id="discrete-slider" gutterBottom>
+            Adjust Size:
+          </Typography>
+          <Slider
+            value={size}
+            onChange={handleRadiusChange}
+            aria-labelledby="discrete-slider"
+            valueLabelDisplay="auto"
+            step={250}
+            min={250}
+            max={1000}
+          />
         </div>
       );
     }

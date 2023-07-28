@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import styles from './radar.module.css';
 
-const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, quadrants }) => {
+const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], data, quadrants }) => {
   const d3Container = useRef(null);
 
     useEffect(() => {
@@ -10,7 +10,7 @@ const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, q
       const svg = d3.select(d3Container.current);
 
         // Define size
-      const width = 600, height = 500;
+      const width = size + 100, height = size;
       const maxRadius = Math.min(width, height) / 2 - 1;
       const labels = ["Hold", "Assess", "Trial", "Adopt"];
 
@@ -96,7 +96,7 @@ const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, q
               svg.append("rect")
                 .attr("x", 52)
                 .attr("y", height / 2 - 20) // 20px above the center
-                .attr("width", 496)
+                .attr("width", size - 4)
                 .attr("height", 40) // the rectangle will be 40px high, 20px below and above the center
                 .attr("fill", `var(${colors[0]})`)
                 .attr("fill-opacity", 0.7);
@@ -166,8 +166,8 @@ const RadarChart = ({ details, colors = ['lightgray', 'black', "black"], data, q
 
   return (
     <svg
-      width={650}
-      height={600}
+      width={size + 100}
+      height={size + 50}
       ref={d3Container}
     />
   );
