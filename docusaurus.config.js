@@ -76,6 +76,11 @@ const config = {
             position: 'left',
             label: 'Technology Capabilities',
           },
+          {
+            to: '/docs/category/reference-implementation',
+            position: 'left',
+            label: 'Reference Implementation'
+          },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/cnoe-io',
