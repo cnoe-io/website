@@ -10,14 +10,15 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
       const svg = d3.select(d3Container.current);
 
         // Define size
-      const width = size + 100, height = size;
+      const width = size, height = size;
       const maxRadius = Math.min(width, height) / 2 - 1;
       const labels = ["Hold", "Assess", "Trial", "Adopt"];
+      const margin = 50;
 
       // Define a circle
       const circle = d3.arc()
         .innerRadius(0)
-        .outerRadius(Math.min(width, height) / 2 - 1)
+        .outerRadius(maxRadius)
         .startAngle(0)
         .endAngle(0);
 
@@ -28,7 +29,7 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
         .attr("fill", `var(${colors[0]})`)
         .attr("stroke-width", 2)
         .attr("stroke-opacity", 0)
-        .attr("transform", `translate(${width / 2}, ${height / 2})`)
+        .attr("transform", `translate(${width / 2 + margin}, ${height / 2 + margin})`)
         .selectAll("path")
         .data(Array(quadrants).fill())
         .join("path")
@@ -79,7 +80,7 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
 
               // Upper line
               svg.append("path")
-                .datum([[width / 2 - maxRadius, height / 2 - 20], [width / 2 + maxRadius, height / 2 - 20]])
+                .datum([[width / 2 - maxRadius + margin, height / 2 - 20 + margin], [width / 2 + maxRadius + margin, height / 2 - 20 + margin]])
                 .attr("fill", "none")
                 .attr("stroke", "black")
                 .attr("stroke-width", 1)
@@ -87,15 +88,15 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
 
               // Lower line
               svg.append("path")
-                .datum([[width / 2 - maxRadius, height / 2 + 20], [width / 2 + maxRadius, height / 2 + 20]])
+                .datum([[width / 2 - maxRadius + margin, height / 2 + 20 + margin], [width / 2 + maxRadius + margin, height / 2 + 20 + margin]])
                 .attr("fill", "none")
                 .attr("stroke", "black")
                 .attr("stroke-width", 1)
                 .attr("d", line);
 
               svg.append("rect")
-                .attr("x", 52)
-                .attr("y", height / 2 - 20) // 20px above the center
+                .attr("x", 2 + margin)
+                .attr("y", height / 2 - 20 + margin) // 20px above the center
                 .attr("width", size - 4)
                 .attr("height", 40) // the rectangle will be 40px high, 20px below and above the center
                 .attr("fill", `var(${colors[0]})`)
@@ -103,8 +104,8 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
 
               for (let i = 1; i <= 2; i++) {
                 svg.append("circle")
-                  .attr("cx", width / 2)
-                  .attr("cy", height / 2)
+                  .attr("cx", width / 2 + margin)
+                  .attr("cy", height / 2 + margin)
                   .attr("r", (maxRadius / 3) * i)
                   .style("fill", "none")
                   .style("stroke", `var(${colors[0]})`);
@@ -113,18 +114,18 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
               // Add the text labels
               for (let i = 1; i <= 4; i++) {
                 svg.append("text")
-                  .attr("x", (i==4) ? width /  2 : maxRadius / 4 * i + (10*i))
-                  .attr("y", height / 2 + 5)
+                  .attr("x", (i==4) ? width /  2 + margin : maxRadius / 3 * (i-1) + margin + 16)
+                  .attr("y", height / 2 + 5 + margin)
                   .style("text-anchor", "middle")
-                  .attr("fill", "var(--ifm-color-content-inverse)")
+                  .attr("fill", "var(--ifm-color-secondary-lighter)")
                   .text(labels[i-1]);
 
                 if (i == 4) continue;
                 svg.append("text")
-                  .attr("x", width - (maxRadius / 4 * i + (10*i)))
-                  .attr("y", height / 2 + 5)
+                  .attr("x", width + margin - (maxRadius / 3 * (i-1)) - 16)
+                  .attr("y", height / 2 + 5 + margin)
                   .style("text-anchor", "middle")
-                  .attr("fill", "var(--ifm-color-content-inverse)")
+                  .attr("fill", "var(--ifm-color-secondary-lighter)")
                   .text(labels[i-1]);
               }
             }
@@ -139,27 +140,104 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
               .style("text-anchor", "middle")
               .attr("transform", (d, i) => {
                 const angle = ((i * 2 + 1) * Math.PI / data.length) - (Math.PI / 2);
-                  const radius = Math.sin(angle) * maxRadius > 0 ? maxRadius + 20 : maxRadius - 20;
-                return `translate(${radius * Math.cos(angle)}, ${radius * Math.sin(angle)})`;
+                const radius = Math.sin(angle) * maxRadius > 0 ? maxRadius + 10 : maxRadius - 10;
+                return `translate(${radius * Math.cos(angle) + margin}, ${radius * Math.sin(angle) + margin})`;
               })
-              .text(d => d.label);
+              .call(text => {
+                text.each(function(d) {
+                  if (d.label == undefined) return;
+                  let arr = d.label.split(' ');
+                  d3.select(this).text(arr[0].replaceAll("~", " "));
+                  for(let i = 1; i < arr.length; i++) {
+                    d3.select(this).append('tspan')
+                      .attr('x', 0)
+                      .attr('dy', '1.2em')
+                      .text(arr[i].replaceAll("~", " "));
+                  }
+                });
+              });
 
 
             const innerLabel = svg.append("g")
               .attr("transform", `translate(${width / 2}, ${height / 2})`)
               .selectAll("text")
               .data(data)
-              .join("text")
+              .join("g")
               .attr("dy", "0.35em")
               .attr("fill", "var(--ifm-color-content)")
               .style("text-anchor", "middle")
               .attr("transform", (d, i) => {
                 const angle = ((i * 2 + 1) * Math.PI / data.length) - (Math.PI / 2);
-                const radius = d.relevance && details ? maxRadius * (1 - d.relevance) : maxRadius * .5;
-                return `translate(${radius * Math.cos(angle)}, ${radius * Math.sin(angle)})`;
+                const radius = maxRadius/5;
+                return `translate(${radius * Math.cos(angle) + margin}, ${radius * Math.sin(angle) + margin})`;
               })
-              .text(d => d.innerLabel);
-
+              .each(function(d,i) {
+                const g = d3.select(this);
+                if (details && Array.isArray(d.innerLabel)) {
+                  for (let j=0; j < d.innerLabel.length; j++) {
+                    let angleOffset = Math.PI / 12; // Adjust this value to change angle
+                    let radiusOffset = 0.8
+                    g.append("text")
+                      .attr("transform", () => {
+                        let radiusFactor = d.innerLabel ? 1 - d.innerLabel[j].relevance : 1.0; // Adjust this value to change distance
+                        const angle = ((i * 2 + 1) * Math.PI / data.length) - (Math.PI / 2) + angleOffset;
+                        const radius = maxRadius * radiusOffset * radiusFactor;
+                        return `translate(${radius * Math.cos(angle)}, ${radius * Math.sin(angle)})`;
+                      })
+                      .attr("fill", "var(--ifm-color-content)")
+                      .style("text-anchor", "middle")
+                      .text(p => d.innerLabel[j]) //? d.innerLabel[j].value.replaceAll("~", " ") : "");//(d) => { Array.isArray(d.innerLabel) ? (d.innerLabel.map(d=> {return d.value})).toString() : d.innerLabel });
+                      .call(text => text.each(function(p) {
+                          console.log(p.innerLabel[j])
+                           if (p.innerLabel == undefined) return;
+                           let arr = p.innerLabel[j].value.split(' ');
+                           d3.select(this).text(arr[0].replaceAll("~", " "));
+                           for(let i = 1; i < arr.length; i++) {
+                             d3.select(this).append('tspan')
+                               .attr('x', 0)
+                               .attr('dy', '1.2em')
+                               .text(arr[i].replaceAll("~", " "));
+                           }
+                        })
+                      )
+                  }
+                } else {
+                  const angleOffset  = Math.PI / 20; // Adjust this value to change angle
+                  const radiusOffset = .8; // Adjust this value to change distance
+                  g.append("text")
+                    .attr("transform", () => {
+                      const angle = ((i * 2 + 1) * Math.PI / data.length) - (Math.PI / 2) + angleOffset;
+                      const radius = maxRadius / 2 * radiusOffset;
+                      return `translate(${radius * Math.cos(angle)}, ${radius * Math.sin(angle)})`;
+                    })
+                    .attr("fill", "var(--ifm-color-content)")
+                    .style("text-anchor", "middle")
+                    .text( d => d.innerLabel)
+                    .call(text => text.each(function(d) {
+                       if (d.innerLabel == undefined) return;
+                       if (!Array.isArray(d.innerLabel)) {
+                         let arr = d.innerLabel.split(' ');
+                         d3.select(this).text(arr[0].replaceAll("~", " "));
+                         for(let i = 1; i < arr.length; i++) {
+                           d3.select(this).append('tspan')
+                             .attr('x', 0)
+                             .attr('dy', '1.2em')
+                             .text(arr[i].replaceAll("~", " "));
+                         }
+                       } else {
+                         let arr = d.innerLabel.map(d => {return d.value})
+                         d3.select(this).text(arr[0].replaceAll("~", " "));
+                         for(let i = 1; i < arr.length; i++) {
+                           d3.select(this).append('tspan')
+                             .attr('x', 0)
+                             .attr('dy', '1.2em')
+                             .text(arr[i].replaceAll("~", " "));
+                         }
+                       }
+                      })
+                    )
+                }
+              });
         }) ;
     }
   }, []);
@@ -167,7 +245,7 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
   return (
     <svg
       width={size + 100}
-      height={size + 50}
+      height={size + 100}
       ref={d3Container}
     />
   );
