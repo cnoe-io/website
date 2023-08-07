@@ -263,7 +263,7 @@ const Radar = () => {
     }
 
     useEffect(() => {
-     fetchData('/website/data/sample.json')
+     fetchData('/website/data/adobe.json')
         .then(response => {
         if (!response.ok) { throw new Error(response.statusText); }
         return response.json();

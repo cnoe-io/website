@@ -95,7 +95,16 @@
   "application": [
     {
       "label": "Developer Portal",
-      "innerLabel": "BackStage"
+      "innerLabel": [
+        {
+          "value": "BackStage",
+          "relevance": 0.8
+        },
+        {
+          "value": "in House",
+          "relevance": 0.2
+        }
+      ]
     },
     {
       "label": "Service Catalog",
