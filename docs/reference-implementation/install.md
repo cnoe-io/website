@@ -4,7 +4,6 @@ description: A multitudinal and communal plan
 title: Installation
 ---
 
-
 ![overview](images/overview.png)
 
 
