@@ -27,7 +27,7 @@ const Radar = () => {
     const [isLoading, setLoading] = useState({});
     const [selectedKey, setSelectedKey] = useState({});
     const [details, setDetails] = useState(false);
-    const [size, setSize] = useState(500);
+    const [size, setSize] = useState(750);
 
     const FullMap = new Map([
       ['Sample', '/website/data/sample.json'],
