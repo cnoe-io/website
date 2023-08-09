@@ -24,6 +24,8 @@
   --ifm-color-search-radar-label: lightgray;
   --ifm-color-search-radar-border: lightgray;
   --ifm-color-search-radar-border-hover: #3c6ead;
+
+  --ifm-image-portal: url("../../static/img/portal-day.png");
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -46,4 +48,40 @@
   --ifm-color-search-radar-label: lightgray;
   --ifm-color-search-radar-border: lightgray;
   --ifm-color-search-radar-border-hover: darkgray;
+
+  --ifm-image-portal: url("../../static/img/portal-night.png");
+}
+
+.hero .hero__subtitle {
+  font: var(--ifm-heading-font-family);
+  font-weight: var(--ifm-font-weight-bold);
+  font-size: 35px;
+  justifyContent: 'center';
+  alignItems: 'center';
+}
+
+.tagline {
+    text-align: left;
+    display: flex;
+}
+
+.perspective-container {
+  align: right;
+  perspective: 1000px;
+  transition: transform 0.5s ease;
+}
+
+.bgimg {
+    display: flex;
+    background-image: var(--ifm-image-portal);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: 60%;
+    transform: rotateY(20deg);  /* Adjust the degree value to control the angle of the tilt. */
+    transition: transform 0.5s ease;
+}
+
+.perspective-container:hover .bgimg {
+    transform: rotateY(10deg); /* This will tilt the image when its container is hovered over */
 }

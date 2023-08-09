@@ -45,8 +45,7 @@ Global Flags:
 
 ## Example
 
-For you to be able to do the conversions, you require the list of CRDs and a
-Backstage template:
+You require the list of CRDs that you want to convert, and a Backstage template:
 
 ### Custom Resource Definitions
 

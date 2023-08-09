@@ -6,28 +6,36 @@ import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import MissionVision from "@site/src/components/MissionVision";
 import InteractiveDiagram from "@site/src/components/InteractiveDiagram";
+import Grid from '@mui/material/Grid';
 
 import styles from "./index.module.css";
-const { useState } = React;
+const { useState, useEffect } = React;
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
+  const [bgImage, setBgImage] = useState('');
+
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container">
-        <img width="30%" src="/website/img/logo-white.png" />
-          <p className="hero__subtitle">
-            <div dangerouslySetInnerHTML={{ __html: siteConfig.tagline }}></div>
-          </p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro"
-          >
-            What is CNOE?
-          </Link>
-        </div>
-      </div>
+      <Grid container spacing={3} className="perspective-container">
+        <Grid item xs={6} className="hero hero--primary bgimg"/>
+        <Grid item xs={5} className="hero__subtitle tagline">
+          <Grid container direction="column" spacing={2} style={{display: 'flex'}}>
+            <Grid item style={{display: 'flex', alignItems: 'left', paddingRight: 50}}>
+              <p>{siteConfig.tagline}</p>
+            </Grid>
+            <Grid item>
+                <Link
+                  className="button button--secondary button--lg"
+                  to="/docs/intro"
+                >
+                  What is CNOE?
+                </Link>
+            </Grid>
+          </Grid>
+          <Grid item xs={3}/>
+        </Grid>
+      </Grid>
     </header>
   );
 }

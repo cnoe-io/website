@@ -1,8 +1,0 @@
-{
-  "label": "Reference Implementations",
-  "position": 4,
-  "link": {
-    "type": "generated-index",
-    "description": "Reference implementation is available here. This is still an ongoing project and does not encapsulate all capabilities mentioned."
-  }
-}
