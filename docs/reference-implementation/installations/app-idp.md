@@ -1,10 +1,10 @@
 ---
 sidebar_position: 1
 description: A multitudinal and communal plan
-title: Installation
+title: Application IDP
 ---
 
-![overview](images/overview.png)
+![overview](../images/overview.png)
 
 
 > **_NOTE:_**  Applications deployed in this repository are not meant or configured for production.

@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'CNOE',
-  tagline: 'Modernizing your Developer Platform',
+  tagline: 'an Internal Developer Platform is a 3-5 year commitment<br>share learnings & build in the open',
   url: 'https://cnoe-io.github.io',
   baseUrl: '/website/',
   onBrokenLinks: 'throw',
@@ -81,9 +81,9 @@ const config = {
             label: 'Technology Capabilities',
           },
           {
-            to: '/docs/category/reference-implementation',
+            to: '/docs/category/reference-implementations',
             position: 'left',
-            label: 'Reference Implementation'
+            label: 'Reference Implementations'
           },
           {
             to: '/radars',

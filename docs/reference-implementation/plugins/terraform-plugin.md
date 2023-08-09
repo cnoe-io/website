@@ -7,8 +7,6 @@ title: Terraform Plugin
 :::note github repo
 [cnoe-io/plugin-terraform](https://github.com/cnoe-io/plugin-terraform)
 :::
-## Getting Started
-
 ## Getting started
 
 ### Terraform State Files
@@ -37,7 +35,7 @@ spec:
   system: system1
 ```
 
-Update your Entity page. For example: 
+Update your Entity page. For example:
 ```typescript
 // in packages/app/src/components/catalog/EntityPage.tsx
 import { TerraformPluginPage } from '@cnoe-io/plugin-terraform';
@@ -53,7 +51,7 @@ const websiteEntityPage = (
       {terraFormContent}
     </EntityLayout.Route>
   </EntityLayout>
-...  
+...
 );
 ```
 

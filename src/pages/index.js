@@ -16,7 +16,9 @@ function HomepageHeader() {
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
         <img width="30%" src="/website/img/logo-white.png" />
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <p className="hero__subtitle">
+            <div dangerouslySetInnerHTML={{ __html: siteConfig.tagline }}></div>
+          </p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
