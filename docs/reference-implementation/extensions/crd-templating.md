@@ -127,8 +127,8 @@ cluster.
 Run the command below:
 
 ```bash
-> cd ~/cnoe-cli
-> ./cnoe template crd \
+❯ cd ~/cnoe-cli
+❯ ./cnoe template crd \
   --inputDir examples/ack-crds \
   --outputDir /tmp/templates-ack-deploy \
   --templatePath config/templates/k8s-apply-template.yaml \
