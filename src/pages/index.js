@@ -7,6 +7,8 @@ import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import MissionVision from "@site/src/components/MissionVision";
 import InteractiveDiagram from "@site/src/components/InteractiveDiagram";
 import Grid from '@mui/material/Grid';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
 
 import styles from "./index.module.css";
 const { useState, useEffect } = React;
@@ -40,6 +42,45 @@ function HomepageHeader() {
   );
 }
 
+const Partners = () => {
+  const handleDragStart = (e) => e.preventDefault();
+  const items = [
+    <img src="/website/img/members/aws.png" onDragStart={handleDragStart} role="presentation" />,
+    <img src="/website/img/members/adobe.png" onDragStart={handleDragStart} role="presentation" />,
+    <img src="/website/img/members/autodesk.png" onDragStart={handleDragStart} role="presentation" />,
+    <img src="/website/img/members/twilio.png" onDragStart={handleDragStart} role="presentation" />,
+    <img src="/website/img/members/salesforce.png" onDragStart={handleDragStart} role="presentation" />,
+  ];
+
+  const responsive = {
+    0: { items: 1 },
+    568: { items: 2 },
+    1024: { items: 3 },
+};
+  return (
+    <div>
+    <p style={{textAlign: "center"}}>{"Members"}</p>
+    <Grid container className="sliderStyle">
+      <Grid item xs={1}/>
+        <Grid item xs={10} >
+          <AliceCarousel mouseTracking
+            items={items}
+            autoPlay={true}
+            disableDotsControls={true}
+            disableSlideInfo={true}
+            disableButtonsControls={true}
+            autoPlayInterval={3000}
+            infinite={true}
+            responsive={responsive}
+          />
+      </Grid>
+      <Grid item xs={1}/>
+    </Grid>
+    </div>
+  );
+}
+
+
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -50,6 +91,8 @@ export default function Home() {
       <HomepageHeader />
       <hr/>
       <InteractiveDiagram />
+      <hr/>
+      <Partners/>
       <hr/>
       <main>
         <MissionVision />

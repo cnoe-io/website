@@ -85,3 +85,17 @@
 .perspective-container:hover .bgimg {
     transform: rotateY(10deg); /* This will tilt the image when its container is hovered over */
 }
+
+.sliderStyle {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #000;
+  display: flex;
+};
+
+.partnerStyle {
+  font: var(--ifm-heading-font-family);
+  text-align: center;
+}
+
