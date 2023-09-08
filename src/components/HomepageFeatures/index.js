@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Cloud Native',
+    title: 'CLOUD NATIVE',
     Svg: require('@site/static/img/cloudnative.svg').default,
     description: (
       <>
@@ -14,7 +14,7 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Community Best Practices',
+    title: 'COMMUNITY BEST PRACTICES',
     Svg: require('@site/static/img/community.svg').default,
     description: (
       <>
@@ -24,7 +24,7 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Modular',
+    title: 'MODULAR',
     Svg: require('@site/static/img/modular.svg').default,
     description: (
       <>
@@ -39,7 +39,7 @@ function Feature({Svg, title, description}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg color="#00568c" className={styles.featureSvg} role="img" />
+        <Svg className={styles.featureSvg} role="img" />
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
@@ -53,7 +53,8 @@ export default function HomepageFeatures() {
   return (
     <section className={styles.features}>
       <div className="container">
-        <div className="row">
+        <p className='heading heading-center'>Value Proposition</p>
+        <div className="row padding-top--lg">
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}

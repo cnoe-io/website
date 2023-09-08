@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'CNOE',
-  tagline: 'an Internal Developer Platform is a 3-5 year commitment. Share Learnings & Build in the Open',
+  tagline: 'An Internal Developer Platform is a 3-5 year commitment. Share Learnings & Build in the Open',
   url: 'https://cnoe-io.github.io',
   baseUrl: '/website/',
   onBrokenLinks: 'throw',
@@ -102,7 +102,7 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'DOCS',
             items: [
               {
                 label: 'Introduction',
@@ -111,7 +111,7 @@ const config = {
             ],
           },
           {
-            title: 'Community',
+            title: 'SOCIAL',
             items: [
               {
                 label: 'Twitter',
@@ -120,7 +120,7 @@ const config = {
             ],
           },
           {
-            title: 'More',
+            title: 'MORE',
             items: [
               {
                 label: 'Blog',
@@ -133,7 +133,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} CNOE.`,
+        copyright: `Copyright © ${new Date().getFullYear()} CNOE`,
       },
       prism: {
         theme: lightCodeTheme,

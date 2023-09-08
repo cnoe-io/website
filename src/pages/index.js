@@ -26,7 +26,7 @@ function HomepageHeader() {
             </Grid>
             <Grid item>
                 <Link
-                  className="button button--secondary button--lg"
+                  className="button button--primary button--lg"
                   to="/docs/intro"
                 >
                   What is CNOE?
@@ -48,9 +48,8 @@ export default function Home() {
       description="The CNOE website />"
     >
       <HomepageHeader />
-      <hr/>
+      <h1 className="heading heading-center">Platform Architecture</h1>
       <InteractiveDiagram />
-      <hr/>
       <main>
         <MissionVision />
         <HomepageFeatures />

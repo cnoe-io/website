@@ -1,12 +1,20 @@
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 4rem 0;
   width: 100%;
+  background-color: var(--ifm-color-neutral-lightest);
+  margin-top: 60px;
 }
 
 .featureSvg {
-  color: var(--ifm-color-primary);
-  height: 200px;
-  width: 200px;
+  /* color: var(--ifm-color-primary); */
+  height: 96px;
+  width: 96px;
+}
+.missionBg {
+  padding: 24px; 
+}
+.missionDesc {
+  max-width: 400px;
 }
