@@ -20,8 +20,8 @@
   --ifm-color-neutral-darkest: #262626;
   --ifm-color-neutral-light: #c4c4c4;
   --ifm-color-neutral-lighter: #d9d9d9;
-  --ifm-color-neutral-lightest: #e9e9e9;
-
+  --ifm-color-neutral-lightest: #f1f1f1;
+  
   --ifm-color-black: #000000;
   --ifm-color-white: #fff;
 
@@ -70,7 +70,7 @@
   --ifm-color-neutral-darkest: #e9e9e9;
   --ifm-color-neutral-light: #555555;
   --ifm-color-neutral-lighter: #434343;
-  --ifm-color-neutral-lightest: #262626;
+  --ifm-color-neutral-lightest: #0c0c0c;
 
 
   --ifm-code-font-size: 95%;
@@ -97,11 +97,11 @@
   font-size: 35px;
   justify-content: 'center';
   align-items: 'center';
-  color: var(--ifm-color-white);
+  color: var(--ifm-color-neutral-darkest);
 }
 
 .hero {
-  background-color: var(--ifm-color-black)
+  background-color: var(--ifm-color-neutral-lightest)
 }
 
 
