@@ -58,24 +58,24 @@ const Partners = () => {
     1024: { items: 3 },
 };
   return (
-    <div>
-    <p style={{textAlign: "center"}}>{"Members"}</p>
-    <Grid container className="sliderStyle">
-      <Grid item xs={1}/>
-        <Grid item xs={10} >
-          <AliceCarousel mouseTracking
-            items={items}
-            autoPlay={true}
-            disableDotsControls={true}
-            disableSlideInfo={true}
-            disableButtonsControls={true}
-            autoPlayInterval={3000}
-            infinite={true}
-            responsive={responsive}
-          />
+    <div className={styles.members}>
+      <h1 className="heading heading-center">Members</h1>
+      <Grid container className="sliderStyle">
+        <Grid item xs={1}/>
+          <Grid item xs={10} >
+            <AliceCarousel mouseTracking
+              items={items}
+              autoPlay={true}
+              disableDotsControls={true}
+              disableSlideInfo={true}
+              disableButtonsControls={true}
+              autoPlayInterval={3000}
+              infinite={true}
+              responsive={responsive}
+            />
+        </Grid>
+        <Grid item xs={1}/>
       </Grid>
-      <Grid item xs={1}/>
-    </Grid>
     </div>
   );
 }
@@ -91,10 +91,8 @@ export default function Home() {
       <HomepageHeader />
       <h1 className="heading heading-center">Platform Architecture</h1>
       <InteractiveDiagram />
-      <hr/>
-      <Partners/>
-      <hr/>
       <main>
+        <Partners/>
         <MissionVision />
         <HomepageFeatures />
       </main>
