@@ -45,11 +45,11 @@ function HomepageHeader() {
 const Partners = () => {
   const handleDragStart = (e) => e.preventDefault();
   const items = [
-    <img src="/website/img/members/aws.png" onDragStart={handleDragStart} role="presentation" />,
-    <img src="/website/img/members/adobe.png" onDragStart={handleDragStart} role="presentation" />,
-    <img src="/website/img/members/autodesk.png" onDragStart={handleDragStart} role="presentation" />,
-    <img src="/website/img/members/twilio.png" onDragStart={handleDragStart} role="presentation" />,
-    <img src="/website/img/members/salesforce.png" onDragStart={handleDragStart} role="presentation" />,
+    <img src="/website/img/members/aws.png"  onDragStart={handleDragStart} role="presentation" />,
+    <img src="/website/img/members/adobe.png"  onDragStart={handleDragStart} role="presentation" />,
+    <img src="/website/img/members/autodesk.png"  onDragStart={handleDragStart} role="presentation" />,
+    <img src="/website/img/members/twilio.png"  onDragStart={handleDragStart} role="presentation" />,
+    <img src="/website/img/members/salesforce.png"  onDragStart={handleDragStart} role="presentation" />,
   ];
 
   const responsive = {

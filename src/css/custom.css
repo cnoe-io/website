@@ -21,10 +21,13 @@
   --ifm-color-neutral-light: #c4c4c4;
   --ifm-color-neutral-lighter: #d9d9d9;
   --ifm-color-neutral-lightest: #f1f1f1;
-  
+
+  /* Hex codes for rgba opacity with variables */
+  --ifm-color-neutral-light-rgb: 196, 196, 196;
+
+
   --ifm-color-black: #000000;
   --ifm-color-white: #fff;
-
 
 
   --ifm-code-font-size: 95%;
@@ -69,9 +72,11 @@
   --ifm-color-neutral-darker: #d9d9d9;
   --ifm-color-neutral-darkest: #e9e9e9;
   --ifm-color-neutral-light: #555555;
-  --ifm-color-neutral-lighter: #434343;
+  --ifm-color-neutral-lighter: #222222;
   --ifm-color-neutral-lightest: #0c0c0c;
 
+   /* Hex codes for rgba opacity with variables */
+  --ifm-color-neutral-light-rgb: 85, 85, 85;
 
   --ifm-code-font-size: 95%;
   /* --ifm-heading-color: #25a0c2; */
@@ -148,16 +153,17 @@ color:var(--ifm-color-primary-lightest);
 .button--primary:hover {
   color: white;
   background-color: #00568c;
- }
+}
 
  html[data-theme='dark'] .navbar .navbar__logo {
   content: url(/img/logo-dark.png);
-  }
+}
+
 .sliderStyle {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #000;
+  color: #ffffff;
   display: flex;
 };
 

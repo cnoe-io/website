@@ -6,7 +6,7 @@
   padding-top: 15px;
   padding-bottom: 15px;
   font-weight: bold;
-  color: #f9f9f9;
+  color: var(--ifm-color-neutral-darkest);
   min-height: 405px;
   max-height: 465px;
   border-color: var(--ifm-color-primary-lightest);
@@ -19,52 +19,65 @@
   left: 15%;
   width: 70vw;
   height: 405px;
-  background: rgba(0.5, 0.5, 0.5, 0.7);
+  background-color: rgba(var(--ifm-color-neutral-light-rgb), 0.8);
   z-index: 100;
-  box-shadow: 1px 1px 1px black;
+  border-radius: 8px;
 }
 
 .innerPromptBox {
   position: absolute;
+  display: flex;
+  flex-direction: column;
   width: 50%;
   left: 25%;
   height: 50%;
   top: 20%;
-  background-color: rgba(255, 255, 255, 1);
-  border-radius: 5px;
-  overflow-y: scroll;
+  background-color: var(--ifm-color-neutral-lightest);
+  border-radius: 8px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  overflow-y: auto;
 }
-
 .closeIcon {
-  color: grey;
   text-align: center;
-  border: 1px;
   width: 25px;
   cursor: pointer;
-  background-color: var(--ifm-background-color);
 }
 
-.closeIcon:hover {
-  background-color: rgba(200, 200, 200, 1);
+.closeIcon > path {
+  fill: var(--ifm-color-neutral-darkest);
+}
+
+.closeIcon :hover {
+  fill: var(--ifm-color-primary);
 }
 
 .promptHeader {
-  color: Black;
+  color: var(--ifm-color-neutral-darkest);
+  font-weight: 800;
+  border-bottom: 1px solid;
+  border-color: var(--ifm-color-neutral-lighter);
+  text-align: left;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .promptBody {
-  color: #1C1E21;
+  color: var(--ifm-color-neutral-darkest);
   font-size: 95%;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 300;
   text-align: left;
-  border: 5px;
-  padding: 10px;
+  border: 8px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .diagramcontent {
   width: 70vw;
-  background-color: var(--ifm-color-black);
+  background-color: var(--ifm-color-neutral-lightest);
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -81,7 +94,7 @@
 }
 
 .cell {
-  background-color: #222;
+  background-color: var(--ifm-color-neutral-lighter);
   padding: 2px;
   border-radius: 8px;
 }
@@ -140,7 +153,7 @@
   padding-right: 5px;
   margin-left: 10px;
   border-radius: 8px;
-  background-color: #222;
+  background-color: var(--ifm-color-neutral-lighter);
   
 }
 
@@ -194,7 +207,7 @@
   margin-right: 10px;
   max-height: 260px;
   border-radius: 8px;
-  background-color: #222;
+  background-color: var(--ifm-color-neutral-lighter);
   margin-bottom: 8px;
 }
 
@@ -227,7 +240,7 @@
   margin: 0px 4px;
   font-size: 12px;
   border-radius: 8px;
-  background-color: #222;
+  background-color: var(--ifm-color-neutral-lighter);
 
 }
 .interactivediagramcontainer .Modal {
@@ -239,23 +252,23 @@
 }
 .endcell:hover {
   cursor: pointer;
-  background-color: #00568c;
+  background-color: var(--ifm-color-primary-lightest);
   color: white;
 }
 
 .cell:hover {
   cursor: pointer;
-  background-color: #00568c;
+  background-color: var(--ifm-color-primary-lightest);
   color: white;
 }
 .diagramcontent .bottomrow .bottomleftcol .bottomleftcolleft:hover {
   cursor: pointer;
-  background-color: #00568c;
+  background-color: var(--ifm-color-primary-lightest);
   color: white;
 }
 .diagramcontent .bottomrow .bottomrightcol .bottomrightcolright:hover {
   cursor: pointer;
-  background-color: #00568c;
+  background-color: var(--ifm-color-primary-lightest);
   color: white;
 }
 
