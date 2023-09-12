@@ -9,9 +9,14 @@ import InteractiveDiagram from "@site/src/components/InteractiveDiagram";
 import Grid from '@mui/material/Grid';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import {useColorMode} from '@docusaurus/theme-common';
+
+
+
 
 import styles from "./index.module.css";
 const { useState, useEffect } = React;
+
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -43,19 +48,33 @@ function HomepageHeader() {
 }
 
 const Partners = () => {
+  const {colorMode, setColorMode} = useColorMode();
   const handleDragStart = (e) => e.preventDefault();
-  const items = [
-    <img src="/website/img/members/aws.png"  onDragStart={handleDragStart} role="presentation" />,
-    <img src="/website/img/members/adobe.png"  onDragStart={handleDragStart} role="presentation" />,
-    <img src="/website/img/members/autodesk.png"  onDragStart={handleDragStart} role="presentation" />,
-    <img src="/website/img/members/twilio.png"  onDragStart={handleDragStart} role="presentation" />,
-    <img src="/website/img/members/salesforce.png"  onDragStart={handleDragStart} role="presentation" />,
-  ];
+  var items =[]
+  if(colorMode == 'light'){
+    items = [
+      <img src="/website/img/members/AWS-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src="/website/img/members/Adobe-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src="/website/img/members/Autodesk-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src="/website/img/members/Twilio-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src="/website/img/members/Salesforce-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+    ];
+
+  } else {
+    items = [
+      <img src="/website/img/members/AWS-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src="/website/img/members/Adobe-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src="/website/img/members/Autodesk-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src="/website/img/members/Twilio-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src="/website/img/members/Salesforce-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+    ];
+  }
+  
 
   const responsive = {
     0: { items: 1 },
-    568: { items: 2 },
-    1024: { items: 3 },
+    568: { items: 3 },
+    1024: { items: 5 },
 };
   return (
     <div className={styles.members}>
@@ -69,7 +88,7 @@ const Partners = () => {
               disableDotsControls={true}
               disableSlideInfo={true}
               disableButtonsControls={true}
-              autoPlayInterval={3000}
+              autoPlayInterval={2500}
               infinite={true}
               responsive={responsive}
             />

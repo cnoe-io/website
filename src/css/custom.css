@@ -146,6 +146,11 @@
 color:var(--ifm-color-primary-lightest);
 }
 
+.footer__copyright {
+  margin-top: 40px;
+  color: #c4c4c4;
+}
+
 .button--primary {
  color: white;
  background-color: #0078c4;
@@ -165,6 +170,7 @@ color:var(--ifm-color-primary-lightest);
   text-align: center;
   color: #ffffff;
   display: flex;
+  padding-bottom: 20px;
 };
 
 .partnerStyle {
