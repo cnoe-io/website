@@ -19,8 +19,8 @@
   --ifm-color-neutral-darker: #434343;
   --ifm-color-neutral-darkest: #262626;
   --ifm-color-neutral-light: #c4c4c4;
-  --ifm-color-neutral-lighter: #d9d9d9;
-  --ifm-color-neutral-lightest: #f1f1f1;
+  --ifm-color-neutral-lighter: #dfdfdf;
+  --ifm-color-neutral-lightest: #f9f9f9;
 
   /* Hex codes for rgba opacity with variables */
   --ifm-color-neutral-light-rgb: 196, 196, 196;
@@ -89,7 +89,7 @@
   --ifm-color-radar-maintenance: #eba063;
   --ifm-color-search-radar-label: lightgray;
   --ifm-color-search-radar-border: lightgray;
-  --ifm-color-search-radar-border-hover: darkgray;
+  --ifm-color-search-radar-border-hover: #3c6ead;
 
   --ifm-image-portal: url("../../static/img/Hero.png");
 
@@ -140,6 +140,7 @@
 .footer--dark {
   background-color: var(--ifm-color-black);
   color:var(--ifm-color-white);
+  text-align: center ;
 }
 
 .footer--dark .footer__items :hover {
@@ -178,3 +179,6 @@ color:var(--ifm-color-primary-lightest);
   text-align: center;
 }
 
+p > img {
+  border-radius: 8px;
+}

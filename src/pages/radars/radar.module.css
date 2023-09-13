@@ -13,7 +13,28 @@
 
 .fixed {
   position: fixed;
-  top: 0;
-  zIndex: 1;
-  margin-top: 90px;
+  top: 50px;
+  left: 100px;
+  z-index: 1;
+  margin-top: 100px;
+  border: solid 1px;
+  border-color: var(--ifm-color-neutral-lighter);
+  background-color: var(--ifm-color-neutral-lightest);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.fixed > ul  :hover {
+  background-color: var(--ifm-color-neutral-lighter);
+  border-radius: 4px;
+}
+/* .fixed > div > div :hover {
+  color: var(--ifm-color-neutral-lighter);
+  border-color: var(--ifm-color-neutral-lighter);
+  
+} */
+
+
+.radarCheckbox > span {
+  color: var(--ifm-color-neutral-dark);
 }

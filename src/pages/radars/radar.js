@@ -11,7 +11,8 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
 
         // Define size
       const width = size, height = size;
-      const maxRadius = Math.min(width, height) / 2 - 1;
+      const maxRadius = (Math.min(width, height) / 2 - 1)-70;
+      console.log("maxRadius " + maxRadius + " Width " + width + " Height " + height)
       const labels = ["Hold", "Assess", "Trial", "Adopt"];
       const margin = 50;
 
@@ -36,9 +37,9 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
         .attr("d", circle);
 
         path.transition()
-        .duration(750)
+        .duration(300)
         .ease(d3.easeCubicOut)
-        .delay((d, i) => i * 750 / quadrants)
+        .delay((d, i) => i * 300 / quadrants)
         .attrTween("d", function(d, i) {
           const interpolate = d3.interpolate(0, maxRadius);
           return t => {
@@ -79,55 +80,56 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
                 .y(d => d[1]);
 
               // Upper line
-              svg.append("path")
-                .datum([[width / 2 - maxRadius + margin, height / 2 - 20 + margin], [width / 2 + maxRadius + margin, height / 2 - 20 + margin]])
-                .attr("fill", "none")
-                .attr("stroke", "black")
-                .attr("stroke-width", 1)
-                .attr("d", line);
+              // svg.append("path")
+              //   .datum([[width / 2 - maxRadius + margin, height / 2 - 20 + margin], [width / 2 + maxRadius + margin, height / 2 - 20 + margin]])
+              //   .attr("fill", "none")
+              //   .attr("stroke", "black")
+              //   .attr("stroke-width", 1)
+              //   .attr("d", line);
 
-              // Lower line
-              svg.append("path")
-                .datum([[width / 2 - maxRadius + margin, height / 2 + 20 + margin], [width / 2 + maxRadius + margin, height / 2 + 20 + margin]])
-                .attr("fill", "none")
-                .attr("stroke", "black")
-                .attr("stroke-width", 1)
-                .attr("d", line);
+              // // Lower line
+              // svg.append("path")
+              //   .datum([[width / 2 - maxRadius + margin, height / 2 + 20 + margin], [width / 2 + maxRadius + margin, height / 2 + 20 + margin]])
+              //   .attr("fill", "none")
+              //   .attr("stroke", "black")
+              //   .attr("stroke-width", 1)
+              //   .attr("d", line);
 
-              svg.append("rect")
-                .attr("x", 2 + margin)
-                .attr("y", height / 2 - 20 + margin) // 20px above the center
-                .attr("width", size - 4)
-                .attr("height", 40) // the rectangle will be 40px high, 20px below and above the center
-                .attr("fill", `var(${colors[0]})`)
-                .attr("fill-opacity", 0.7);
+              // svg.append("rect")
+              //   .attr("x", 2 + margin)
+              //   .attr("y", height / 2 - 20 + margin) // 20px above the center
+              //   .attr("width", size - 4)
+              //   .attr("height", 40) // the rectangle will be 40px high, 20px below and above the center
+              //   .attr("fill", `var(${colors[0]})`)
+              //   .attr("fill-opacity", 0.7);
 
               for (let i = 1; i <= 2; i++) {
                 svg.append("circle")
                   .attr("cx", width / 2 + margin)
                   .attr("cy", height / 2 + margin)
                   .attr("r", (maxRadius / 3) * i)
-                  .style("fill", "none")
+                  .style("fill", `var(${colors[0]})`)
+                  .style("opacity", 0.15 * i)
                   .style("stroke", `var(${colors[0]})`);
               }
 
               // Add the text labels
-              for (let i = 1; i <= 4; i++) {
-                svg.append("text")
-                  .attr("x", (i==4) ? width /  2 + margin : maxRadius / 3 * (i-1) + margin + 16)
-                  .attr("y", height / 2 + 5 + margin)
-                  .style("text-anchor", "middle")
-                  .attr("fill", "var(--ifm-color-secondary-lighter)")
-                  .text(labels[i-1]);
+              // for (let i = 1; i <= 4; i++) {
+              //   svg.append("text")
+              //     .attr("x", (i==4) ? width /  2 + margin : maxRadius / 3 * (i-1) + margin + 16)
+              //     .attr("y", height / 2 + 5 + margin)
+              //     .style("text-anchor", "middle")
+              //     .attr("fill", "var(--ifm-color-secondary-lighter)")
+              //     .text(labels[i-1]);
 
-                if (i == 4) continue;
-                svg.append("text")
-                  .attr("x", width + margin - (maxRadius / 3 * (i-1)) - 16)
-                  .attr("y", height / 2 + 5 + margin)
-                  .style("text-anchor", "middle")
-                  .attr("fill", "var(--ifm-color-secondary-lighter)")
-                  .text(labels[i-1]);
-              }
+              //   if (i == 4) continue;
+              //   svg.append("text")
+              //     .attr("x", width + margin - (maxRadius / 3 * (i-1)) - 16)
+              //     .attr("y", height / 2 + 5 + margin)
+              //     .style("text-anchor", "middle")
+              //     .attr("fill", "var(--ifm-color-secondary-lighter)")
+              //     .text(labels[i-1]);
+              // }
             }
 
             const label = svg.append("g")
@@ -135,12 +137,14 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
               .selectAll("text")
               .data(data)
               .join("text")
-              .attr("dy", "-1.5em")
-              .attr("fill", "var(--ifm-color-primary)")
+              .attr("dy", "-0.5em")
+              .attr("fill", "var(--ifm-color-neutral-darkest)")
               .style("text-anchor", "middle")
+              .style("font-size", "14")
+              .style("font-weight", "600")
               .attr("transform", (d, i) => {
                 const angle = ((i * 2 + 1) * Math.PI / data.length) - (Math.PI / 2);
-                const radius = Math.sin(angle) * maxRadius > 0 ? maxRadius + 10 : maxRadius - 10;
+                const radius = Math.sin(angle) * maxRadius > 0 ? maxRadius + 55 : maxRadius + 55;
                 return `translate(${radius * Math.cos(angle) + margin}, ${radius * Math.sin(angle) + margin})`;
               })
               .call(text => {
@@ -166,9 +170,10 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
               .attr("dy", "0.35em")
               .attr("fill", "var(--ifm-color-content)")
               .style("text-anchor", "middle")
+              .style("font-size", "14")
               .attr("transform", (d, i) => {
-                const angle = ((i * 2 + 1) * Math.PI / data.length) - (Math.PI / 2);
-                const radius = maxRadius/5;
+                const angle = ((i * 2 + 1) * Math.PI / data.length) - (Math.PI / 2)-0.2;
+                const radius = (maxRadius)/5;
                 return `translate(${radius * Math.cos(angle) + margin}, ${radius * Math.sin(angle) + margin})`;
               })
               .each(function(d,i) {

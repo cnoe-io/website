@@ -10,6 +10,7 @@
   min-height: 405px;
   max-height: 465px;
   border-color: var(--ifm-color-primary-lightest);
+  margin-bottom: 60px;
 }
 
 .popUpPrompt {
@@ -84,9 +85,10 @@
   white-space: nowrap;
   padding: 30px;
   min-height: 405px;
-  max-height: 405px;
+  /* max-height: 405px; */
   min-width: 865px;
   border-radius: 8px;
+  padding-top: 60px;
 }
 .diagramcontent:hover {
   cursor: pointer;
@@ -104,7 +106,6 @@
   /* place-items: center; */
   display: block;
   vertical-align: center;
-  
   width: 94%;
   margin-right: auto;
   margin-left: auto;
@@ -190,7 +191,7 @@
   display: inline-block;
   height: 100%;
   width: 90%;
-  overflow: hidden;
+  /* overflow: hidden; */
   min-height: 267px;
 }
 
@@ -203,7 +204,7 @@
   padding-right: 5px;
   margin-left: 10px;
   margin-right: 10px;
-  max-height: 260px;
+  max-height: 268px;
   border-radius: 8px;
   background-color: var(--ifm-color-neutral-lighter);
   margin-bottom: 8px;
@@ -221,7 +222,7 @@
   margin-left: -4px;
 }
 .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .rowcell .cell {
-  width: 23.5%;
+  width: 24%;
   height: 100%;
   display: inline-block;
   margin: 0px 4px;

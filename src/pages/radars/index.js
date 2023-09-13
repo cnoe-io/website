@@ -17,6 +17,7 @@ import ListItem from '@mui/material/ListItem';
 import Slider from '@mui/material/Slider';
 import ListItemText from '@mui/material/ListItemText';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { fontSize } from "@mui/system";
 
 function fetchData(path) {
     return fetch(path)
@@ -66,22 +67,22 @@ const Radar = () => {
               <Legend/>
               <div className="container margin-vert--lg" style={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
-                  <Grid item xs={3}>
+                  <Grid item xs={2}>
                     <FilterableList />
                   </Grid>
                   <Grid item xs={8}>
                       <div className={styles.container}>
                           <Grid container spacing={2}>
-                              <Grid item xs={12}>
+                              <Grid item xs={12} style={{marginBottom: 6 + 'em'}}>
                                   <RadarChart size={size} details={details} colors={["--ifm-color-radar-opeartion"]} data={data.operation} quadrants={data.operation.length}/>
                               </Grid>
-                              <Grid item xs={12}>
+                              <Grid item xs={12} style={{marginBottom: 6 + 'em'}}>
                                   <RadarChart size={size} details={details} colors={["--ifm-color-radar-application"]} data={data.application} quadrants={data.application.length}/>
                               </Grid>
-                              <Grid item xs={12}>
+                              <Grid item xs={12} style={{marginBottom: 6 + 'em'}}>
                                   <RadarChart size={size} details={details} colors={["--ifm-color-radar-security"]} data={data.security} quadrants={data.security.length}/>
                               </Grid>
-                              <Grid item xs={12}>
+                              <Grid item xs={12} style={{marginBottom: 6 + 'em'}}>
                                   <RadarChart size={size} details={details} colors={["--ifm-color-radar-maintenance"]} data={data.maintenance} quadrants={data.maintenance.length}/>
                               </Grid>
                           </Grid>
@@ -103,30 +104,35 @@ const Radar = () => {
             direction="column"
             justifyContent="flex-start"
             alignItems="flex-start"
-            spacing={1}
-            className="margin-vert--lg"
             sx={{
               position: 'fixed',
-              right: 8,
-              backgroundColor: '--ifm-background-surface-color',
-              padding: 1,
+              right: '100px',
+              top: '50px',
+              backgroundColor: 'var(--ifm-color-neutral-lightest)',
+              border: 1,
+              borderColor: 'var(--ifm-color-neutral-lighter)',
+              borderRadius: '8px',
+              padding: '20px',
               zIndex: 1,
+              marginTop: '100px'
             }}
           >
             <Stack>
                 <FormControlLabel
                   control={
+                    <div className={styles.radarCheckbox}>
                     <Checkbox
                       checked={details}
                       onChange={handleChangeDetails}
                       color="primary"
                       sx={{
-                       '& .MuiCheckbox-root': {
-                            color: 'var(--ifm-color-search-radar-label)',
+                       '& MuiCheckbox-root': {
+                            color: 'var(--ifm-color-neutral-darkest)'
                         },
 
                       }}
                     />
+                    </div>
                   }
                   label="Show Details"
                 />
@@ -141,7 +147,8 @@ const Radar = () => {
               sx={{
                 padding: 1,
                 zIndex: 1,
-                borderRadius: '5%',
+                width: '100%',
+                borderRadius: '8%',
               }}
             >
                 <Stack direction="row" spacing={1}>
@@ -193,11 +200,18 @@ const Radar = () => {
             sx={{
               '& .MuiFormLabel-root': {
                   color: 'var(--ifm-color-seMuiCheckboxarch-radar-label)',
+                  fontSize: 14
               },
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {
                   borderColor: 'var(--ifm-color-search-radar-border)',
+                  borderRadius: 10,
+                  height: 44,
+                  marginTop: 1
                 },
+                '&:hover fieldset': {
+                  borderColor: 'var(--ifm-color-neutral-dark)'
+                }
               },
               '& .MuiFormLabel-root.Mui-focused': {
                 color: 'var(--ifm-color-primary)',
@@ -206,10 +220,17 @@ const Radar = () => {
                 },
               },
               '&:hover fieldset': {
+                borderColor: 'var(--ifm-color-neutral-darkest)',
+              },
+              '&:hover .MuiOutlinedInput-root': {
                 borderColor: 'var(--ifm-color-search-radar-border-hover)',
               },
               '& .MuiInputBase-input': {
                 color: 'var(--ifm-color-content)',
+              },
+              '& .MuiInputLabel-shrink': {
+                marginTop: 1,
+                fontSize: 16
               },
             }}
           />
@@ -220,7 +241,7 @@ const Radar = () => {
                   primary={key}
                   primaryTypographyProps={{ style: {
                       fontWeight: (key === selectedKey || (Object.keys(selectedKey).length == 0 && index === 0)) ? 'bold' : 'normal',
-                      color:  (key === selectedKey || (Object.keys(selectedKey).length == 0 && index === 0)) ? 'var(--ifm-color-primary)' : 'var(--ifm-color-content)',
+                      color:  (key === selectedKey || (Object.keys(selectedKey).length == 0 && index === 0)) ? 'var(--ifm-color-primary-dark)' : 'var(--ifm-color-content)',
                   }
                   }}
                 />
