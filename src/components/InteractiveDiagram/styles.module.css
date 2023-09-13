@@ -85,10 +85,9 @@
   white-space: nowrap;
   padding: 30px;
   min-height: 405px;
-  /* max-height: 405px; */
+  max-height: 405px;
   min-width: 865px;
   border-radius: 8px;
-  padding-top: 60px;
 }
 .diagramcontent:hover {
   cursor: pointer;
