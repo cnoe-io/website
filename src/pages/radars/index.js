@@ -64,7 +64,7 @@ const Radar = () => {
 
         return (
             <Layout title="Radar" >
-              <Legend/>
+              
               <div className="container margin-vert--lg" style={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={2}>
@@ -88,6 +88,10 @@ const Radar = () => {
                           </Grid>
                       </div>
                   </Grid>
+                  <Grid item xs={2}>
+
+                    <Legend/>
+                  </Grid>
                 </Grid>
               </div>
             </Layout>
@@ -106,15 +110,13 @@ const Radar = () => {
             alignItems="flex-start"
             sx={{
               position: 'fixed',
-              right: '100px',
-              top: '50px',
               backgroundColor: 'var(--ifm-color-neutral-lightest)',
               border: 1,
               borderColor: 'var(--ifm-color-neutral-lighter)',
               borderRadius: '8px',
               padding: '20px',
               zIndex: 1,
-              marginTop: '100px'
+              // marginTop: '50px'
             }}
           >
             <Stack>
