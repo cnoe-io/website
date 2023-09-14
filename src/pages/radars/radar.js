@@ -79,11 +79,11 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
                 .x(d => d[0])
                 .y(d => d[1]);
 
-              // Upper line
+              // // Upper line
               // svg.append("path")
               //   .datum([[width / 2 - maxRadius + margin, height / 2 - 20 + margin], [width / 2 + maxRadius + margin, height / 2 - 20 + margin]])
               //   .attr("fill", "none")
-              //   .attr("stroke", "black")
+              //   .attr("stroke", "var(--ifm-color-secondary-lighter)")
               //   .attr("stroke-width", 1)
               //   .attr("d", line);
 
@@ -91,18 +91,19 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
               // svg.append("path")
               //   .datum([[width / 2 - maxRadius + margin, height / 2 + 20 + margin], [width / 2 + maxRadius + margin, height / 2 + 20 + margin]])
               //   .attr("fill", "none")
-              //   .attr("stroke", "black")
+              //   .attr("stroke", "var(--ifm-color-secondary-lighter)")
               //   .attr("stroke-width", 1)
               //   .attr("d", line);
-
-              // svg.append("rect")
-              //   .attr("x", 2 + margin)
-              //   .attr("y", height / 2 - 20 + margin) // 20px above the center
-              //   .attr("width", size - 4)
-              //   .attr("height", 40) // the rectangle will be 40px high, 20px below and above the center
-              //   .attr("fill", `var(${colors[0]})`)
-              //   .attr("fill-opacity", 0.7);
-
+                
+              svg.append("rect")
+                .attr("x", width/2 -maxRadius + margin)
+                .attr("y", height / 2 - 20 + margin) // 20px above the center
+                .attr("width", width / 2 + maxRadius - margin - 20)
+                .attr("height", 40) // the rectangle will be 40px high, 20px below and above the center
+                .attr("fill", `var(${colors[0]})`)
+                .attr("fill-opacity", 0.5);
+              
+                // inner circles
               for (let i = 1; i <= 2; i++) {
                 svg.append("circle")
                   .attr("cx", width / 2 + margin)
@@ -114,22 +115,26 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
               }
 
               // Add the text labels
-              // for (let i = 1; i <= 4; i++) {
-              //   svg.append("text")
-              //     .attr("x", (i==4) ? width /  2 + margin : maxRadius / 3 * (i-1) + margin + 16)
-              //     .attr("y", height / 2 + 5 + margin)
-              //     .style("text-anchor", "middle")
-              //     .attr("fill", "var(--ifm-color-secondary-lighter)")
-              //     .text(labels[i-1]);
+              for (let i = 1; i <= 4; i++) {
+                svg.append("text")
+                  .attr("x", (i==4) ? width /  2 + margin  :  (maxRadius / 3 * (i-1) ) + margin + 16 + (width/2 - maxRadius))
+                  .attr("y", height / 2 + 5 + margin)
+                  .style("text-anchor", "middle")
+                  .style("font-size", "14")
+                  .style("font-weight", "400")
+                  .attr("fill", "var(--ifm-color-neutral-lightest)")
+                  .text(labels[i-1]);
 
-              //   if (i == 4) continue;
-              //   svg.append("text")
-              //     .attr("x", width + margin - (maxRadius / 3 * (i-1)) - 16)
-              //     .attr("y", height / 2 + 5 + margin)
-              //     .style("text-anchor", "middle")
-              //     .attr("fill", "var(--ifm-color-secondary-lighter)")
-              //     .text(labels[i-1]);
-              // }
+                if (i == 4) continue; // right side text
+                svg.append("text")
+                  .attr("x", width - margin - (maxRadius / 3 * (i-1)) + 12)
+                  .attr("y", height / 2 + 5 + margin)
+                  .style("text-anchor", "middle")
+                  .style("font-size", "14")
+                  .style("font-weight", "400")
+                  .attr("fill", "var(--ifm-color-neutral-lightest)")
+                  .text(labels[i-1]);
+              }
             }
 
             const label = svg.append("g")
