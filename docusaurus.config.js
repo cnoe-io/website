@@ -9,7 +9,7 @@ const config = {
   title: 'CNOE',
   tagline: 'Modernizing your Developer Platform',
   url: 'https://cnoe-io.github.io',
-  baseUrl: '/website/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
