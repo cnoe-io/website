@@ -58,6 +58,8 @@ const Partners = () => {
       <img src="/website/img/members/Autodesk-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
       <img src="/website/img/members/Twilio-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
       <img src="/website/img/members/Salesforce-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src="/website/img/members/Expedia-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src="/website/img/members/Nike-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
     ];
 
   } else {
@@ -67,6 +69,8 @@ const Partners = () => {
       <img src="/website/img/members/Autodesk-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
       <img src="/website/img/members/Twilio-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
       <img src="/website/img/members/Salesforce-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src="/website/img/members/Expedia-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src="/website/img/members/Nike-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
     ];
   }
   

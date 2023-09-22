@@ -113,9 +113,13 @@ const config = {
           {
             title: 'SOCIAL',
             items: [
+              // {
+              //   label: 'Twitter',
+              //   href: 'https://twitter.com/cnoe-io',
+              // },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/cnoe-io',
+                label: 'Slack',
+                href: 'https://cloud-native.slack.com/archives/C05TN9WFN5S',
               },
             ],
           },
