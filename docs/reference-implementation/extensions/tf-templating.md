@@ -102,7 +102,12 @@ The `-p` flag specifies where you want to insert input field within the given te
 
 The `-o` flag specifies the output directory. In this case, we want it to output it to the current directory.
 
-Once the fields are generated and inserted, the template is ready to use. The diff between the original template and generated template should look something like this:
+Once the fields are generated and inserted, the template is ready to use. When rendered in Backstage, it should look something like this. 
+
+![](../images/backstage-tf-input-field.png)
+
+
+The diff between the original template and generated template should look something like this:
 
 ```bash
 spec.parameters
