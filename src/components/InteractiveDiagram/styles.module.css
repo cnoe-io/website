@@ -98,28 +98,20 @@
   padding: 2px;
   border-radius: 8px;
 }
+.cellmobile {
+  background-color: var(--ifm-color-neutral-lighter);
+  padding: 2px;
+  border-radius: 8px;
+}
 
 .diagramcontent .toprow {
-  /* display: grid; */
-  /* grid-template: 1fr / 1fr; */
-  /* place-items: center; */
   display: block;
-  vertical-align: center;
   width: 94%;
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 10px;
   border-radius: 8px;
 }
-
-/* .diagramcontent .toprow2 { */
-/*   height: 100%; */
-/*   width: 100%; */
-/*   z-index: 2; */
-/*   background-color: var(--ifm-color-primary); */
-/*   color: white; */
-/*   border-color: var(--ifm-color-primary-dark); */
-/* } */
 
 .diagramcontent .bottomrow {
   display: block;
@@ -140,7 +132,6 @@
   min-height: 225px;
   border-radius: 8px;
   border-color: var(--ifm-color-primary-lightest);
-
 }
 
 .diagramcontent .bottomrow .bottomleftcol .bottomleftcolleft {
@@ -153,7 +144,6 @@
   margin-left: 10px;
   border-radius: 8px;
   background-color: var(--ifm-color-neutral-lighter);
-  
 }
 
 .diagramcontent .bottomrow .bottomleftcol .bottomleftcolright .cell {
@@ -184,7 +174,6 @@
   min-height: 260px;
   border-radius: 8px;
   border-color: var(--ifm-color-primary-lightest);
-
 }
 .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft {
   display: inline-block;
@@ -216,11 +205,32 @@
   margin-bottom: 5px;
   border-radius: 8px;
 }
+.diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .cellmobile {
+  width: 98.5%;
+  height: 14%;
+  overflow: hidden;
+  margin-bottom: 5px;
+  border-radius: 8px;
+}
 .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .rowcell {
   width: 100%;
   margin-left: -4px;
 }
 .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .rowcell .cell {
+  width: 24%;
+  height: 100%;
+  display: inline-block;
+  margin: 0px 4px;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 2px;
+}
+.diagramcontent
+  .bottomrow
+  .bottomrightcol
+  .bottomrightcolleft
+  .rowcell
+  .cellmobile {
   width: 24%;
   height: 100%;
   display: inline-block;
@@ -239,7 +249,6 @@
   font-size: 16px;
   border-radius: 8px;
   background-color: var(--ifm-color-neutral-lighter);
-
 }
 .interactivediagramcontainer .Modal {
   all: unset;
@@ -259,6 +268,11 @@
   background-color: var(--ifm-color-primary-lightest);
   color: white;
 }
+.cellmobile:hover {
+  cursor: pointer;
+  background-color: var(--ifm-color-primary-lightest);
+  color: white;
+}
 .diagramcontent .bottomrow .bottomleftcol .bottomleftcolleft:hover {
   cursor: pointer;
   background-color: var(--ifm-color-primary-lightest);
@@ -269,4 +283,132 @@
   background-color: var(--ifm-color-primary-lightest);
   color: white;
 }
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .interactivediagramcontainer {
+    font-size: 10px;
+    padding: 0px;
+  }
+  .diagramcontent {
+    min-width: 390px;
+    padding: 0px;
+    width: 95vw;
+  }
+  .toprow {
+    padding-top: 10px;
+  }
+  .rowcell {
+    font-size: 10px;
+  }
+  .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .rowcell {
+    width: 95%;
+    margin-left: unset;
+  }
 
+  .diagramcontent .bottomrow .bottomleftcol {
+    margin-right: -4px;
+    width: unset;
+    padding-right: 17px;
+  }
+  .diagramcontent .bottomrow .bottomrightcol {
+    padding-left: 10px;
+    margin-left: -2px;
+  }
+
+  .diagramcontent .bottomrow .bottomleftcol .bottomleftcolleft {
+    padding-left: 5px;
+    padding-right: 2px;
+    margin-left: 5px;
+    margin-right: 7px;
+  }
+  .diagramcontent
+    .bottomrow
+    .bottomrightcol
+    .bottomrightcolleft
+    .rowcell
+    .cell {
+    width: 24%;
+    height: 100%;
+    display: inline-block;
+    margin: 0px 1px;
+    font-size: 5.5px;
+    border-radius: 5px;
+    padding: 2px;
+  }
+  .diagramcontent
+    .bottomrow
+    .bottomrightcol
+    .bottomrightcolleft
+    .rowcell
+    .cellmobile {
+    width: 28%;
+    height: 100%;
+    display: inline-block;
+    margin: 0px 1px;
+    font-size: 5.5px;
+    border-radius: 5px;
+    padding: 2px;
+  }
+  .endcell {
+    width: 22.5%;
+    padding: 2px;
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0px 1px;
+    font-size: 5.5px;
+    border-radius: 5px;
+    background-color: var(--ifm-color-neutral-lighter);
+  }
+  .diagramcontent .bottomrow .bottomleftcol .bottomleftcolright {
+    display: inline-block;
+    height: 100%;
+    width: unset;
+    overflow: hidden;
+    border-top: none;
+  }
+  .diagramcontent .bottomrow .bottomrightcol .bottomrightcolright {
+    display: inline-block;
+    height: 88%;
+    overflow: hidden;
+    writing-mode: vertical-lr;
+    padding-left: 5px;
+    padding-right: 3px;
+    margin-left: 2px;
+    margin-right: 12px;
+    max-height: 268px;
+    border-radius: 8px;
+    background-color: var(--ifm-color-neutral-lighter);
+    margin-bottom: 33px;
+  }
+  .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft {
+    display: inline-block;
+    height: 85%;
+    width: 90%;
+    overflow: hidden;
+    min-height: 267px;
+  }
+  .popUpPrompt {
+    position: absolute;
+    top: 15px;
+    left: 5%;
+    width: 90vw;
+    height: 405px;
+    background-color: unset;
+    z-index: 100;
+    border-radius: 8px;
+  }
+  .innerPromptBox {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    left: 5%;
+    height: unset;
+    top: 20%;
+    background-color: var(--ifm-color-neutral-lightest);
+    border-radius: 8px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+  }
+}
