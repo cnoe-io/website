@@ -17,6 +17,7 @@ import ListItem from '@mui/material/ListItem';
 import Slider from '@mui/material/Slider';
 import ListItemText from '@mui/material/ListItemText';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { fontSize } from "@mui/system";
 
 function fetchData(path) {
@@ -29,13 +30,12 @@ const Radar = () => {
     const [selectedKey, setSelectedKey] = useState({});
     const [details, setDetails] = useState(false);
     const [size, setSize] = useState(750);
+    const { siteConfig } = useDocusaurusContext();
 
     const FullMap = new Map([
-      ['Sample', '/website/data/sample.json'],
-      ['Adobe', '/website/data/adobe.json'],
-      ['Autodesk', '/website/data/autodesk.json'],
-      ['SAP', 'Value 4'],
-      ['Ad', 'Value 5'],
+      ['Sample', siteConfig.baseUrl + 'data/sample.json'],
+      ['Adobe', siteConfig.baseUrl + 'data/adobe.json'],
+      ['Autodesk', siteConfig.baseUrl + 'data/autodesk.json'],
     ]);
 
     const handleListItemClick = (key, value) => {
@@ -64,7 +64,6 @@ const Radar = () => {
 
         return (
             <Layout title="Radar" >
-              
               <div className="container margin-vert--lg" style={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={2}>
@@ -286,7 +285,7 @@ const Radar = () => {
     }
 
     useEffect(() => {
-     fetchData('/website/data/adobe.json')
+     fetchData(siteConfig.baseUrl + 'data/adobe.json')
         .then(response => {
         if (!response.ok) { throw new Error(response.statusText); }
         return response.json();

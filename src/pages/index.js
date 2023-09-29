@@ -49,28 +49,27 @@ function HomepageHeader() {
 
 const Partners = () => {
   const {colorMode, setColorMode} = useColorMode();
+  const { siteConfig } = useDocusaurusContext();
   const handleDragStart = (e) => e.preventDefault();
   var items =[]
   if(colorMode == 'light'){
     items = [
-      <img src="/website/img/members/AWS-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src="/website/img/members/Adobe-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src="/website/img/members/Autodesk-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src="/website/img/members/Twilio-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src="/website/img/members/Salesforce-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src="/website/img/members/Expedia-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
-      // <img src="/website/img/members/Nike-light.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/AWS-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Adobe-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Autodesk-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Twilio-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Salesforce-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Expedia-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
     ];
 
   } else {
     items = [
-      <img src="/website/img/members/AWS-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src="/website/img/members/Adobe-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src="/website/img/members/Autodesk-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src="/website/img/members/Twilio-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src="/website/img/members/Salesforce-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src="/website/img/members/Expedia-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
-      // <img src="/website/img/members/Nike-dark.svg" width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/AWS-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Adobe-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Autodesk-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Twilio-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Salesforce-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Expedia-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
     ];
   }
   
