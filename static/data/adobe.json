@@ -1,0 +1,170 @@
+{
+  "operation": [
+    {
+      "label": "Infrastructure as Code",
+      "innerLabel": [
+        {
+          "value": "Terraform, Crossplane",
+          "relevance": 0.8
+        },
+        {
+          "value": "CloudFormation",
+          "relevance": 0.5
+        },
+        {
+          "value": "ACK",
+          "relevance": 0.3
+        }
+      ]
+    },
+    {
+      "label": "Container Orchestrator",
+      "innerLabel": [
+        {
+          "value": "EKS",
+          "relevance": 0.8
+        },
+        {
+          "value": "AKS",
+          "relevance": 0.5
+        },
+        {
+          "value": "ROSA",
+          "relevance": 0.4
+        },
+        {
+          "value": "GKE",
+          "relevance": 0.9
+        },
+        {
+          "value": "ARO",
+          "relevance": 0.1
+        }
+      ]
+    },
+    {
+      "label": "Container Orchestrator Lifecycle Managment",
+      "innerLabel": "Custom automation standardized on~Cluster~API"
+    },
+    {
+      "label": "Container Host operating system",
+      "innerLabel": "FlatCar~OS"
+    },
+    {
+      "label": "Container Images operating sytem",
+      "innerLabel": [
+        {
+          "value": "Alpine",
+          "relevance": 0.9
+        },
+        {
+          "value": "Ubuntu",
+          "relevance": 0.5
+        },
+        {
+          "value": "CentOS",
+          "relevance": 0.2
+        }
+      ]
+    },
+    {
+      "label": "Network Ingress/Egress"
+    },
+    {
+      "label": "Service Dashboards",
+      "innerLabel": "Grafana"
+    },
+    {
+      "label": "Scalability / Elastieddfrcity",
+      "innerLabel": [
+        {
+          "value": "Cluster~Autoscalar",
+          "relevance": 0.5
+        },
+        {
+          "value": "Horizontal~Pod Autosclar~(HPA)",
+          "relevance": 0.7
+        }
+      ]
+    },
+    {
+      "label": "FinOps Strategy",
+      "innerLabel": "Kubecost"
+    }
+  ],
+  "application": [
+    {
+      "label": "Developer Portal",
+      "innerLabel": [
+        {
+          "value": "BackStage",
+          "relevance": 0.8
+        },
+        {
+          "value": "in House",
+          "relevance": 0.2
+        }
+      ]
+    },
+    {
+      "label": "Service Catalog",
+      "innerLabel": "ServiceNow"
+    },
+    {
+      "label": "Developer Sandbox",
+      "innerLabel": "Local Desktop"
+    },
+    {
+      "label": "Developer Guides",
+      "innerLabel": "Confluence Wiki"
+    },
+    {
+      "label": "IDE tools & plugins",
+      "innerLabel": "Visual Studio Code, IntelliJ"
+    },
+    {
+      "label": "API Gateway",
+      "innerLabel": "Custom gateway built using Envoy"
+    },
+    {
+      "label": "Service Mesh",
+      "innerLabel": "Custom service mesh built using Envoy"
+    },
+    {
+      "label": "Static Code Analysis",
+      "innerLabel": "SonarQube"
+    },
+    {
+      "label": "Container Image Scanning",
+      "innerLabel": "Aqua"
+    },
+    {
+      "label": "Application Performance Monitoring",
+      "innerLabel": "New~Relic"
+    },
+    {
+      "label": "Developer Experience (DX) KPIs",
+      "innerLabel": "DORA"
+    }
+  ],
+  "security": [
+    {
+      "label": "Identity & Access Managment",
+      "innerLabel": "Okta, Azure~AD, Custom~OAuth~Solution"
+    },
+    {
+      "label": "Policy Managment",
+      "innerLabel": "Open~Policy Agent~(OPA)"
+    }
+  ],
+  "maintenance": [
+    {
+      "label": "Identity & Access Managment",
+      "innerLabel": "Okta, Azure~AD, Custom~OAuth~Solution"
+    },
+    {
+      "label": "Policy Managment",
+      "innerLabel": "Open~Policy Agent~(OPA)"
+    }
+  ]
+}

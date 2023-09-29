@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'CNOE',
-  tagline: 'Modernizing your Developer Platform',
+  tagline: 'An Internal Developer Platform is a 3-5 year commitment. Share Learnings & Build in the Open.',
   url: 'https://cnoe-io.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -28,6 +28,10 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  stylesheets: [
+    "https://fonts.googleapis.com/icon?family=Material+Icons",
+  ],
 
   presets: [
     [
@@ -67,7 +71,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'intro/intro',
             position: 'left',
             label: 'Introduction',
           },
@@ -75,6 +79,16 @@ const config = {
             to: '/docs/category/technology-capabilities',
             position: 'left',
             label: 'Technology Capabilities',
+          },
+          {
+            to: '/docs/reference-implementation',
+            position: 'left',
+            label: 'Reference Implementations'
+          },
+          {
+            to: '/radars',
+            position: 'left',
+            label: 'Technology Radars',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -88,7 +102,7 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'DOCS',
             items: [
               {
                 label: 'Introduction',
@@ -97,16 +111,20 @@ const config = {
             ],
           },
           {
-            title: 'Community',
+            title: 'SOCIAL',
             items: [
+              // {
+              //   label: 'Twitter',
+              //   href: 'https://twitter.com/cnoe-io',
+              // },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/cnoe-io',
+                label: 'Slack',
+                href: 'https://cloud-native.slack.com/archives/C05TN9WFN5S',
               },
             ],
           },
           {
-            title: 'More',
+            title: 'MORE',
             items: [
               {
                 label: 'Blog',
@@ -119,7 +137,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} CNOE.`,
+        copyright: `Copyright © ${new Date().getFullYear()} CNOE`,
       },
       prism: {
         theme: lightCodeTheme,
