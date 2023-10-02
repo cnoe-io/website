@@ -8,7 +8,7 @@ const FeatureList = [
     Svg: require('@site/static/img/cloudnative.svg').default,
     description: (
       <>
-        CNOE is developed around open source CNCF projects that are deemed
+        CNOE is developed around open source cloud native projects that are deemed
       to be useful in helping companies build their internal developer tooling.
       </>
     ),
@@ -19,7 +19,7 @@ const FeatureList = [
     description: (
       <>
         CNOE relies on community consensus on selecting and configuring
-      open source CNCF projects as part of the internal developer platform recommendations.
+      open source cloud native projects as part of the internal developer platform recommendations.
       </>
     ),
   },

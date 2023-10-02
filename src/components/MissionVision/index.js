@@ -18,7 +18,7 @@ const FeatureList = [
     Svg: require('@site/static/img/vision.svg').default,
     description: (
       <>
-      CNOE will be the goto framework for leading software companies 
+      CNOE strives to be the goto framework for leading software companies 
       to build their cloud-native internal developer platform
       </>
     ),

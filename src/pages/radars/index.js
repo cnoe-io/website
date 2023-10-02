@@ -28,14 +28,12 @@ const Radar = () => {
     const [data, setData] = useState({});
     const [isLoading, setLoading] = useState({});
     const [selectedKey, setSelectedKey] = useState({});
-    const [details, setDetails] = useState(false);
+    const [details, setDetails] = useState(true);
     const [size, setSize] = useState(750);
     const { siteConfig } = useDocusaurusContext();
 
     const FullMap = new Map([
-      ['Sample', siteConfig.baseUrl + 'data/sample.json'],
-      ['Adobe', siteConfig.baseUrl + 'data/adobe.json'],
-      ['Autodesk', siteConfig.baseUrl + 'data/autodesk.json'],
+      ['CNOE Members Radar', siteConfig.baseUrl + 'data/combined.json'],
     ]);
 
     const handleListItemClick = (key, value) => {
@@ -65,6 +63,8 @@ const Radar = () => {
         return (
             <Layout title="Radar" >
               <div className="container margin-vert--lg" style={{ flexGrow: 1 }}>
+              </div>
+              <div className="container margin-vert--lg" style={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={2}>
                     <FilterableList />
@@ -77,12 +77,6 @@ const Radar = () => {
                               </Grid>
                               <Grid item xs={12} style={{marginBottom: 6 + 'em'}}>
                                   <RadarChart size={size} details={details} colors={["--ifm-color-radar-application"]} data={data.application} quadrants={data.application.length}/>
-                              </Grid>
-                              <Grid item xs={12} style={{marginBottom: 6 + 'em'}}>
-                                  <RadarChart size={size} details={details} colors={["--ifm-color-radar-security"]} data={data.security} quadrants={data.security.length}/>
-                              </Grid>
-                              <Grid item xs={12} style={{marginBottom: 6 + 'em'}}>
-                                  <RadarChart size={size} details={details} colors={["--ifm-color-radar-maintenance"]} data={data.maintenance} quadrants={data.maintenance.length}/>
                               </Grid>
                           </Grid>
                       </div>
@@ -159,14 +153,6 @@ const Radar = () => {
                 <Stack direction="row" spacing={1}>
                   <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'success.main' }} />
                   <Typography variant="body2">Application</Typography>
-                </Stack>
-                <Stack direction="row" spacing={1}>
-                  <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'error.main' }} />
-                  <Typography variant="body2">Security</Typography>
-                </Stack>
-                <Stack direction="row" spacing={1}>
-                  <Box sx={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'warning.main' }} />
-                  <Typography variant="body2">Maintenance</Typography>
                 </Stack>
             </Stack>
           </Stack>
@@ -285,7 +271,7 @@ const Radar = () => {
     }
 
     useEffect(() => {
-     fetchData(siteConfig.baseUrl + 'data/adobe.json')
+     fetchData(siteConfig.baseUrl + 'data/combined.json')
         .then(response => {
         if (!response.ok) { throw new Error(response.statusText); }
         return response.json();

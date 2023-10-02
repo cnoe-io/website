@@ -79,22 +79,6 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
                 .x(d => d[0])
                 .y(d => d[1]);
 
-              // // Upper line
-              // svg.append("path")
-              //   .datum([[width / 2 - maxRadius + margin, height / 2 - 20 + margin], [width / 2 + maxRadius + margin, height / 2 - 20 + margin]])
-              //   .attr("fill", "none")
-              //   .attr("stroke", "var(--ifm-color-secondary-lighter)")
-              //   .attr("stroke-width", 1)
-              //   .attr("d", line);
-
-              // // Lower line
-              // svg.append("path")
-              //   .datum([[width / 2 - maxRadius + margin, height / 2 + 20 + margin], [width / 2 + maxRadius + margin, height / 2 + 20 + margin]])
-              //   .attr("fill", "none")
-              //   .attr("stroke", "var(--ifm-color-secondary-lighter)")
-              //   .attr("stroke-width", 1)
-              //   .attr("d", line);
-                
               svg.append("rect")
                 .attr("x", width/2 -maxRadius + margin)
                 .attr("y", height / 2 - 20 + margin) // 20px above the center
@@ -102,7 +86,7 @@ const RadarChart = ({ size, details, colors = ['lightgray', 'black', "black"], d
                 .attr("height", 40) // the rectangle will be 40px high, 20px below and above the center
                 .attr("fill", `var(${colors[0]})`)
                 .attr("fill-opacity", 0.5);
-              
+
                 // inner circles
               for (let i = 1; i <= 2; i++) {
                 svg.append("circle")
