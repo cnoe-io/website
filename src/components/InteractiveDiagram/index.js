@@ -35,6 +35,7 @@ export default function InteractiveDiagram() {
         </div>
         <div className={styles.bottomrow}>
           <div className={styles.bottomleftcol}>
+              <p className={styles.labels}>Application</p>
             <div className={styles.bottomleftcolright}>
               <div
                 className={styles.cell}
@@ -135,7 +136,8 @@ export default function InteractiveDiagram() {
               Signing
             </div>
           </div>
-          <div className={styles.bottomrightcol}>
+        <div className={styles.bottomrightcol}>
+          <p className={styles.labels}>Operation</p>
             <div className={styles.bottomrightcolleft}>
               <div
                 className={styles.cell}
