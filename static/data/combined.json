@@ -99,6 +99,10 @@
         {
           "value": "AWS IAM",
           "relevance": 1
+        },
+        {
+          "value": "Keycloak",
+          "relevance": 0.6
         }
       ]
     },
@@ -108,6 +112,10 @@
         {
           "value": "Argo~CD",
           "relevance": 0.9
+        },
+        {
+          "value": "Flux",
+          "relevance": 0.6
         },
         {
           "value": "Spinnaker",
@@ -125,6 +133,15 @@
         {
           "value": "Kyverno",
           "relevance": 0.8
+        }
+      ]
+    },
+    {
+      "label": "Developer~Portal",
+      "innerLabel": [
+        {
+          "value": "Backstage",
+          "relevance": 1
         }
       ]
     },
@@ -147,15 +164,6 @@
     }
   ],
   "application": [
-    {
-      "label": "Developer~Portal",
-      "innerLabel": [
-        {
-          "value": "Backstage",
-          "relevance": 1
-        }
-      ]
-    },
     {
       "label": "Service~Catalog",
       "innerLabel": [
