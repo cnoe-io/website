@@ -105,4 +105,28 @@ X bad-spark -  Pod=sprk-operator
 
 ### via the Backend Scaffolder
 
-TBD
+:::caution
+Running the verification phase from within CNOE is still experimental and
+requires the presence of the CNOE CLI binary on the container image for
+Backstage, where it is configured to target the desired cluster.
+:::
+
+The backend scaffolder plugin implements a step where the CNOE CLI can be called
+with reference to the respective Prerequisite check that needs to be run against
+the target cluster prior to installing resources.
+
+In case of a S3 resource that is enabled via the Amazon Controllers for
+Kubernetes (ACK), this would be a check that verifies the existence of the
+relevant CRDs as well as ensuring that the ACK S3 Controller is present and
+running.
+
+In case of a failure, the Backstage scaffolder halts the execution flow and
+shows the exact error reporting that the CNOE CLI reports upon execution from
+within the terminal (see below):
+
+![verify](images/verify.png)
+
+In case of a successful verification, the verify step would finish execution
+with an exit code 0 and allow for the rest of the steps to proceed:
+
+![deploy](images/7-deploy-resource.png)

@@ -230,4 +230,38 @@ spec:
 
 ### Importing to Backstage
 
-TBD
+The generated template can then registered with Backstage by pushing it to a
+repository and analyzing the generated content.  With a valid template, 
+the analysis would be successfully validated and you can import the template
+into Backstage.
+
+![import](images/2-import-template.png)
+
+It would show up in the list of available templates (in this case the service
+template to "Deploy ACK Resources"):
+
+![navigate](images/3-navigate-catalog.png)
+
+Choosing the template would load all the resources dynamically generated for the
+template. In case of Amazon Controller for Kubernetes (ACK), it will be the list 
+of over 180 resources that we created from the available CRDs.
+
+![load](images/4-load-resource.png)
+
+Once the desired resource is selected, the Backstage UI will be populated with
+the list of all properties that can be configured for this CRD, with the
+Backstage template validating the presence of required properties before you can
+proceed:
+
+![init](images/5-init-resource.png)
+
+Once the properties are defined, the resource is hydrated for deployment to
+Kubernetes:
+
+![create](images/6-create-resource.png)
+
+Where deploying the resource will result in running the Backstage scaffolder and
+getting the resource deployed to a target cluster as configured in your
+template:
+
+![deploy](images/7-deploy-resource.png)
