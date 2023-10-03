@@ -178,13 +178,21 @@ p > img {
   /* For mobile phones: */
   .hero .hero__subtitle {
     font-size: 18px;
+    max-width: 100px;
   }
   .tagline {
-    width: 50px;
+    width: 100px;
   }
   .hero .button--primary {
-    width: 150px;
+    width: 175px;
     font-size: 12px;
+    height: 35px;
+  }
+  .hero .button--secondary {
+    width: 175px;
+    font-size: 12px;
+    height: 35px;
+    margin-top: -40px;
   }
   .hero .bgimg {
     background-position: center;
