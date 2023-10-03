@@ -38,6 +38,13 @@ function HomepageHeader() {
                 >
                   What is CNOE?
                 </Link>
+                &nbsp;
+                <Link
+                  className="button button--secondary button--lg"
+                  to="https://github.com/cnoe-io"
+                >
+                  Come Build with Us!
+                </Link>
             </Grid>
           </Grid>
           <Grid item xs={3}/>
