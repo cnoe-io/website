@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 description: A multitudinal and communal plan
 title: Data & Analytics IDP
 ---
