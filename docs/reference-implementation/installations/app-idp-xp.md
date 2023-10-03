@@ -1,7 +1,7 @@
 ---
-sidebar_position: 2
+sidebar_position: 4
 description: Backstage template generation for CRDs
-title: Deploy an example application
+title: Deploy Example Application
 ---
 
 # Deploy an Example Application
