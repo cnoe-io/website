@@ -2,7 +2,6 @@
   "label": "Configurations",
   "position": 2,
   "link": {
-    "type": "generated-index",
-    "description": "Configuring the CNOE IDP"
+    "type": "generated-index"
   }
 }

@@ -8,8 +8,7 @@ const FeatureList = [
     Svg: require('@site/static/img/mission.svg').default,
     description: (
       <>
-      CNOE aims at helping platform engineers build their IDP platforms 
-      <i>faster</i> and in a <i>more secure way</i> with best practices built in
+      CNOE aims at helping platform engineers build their IDP platforms <i>faster</i> and in a <i>more secure way</i> with best practices built in
       </>
     ),
   },
