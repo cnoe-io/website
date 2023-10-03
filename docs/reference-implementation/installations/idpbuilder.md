@@ -13,6 +13,8 @@ Spin up a complete internal developer platform using industry standard technolog
 
 This is also a completely self-contained binary, meaning you can get up and running simply by downloading a binary release and executing it!
 
+![idpbuilder](../images/idpbuilder.png)
+
 ## IDP installation flow
 
 The idpbuilder cli installs a local internal developer portal using the following pattern
