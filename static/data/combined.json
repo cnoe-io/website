@@ -146,19 +146,15 @@
       ]
     },
     {
-      "label": "Service Dashboard",
+      "label": "Service~Mesh",
       "innerLabel": [
         {
-          "value": "Grafana",
-          "relevance": 1
+          "value": "Cilium",
+          "relevance": 0.8
         },
         {
-          "value": "Backstage",
+          "value": "Istio",
           "relevance": 0.7
-        },
-        {
-          "value": "Prometheus",
-          "relevance": 0.6
         }
       ]
     }
@@ -187,19 +183,6 @@
       ]
     },
     {
-      "label": "Service~Mesh",
-      "innerLabel": [
-        {
-          "value": "Cilium",
-          "relevance": 0.8
-        },
-        {
-          "value": "Istio",
-          "relevance": 0.7
-        }
-      ]
-    },
-    {
       "label": "Code Repository",
       "innerLabel": [
         {
@@ -221,8 +204,25 @@
       "label": "Artifact Repository",
       "innerLabel": [
         {
-          "value": "Amazon~ECR",
+          "value": "Amazon ECR",
           "relevanc": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Service Dashboard",
+      "innerLabel": [
+        {
+          "value": "Grafana",
+          "relevance": 1
+        },
+        {
+          "value": "Backstage",
+          "relevance": 0.7
+        },
+        {
+          "value": "Prometheus",
+          "relevance": 0.5
         }
       ]
     },
