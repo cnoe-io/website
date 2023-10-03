@@ -4,7 +4,7 @@ description: IDP builder is a single binary IDP launcher.
 title: Architecture
 ---
 
-The IDP builder binary is primarily composed of a wrapper around a [Kubebuilder](https://kubebuilder.io) based operator and associated type called localbuild. See: [api/v1alpha1/localbuild_types.go](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/api/v1alpha1/localbuild_types.go#L28-L66) and [pkg/controllers/localbuild/controller.go](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/controllers/localbuild/controller.go#L54-L84)
+The idpBuilder binary is primarily composed of a wrapper around a [Kubebuilder](https://kubebuilder.io) based operator and associated type called localbuild. See: [api/v1alpha1/localbuild_types.go](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/api/v1alpha1/localbuild_types.go#L28-L66) and [pkg/controllers/localbuild/controller.go](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/controllers/localbuild/controller.go#L54-L84)
 
 However it starts out by creating a Kind cluster to register the CRD and controller for localbuild and to host the resources created by it which in turn create the basis for our IDP. You can see the steps taken to install the dependencies and stand up the localbuild controller in the CLI codebase here: [pkg/build/build.go](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/build/build.go#L95-L131)
 
@@ -42,7 +42,4 @@ As you can imagine each of these apps are are deployed by ArgoCD to the Kind clu
 
 ### Diagram
 
-[Excalidraw diagram here:](https://excalidraw.com/#json=MNOQf_OeLtKYe_Y80Bt2l,AP-ftLAwZoDWjp2yudnMKA)
-
-
-![diagram](./images/idpbuilder-dfd-diagram.png)
+![diagram](./images/idpbuilder.png)
