@@ -39,6 +39,7 @@ As we move forward, each member organization will continue to share their approa
 
 CNOE invites more companies to join us. To learn more about CNOE, visit [https://cnoe.io](https://cnoe.io), where we share extended details about patterns and practices we are developing. Explore options to get involved and contact us via the CNCF slack channel [#cnoe-public](https://cloud-native.slack.com/archives/C05TN9WFN5S).
 
+_Special thanks to the many people who helped with the launch, Andrew Lee, Omar Kahil, Ben Fileds, Bryan Landes, Vikram Venkataraman, Rick Sostheim, Manabu McCloskey, and Vara Bonthu from AWS, Rob Hilton (formerly AWS, now Google), Jesse Sanford, Greg Haynes, Mani Kandadai Venkatesh, Sara Mesing, and Brandon Leach from Autodesk, Jesse Adametz and Wes Medford from Twilio, Rohan Kapoor and Vikram Sethi from Adobe._
 
 ### Member Announcements
 
