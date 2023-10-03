@@ -40,7 +40,7 @@
   --ifm-color-search-radar-border: lightgray;
   --ifm-color-search-radar-border-hover: #3c6ead;
 
-  --ifm-image-portal: url("../../static/img/Hero.png");
+  --ifm-image-portal: url("../../static/img/hero.png");
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -85,7 +85,7 @@
   --ifm-color-search-radar-border: lightgray;
   --ifm-color-search-radar-border-hover: #3c6ead;
 
-  --ifm-image-portal: url("../../static/img/Hero.png");
+  --ifm-image-portal: url("../../static/img/hero.png");
 }
 
 .hero .hero__subtitle {
