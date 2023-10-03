@@ -10,7 +10,7 @@ readiness and dependency checks against the target cluster.
 
 CNOE supports running verifications either by using the CNOE CLIE, or
 by embedding them into the Backstage workflow as a `verify` step in the
-[Scaffolder Backend Plugin](/website/docs/reference-implementation/plugins/scaffolder-backend).
+[Scaffolder Backend Plugin](/docs/reference-implementation/plugins/scaffolder-backend).
 
 CNOE supports the following (growing) list of verifications:
 - availability of required CRDs in a target Kubernetes cluster
