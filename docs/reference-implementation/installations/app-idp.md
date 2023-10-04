@@ -224,7 +224,7 @@ See [this doc](./demo.md) for demos!
 ## Possible issues
 
 ### Cert-manager
-- by default it uses http-01 challenge. If you'd prefer using dns-01, you can update the ingress files. TODO AUTOMATE THIS
+- by default it uses http-01 challenge. If you'd prefer using dns-01, you can update the ingress files.
 - You may get events like `Get "http://<DOMAIN>/.well-known/acme-challenge/09yldI6tVRvtWVPyMfwCwsYdOCEGGVWhmb1PWzXwhXI": dial tcp: lookup <DOMAIN> on 10.100.0.10:53: no such host`. This is due to DNS propagation delay. It may take ~10 minutes.
 
 ## Troubleshooting
