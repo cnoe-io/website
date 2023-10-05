@@ -124,7 +124,7 @@
       ]
     },
     {
-      "label": "Policy Managedment",
+      "label": "Policy Management",
       "innerLabel": [
         {
           "value": "OPA~GateKeeper",
