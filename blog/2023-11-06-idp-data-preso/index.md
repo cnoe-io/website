@@ -1,10 +1,12 @@
 ---
-slug: optimizing-data-quality
+slug: optimizing-data-quality-in-dev-portals
 title: Optimizing for Data Quality in your Developer Portal
 authors: [ghaynes, ksmith, bromano, nabuskey, jsanford, nimak]
 tags: [backstage, dev portal, data ingestion]
 ---
-*Disclaimer: CNOE makes strong assumptions about using a subset of open source technologies when building Internal Developer Platforms (IDPs). Recommendations made and patterns discussed are hence centered around the exact tooling that CNOE adopts to implement a capability within an IDP. In this particular post, we assume Kubernetes as the orchestrator platform, Backstage as the technology that implements the developer portal capability, Argo CD for continuous delivery, and Crossplane or Terraform for infrastructure as code (IaC). Capability and technology names may be used interchangeably in the blog post but practices discussed are primarily around the specific set of technologies listed earlier.*
+*Disclaimer: CNOE makes strong assumptions about using a subset of open source technologies when building Internal Developer Platforms (IDPs). Recommendations made and patterns discussed are hence centered around the exact tooling that CNOE adopts to implement a capability within an IDP. In this particular post, we assume Kubernetes as the orchestrator platform, Backstage as the technology that implements the developer portal capability, Argo CD for continuous delivery, and Crossplane or Terraform for infrastructure as code (IaC). Capability and technology names may be used interchangeably in the blog post but practices discussed are primarily around the specific set of technologies named earlier.*
+
+## Establishing the source of truth
 
 There are different approaches to representing entities like Kubernetes objects and cloud resources in Backstage. In such context, *platform engineers need to optimize for creation of reliable data*. The last thing you as a platform provider want to see happen is to lose trust of end users because you are displaying incorrect information. There are however, a number of key decisions to be made when building entity representations in Backstage. Particularly:
 
@@ -14,7 +16,7 @@ There are different approaches to representing entities like Kubernetes objects 
 
 Embracing GitOps practices, the answer to that last question may sound rather trivial: *GIT, git is obviously the source of truth, since, you know ... GitOps!*
 
-However, while git represents the intended source of truth, truth is actually realized where the resource is deployed, revealing the beloved *resource status*. That is why you may hear people sarcastically refer to git as the *source of hope* in GitOps.
+However, while git represents the intended source of truth, truth is actually realized where the resource is deployed, revealing its beloved *resource status*. That is why you may hear people sarcastically refer to git as the *source of hope* in GitOps.
 
 Our current collective of practices reveals that there is no silver bullet when deciding entity representations in a developer portal. What establishes the actual source of truth, from which Backstage entity representations to be drawn, primarily depends on company practices and tools DevOps teams have available to them.
 
