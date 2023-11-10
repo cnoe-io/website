@@ -10,8 +10,8 @@ tags: [backstage, dev portal, data ingestion]
 
 There are different approaches to representing entities like Kubernetes objects and cloud resources in Backstage. In such context, *platform engineers need to optimize for creation of reliable data*. The last thing you as a platform provider want to see happen is to lose trust of end users because you are displaying incorrect information. There are however, a number of key decisions to be made when building entity representations in Backstage. Particularly:
 
-1. What gets represented in Backstage and what doesnt
-2. How to ensure the Backstage entity offers an accurate representation of its real world counterpart.
+1. What gets represented in Backstage and what doesn't
+2. How to ensure the Backstage entity offers an accurate representation of its real world counterpart
 3. What establishes the source of truth for an entity
 
 Embracing GitOps practices, the answer to that last question may sound rather trivial: *GIT, git is obviously the source of truth, since, you know ... GitOps!*
@@ -53,7 +53,7 @@ The hub and spoke model is the most advocated for model when applying GitOps pra
 On the positive side:
 
 * There really is a single place to inspect the status of entities. E.g., Argo applications can tell you the status of deployed applications. You can also inspect the status of workflows, infrastructure resources, and any other entity that the control plane cluster manages.
-* You can use the Backstage Kubernetes plugin seamlessly and maybe with some little tweaks or with introducing fairly light-weight Backstage custom entity provides pull and show the status of entities in the Backstage portal.
+* You can use the Backstage Kubernetes plugin seamlessly and maybe with some little tweaks. Alternatively this can be achieved by introducing fairly light-weight Backstage custom entity providers which pull and show the status of entities in the Backstage portal.
 * In an organization with a diverse set of distributed systems, the control plane cluster can be used as the integration layer by wrapping legacy APIs and or implementing native controllers.
 
 On the negative side:
@@ -76,7 +76,7 @@ On the positive side:
 On the negative side:
 
 * The git service may not be able to scale, technically or financially.  This is particularly because Backstage may hit the git service endpoints too frequently and exceed the API limits. This could cause delays in displaying data for end users or display wrong information if partially available data is mishandled. This can be mitigated via approaches like using an eventing mechanism to notify Backstage of changes, or alternatively to store entity definitions in an alternative storage space (e.g. Amazon S3). There are challenges to such approaches too, for example when using Amazon S3, change history will be lost. Also, using an eventing mechanism could introduce security challenges that we discuss next.
-* Securing backstage could be a challenge. For backstage to proactively receive updates on entity changes, it would work best to configure event hooks to provide callbacks to Backstage when changes occur. Backstage, being the entry point for user workflows, sits on the critical path of platform operations. As such, platform engineers need to solve for a chicken and egg problem by deciding how to expose Backstage endpoints to receive events and yet to limit access for security reasons. The authentication methods that GitHub supports may not satisfy the security standards that an organization requires.
+* Securing Backstage could be a challenge. For Backstage to proactively receive updates on entity changes, it would work best to configure event hooks to provide callbacks to Backstage when changes occur. Backstage, being the entry point for user workflows, sits on the critical path of platform operations. As such, platform engineers need to solve for a chicken and egg problem by deciding how to expose Backstage endpoints to receive events and yet to limit access for security reasons. The authentication methods that GitHub supports may not satisfy the security standards that an organization requires.
 * Changes to entities may not be as trivial. DevOps engineers need to manage entities that they may not control. For example, if a new mandatory field is introduced to a catalog file, DevOps engineers may need to talk to the respective repository owners, create a PR, then get approval for all affected repositories.
 
 ## Conclusion
