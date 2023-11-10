@@ -46,6 +46,8 @@ On the negative side:
 * Less abstraction in place as end application users are directly exposed to the yaml specification of the entities
 * Does not scale well as the number of systems and entities grow
 
+![ci-as-source-of-truth](./img/ci-as-sot.png)
+
 ## Use a central control plane as the source of truth
 
 The hub and spoke model is the most advocated for model when applying GitOps practices. Your control plane cluster runs and manages your platform tools, your CI, your CD, developer portal, infrastructure as code tooling, etc.
@@ -63,6 +65,8 @@ On the negative side:
 * Management of change could become cumbersome. Existence of a single control plane could create bottlenecks where changes occur to a set of entities or practices. Changes in organizations or systems may result in changes to various entities managed across several teams. Bringing GitOps practices to the mix, this requires chains of approvals to happen across multiple entities and across several repositories for deployments to start flowing. Depending on the size of the organization, this could lead to organizational nightmares.
 * You may need to jump through a few hoops before getting from the representation of the application, to the actual deployment of it, e.g., going from git to your continuous delivery and from there to your target cluster.
 
+![controlplane-as-source-of-truth](./img/cp-as-sot.png)
+
 ## Use Backstage as the source of truth
 
 Where control planes and compute workloads are scattered, the unifying layer lies in the developer portal, i.e. Backstage. Hence, it is reasonable to construct an entity by collecting and aggregating data from various data sources, each providing partial data on the entity, making Backstage be the source of truth. This generally starts with Backstage querying git for the entities that exist. Then using the identifiers for the entities to collect metadata on how the entity contributes to a system. This could involve querying the control plane clusters and the workload clusters via some custom entity provider that looks for certain information and putting collected pieces together to come close to the core promise of a developer portal, *providing reliable information* on the entities.
@@ -78,6 +82,8 @@ On the negative side:
 * The git service may not be able to scale, technically or financially.  This is particularly because Backstage may hit the git service endpoints too frequently and exceed the API limits. This could cause delays in displaying data for end users or display wrong information if partially available data is mishandled. This can be mitigated via approaches like using an eventing mechanism to notify Backstage of changes, or alternatively to store entity definitions in an alternative storage space (e.g. Amazon S3). There are challenges to such approaches too, for example when using Amazon S3, change history will be lost. Also, using an eventing mechanism could introduce security challenges that we discuss next.
 * Securing Backstage could be a challenge. For Backstage to proactively receive updates on entity changes, it would work best to configure event hooks to provide callbacks to Backstage when changes occur. Backstage, being the entry point for user workflows, sits on the critical path of platform operations. As such, platform engineers need to solve for a chicken and egg problem by deciding how to expose Backstage endpoints to receive events and yet to limit access for security reasons. The authentication methods that GitHub supports may not satisfy the security standards that an organization requires.
 * Changes to entities may not be as trivial. DevOps engineers need to manage entities that they may not control. For example, if a new mandatory field is introduced to a catalog file, DevOps engineers may need to talk to the respective repository owners, create a PR, then get approval for all affected repositories.
+
+![backstage-as-source-of-truth](./img/bg-as-sot.png)
 
 ## Conclusion
 
