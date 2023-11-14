@@ -44,5 +44,6 @@ _Special thanks to the many people who helped with the launch, Andrew Lee, Omar 
 ### Member Announcements
 
 - Announcement on the [AWS Website](https://aws.amazon.com/blogs/opensource/cloud-native-operational-excellence-cnoe-a-joint-effort-to-share-internal-developer-platform-tools-and-best-practices)
-
+- Announcement on the [Autodesk
+  Website](https://forums.autodesk.com/t5/engineering-hub-blog/cloud-native-operational-excellence-cnoe-a-joint-effort-to-share/ba-p/12282822)
 
