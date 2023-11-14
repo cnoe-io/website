@@ -33,7 +33,8 @@ const Radar = () => {
     const { siteConfig } = useDocusaurusContext();
 
     const FullMap = new Map([
-      ['CNOE Members Radar', siteConfig.baseUrl + 'data/combined.json'],
+      ['Members Radar (Nov 2023)', siteConfig.baseUrl + 'data/combined-11-12-2023.json'],
+      ['Members Radar (Oct 2023)', siteConfig.baseUrl + 'data/combined-10-03-2023.json'],
     ]);
 
     const handleListItemClick = (key, value) => {
@@ -271,7 +272,7 @@ const Radar = () => {
     }
 
     useEffect(() => {
-     fetchData(siteConfig.baseUrl + 'data/combined.json')
+     fetchData(siteConfig.baseUrl + 'data/combined-11-12-2023.json')
         .then(response => {
         if (!response.ok) { throw new Error(response.statusText); }
         return response.json();
