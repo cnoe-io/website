@@ -1,0 +1,276 @@
+{
+  "operation": [
+    {
+      "label": "Infrastructure as~Code",
+      "innerLabel": [
+        {
+          "value": "Terraform",
+          "relevance": 1.0
+        },
+        {
+          "value": "Crossplane",
+          "relevance": 0.5
+        },
+        {
+          "value": "CDK",
+          "relevance": 0.4
+        },
+        {
+          "value": "ACK",
+          "relevance": 0.7
+        },
+        {
+          "value": "ASO",
+          "relevance": 0.6
+        }
+      ]
+    },
+    {
+      "label": "Container Orchestrator",
+      "innerLabel": [
+        {
+          "value": "Kubernetes",
+          "relevance": 1
+        },
+        {
+          "value": "Amazon ECS",
+          "relevance": 0.4
+        }
+      ]
+    },
+    {
+      "label": "Container~Host Operating~System",
+      "innerLabel": [
+        {
+          "value": "Ubuntu",
+          "relevance": 0.8
+        },
+        {
+          "value": "Centos",
+          "relevance": 0.2
+        },
+        {
+          "value": "AL2",
+          "relevance": 0.4
+        },
+        {
+          "value": "Bottlerocket",
+          "relevance": 0.5
+        }
+      ]
+    },
+    {
+      "label": "Container~Image Operating~System",
+      "innerLabel": [
+        {
+          "value": "Alpine",
+          "relevance": 1
+        },
+        {
+          "value": "Centos",
+          "relevance": 0.3
+        },
+        {
+          "value": "Debian",
+          "relevance": 0.4
+        },
+        {
+          "value": "AL2",
+          "relevance": 0.8
+        }
+      ]
+    },
+    {
+      "label": "Workflow Orchestration",
+      "innerLabel": [
+        {
+          "value": "Argo Workflows",
+          "relevance": 0.8
+        },
+        {
+          "value": "Jenkins",
+          "relevance": 0.6
+        },
+        {
+          "value": "Airflow",
+          "relevance": 0.5
+        },
+        {
+          "value": "Spinnaker",
+          "relevance": 0.2
+        }
+      ]
+    },
+    {
+      "label": "Identity~& Access",
+      "innerLabel": [
+        {
+          "value": "AWS IAM",
+          "relevance": 1
+        },
+        {
+          "value": "Keycloak",
+          "relevance": 0.6
+        }
+      ]
+    },
+    {
+      "label": "Continuous Delivery",
+      "innerLabel": [
+        {
+          "value": "Argo~CD",
+          "relevance": 0.9
+        },
+        {
+          "value": "Flux",
+          "relevance": 0.6
+        },
+        {
+          "value": "Spinnaker",
+          "relevance": 0.2
+        }
+      ]
+    },
+    {
+      "label": "Policy Management",
+      "innerLabel": [
+        {
+          "value": "OPA~GateKeeper",
+          "relevance": 1.0
+        },
+        {
+          "value": "Cloud~Custodian",
+          "relevance": 0.6
+        },
+        {
+          "value": "Kyverno",
+          "relevance": 0.8
+        }
+      ]
+    },
+    {
+      "label": "Developer~Portal",
+      "innerLabel": [
+        {
+          "value": "Backstage",
+          "relevance": 1
+        }
+      ]
+    },
+    {
+      "label": "Service~Mesh",
+      "innerLabel": [
+        {
+          "value": "Cilium",
+          "relevance": 0.8
+        },
+        {
+          "value": "Istio",
+          "relevance": 0.9
+        }
+      ]
+    }
+  ],
+  "application": [
+    {
+      "label": "Service~Catalog",
+      "innerLabel": [
+        {
+          "value": "Backstage",
+          "relevance": 0.8
+        }
+      ]
+    },
+    {
+      "label": "API~Gateway",
+      "innerLabel": [
+        {
+          "value": "AWS API~Gateway",
+          "relevance": 0.8
+        },
+        {
+          "value": "Nginx",
+          "relevance": 0.6
+        }
+      ]
+    },
+    {
+      "label": "Code Repository",
+      "innerLabel": [
+        {
+          "value": "GitHub Enterprise",
+          "relevance": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Templates~/ Blueprints",
+      "innerLabel": [
+        {
+          "value": "Backstage",
+          "relevanc": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Service Dashboard",
+      "innerLabel": [
+        {
+          "value": "Grafana",
+          "relevance": 1
+        },
+        {
+          "value": "Backstage",
+          "relevance": 0.8
+        },
+        {
+          "value": "Wavefront",
+          "relevance": 0.4
+        },
+        {
+          "value": "Tableau",
+          "relevance": 0.3
+        },
+        {
+          "value": "Prometheus",
+          "relevance": 0.5
+        }
+      ]
+    },
+    {
+      "label": "Artifact Repository",
+      "innerLabel": [
+        {
+          "value": "Amazon ECR",
+          "relevanc": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Secret Management",
+      "innerLabel": [
+        {
+          "value": "Amazon~SSM",
+          "relevance": 0.9
+        },
+        {
+          "value": "Vault",
+          "relevance": 0.8
+        }
+      ]
+    },
+    {
+      "label": "Developer Experience~KPI",
+      "innerLabel": [
+        {
+          "value": "DORA",
+          "relevance": 0.8
+        },
+        {
+          "value": "NPS",
+          "relevance": 0.5
+        }
+      ]
+    }
+  ]
+}
