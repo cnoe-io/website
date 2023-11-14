@@ -3,6 +3,8 @@ slug: optimizing-data-quality-in-dev-portals
 title: Optimizing for Data Quality in your Developer Portal
 authors: [ghaynes, ksmith, bromano, nabuskey, jsanford, nimak]
 tags: [backstage, dev portal, data ingestion]
+image: https://cnoe.io/assets/images/ci-as-sot-aab3827d5d0bf81df84c59e6f703b5c1.png
+hide_table_of_contents: false
 ---
 *Disclaimer: CNOE makes strong assumptions about using a subset of open source technologies when building Internal Developer Platforms (IDPs). Recommendations made and patterns discussed are hence centered around the exact tooling that CNOE adopts to implement a capability within an IDP. In this particular post, we assume Kubernetes as the orchestrator platform, Backstage as the technology that implements the developer portal capability, Argo CD for continuous delivery, and Crossplane or Terraform for infrastructure as code (IaC). Capability and technology names may be used interchangeably in the blog post but practices discussed are primarily around the specific set of technologies named earlier.*
 
