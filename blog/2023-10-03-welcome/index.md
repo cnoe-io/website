@@ -2,6 +2,8 @@
 slug: welcome
 title: CNOE - A Joint Effort to Share Internal Developer Platform Tools and Best Practices.
 authors: [nimak]
+image: https://cnoe.io/assets/images/ci-as-sot-aab3827d5d0bf81df84c59e6f703b5c1.png
+hide_table_of_contents: false
 tags: [launch, hello, cnoe]
 ---
 
