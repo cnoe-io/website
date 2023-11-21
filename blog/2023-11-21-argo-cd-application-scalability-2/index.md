@@ -1,8 +1,10 @@
 ---
-slug: argo-cd-application-scalability-2
+slug: argo-cd-application-scalability
 title: Argo CD Benchmarking - Pushing the Limits and Sharding Deep Dive
 authors: [andklee, crenshaw, dhamijag]
-tags: [argocd]
+tags: [argocd, benchmarking, scalability]
+image: https://cnoe.io/assets/images/image30-3953ec55f6ce3f531ad8325ac8a7e0f1.png
+hide_table_of_contents: false
 ---
 
 ## Introduction
