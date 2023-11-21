@@ -1,21 +1,27 @@
 ---
 slug: argo-cd-application-scalability-2
-title: Argo CD Benchmarking Part 2 - Pushing the Limits and Sharding Deep Dive
+title: Argo CD Benchmarking - Pushing the Limits and Sharding Deep Dive
 authors: [andklee, crenshaw, dhamijag]
 tags: [argocd]
 ---
 
 ## Introduction
 
-In [Part 1 of our Argo CD benchmarking blog post](https://aws.amazon.com/blogs/opensource/argo-cd-application-controller-scalability-testing-on-amazon-eks/), we analyzed the impacts of various Argo CD configuration parameters on the performance of Argo CD. In particular we measured the impact of _status and operation processes_, _client QPS, burst QPS_, and _sharding_ algorithms on the overall synchronization and reconciliation behavior in Argo CD. We showed that using the right configuration and sharding strategy, particularly by properly setting client and burst QPS, as well as by splitting the workload across multiple workload clusters using Argo CD sharding, overall sync time can be improved by a factor of 4x.
+In [Part 1 of our Argo CD benchmarking blog post](https://aws.amazon.com/blogs/opensource/argo-cd-application-controller-scalability-testing-on-amazon-eks/), we analyzed the impacts of various Argo CD configuration parameters on the performance of Argo CD. In particular we measured the impact of _status and operation processes_, _client QPS, burst QPS_, and _sharding_ algorithms on the overall synchronization and reconciliation behavior in Argo CD. We showed that using the right configuration and sharding strategy, particularly by properly setting client and burst QPS, as well as by splitting the workload across multiple workload clusters using Argo CD sharding, overall sync time can be improved by a factor of 4.
 
-Here, and in Part 2 of our scalability work, we push our scalability experiments for Argo CD further. In particular, among other tests, we run our scalability metrics against a maximum of 500 workload clusters, deploying 50,000 Argo applications. This, to the best of our knowledge, sets the largest scalability testing ever done for Argo CD. We also report on a much deeper set of sharding experiments, utilizing different sharding algorithms for distribution of load across 100 workload clusters. While we report on running our experiments against a legacy sharding algorithm and a round robin algorithm that already exist in Argo CD 2.8, we also discuss results of workload distribution using 3 new sharding algorithms that we developed in collaboration with Red Hat. We show that, depending on the optimization goals one has in mind, choosing from the new sharding algorithms can improve CPU utilization by a factor of 3 and reduce application-to-shard rebalancing by a factor of 5, significantly improving the performance of a highly distributed and massively scaled Argo CD deployment.
+Here, and in Part 2 of our scalability work, we push our scalability experiments for Argo CD further. In particular, among other tests, _we run our scalability metrics against a maximum of 500 workload clusters, deploying 50,000 Argo applications_. This, to the best of our knowledge, sets the largest scalability testing ever done for Argo CD. We also report on a much deeper set of sharding experiments, utilizing different sharding algorithms for distribution of load across 100 workload clusters. While we report on running our experiments against a legacy sharding algorithm and a round robin algorithm that already exist in [Argo CD 2.8](https://github.com/argoproj/argo-cd/releases/tag/v2.8.0), we also discuss results of workload distribution _using 3 new sharding algorithms_ we developed in collaboration with RedHat, namely: _a greedy minimum algorithm_, _a weighted ring hash algorithm_, and _a consistent hash with bounded loads algorithm_. We show that, depending on the optimization goals one has in mind, choosing from the new sharding algorithms can improve CPU utilization by a factor of 3 and reduce application-to-shard rebalancing by a factor of 5, significantly improving the performance of a highly distributed and massively scaled Argo CD deployment.
 
-## Experiment 1: How Client QPS/Burst QPS affects the k8s api-server
+## Experiment 1: How Client QPS/Burst QPS affects the Kubernetes API Server
 
 ** <u>Objective:</u> **
 
-The objective of the first experiment is to understand the impact of QPS & Burst Rate parameters on 1/Kubernetes control plane for both the Argo CD cluster and the remote application clusters, and 2/ overall sync duration for Argo CD applications. To understand the impact on Kubernetes API server, we observed following control plane metrics: 1/ Latency (apiserver_request_duration_seconds_bucket), 2/ Throughput (apiserver_request_total) and 3/ Error Rate (apiserver_request_total{code=~"[45].."}). To analyze impact on application synchronization, we observed ‘Sync Duration’ and ‘No. of Goroutines’ Argo CD server metrics.
+The objective of the first experiment is to understand the impact of QPS & Burst Rate parameters on 1/Kubernetes control plane for both the Argo CD cluster and the remote application clusters, and 2/ overall sync duration for Argo CD applications. To understand the impact on Kubernetes API server, we observed following control plane metrics: 
+- Latency (`apiserver_request_duration_seconds_bucket`)
+- Throughput (`apiserver_request_total`)
+- Error Rate (`apiserver_request_total{code=~"[45].."}`) for any request
+  returning an error code 4xx or 5xx.
+
+To analyze impact on application synchronization, we observed `Sync Duration` and `No. of Goroutines` Argo CD server metrics.
 
 ** <u>Test Infrastructure:</u> **
 
@@ -116,7 +122,7 @@ The table and graphs below highlight the impact of QPS & Burst Rate on “Sync D
 
 ![alt_text](images/image19.png "image_tooltip")
 
-To summarize, during the test, we immediately observed ~52% reduction (from 61.5 mins to 29.5 mins) as we increased QPS & Burst Rate from default values to 100 & 200 respectively. This also correlated with corresponding increase in no. of Goroutines processing application synchronization requests. The benefit from increasing values of these parameters started providing diminishing returns with subsequent runs. Beyond QPS & Burst rate of 150 & 300 respectively, there wasn’t measurable improvement observed. This again correlated with no. of Goroutines actively processing sync requests.
+To summarize, during the test, we immediately observed ~52% reduction (from 61.5 mins to 29.5 mins) as we increased QPS & Burst Rate from default values to 100 & 200 respectively. This also correlated with corresponding increase in no. of Goroutines processing application synchronization requests. The benefit from increasing values of these parameters started providing diminishing returns with subsequent runs. Beyond QPS & Burst rate of 150 & 300 respectively, there wasn’t measurable improvement observed. This again correlated with number of Goroutines actively processing sync requests.
 
 ** Observation 2 - Impact on central Amazon EKS cluster control plane hosting Argo CD Server **
 
@@ -256,7 +262,7 @@ spec:
 
 ** Observation 1 - Syncing never finishes and require a restart of the application controller to continue syncing **
 
-The screenshot below shows that from the start of the sync test at 17:02 till around 17:41, the sync process was deadlocked. We observed no changes to synced apps and the app_operation_processing_queue was pinned at 10k operations.
+The screenshot below shows that from the start of the sync test at 17:02 till around 17:41, the sync process was deadlocked. We observed no changes to synced apps and the `app_operation_processing_queue` was pinned at 10k operations.
 
 ![alt_text](images/image29.png "image_tooltip")
 
@@ -429,7 +435,7 @@ In previous experiments, we utilized ten app controller shards running across mu
 
 ** <u>Test Infrastructure:</u> **
 
-Central Argo CD cluster with 3,6,9 app controller shards running on 3 m5.2xlarge node(s) managing 500 application clusters and 50k 2KB ConfigMap applications.
+Central Argo CD cluster with 3, 6, 9 app controller shards running on 3 m5.2xlarge node(s) managing 500 application clusters and 50k 2KB ConfigMap applications.
 
 ** <u>Observations:</u> **
 
@@ -490,7 +496,7 @@ From the experiments, the Argo CD app controller sharding mechanism is able to s
 
 ** <u>Objective:</u> **
 
-With the release of Argo CD 2.8, a new sharding algorithm: round-robin was released. The existing legacy sharding algorithm performed a modulo of the number of replicas and the hash sum of the cluster id to determine the shard that should manage the cluster. This led to an imbalance in the number of clusters being managed by each shard. The new round-robin sharding algorithm is supposed to ensure an equal distribution of clusters being managed by each shard. We will also introduce 3 new algorithms: greedy minimum, weighted ring hash, and consistent hash with bounded loads. This experiment will evaluate all the algorithms on shard balance, application distribution and rebalancing on changes to the environment.
+With the release of [Argo CD 2.8](https://github.com/argoproj/argo-cd/releases/tag/v2.8.0), a new sharding algorithm: round-robin was released. The existing legacy sharding algorithm performed a modulo of the number of replicas and the hash sum of the cluster id to determine the shard that should manage the cluster. This led to an imbalance in the number of clusters being managed by each shard. The new round-robin sharding algorithm is supposed to ensure an equal distribution of clusters being managed by each shard. We will also introduce 3 new algorithms: greedy minimum, weighted ring hash, and consistent hash with bounded loads. This experiment will evaluate all the algorithms on shard balance, application distribution and rebalancing on changes to the environment.
 
 ** <u>Test Infrastructure:</u> **
 
@@ -502,7 +508,7 @@ Note: For all the observations, we start monitoring-period when we see items in 
 
 ** Legacy ** 
 
-The graph below shows the CPU Usage/Memory Usage of the 10 different Argo CD App Controller shards. Looking at the avg, you can see a large variation to how much each shard is utilizing its resources. To make an accurate comparison between the different sharding methods, we calculate _the variability _by determining the range of the data for both avg CPU usage and Memory usage. The CPU usage variability is calculated by taking the shard with the highest CPU usage and subtracting it from the shard with the least CPU usage: 0.55 - 0.23 = 0.32. The Memory usage variability is 452 MiB - 225 MiB = 227 MiB.
+The graph below shows the CPU Usage/Memory Usage of the 10 different Argo CD App Controller shards. Looking at the avg, you can see a large variation to how much each shard is utilizing its resources. To make an accurate comparison between the different sharding methods, we calculate _the variability_ by determining the range of the data for both avg CPU usage and Memory usage. The CPU usage variability is calculated by taking the shard with the highest CPU usage and subtracting it from the shard with the least CPU usage: `0.55 - 0.23 = 0.32`. The Memory usage variability is `452 MiB - 225 MiB = 227 MiB`.
 
 ** Variability: **
 
@@ -587,9 +593,11 @@ A new algorithm is introduced in order to shard by the number of applications th
 
 Iterate through the cluster list:
 
+```
 1. Determine the number of applications per cluster.
 2. Find the shard with the least number of applications.
 3. Add the number of applications to the assigned shard.
+```
 
 The same experiment with a random number of applications running on each cluster is run again with the results shown below. With the new algorithm, there is better balance across the shards.
 
@@ -676,8 +684,8 @@ The trade off is slightly worse cluster/app balancing than the weighted ring has
   </tr>
 </table>
 
-There are no direct recommendations about which algorithm you should utilize, as each of them have their pros and cons. You should evaluate each for your environment whether you are looking for strict balancing of clusters/apps across the shards or whether you want to minimize the impact of making frequent changes to your ArgoCD environment. 
+There are no direct recommendations about which algorithm you should utilize, as each of them have their pros and cons. You should evaluate each for your environment whether you are looking for strict balancing of clusters/apps across the shards or whether you want to minimize the impact of making frequent changes to your Argo CD environment. 
 
 ## Conclusion
 
-In this blog post, we continued our scalability tests of the Argo CD app controller by answering some questions we had from our first scalability tests about the common scalability parameters. We showed how QPS/Burst QPS affects the k8s api server, determined why status/operation processors did not affect our previous scalability tests, and how those parameters are linked together. We then continued our scalability tests by pushing the Argo CD app controller to 500 clusters and 50,000 apps. We ended our tests by showing that a key component of scaling the Argo CD app controller is how it performs sharding. By doing a deep dive into how the app controller performs sharding we also determined some ways to improve sharding by adding in and evaluating new sharding algorithms. We are currently evaluating how to contribute these changes back to Argo CD. Stay tuned for those contributions and reach out on the CNCF[ #argo-sig-scalability](https://cloud-native.slack.com/archives/C04SURUPDL2) Slack channel to get help optimizing for your use-cases and scenarios.
+In this blog post, we continued our scalability tests of the Argo CD app controller by answering some questions we had from our first scalability tests about the common scalability parameters. We showed how QPS/Burst QPS affects the k8s api server, determined why status/operation processors did not affect our previous scalability tests, and how those parameters are linked together. We then continued our scalability tests by pushing the Argo CD app controller to 500 clusters and 50,000 apps. We ended our tests by showing that a key component of scaling the Argo CD app controller is how it performs sharding. By doing a deep dive into how the app controller performs sharding we also determined some ways to improve sharding by adding in and evaluating new sharding algorithms. We are currently evaluating how to contribute these changes back to Argo CD. Stay tuned for those contributions and reach out on the CNCF[ #argo-sig-scalability](https://cloud-native.slack.com/archives/C04SURUPDL2) or the [#cnoe-interest](https://cloud-native.slack.com/archives/C05TN9WFN5S) Slack channel to get help optimizing for your use-cases and scenarios.
