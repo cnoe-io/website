@@ -229,7 +229,7 @@ See [this doc](./demo.md) for demos!
 
 ## Troubleshooting
 
-See [the troubleshooting doc](TROUBLESHOOTING.md) for more information.
+See [the troubleshooting doc](https://github.com/cnoe-io/reference-implementation-aws/blob/main/TROUBLESHOOTING.md) for more information.
 
 ## Creation Order notes
 <details>
