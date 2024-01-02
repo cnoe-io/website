@@ -15,13 +15,13 @@ title: idpBuilder CLI
 
 The idpbuilder cli installs a local internal developer portal using the following pattern
 
-1. Create a new Kind cluster if one doesnt exist or if `--recreate` switch is passed.
-1. Create a gitserver docker image with the embeded argocd application resources.
+1. Create a new Kind cluster if one doesn't exist or if `--recreate` switch is passed.
+1. Create a gitserver docker image with the embedded argocd application resources.
 1. Create a new gitserver pod, service and ingress serving the argocd applications via the git protcol.
 1. Install ArgoCD and configure it to be able to monitor the gitserver service.
 1. Install Argo Project and Argo applications for the embeded Argo apps.
 1. Argo apps are reconciled by ArgoCD.
-1. Command line exits leaving the cluster running with the IDP install.
+1. Command line exits leaving the cluster running with the IDP installed.
 1. Backstage will become available on your localhost via an nginx ingress. Use kubectl to get the correct IDP address/hostname to connect to.
 
 :::tip
