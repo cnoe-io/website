@@ -13,16 +13,27 @@ title: idpBuilder CLI
 
 ## IDP installation flow
 
-The idpbuilder cli installs a local internal developer portal using the following pattern
+The idpbuilder cli installs a local internal developer portal using the following pattern:
 
-1. Create a new Kind cluster if one doesnt exist or if `--recreate` switch is passed.
-1. Create a gitserver docker image with the embeded argocd application resources.
-1. Create a new gitserver pod, service and ingress serving the argocd applications via the git protcol.
-1. Install ArgoCD and configure it to be able to monitor the gitserver service.
-1. Install Argo Project and Argo applications for the embeded Argo apps.
-1. Argo apps are reconciled by ArgoCD.
-1. Command line exits leaving the cluster running with the IDP install.
-1. Backstage will become available on your localhost via an nginx ingress. Use kubectl to get the correct IDP address/hostname to connect to.
+1. Create a new Kind cluster if one doesn't exist or if `--recreate` switch is passed.
+1. Install [Gitea](https://about.gitea.com/) available at
+   https://gitea.cnoe.localtest.me:8443
+1. Install [ArgoCD](https://argoproj.github.io/cd/) and configure it to be able to monitor applications from the Gitea service, available at https://argocd.cnoe.localtest.me:8443
+1. Install [Nginx](https://www.nginx.com/products/nginx-ingress-controller/) for
+   ingress traffic management.
+1. Argo apps  for ArgoCD, Gitea, and Nginx ingress are reconciled by ArgoCD.
+1. Command line exits leaving the cluster running with the IDP stack installed.
+
+The tool also comes with the option to install the CNOE recommended IDP stack:
+
+1. Backstage becomes available on your localhost via an Nginx ingress
+  at https://backstage.cnoe.localtest.me:8443
+1. Keycloak becomes available on your localhost via an Nginx ingress at
+   https://keycloak.cnoe.localtest.me:8443
+1. Crossplane becomes available on your localhost, managing Crossplane resources
+   deployed to the Kind cluster
+
+Use kubectl to get the correct IDP address/hostname to connect to.
 
 :::tip
 - Docker must be installed and available to the current user.

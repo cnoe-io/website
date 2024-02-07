@@ -4,42 +4,131 @@ description: IDP builder is a single binary IDP launcher.
 title: Architecture
 ---
 
-The idpBuilder binary is primarily composed of a wrapper around a [Kubebuilder](https://kubebuilder.io) based operator and associated type called localbuild. See: [api/v1alpha1/localbuild_types.go](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/api/v1alpha1/localbuild_types.go#L28-L66) and [pkg/controllers/localbuild/controller.go](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/controllers/localbuild/controller.go#L54-L84)
 
-However it starts out by creating a Kind cluster to register the CRD and controller for localbuild and to host the resources created by it which in turn create the basis for our IDP. You can see the steps taken to install the dependencies and stand up the localbuild controller in the CLI codebase here: [pkg/build/build.go](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/build/build.go#L95-L131)
+:::tip stay up-to-date
 
-### Kind Cluster
-The Kind cluster is created using the Kind library and only requires Docker be installed on the host. See: [ReconcileKindCluster](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/build/build.go#L39-L59)
+Find the latest on the idpBuilder here: [cnoe-io/idpbuilder](https://github.com/cnoe-io/idpbuilder)
+:::
 
-### Localbuild
-
-Localbuild's reconciler steps through a number of subreconcilers to create all of the IDP components. See: [Subreconcilers](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/controllers/localbuild/controller.go#L69-L74)
-
-The subreconcilers currently include:
-
-* [ReconcileProjectNamespace:](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/controllers/localbuild/controller.go#L102C32-L102C57) Creates a namespace for the Localbuild objects
-* [ReconcileArgo:](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/controllers/localbuild/argo.go#L51) Installs ArgoCD
-* [ReconcileEmbeddedGitServer:](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/controllers/localbuild/controller.go#L125) Installs a "gitserver" which is another Kubebuilder Operate in this project See: [api/v1alpha1/gitserver_types.go](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/api/v1alpha1/gitserver_types.go)
-* [ReconcileArgoApps](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/controllers/localbuild/controller.go#L172) Steps through all the "Embedded" Argo Apps and installs them. See: [Embedded Apps](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/apps/resources.go#L20-L32)
-
-### GitServer
-
-Gitserver is essentially a fileserver for the Argo apps that are packaged within this IDP builder. As you might expect, it serves the files used by the ArgoCD apps using the git protocol. You can see the container image that contains these files get built here in the [GitServer Reconciler](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/controllers/gitserver/image.go#L44-L60)
-
-### Embedded Argo Apps
-
-The embedded Argo apps are created by the Localbuild reconciler See: [Argo Apps](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/controllers/localbuild/controller.go#L210-L243) Then they are picked up by the ArgoCD operator which in turn connects to the GitServer to perform their gitops deployment.
-
-The resources served by the GitServer are contained within this binary here: [pkg/apps/srv](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/apps/srv/)
-
-They include:
-* [ArgoCD Ingress:](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/apps/srv/argocd/ingress.yaml) which makes the ArgoCD interface available.
-* [Backstage:](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/apps/srv/backstage/install.yaml) which intalls the Backstage Resources.
-* [Crossplane:](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/apps/srv/crossplane/crossplane.yaml) which uses the Crossplane Helm chart to install Crossplane.
-* [Nginx Ingress Controller:](https://github.com/cnoe-io/idpbuilder/blob/4b0f8ecdd7266083373da51d5add1bca73e05a33/pkg/apps/srv/nginx-ingress/ingress-nginx.yaml) which makes nginx ingresses available on the cluster.
-
-As you can imagine each of these apps are are deployed by ArgoCD to the Kind cluster created by CLI. The Argo apps can be inspected with kubectl in the `argocd` namespace and the resources they create can be seen in their corresponding namespaces (`backstage` and `crossplane`)
-
-### Diagram
+idpbuilder is made of two phases: CLI and Kubernetes controllers.
 
 ![diagram](./images/idpbuilder.png)
+
+### CLI
+
+When the idpbuilder binary is executed, it starts with the CLI phase.
+
+1. This is the phase where command flags are parsed and translated into relevant Go structs' fields. Most notably the [`LocalBuild`](https://github.com/cnoe-io/idpbuilder/blob/main/api/v1alpha1/localbuild_types.go) struct.
+2. Create a Kind cluster, then update the kubeconfig file.
+3. Once the kind cluster is started and relevant fields are populated, Kubernetes controllers are started:
+  *  `LocalbuildReconciler` responsible for bootstrapping the cluster with absolute necessary packages. Creates Custom Resources (CRs) and installs embedded manifests.
+  *  `RepositoryReconciler` responsible for creating and managing Gitea repository and repository contents.
+  *  `CustomPackageReconciler` responsible for managing custom packages.
+4. They are all managed by a single Kubernetes controller manager.
+5. Once controllers are started, CRs corresponding to these controllers are created. For example for Backstage, it creates a GitRepository CR and ArgoCD Application.
+6. CLI then waits for these CRs to be ready.
+
+### Custom Packages
+
+Idpbuilder supports specifying custom packages using the flag `--package-dir` flag. This flag expects a directory containing ArgoCD application files.
+
+Let's take a look at [this example](examples/basic). This example defines two custom package directories to deploy to the cluster.
+
+To deploy these packages, run the following commands from this repository's root.
+
+```
+./idpbuilder create --package-dir examples/basic/package1  --package-dir examples/basic/package2
+```
+
+Running this command should create three additional ArgoCD applications in your cluster.
+
+```sh
+$ kubectl get Applications -n argocd  -l example=basic
+NAME         SYNC STATUS   HEALTH STATUS
+guestbook    Synced        Healthy
+guestbook2   Synced        Healthy
+my-app       Synced        Healthy
+```
+
+Let's break this down. The [first package directory](examples/basic/package1) defines an application. This corresponds to the `my-app` application above. In this application, we want to deploy manifests from local machine in GitOps way.
+
+The directory contains an [ArgoCD application file](examples/basic/package1/app.yaml). This is a normal ArgoCD application file except for one field.
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+spec:
+  source:
+    repoURL: cnoe://manifests
+```
+
+The `cnoe://` prefix in the `repoURL` field indicates that we want to sync from a local directory.
+Values after `cnoe://` is treated as a relative path from this file. In this example, we are instructing idpbuilder to make ArgoCD sync from files in the [manifests directory](examples/basic/package1/manifests).
+
+As a result the following actions were taken by idpbuilder: 
+1. Create a Gitea repository.
+2. Fill the repository with contents from the manifests directory.
+3. Update the Application spec to use the newly created repository.
+
+You can verify this by going to this address in your browser: https://gitea.cnoe.localtest.me:8443/giteaAdmin/idpbuilder-localdev-my-app-manifests
+
+![img.png](./images/my-app-repo.png)
+
+
+This is the repository that corresponds to the [manifests](examples/basic/package1/manifests) folder.
+It contains a file called `alpine.yaml`, synced from the `manifests` directory above.
+
+You can also view the updated Application spec by going to this address: https://argocd.cnoe.localtest.me:8443/applications/argocd/my-app
+
+![myapp](./images/my-app.png)
+
+
+The second package directory defines two normal ArgoCD applications referencing a remote repository.
+They are applied as-is.
+
+### Controllers
+
+During this phase, controllers act on CRs created by the CLI phase. Resources such as Gitea repositories and ArgoCD applications are created. 
+
+#### LocalbuildReconciler
+
+`LocalbuildReconciler` bootstraps the cluster using embedded manifests. Embedded manifests are yaml files that are baked into the binary at compile time.
+1. Install core packages. They are essential services that are needed for the user experiences we want to enable:
+  * Gitea. This is the in-cluster Git server that hosts Git repositories.
+  * Ingress-nginx. This is necessary to expose services inside the cluster to the users.
+  * ArgoCD. This is used as the packaging mechanism. Its primary purpose is to deploy manifests from gitea repositories.
+2. Once they are installed, it creates `GitRepository` CRs for core packages. This CR represents the git repository on the Gitea server.
+3. Create ArgoCD applications for the apps. Point them to the Gitea repositories. From here on, ArgoCD manages the core packages.
+
+Once core packages are installed, it creates the other embedded applications: Backstage and Crossplane.
+1. Create `GitRepository` CRs for the apps.
+2. Create ArgoCD applications for the apps. Point them to the Gitea repositories.
+
+#### RepositoryReconciler
+
+`RepositoryReconciler` creates Gitea repositories.
+The content of the repositories can either be sourced from Embedded file system or local file system.
+
+#### CustomPackageReconciler
+
+`CustomPackageReconciler` parses the specified ArgoCD application files. If they specify repository URL with the scheme `cnoe://`,
+it creates `GitRepository` CR with source specified as local, then creates ArgoCD application with the repository URL replaced.
+
+For example, if an ArgoCD application is specified as the following.
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+spec:
+  source:
+    repoURL: cnoe://busybox
+```
+
+Then, the actual object created is this.
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+spec:
+  source:
+    repoURL: http://my-gitea-http.gitea.svc.cluster.local:3000/giteaAdmin/idpbuilder-localdev-my-app-busybox.git
