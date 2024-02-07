@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcnoe=self.webpackChunkcnoe||[]).push([[7664],{4909:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/data-ingestion","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

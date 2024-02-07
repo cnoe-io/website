@@ -1,8 +1,0 @@
-{
-  "label": "Pluggability",
-  "position": 4,
-  "link": {
-    "type": "generated-index",
-    "description": "Below is the list of plugins that extend CNOE to integrate with IDP technologies:"
-  }
-}
