@@ -138,10 +138,10 @@ export default function Home() {
       description="Joint efforts to build Internal Developer Platforms"
     >
       <HomepageHeader />
+      <CNOENews />
       <Partners/>
       <h1 className="heading heading-center">Platform Architecture</h1>
       <InteractiveDiagram />
-      <CNOENews />
       <main>
         <MissionVision />
         <HomepageFeatures />
