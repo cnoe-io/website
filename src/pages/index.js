@@ -35,7 +35,7 @@ function HomepageHeader() {
             <Grid item>
                 <Link
                   className="button button--primary button--lg"
-                  to="/docs/intro" // go to getstarted
+                  to="/docs/reference-implementation" // go to getstarted
                   style={{textAlign:"center"}}
                 >
                   <img src="img/terminal.png" 
@@ -52,19 +52,6 @@ function HomepageHeader() {
                   </div> */}
                  
                 </Link>
-                {/* <button
-                  className="button button--lg"
-                  to="idpbuilder"
-                  title="Copy Code"
-                  style = {{ marginLeft:"-70px", paddingRight:"18px"}}
-                  onClick={() => {navigator.clipboard.writeText("copied text")}}
-                  onMouseOver={()=> console.log("over")}
-                >
-                <img src="img/copy.png" 
-                  style={{verticalAlign:"text-top"}}
-                >
-                </img>
-                </button> */}
                 &nbsp;
                 <Link
                   className="button button--secondary button--lg"

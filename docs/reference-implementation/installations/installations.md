@@ -1,12 +1,12 @@
 ---
 sidebar_position: 0
 description: A multitudinal and communal plan
-title: Installation
+title: Deploy
 ---
 
-# Installation
+# Deploy CNOE Developer Platform
 
-:::note github repo
+:::tip github repo
 
 [cnoe-io/reference-implementation-aws](https://github.com/cnoe-io/reference-implementation-aws)
 :::

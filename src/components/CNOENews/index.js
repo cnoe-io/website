@@ -6,7 +6,7 @@ const NewsList = [
     {
         title: 'CNOE Talk 1',
         description: (<>
-        This is a test news article
+        This is a test news article that we have been trying to publish
         </>),
         imageSrc:'',
         linkTo: 'https://www.google.com'
@@ -37,7 +37,7 @@ export default function CNOENews() {
     return (
         <section className={styles.news}>
         <div className="container">
-          <p className='heading heading-center'>CNOE in the News</p>
+          <p className='heading heading-center'>in the News</p>
           <div className="row padding-top--lg">
             {NewsList.map((props, idx) => (
               <News key={idx} {...props} />

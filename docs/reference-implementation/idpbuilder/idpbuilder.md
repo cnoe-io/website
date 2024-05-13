@@ -6,7 +6,7 @@ title: idpBuilder CLI
 
 # Installation
 
-:::note github repo
+:::tip github repo
 
 [cnoe-io/idpbuilder](https://github.com/cnoe-io/idpbuilder)
 :::

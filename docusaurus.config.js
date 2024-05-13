@@ -72,19 +72,15 @@ const config = {
         items: [
           {
             type: 'doc',
+            docId: 'reference-implementation/reference-implementation',
+            position: 'left',
+            label: 'Get Started'
+          },
+          {
+            type: 'doc',
             docId: 'intro/intro',
             position: 'left',
-            label: 'Introduction',
-          },
-          {
-            to: '/docs/category/technology-capabilities',
-            position: 'left',
-            label: 'Technology Capabilities',
-          },
-          {
-            to: '/docs/reference-implementation',
-            position: 'left',
-            label: 'Reference Implementations'
+            label: 'Concepts',
           },
           {
             to: '/radars',
@@ -93,14 +89,22 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://calendar.google.com/calendar/u/0/embed?src=064a2adfce866ccb02e61663a09f99147f22f06374e7a8994066bdc81e066986@group.calendar.google.com&ctz=America/Los_Angeles',
-            label: 'Community Meetings Calendar',
-            position: 'right',
+            'aria-label': 'Community Calendar',
+            'className': 'navbar--calendar-link',
+            'href': "https://calendar.google.com/calendar/u/0/embed?src=064a2adfce866ccb02e61663a09f99147f22f06374e7a8994066bdc81e066986@group.calendar.google.com&ctz=America/Los_Angeles",
+            'position': 'right',
           },
           {
-            href: 'https://github.com/cnoe-io',
-            label: 'GitHub',
-            position: 'right',
+            'aria-label': 'Slack Channel',
+            'className': 'navbar--slack-link',
+            'href': "https://cloud-native.slack.com/archives/C05TN9WFN5S",
+            'position': 'right',
+          },
+          {
+            'aria-label': 'GitHub Repository',
+            'className': 'navbar--github-link',
+            'href': 'https://github.com/cnoe-io',
+            'position': 'right',
           },
         ],
       },
