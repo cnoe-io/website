@@ -15,6 +15,7 @@ import {useColorMode} from '@docusaurus/theme-common';
 
 
 import styles from "./index.module.css";
+import CNOENews from "../components/CNOENews";
 const { useState, useEffect } = React;
 
 
@@ -34,16 +35,47 @@ function HomepageHeader() {
             <Grid item>
                 <Link
                   className="button button--primary button--lg"
-                  to="/docs/intro"
+                  to="/docs/intro" // go to getstarted
+                  style={{textAlign:"center"}}
                 >
-                  What is CNOE?
+                  <img src="img/terminal.png" 
+                  style={{verticalAlign:"text-top", marginRight:"8px", marginTop:"1.5px"}}
+                  >
+                  </img>
+                  <span style={{verticalAlign:"text-top"}}>
+
+                  Get Started
+                  </span>
+                  {/* <div 
+                  style={{width:"2px", marginLeft:"12px",marginRight:"16px", height:"28px", backgroundColor:"#dadada", verticalAlign:"text-top", display:"inline-block"}}
+                  >
+                  </div> */}
+                 
                 </Link>
+                {/* <button
+                  className="button button--lg"
+                  to="idpbuilder"
+                  title="Copy Code"
+                  style = {{ marginLeft:"-70px", paddingRight:"18px"}}
+                  onClick={() => {navigator.clipboard.writeText("copied text")}}
+                  onMouseOver={()=> console.log("over")}
+                >
+                <img src="img/copy.png" 
+                  style={{verticalAlign:"text-top"}}
+                >
+                </img>
+                </button> */}
                 &nbsp;
                 <Link
                   className="button button--secondary button--lg"
-                  to="https://github.com/cnoe-io"
+                  to="https://github.com/cnoe-io"            
                 >
-                  Come Build with Us!
+                  <img src="img/github.png" 
+                  style={{verticalAlign:"text-bottom", marginRight:"8px"}}
+                  >
+                  </img>
+
+                  Contribute
                 </Link>
             </Grid>
           </Grid>
@@ -119,10 +151,11 @@ export default function Home() {
       description="Joint efforts to build Internal Developer Platforms"
     >
       <HomepageHeader />
+      <Partners/>
       <h1 className="heading heading-center">Platform Architecture</h1>
       <InteractiveDiagram />
+      <CNOENews />
       <main>
-        <Partners/>
         <MissionVision />
         <HomepageFeatures />
       </main>
