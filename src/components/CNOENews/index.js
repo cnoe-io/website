@@ -13,7 +13,7 @@ const { useState, useEffect } = React;
 function News({title, description, imageSrc, linkTo}){
     return(
         <a className={styles.NewsCard} href={linkTo} target="_blank">
-            <img src={linkTo} width="100%" height="200px" objectFit="contain" />
+            <img src={imageSrc} width="100%" height="200px" objectFit="contain" />
             <h2>{title}</h2>
             <p align="left">{description}</p>
         </a>
@@ -48,7 +48,7 @@ export default function CNOENews() {
         key={index}
         title={news.title}
         description={news.description}
-        imageSrc={ siteConfig.baseUrl + news.imageSrc}
+        imageSrc={ news.imageSrc}
         linkTo={news.linkTo}
       />
   ));
@@ -69,7 +69,7 @@ export default function CNOENews() {
               items={items}
               autoPlay={false}
               disableSlideInfo={true}
-              disableButtonsControls={false}
+              disableButtonsControls={true}
               autoPlayInterval={2500}
               infinite={true}
               responsive={responsive}

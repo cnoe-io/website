@@ -2,20 +2,22 @@
   description: |
     The CNOE Project - Creating an industry standard internal developer
     platform distributions using CNCF technologies.
-  imageSrc: ''
-  linkTo: "/news/images/kubecrash.jpeg"
+  imageSrc: "/news/images/kubecrash.jpeg"
+  linkTo: 'https://www.youtube.com/watch?v=CPW3TOe7Cu8'
 
-- title: "Kube"
+- title: "idpBuilder Deep Dive"
   description: |
-    This is a test 2 news article
-  imageSrc: ''
-  linkTo: "https://www.google.com"
+    Watch Guy Menahem and Carlos Santana talk about how you can 
+    quickly get idpBuilder up and running 
+  imageSrc: '/news/images/cnoe-series-e2.png'
+  linkTo: "https://www.youtube.com/watch?v=MnoBf1s5PV4"
 
-- title: "Kube"
+- title: "Kickstarting a Platform in 10 minutes using idpBuilder"
   description: |
-    This is a test 2 news article
-  imageSrc: ''
-  linkTo: "https://www.google.com"
+    Guy Menahem and Carlos Santana discuss how idpBuilder can
+    get you up and running with a platform quickly
+  imageSrc: '/news/images/cnoe-series-e1.png'
+  linkTo: "https://www.youtube.com/watch?v=aUOpcmN07nQ"
 
 - title: "Kube"
   description: |
