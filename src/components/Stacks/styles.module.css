@@ -1,0 +1,20 @@
+.stacksContainer {
+/* font-family: sans-serif; */
+text-align: center;
+padding: 20px;
+justify-content: center;
+background-color: var(--ifm-color-neutral-lightest);
+}
+
+.gridItem {
+text-align: center;
+}
+
+.gridItem img {
+width: 100px;
+height: 100px;
+}
+
+.gridItem p {
+    font-weight: 600;
+}

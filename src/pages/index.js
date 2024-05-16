@@ -16,6 +16,7 @@ import {useColorMode} from '@docusaurus/theme-common';
 
 import styles from "./index.module.css";
 import CNOENews from "../components/CNOENews";
+import Stacks from "../components/Stacks";
 const { useState, useEffect } = React;
 
 
@@ -138,6 +139,7 @@ export default function Home() {
       description="Joint efforts to build Internal Developer Platforms"
     >
       <HomepageHeader />
+      <Stacks />
       <CNOENews />
       <Partners/>
       <h1 className="heading heading-center">Platform Architecture</h1>

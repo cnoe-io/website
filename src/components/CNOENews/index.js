@@ -64,7 +64,7 @@ export default function CNOENews() {
 
   return (
     <div className={styles.members}>
-      <h1 className="heading heading-center">in the News</h1>
+      <h1 className="heading heading-center">In the News</h1>
       <Grid container className="sliderStyle">
         <Grid item xs={1}/>
           <Grid item xs={10} >
