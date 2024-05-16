@@ -12,11 +12,14 @@ const { useState, useEffect } = React;
 
 function News({title, description, imageSrc, linkTo}){
     return(
-        <a className={styles.NewsCard} href={linkTo} target="_blank" style={{ textDecoration: 'none' }}>
-            <img src={imageSrc} width="100%" height="200px" objectFit="contain" />
+        <div className={styles.NewsCard}>
+
+        <a  href={linkTo} target="_blank" style={{ textDecoration: 'none', padding:"0px", cornerRadius:"8px" }}>
+            <img src={imageSrc} width="100%" height="280px" objectFit="contain" style={{ paddingBottom: '16px'}}/>
             <h2 align="left">{title}</h2>
             <p align="left">{description}</p>
         </a>
+        </div>
     );
 }
 

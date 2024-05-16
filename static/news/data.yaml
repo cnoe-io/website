@@ -19,8 +19,8 @@
   imageSrc: '/news/images/cnoe-series-e1.png'
   linkTo: "https://www.youtube.com/watch?v=aUOpcmN07nQ"
 
-- title: "Kube"
-  description: |
-    This is a test 2 news article
-  imageSrc: ''
-  linkTo: "https://www.google.com"
+# - title: "Kube"
+#   description: |
+#     This is a test 2 news article
+#   imageSrc: ''
+#   linkTo: "https://www.google.com"
