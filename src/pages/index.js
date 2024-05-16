@@ -38,7 +38,7 @@ function HomepageHeader() {
                   to="/docs/reference-implementation" // go to getstarted
                   style={{textAlign:"center"}}
                 >
-                  <img src="img/terminal.png" 
+                  <img src="img/terminal.svg" 
                   style={{verticalAlign:"text-top", marginRight:"8px", marginTop:"1.5px"}}
                   >
                   </img>
@@ -57,7 +57,7 @@ function HomepageHeader() {
                   className="button button--secondary button--lg"
                   to="https://github.com/cnoe-io"            
                 >
-                  <img src="img/github.png" 
+                  <img src="img/github.svg" 
                   style={{verticalAlign:"text-bottom", marginRight:"8px"}}
                   >
                   </img>
