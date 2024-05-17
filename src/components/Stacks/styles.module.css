@@ -2,6 +2,7 @@
 /* font-family: sans-serif; */
 text-align: center;
 padding: 20px;
+padding-top: 36px;
 justify-content: center;
 background-color: var(--ifm-color-neutral-lightest);
 }

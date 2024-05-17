@@ -1,43 +1,40 @@
 import React from 'react';
-// import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Grid from '@mui/material/Grid';
 import styles from './styles.module.css';
+import { useColorMode } from '@docusaurus/theme-common';
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+
 
 export default function Stacks() {
+    const { colorMode } = useColorMode();
+    const { siteConfig } = useDocusaurusContext();
+
+    const items = colorMode === 'light' ? [
+        { src: `${siteConfig.baseUrl}img/stacks/step1-light.svg`, label: 'CHOOSE STACK' },
+        { src: `${siteConfig.baseUrl}img/stacks/step2-light.svg`, label: 'BUILD STACK' },
+        { src: `${siteConfig.baseUrl}img/stacks/step3-light.svg`, label: 'TEST STACK' },
+        { src: `${siteConfig.baseUrl}img/stacks/step4-light.svg`, label: 'ADOPT STACK' },
+        { src: `${siteConfig.baseUrl}img/stacks/step5-light.svg`, label: 'SCALE STACK' },
+    ] : [
+        { src: `${siteConfig.baseUrl}img/stacks/step1-dark.svg`, label: 'CHOOSE STACK' },
+        { src: `${siteConfig.baseUrl}img/stacks/step2-dark.svg`, label: 'BUILD STACK' },
+        { src: `${siteConfig.baseUrl}img/stacks/step3-dark.svg`, label: 'TEST STACK' },
+        { src: `${siteConfig.baseUrl}img/stacks/step4-dark.svg`, label: 'ADOPT STACK' },
+        { src: `${siteConfig.baseUrl}img/stacks/step5-dark.svg`, label: 'SCALE STACK' },
+    ];
+
     return (
         <div className={styles.stacksContainer}>
-          <Grid container spacing={2} justifyContent="center" alignItems="center">
-            <Grid item xs={2}>
-              <div className={styles.gridItem}>
-                <img src="img/stacks/step1.svg" alt="Choose Stack" />
-                <p>CHOOSE STACK</p>
-              </div>
+            <Grid container spacing={2} justifyContent="center" alignItems="center">
+                {items.map((item, index) => (
+                    <Grid item xs={2} key={index}>
+                        <div className={styles.gridItem}>
+                            <img src={item.src} alt={item.label} />
+                            <p>{item.label}</p>
+                        </div>
+                    </Grid>
+                ))}
             </Grid>
-            <Grid item xs={2}>
-              <div className={styles.gridItem}>
-                <img src="img/stacks/step2.svg" alt="Build Stack" />
-                <p>BUILD STACK</p>
-              </div>
-            </Grid>
-            <Grid item xs={2}>
-              <div className={styles.gridItem}>
-                <img src="img/stacks/step3.svg" alt="Test Stack" />
-                <p>TEST STACK</p>
-              </div>
-            </Grid>
-            <Grid item xs={2}>
-              <div className={styles.gridItem}>
-                <img src="img/stacks/step4.svg" alt="Adopt Stack" />
-                <p>ADOPT STACK</p>
-              </div>
-            </Grid>
-            <Grid item xs={2}>
-              <div className={styles.gridItem}>
-                <img src="img/stacks/step5.svg" alt="Scale Stack" />
-                <p>SCALE STACK</p>
-              </div>
-            </Grid>
-          </Grid>
         </div>
-        )
+    );
 }
