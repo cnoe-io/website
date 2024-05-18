@@ -1,10 +1,10 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 description: Tooling to extend the IDP
 ---
-# Extensions
+# Integrations
 
-:::note github repo
+:::tip github repo
 [cnoe-io/cnoe-cli](https://github.com/cnoe-io/cnoe-cli)
 :::
 Part of creating an internal developer platform includes building cohesion

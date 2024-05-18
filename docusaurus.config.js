@@ -72,7 +72,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'reference-implementation/reference-implementation',
+            docId: '/category/getting-started',
             position: 'left',
             label: 'Get Started'
           },

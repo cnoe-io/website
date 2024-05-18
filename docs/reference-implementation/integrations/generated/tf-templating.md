@@ -104,7 +104,7 @@ The `-o` flag specifies the output directory. In this case, we want it to output
 
 Once the fields are generated and inserted, the template is ready to use. When rendered in Backstage, it should look something like this. 
 
-![](../images/backstage-tf-input-field.png)
+![](../../images/backstage-tf-input-field.png)
 
 
 The diff between the original template and generated template should look something like this:

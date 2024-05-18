@@ -1,13 +1,18 @@
 ---
-sidebar_position: 1
-description: A multitudinal and communal plan
-title: Application IDP
+sidebar_position: 2
+description: |
+  deploy the CNOE IDP to Amazon EKS. 
+title: Amazon EKS
 ---
 
-![overview](../images/application-idp.png)
+:::tip GitHub Repo
 
+ [cnoe-io/reference-implementation-aws](https://github.com/cnoe-io/reference-implementation-aws)
+:::
 
 > **_NOTE:_**  Applications deployed in this repository are not meant or configured for production.
+
+![overview](../images/application-idp.png)
 
 ## Secret handling
 

@@ -1,10 +1,11 @@
 ---
-sidebar_position: 4
+sidebar_position: 1
 description: IDP builder is a single binary IDP launcher.
 title: idpBuilder CLI
+index: 1
 ---
 
-# Installation
+# Local IDP
 
 :::tip github repo
 

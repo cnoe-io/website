@@ -7,6 +7,7 @@ import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import MissionVision from "@site/src/components/MissionVision";
 import InteractiveDiagram from "@site/src/components/InteractiveDiagram";
 import Grid from '@mui/material/Grid';
+import HelpIcon from '@mui/icons-material/Help';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import {useColorMode} from '@docusaurus/theme-common';
@@ -35,9 +36,20 @@ function HomepageHeader() {
             </Grid>
             <Grid item>
                 <Link
+                  className="button button--secondary button--lg"
+                  to="/docs/intro"            
+                  style={{textAlign:"center", width:"225px"}}
+                >
+                  <HelpIcon
+                  style={{verticalAlign:"text-top", marginRight:"8px", marginTop:"1px"}}
+                  />
+                  What is CNOE
+                </Link>
+                &nbsp;
+                <Link
                   className="button button--primary button--lg"
-                  to="/docs/reference-implementation" // go to getstarted
-                  style={{textAlign:"center"}}
+                  to="/docs/category/getting-started" // go to getstarted
+                  style={{textAlign:"center", width:"225px"}}
                 >
                   <img src="img/terminal.svg" 
                   style={{verticalAlign:"text-top", marginRight:"8px", marginTop:"1.5px"}}
@@ -47,16 +59,12 @@ function HomepageHeader() {
 
                   Get Started
                   </span>
-                  {/* <div 
-                  style={{width:"2px", marginLeft:"12px",marginRight:"16px", height:"28px", backgroundColor:"#dadada", verticalAlign:"text-top", display:"inline-block"}}
-                  >
-                  </div> */}
-                 
                 </Link>
                 &nbsp;
                 <Link
                   className="button button--secondary button--lg"
                   to="https://github.com/cnoe-io"            
+                  style={{textAlign:"center", width:"225px"}}
                 >
                   <img src="img/github.svg" 
                   style={{verticalAlign:"text-bottom", marginRight:"8px"}}

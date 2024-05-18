@@ -1,4 +1,11 @@
-# Reference Implementations
+---
+sidebar_position: 6
+description: |
+  What technologies are available in CNOE IDP and Why.
+title: Technology Choices
+---
+
+# Technologies
 
 Every organization has slightly different requirements for their internal
 developer platforms (IDPs) and as such designing an all inclusive solution for an IDP 
@@ -23,7 +30,7 @@ CNOE by no means tries to be comprehensive, but instead it aims to collect
 community driven patterns and best practices based on what is commonly deployed
 in production.
 
-![overview](./images/ref-impl.png)
+![overview](./../images/ref-impl.png)
 
 For CNOE reference implementations we will provide configurations, patterns, and practices with the following
 (growing) list of technologies.

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 description: Verifying Deployments
 title: Verifications
 ---
@@ -124,9 +124,9 @@ In case of a failure, the Backstage scaffolder halts the execution flow and
 shows the exact error reporting that the CNOE CLI reports upon execution from
 within the terminal (see below):
 
-![verify](images/verify.png)
+![verify](generated/images/verify.png)
 
 In case of a successful verification, the verify step would finish execution
 with an exit code 0 and allow for the rest of the steps to proceed:
 
-![deploy](images/7-deploy-resource.png)
+![deploy](generated/images/7-deploy-resource.png)
