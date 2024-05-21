@@ -147,7 +147,7 @@ drwxr-xr-x    4 user  wheel   128B Aug  7 23:26 .
 drwxrwxrwt   68 root  wheel   2.1K Aug  8 19:34 ..
 ```
 
-With the template augmented to have all the resoruces:
+With the template augmented to have all the resources:
 
 ```yaml
 redepiVersion: scaffolder.backstage.io/v1beta3

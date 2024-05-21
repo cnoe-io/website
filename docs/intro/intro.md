@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Cloud Native Operational Excellence (CNOE)
 
-_( pronounced Kuh.noo )_
+_( pronounced Kuh.no )_
 
 ## What is CNOE?
 

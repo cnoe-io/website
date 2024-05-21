@@ -39,7 +39,7 @@ spec:
   system: system1
 ```
 
-Configure your Argo Workflows' instance base URL. Ths is optional. If defined, workflows will have links to Argo Workflows UI.
+Configure your Argo Workflows' instance base URL. This is optional. If defined, workflows will have links to Argo Workflows UI.
 
 ```yaml
 argoWorkflows:

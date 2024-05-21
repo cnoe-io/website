@@ -9,7 +9,7 @@ description: Enable developers to collaborate on configuration asynchronously wh
 Config repositories are similar to code repositories but specific to application configuration.
 Often takes the form of serialized key value pairs or similar simple data structures.
 Frequently the keys are appended or tagged with meta-data about environment specifics so that they can be targeted.
-May be built on a heirarchy, tree or graph structure to further instill meta-data about the contents of the keys and values.
+May be built on a hierarchy, tree or graph structure to further instill meta-data about the contents of the keys and values.
 Can be centralized or distributed, but should only have one source of truth for a fully qualified key-value pair.
 The values should not contain embedded secrets but often contains references to secrets that can be found within secret repositories.
 The data should be versioned and immutable to allow for point in time snapshots for things like rollbacks.
