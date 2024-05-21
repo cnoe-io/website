@@ -73,7 +73,7 @@ Usage:
   cnoe k8s verify [flags]
 
 Flags:
-  -c, --config stringArray   list of prerequisit configurations (samples under config/prereq)
+  -c, --config stringArray   list of prerequisite configurations (samples under config/prereq)
   -h, --help                 help for verify
 
 Global Flags:
