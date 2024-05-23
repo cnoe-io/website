@@ -36,17 +36,6 @@ function HomepageHeader() {
             </Grid>
             <Grid item>
                 <Link
-                  className="button button--secondary button--lg"
-                  to="/docs/intro"            
-                  style={{textAlign:"center", width:"225px"}}
-                >
-                  <HelpIcon
-                  style={{verticalAlign:"text-top", marginRight:"8px", marginTop:"1px"}}
-                  />
-                  What is CNOE
-                </Link>
-                &nbsp;
-                <Link
                   className="button button--primary button--lg"
                   to="/docs/category/getting-started" // go to getstarted
                   style={{textAlign:"center", width:"225px"}}
@@ -59,6 +48,17 @@ function HomepageHeader() {
 
                   Get Started
                   </span>
+                </Link>
+                &nbsp;
+                <Link
+                  className="button button--secondary button--lg"
+                  to="/docs/intro"            
+                  style={{textAlign:"center", width:"225px"}}
+                >
+                  <HelpIcon
+                  style={{verticalAlign:"text-top", marginRight:"8px", marginTop:"1px"}}
+                  />
+                  What is CNOE
                 </Link>
                 &nbsp;
                 <Link
@@ -148,14 +148,14 @@ export default function Home() {
     >
       <HomepageHeader />
       <Stacks />
-      <CNOENews />
-      <Partners/>
       <h1 className="heading heading-center">Platform Architecture</h1>
       <InteractiveDiagram />
       <main>
-        <MissionVision />
         <HomepageFeatures />
+        <MissionVision />
       </main>
+      <Partners/>
+      <CNOENews />
     </Layout>
   );
 }

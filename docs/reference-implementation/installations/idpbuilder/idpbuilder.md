@@ -1,23 +1,28 @@
 ---
 sidebar_position: 1
-description: use idpBuilder and launch the IDP with a single binary 
-title: Local Machine
+description: launch the CNOE IDP with a single binary 
+title: idpBuilder on Local Machine
 index: 1
 ---
-
 
 :::tip GitHub Repo
 
 [cnoe-io/idpbuilder](https://github.com/cnoe-io/idpbuilder)
 :::
 
-# IDP Builder
 
-Internal development platform binary launcher.
+### Quick Launch
 
-> **WORK IN PROGRESS**: This tool is in a pre-release stage and is under active development.
+:::warning Run with care
+
+Execute the following bash script to get strated with a running version of the idpBuilder:
+
+[cnoe-io/idpbuilder](https://github.com/cnoe-io/idpbuilder)
+:::
 
 ## About
+
+> **WORK IN PROGRESS**: This tool is in a pre-release stage and is under active development.
 
 Spin up a complete internal developer platform using industry standard technologies like Kubernetes, Argo, and backstage with only Docker required as a dependency.
 
@@ -34,6 +39,7 @@ A container engine is needed locally such as:
 |-------------------------------------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------|
 | [Docker desktop](https://www.docker.com/get-started/) | Yes       |                                                                                                                                     |
 | [Podman desktop](https://podman-desktop.io/)          | No        | idpbuilder can create a cluster using podman [rootful](https://docs.podman.io/en/latest/markdown/podman-machine-set.1.html#rootful) | 
+| [Finch](https://runfinch.com/)          | No        || 
 
 
 **Note**: Set the `DOCKER_HOST` env var property using `podman` to let idpbuilder to talk with the engine (e.g  export DOCKER_HOST="unix:///var/run/docker.sock")

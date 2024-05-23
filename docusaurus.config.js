@@ -72,9 +72,9 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: '/category/getting-started',
+            docId: '/category/deploy-a-platform',
             position: 'left',
-            label: 'Get Started'
+            label: 'Deploy'
           },
           {
             type: 'doc',
