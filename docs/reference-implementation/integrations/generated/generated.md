@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 0
 description: Tooling to extend the IDP
 ---
-# Integrations
+# CNOE CLI
 
 :::tip github repo
 [cnoe-io/cnoe-cli](https://github.com/cnoe-io/cnoe-cli)

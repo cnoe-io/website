@@ -16,8 +16,9 @@ index: 1
 :::warning Run with care
 
 Execute the following bash script to get strated with a running version of the idpBuilder:
-
-[cnoe-io/idpbuilder](https://github.com/cnoe-io/idpbuilder)
+```
+test things here
+```
 :::
 
 ## About
