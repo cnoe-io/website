@@ -86,7 +86,7 @@ github_pat_ABCDEDFEINDK....
 Follow the following steps to get started.
 
 1. Create GitHub apps and GitHub token as described above.
-2. Create a new EKS cluster. We do not include EKS cluster in the installation module because EKS cluster requirements vary between organizations and the focus of this is integration of different projects. If you prefer, you can create a new basic cluster with the included [`eksctl.yaml`](./eksctl.yaml) file:
+2. Create a new EKS cluster. We do not include EKS cluster in the installation module because EKS cluster requirements vary between organizations and the focus of this is integration of different projects. If you prefer, you can create a new basic cluster with the included [`eksctl.yaml`](https://github.com/cnoe-io/reference-implementation-aws/blob/main/eksctl.yaml) file:
     ```eksctl create -f eksctl.yaml```
     You can get eksctl from [this link](https://eksctl.io/).
 3. If you don't have a public registered Route53 zone, [register a Route53 domain](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html) (be sure to use Route53 as the DNS service for the domain). We **strongly encourage creating a dedicated sub domain** for this. If you'd rather manage DNS yourself, you can set `enable_dns_management` in the config file.

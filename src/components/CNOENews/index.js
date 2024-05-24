@@ -10,14 +10,18 @@ import axios from 'axios';
 
 const { useState, useEffect } = React;
 
-function News({title, description, imageSrc, linkTo}){
+function News({title, description, imageSrc, linkTo, date, presentationLink}){
     return(
         <div className={styles.NewsCard}>
 
         <a  href={linkTo} target="_blank" style={{ textDecoration: 'none', padding:"0px", cornerRadius:"8px" }}>
             <img src={imageSrc} width="100%" height="320px" objectFit="contain" style={{ marginBottom: '16px', borderRadius:"5px"}}/>
-            <h2 align="left" style={{ color: "var(--ifm-color-neutral-darkest)" }}>{title}</h2>
-            <p align="left" style={{ color: "var(--ifm-color-neutral-darker)" }}>{description}</p>
+            <h2 align="left" style={{color: "var(--ifm-color-neutral-darkest)"}}>
+                {title}<br/>
+                {date && <small style={{fontSize: "15px"}}> {date}</small>}
+            </h2>
+            <p align="left" style={{ color: "var(--ifm-color-neutral-darker)" }}>{description} <br/>
+            {presentationLink && <small align="left"><a href={presentationLink} target="_blank">Presentation Link</a></small>}</p>
         </a>
         </div>
     );
@@ -51,8 +55,10 @@ export default function CNOENews() {
         key={index}
         title={news.title}
         description={news.description}
-        imageSrc={ news.imageSrc}
+        imageSrc={news.imageSrc}
         linkTo={news.linkTo}
+        date={news.date}
+        presentationLink={news.presentationLink}
       />
   ));
 
@@ -74,7 +80,7 @@ export default function CNOENews() {
               disableSlideInfo={true}
               disableButtonsControls={true}
               autoPlayInterval={2500}
-              infinite={true}
+              infinite={false}
               responsive={responsive}
             />
         </Grid>

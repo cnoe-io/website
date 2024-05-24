@@ -11,7 +11,7 @@ index: 1
 :::
 
 
-### Quick Launch
+### Quick Install
 
 :::warning Run with care
 
