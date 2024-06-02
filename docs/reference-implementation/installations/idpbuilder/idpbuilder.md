@@ -5,23 +5,36 @@ title: idpBuilder on Local Machine
 index: 1
 ---
 
+### Quick Install
+
+you can either use `brew` to install `idpBuilder` as suggested below:
+
+:::tip brew install
+
+```
+brew tap cnoe-io/cnoe
+brew install cnoe-io/cnoe/idpbuilder
+```
+
+:::
+
+Or, execute the following bash script to get strated with a running version of the idpBuilder:
+
+:::warning Run with care
+
+```
+bash <(curl -fsSL https://raw.githubusercontent.com/cnoe-io/idpbuilder/main/hack/install.sh)
+```
+:::
+
+## About
+
 :::tip GitHub Repo
 
 [cnoe-io/idpbuilder](https://github.com/cnoe-io/idpbuilder)
 :::
 
 
-### Quick Install
-
-:::warning Run with care
-
-Execute the following bash script to get strated with a running version of the idpBuilder:
-```
-test things here
-```
-:::
-
-## About
 
 > **WORK IN PROGRESS**: This tool is in a pre-release stage and is under active development.
 
