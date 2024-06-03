@@ -50,7 +50,7 @@ A container engine is needed locally, such as:
 <!---->
 <!-- ::: -->
 
-You can execute the following bash script to get strated with a running version of the idpBuilder (inspect the script first if you have concerns):
+You can execute the following bash script to get started with a running version of the idpBuilder (inspect the script first if you have concerns):
 
 :::warning 
 
