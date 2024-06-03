@@ -39,23 +39,23 @@ A container engine is needed locally, such as:
 ## Quick Start
 
 
-you can either use `brew` to install `idpBuilder` as suggested below:
+<!-- you can either use `brew` to install `idpBuilder` as suggested below: -->
+<!---->
+<!-- :::tip brew install -->
+<!---->
+<!-- ``` -->
+<!-- brew tap cnoe-io/tap -->
+<!-- brew install cnoe-io/tap/idpbuilder -->
+<!-- ``` -->
+<!---->
+<!-- ::: -->
 
-:::tip brew install
-
-```
-brew tap cnoe-io/tap
-brew install cnoe-io/tap/idpbuilder
-```
-
-:::
-
-Or, execute the following bash script to get strated with a running version of the idpBuilder (inspect the script first if you have concerns):
+You can execute the following bash script to get strated with a running version of the idpBuilder (inspect the script first if you have concerns):
 
 :::warning 
 
 ```
-bash <(curl -fsSL https://raw.githubusercontent.com/cnoe-io/idpbuilder/main/hack/install.sh)
+curl -fsSL https://raw.githubusercontent.com/cnoe-io/idpbuilder/main/hack/install.sh | bash
 ```
 :::
 
