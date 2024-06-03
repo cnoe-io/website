@@ -7,6 +7,7 @@ import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import MissionVision from "@site/src/components/MissionVision";
 import InteractiveDiagram from "@site/src/components/InteractiveDiagram";
 import Grid from '@mui/material/Grid';
+import HelpIcon from '@mui/icons-material/Help';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import {useColorMode} from '@docusaurus/theme-common';
@@ -15,6 +16,8 @@ import {useColorMode} from '@docusaurus/theme-common';
 
 
 import styles from "./index.module.css";
+import CNOENews from "../components/CNOENews";
+import Stacks from "../components/Stacks";
 const { useState, useEffect } = React;
 
 
@@ -34,16 +37,41 @@ function HomepageHeader() {
             <Grid item>
                 <Link
                   className="button button--primary button--lg"
-                  to="/docs/intro"
+                  to="/docs/category/getting-started" // go to getstarted
+                  style={{textAlign:"center", width:"225px"}}
                 >
-                  What is CNOE?
+                  <img src="img/terminal.svg" 
+                  style={{verticalAlign:"text-top", marginRight:"8px", marginTop:"1.5px"}}
+                  >
+                  </img>
+                  <span style={{verticalAlign:"text-top"}}>
+
+                  Get Started
+                  </span>
                 </Link>
                 &nbsp;
                 <Link
                   className="button button--secondary button--lg"
-                  to="https://github.com/cnoe-io"
+                  to="/docs/intro"            
+                  style={{textAlign:"center", width:"225px"}}
                 >
-                  Come Build with Us!
+                  <HelpIcon
+                  style={{verticalAlign:"text-top", marginRight:"8px", marginTop:"1px"}}
+                  />
+                  What is CNOE
+                </Link>
+                &nbsp;
+                <Link
+                  className="button button--secondary button--lg"
+                  to="https://github.com/cnoe-io"            
+                  style={{textAlign:"center", width:"225px"}}
+                >
+                  <img src="img/github.svg" 
+                  style={{verticalAlign:"text-bottom", marginRight:"8px"}}
+                  >
+                  </img>
+
+                  Contribute
                 </Link>
             </Grid>
           </Grid>
@@ -119,13 +147,15 @@ export default function Home() {
       description="Joint efforts to build Internal Developer Platforms"
     >
       <HomepageHeader />
+      <Stacks />
       <h1 className="heading heading-center">Platform Architecture</h1>
       <InteractiveDiagram />
       <main>
-        <Partners/>
-        <MissionVision />
         <HomepageFeatures />
+        <MissionVision />
       </main>
+      <Partners/>
+      <CNOENews />
     </Layout>
   );
 }

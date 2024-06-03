@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 description: CNOE control plane
 title: Infrastructure Control Plane
 ---

@@ -1,0 +1,84 @@
+- title: "Unveiling Cloud Native Operational Excellence (CNOE)"
+  description: |
+    Tiara Sykes and Luke Philips of The New York Times discuss
+    CNOE at the NYC Kubernetes Community Day.
+  imageSrc: '/news/images/kcd-nyc-2024.png'
+  linkTo: "https://github.com/cnoe-io/presentations/blob/main/2024-05-Unveiling%20Cloud%20Native%20Operational%20Excellence-CNOE-Pioneering%20the%20Future%20of%20IDPs-TiaraSykes-LukePhilips-KCDNYC.pdf"
+  date: May 20, 2024
+  presentationLink: "https://github.com/cnoe-io/presentations/blob/main/2024-05-Unveiling%20Cloud%20Native%20Operational%20Excellence-CNOE-Pioneering%20the%20Future%20of%20IDPs-TiaraSykes-LukePhilips-KCDNYC.pdf"
+
+- title: "idpBuilder Deep Dive"
+  description: |
+    Watch Guy Menahem and Carlos Santana talk about how you can 
+    quickly get idpBuilder up and running 
+  imageSrc: '/news/images/cnoe-series-e2.png'
+  linkTo: "https://www.youtube.com/watch?v=MnoBf1s5PV4"
+  date: April 30, 2024
+
+- title: "KubeCrash 2024"
+  description: |
+    The CNOE Project - Creating an industry standard internal developer
+    platform distributions using CNCF technologies.
+  imageSrc: "/news/images/kubecrash.jpeg"
+  linkTo: 'https://www.youtube.com/watch?v=CPW3TOe7Cu8'
+  date: April 29, 2024
+  presentationLink: https://github.com/cnoe-io/presentations/blob/main/2024-04-CNOE-KubeCrash-presentation.pdf
+
+- title: "Kickstarting a Platform in 10 minutes using idpBuilder"
+  description: |
+     Carlos Santana of AWS discusses how concepts like AI, DevOps, and cloud-native architectures might 
+     influence this delicate balance between standardization and autonomy
+  imageSrc: '/news/images/raleigh-devops-day.png'
+  linkTo: "https://github.com/cnoe-io/presentations/blob/main/2024-04-PlatformEngineering-DevOpsDayRaleigh.pdf"
+  date: April 11, 2024
+  presentationLink: https://github.com/cnoe-io/presentations/blob/main/2024-04-PlatformEngineering-DevOpsDayRaleigh.pdf
+
+
+- title: "Kickstarting a Platform in 10 minutes using idpBuilder"
+  description: |
+    Guy Menahem and Carlos Santana discuss how idpBuilder can
+    get you up and running with a platform quickly
+  imageSrc: '/news/images/cnoe-series-e1.png'
+  linkTo: "https://www.youtube.com/watch?v=aUOpcmN07nQ"
+  date: April 9, 2024
+
+- title: "What is Cloud Native Operational Excellence (CNOE)"
+  description: |
+    Greg Haynes of Autodesk and Mike Peterson of Loft Labs chat
+    about what CNOE is and how it can be used by users interested
+    in building developer platforms.
+  imageSrc: '/news/images/loft.png'
+  linkTo: "https://www.youtube.com/watch?v=9QGUDGDuY8w"
+  date: April 5, 2024
+
+- title: "Rapid IDP Capability Development and Automated Testing at Autodesk "
+  description: |
+    Jesse Sanford & Greg Haynes of Autodesk discuss how CNOE tooling helps with
+    rapid IDP capability development at Autodesk.
+  imageSrc: '/news/images/autodesk-kubeconeu-2024.png'
+  linkTo: "https://www.youtube.com/watch?v=x_cTXvRgwdA"
+  date: March 22, 2024
+
+- title: "Empowering Giants: Guide Your Enterprise with CNOE in Operational Tech Choices"
+  description: |
+    Engin Diri of Pulumi discusses how the CNOE framework assists large enterprises in 
+    making strategic operational technology decisions
+  imageSrc: '/news/images/peday-europe24.png'
+  linkTo: "https://www.youtube.com/watch?v=4ODlmp4zMwY"
+  date: March 19, 2024
+
+- title: "Cloud Native Operational Excellence for Internal Developer Platforms"
+  description: |
+    Brandon Leach of Autodesk together with Nima Kaviani and Manabu McCloskey from AWS
+    discuss the goals and intentions behind developing CNOE and showcase the development
+    work put in place already
+  imageSrc: '/news/images/tag-app-delivery.png'
+  linkTo: "https://www.youtube.com/watch?v=NZCmYRVziGY&t=7983s"
+  date: Nov 6, 2023
+  presentationLink: "https://github.com/cnoe-io/presentations/blob/main/2024-01-CNOE-presentation-tag-app-delivery.pdf"
+
+# - title: "Kube"
+#   description: |
+#     This is a test 2 news article
+#   imageSrc: ''
+#   linkTo: "https://www.google.com"
