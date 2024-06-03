@@ -5,28 +5,6 @@ title: idpBuilder on Local Machine
 index: 1
 ---
 
-### Quick Install
-
-you can either use `brew` to install `idpBuilder` as suggested below:
-
-:::tip brew install
-
-```
-brew tap cnoe-io/cnoe
-brew install cnoe-io/cnoe/idpbuilder
-```
-
-:::
-
-Or, execute the following bash script to get strated with a running version of the idpBuilder:
-
-:::warning Run with care
-
-```
-bash <(curl -fsSL https://raw.githubusercontent.com/cnoe-io/idpbuilder/main/hack/install.sh)
-```
-:::
-
 ## About
 
 :::tip GitHub Repo
@@ -47,7 +25,7 @@ This can be useful in several ways:
 
 ## Prerequisites
 
-A container engine is needed locally such as:
+A container engine is needed locally, such as:
 
 | Name                                                  | Supported | Remark                                                                                                                              |
 |-------------------------------------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------|
@@ -58,14 +36,36 @@ A container engine is needed locally such as:
 
 **Note**: Set the `DOCKER_HOST` env var property using `podman` to let idpbuilder to talk with the engine (e.g  export DOCKER_HOST="unix:///var/run/docker.sock")
 
-## Quickstart
+## Quick Start
 
-If you are interested in running idpbuilder in Codespaces through your browser, check out the [Codespaces](#running-in-codespaces) section.
 
-### Download and install the idpbuilder
+you can either use `brew` to install `idpBuilder` as suggested below:
 
-Download the latest release with the commands:
+:::tip brew install
 
+```
+brew tap cnoe-io/tap
+brew install cnoe-io/tap/idpbuilder
+```
+
+:::
+
+Or, execute the following bash script to get strated with a running version of the idpBuilder (inspect the script first if you have concerns):
+
+:::warning 
+
+```
+bash <(curl -fsSL https://raw.githubusercontent.com/cnoe-io/idpbuilder/main/hack/install.sh)
+```
+:::
+
+verify a successful installation by running the following command and inspecting the output for the right version:
+
+```
+idpbuilder version
+```
+
+Alternatively, you can run the following commands for a manual installation:
 ```bash
 version=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/cnoe-io/idpbuilder/releases/latest)
 version=${version##*/}
@@ -77,7 +77,12 @@ tar xzf idpbuilder.tar.gz
 # idpbuilder 0.4.1 go1.21.5 linux/amd64
 ```
 
-Alternatively, you can download the latest binary from [the latest release page](https://github.com/cnoe-io/idpbuilder/releases/latest).
+Or, you can download the latest binary from [the release page](https://github.com/cnoe-io/idpbuilder/releases/latest).
+
+
+:::tip
+If you are interested in running idpbuilder in Codespaces through your browser, check out the [Codespaces](#running-in-codespaces) section.
+:::
 
 ## Using the idpbuilder
 
