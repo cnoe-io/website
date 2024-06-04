@@ -92,13 +92,13 @@ In our baseline experiment, we are running in a single Argo Workflows shard (nam
 
 As you can see below, the Argo Workflows controller can process up to 270 workflows/min. The average workqueue latency and workqueue depth are nearly zero.  At 300 workflows/min, workqueue latency and workqueue depth starts to increase.
 
-![Enter image alt description](Images/1.png)
+![Enter image alt description](images/1.png)
 
 **Queued Reconciliation Test:**
 
 It takes around 17 mins to reconcile 5000 workflows and peak avg workqueue latency was 5.38 minutes.
 
-![Enter image alt description](Images/2.png)
+![Enter image alt description](images/2.png)
 
 ### Experiment 2: Workflow Workers
 
@@ -115,11 +115,11 @@ For the increasing workflow rate test, we can see exactly when the number of wor
 | 96 | 330 |
 | 128 | 360 |
 
-![Enter image alt description](Images/3.png)
+![Enter image alt description](images/3.png)
 
 For the K8S api server, we see sustained 180 writes/sec and 70 reads/sec during the increasing rate tests.
 
-![Enter image alt description](Images/AYf_Image_1.png)
+![Enter image alt description](images/AYf_Image_1.png)
 
 **Queued Reconciliation Test:**
 
@@ -132,11 +132,11 @@ For the queued reconciliation test, the time it took to reconcile all the workfl
 | 96 | 3.19 | 16 |
 | 128 | N/A | N/A |
 
-![Enter image alt description](Images/4.png)
+![Enter image alt description](images/4.png)
 
 For the K8S api server, we see peaks of up to 260 writes/sec and 90 reads/sec during the queued reconciliation tests. You notice for the last test that there is no K8S api server activity as the Argo Workflows controller was misbehaving due to client-side throttling.
 
-![Enter image alt description](Images/ZlY_Image_2.png)
+![Enter image alt description](images/ZlY_Image_2.png)
 
 #### **Observations from Experiment 2:**
 
@@ -173,11 +173,11 @@ The QPS/Burst settings had a significant impact on the increasing rate test. By 
 | 40/50 | 540 |
 | 50/60 | 570 |
 
-![Enter image alt description](Images/ZgU_Image_3.png)
+![Enter image alt description](images/ZgU_Image_3.png)
 
 When changing QPS/Burst, we need to also monitor the K8S API server. Looking at the K8S API server req/s, we see sustained 390 writes/sec and 85 read/sec.
 
-![Enter image alt description](Images/DNV_Image_4.png)
+![Enter image alt description](images/DNV_Image_4.png)
 
 **Queued Reconciliation Test:**
 
@@ -190,11 +190,11 @@ Again, the QPS/Burst settings make a big difference in the queued reconciliation
 | 40/50 | 2.98 | 8 |
 | 50/60 | 1.94 | 6 |
 
-![Enter image alt description](Images/lGk_Image_5.png)
+![Enter image alt description](images/lGk_Image_5.png)
 
 When looking at the K8S API server, we see peaks of up to 700 writes/sec and 200 reads/sec during the tests.
 
-![Enter image alt description](Images/Bpv_Image_6.png)
+![Enter image alt description](images/Bpv_Image_6.png)
 
 When compared to the workflow workers testing, you can see increasing the QPS/Burst is able to push the K8S API server and improve Argo Workflows overall performance. We do see some diminishing returns when increasing QPS/Burst past 50/60 even though it appears that the K8S API server has plenty of capacity for additional load. For the next test, we will increase both the workflow workers with the QPS/burst to see how far we can push Argo Workflows and the K8s API server.
 
@@ -204,21 +204,21 @@ When compared to the workflow workers testing, you can see increasing the QPS/Bu
 
 We increased the number of workers to 128 and QPS/burst to 60/70 and observed peak average latency of 54 secs and a reconciliation time of 5 mins. Increasing either the workers or QPS/Burst did not improve these numbers.
 
-![Enter image alt description](Images/czp_Image_7.png)
+![Enter image alt description](images/czp_Image_7.png)
 
 Looking at the K8s API server, we saw peaks of 800 writes/sec and 190 reads/sec.
 
-![Enter image alt description](Images/o0Z_Image_8.png)
+![Enter image alt description](images/o0Z_Image_8.png)
 
 **Queued Reconciliation Test:**
 
 Starting with 128 workers and QPS/Burst of 60/70, we were able to push Argo Workflows to 810 workflows/min. But past that point, there were no improvements with more workers or increased QPS/Burst limits.
 
-![Enter image alt description](Images/S1V_Image_9.png)
+![Enter image alt description](images/S1V_Image_9.png)
 
 We can see increased K8s API server activity with sustained 700 writes/sec and 160 reads/sec.
 
-![Enter image alt description](Images/NRO_Image_10.png)
+![Enter image alt description](images/NRO_Image_10.png)
 
 #### **Observations from Experiment 3**
 
@@ -253,11 +253,11 @@ Sharding the Argo Workflows controller has a linear impact on performance with t
 
 One thing to note is that each shard is increased by 30 workflows/min when increasing the rate. This means that the difference between two rates with 2 shards * 30 = 60 workflows/min and the difference between two rates with 5 shards * 30 = 150 workflows/min. That is why for 2 shards when the max load was determined at 600 workflows/min, we go down 1 rate which is 600 - 60 = 540 workflows/min.
 
-![Enter image alt description](Images/WP9_Image_11.png)
+![Enter image alt description](images/WP9_Image_11.png)
 
 You can see a significant impact on the K8s API server with sustained 1400 writes/sec and 300 reads/sec.
 
-![Enter image alt description](Images/3gj_Image_12.png)
+![Enter image alt description](images/3gj_Image_12.png)
 
 **Queued Reconciliation Test:**
 
@@ -269,7 +269,7 @@ As shown in the Increasing Rate Test, sharding has a huge impact on performance 
 | 2 | 3.81 | 9 |
 | 5 | 1.42 | 4 |
 
-![Enter image alt description](Images/6Bi_Image_13.png)
+![Enter image alt description](images/6Bi_Image_13.png)
 
 The impact on the K8s API server was not as significant when compared to previous experiments.
 
@@ -281,25 +281,25 @@ When increasing the workflow workers to 128, QPS/burst to 60/70 and shards to 5,
 
 kflows/min. Any higher than this seems to run into K8s API Priority and Fairness (APF) limits. 
 
-![Enter image alt description](Images/ko7_Image_14.png)
+![Enter image alt description](images/ko7_Image_14.png)
 
 When looking at the K8s API server, we are seeing significant impact with peaks of 1500 writes/sec and 350 reads/sec.
 
-![Enter image alt description](Images/HH7_Image_15.png)
+![Enter image alt description](images/HH7_Image_15.png)
 
 When investigating why we are unable to push higher on the K8s API server, we see that APF limits are coming into effect by looking at the apiserver_flowcontrol_current_inqueue_requests. This metric shows the number of requests waiting in the APF flowcontrol queue.
 
-![Enter image alt description](Images/7RZ_Image_16.png)
+![Enter image alt description](images/7RZ_Image_16.png)
 
 **Queued Reconciliation Test:**
 
 With the max load settings, we observed that the peak workqueue latency is only 20 seconds and the reconcile time is 2 minutes.
 
-![Enter image alt description](Images/F2t_Image_17.png)
+![Enter image alt description](images/F2t_Image_17.png)
 
 The impact on K8s API server is actually less than the previous max load queued reconciliation tests.
 
-![Enter image alt description](Images/05K_Image_18.png)
+![Enter image alt description](images/05K_Image_18.png)
 
 #### **Observations from Experiment 4**
 
