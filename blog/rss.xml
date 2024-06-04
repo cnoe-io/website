@@ -18,6 +18,7 @@
             <category>workflows</category>
             <category>benchmarking</category>
             <category>scalability</category>
+            <category>argo</category>
         </item>
         <item>
             <title><![CDATA[Argo CD Benchmarking - Pushing the Limits and Sharding Deep Dive]]></title>

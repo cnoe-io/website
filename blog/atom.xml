@@ -25,6 +25,7 @@
         <category label="workflows" term="workflows"/>
         <category label="benchmarking" term="benchmarking"/>
         <category label="scalability" term="scalability"/>
+        <category label="argo" term="argo"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Argo CD Benchmarking - Pushing the Limits and Sharding Deep Dive]]></title>
