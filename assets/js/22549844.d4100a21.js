@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcnoe=self.webpackChunkcnoe||[]).push([[5374],{7659:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/scalability","page":1,"postsPerPage":10,"totalPages":1,"totalCount":2,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
