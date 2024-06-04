@@ -277,9 +277,7 @@ The impact on the K8s API server was not as significant when compared to previou
 
 **Increasing Rate Test:**
 
-When increasing the workflow workers to 128, QPS/burst to 60/70 and shards to 5, the Argo Workflows controller is able to process up to 2100 wor
-
-kflows/min. Any higher than this seems to run into K8s API Priority and Fairness (APF) limits. 
+When increasing the workflow workers to 128, QPS/burst to 60/70 and shards to 5, the Argo Workflows controller is able to process up to 2100 workflows/min. Any higher than this seems to run into K8s API Priority and Fairness (APF) limits. 
 
 ![Enter image alt description](images/ko7_Image_14.png)
 
