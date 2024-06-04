@@ -1,6 +1,6 @@
 # Cloud Native Operational Excellence (CNOE)
 
-_( pronounced Kuh.no )_
+_( pronounced Kuh.noo )_
 
 ## What is CNOE?
 
