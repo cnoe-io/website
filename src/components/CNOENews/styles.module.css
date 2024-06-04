@@ -18,3 +18,16 @@
     color: var(--ifm-color-neutral-darker);
 }
 
+.addTalkLink {
+    display: block;
+    align: center;
+    text-align: center;
+    margin-top: -45px; /* Adjust this value as needed for less space */
+    margin-bottom: 20px; /* Adjust this value as needed for less space */
+    color: var(--ifm-color-primary); /* Adjust this to your preferred color */
+    text-decoration: none; /* Remove underline if preferred */
+}
+
+.addTalkLink:hover {
+    text-decoration: underline; /* Add underline on hover if preferred */
+}

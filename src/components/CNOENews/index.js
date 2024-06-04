@@ -1,12 +1,11 @@
-import React from 'react';
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Grid from '@mui/material/Grid';
+import axios from 'axios';
+import yaml from 'js-yaml';
+import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import clsx from 'clsx';
 import styles from './styles.module.css';
-import yaml from 'js-yaml';
-import axios from 'axios';
 
 const { useState, useEffect } = React;
 
@@ -70,7 +69,8 @@ export default function CNOENews() {
 
   return (
     <div className={styles.members}>
-      <h1 className="heading heading-center">In the News</h1>
+    <h1 className="heading heading-center">In the News</h1>
+      <a target="_blank" href="https://github.com/cnoe-io/website/blob/main/static/news/data.yaml" className={styles.addTalkLink}> ► Add your talk!</a>
       <Grid container className="sliderStyle">
         <Grid item xs={1}/>
           <Grid item xs={10} >
