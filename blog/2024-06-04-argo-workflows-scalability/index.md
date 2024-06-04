@@ -7,17 +7,17 @@ image: https://cnoe.io/assets/images/ZgU_Image_3-9ca2e433fea080701af4ce97b19c38b
 hide_table_of_contents: false
 ---
 
-## **Introduction**
+## Introduction
 
 In our earlier blog posts, we have discussed scalability tests for Argo CD, where in two consecutive experiments, we pushed the limits of Argo CD to deploy [10,000 applications on ~100 clusters](https://aws.amazon.com/blogs/opensource/argo-cd-application-controller-scalability-testing-on-amazon-eks/) and then[ 50,000 applications on 500 clusters](https://cnoe.io/blog/argo-cd-application-scalability) along with configuration and fine-tuning required to make Argo CD scale effectively. Argo CD deployments, however, do not happen in isolation, and similar to a [CNOE stack](https://cnoe.io/docs/reference-implementation), Argo CD is often deployed on a cluster along with other tooling which collectively contribute to the performance and scalability bottlenecks we see users run into. 
 
 Argo Workflows is one common tool we often see users deploy alongside Argo CD to enable workflow executions (e.g. building images, running tests, cutting releases, etc). Our early experiments with Argo Workflows revealed that, if not tuned properly, it can negatively impact the scalability of a given Kubernetes cluster, particularly if the Kubernetes cluster happens to be the control cluster managing developer workflows across a large group of users. A real world example of some of the scaling challenges you can encounter with Argo Workflows is explored in our recent ArgoCon talk: [Key Takeaways from Scaling Adobe's CI/CD Solution to Support 50K Argo CD Apps](https://www.youtube.com/watch?v=7yVXMCX62tY).
 
-For us to better understand the limitations and tuning requirements for Argo Workflows, in this blog post we publish details on the scalability experiments we ran for Argo Workflows executing Workflows in two different load patterns across 50 Amazon EKS nodes. We show the correlation between the various Argo Workflow’s knobs and controls and the processing time as well as performance improvements you can get by determining how you supply the workflows to the control plane.
+For us to better understand the limitations and tuning requirements for Argo Workflows, in this blog post we publish details on the scalability experiments we ran for Argo Workflows executing Workflows in two different load patterns: increasing rate up to 2100 workflows/min and queued reconciliation of 5000 workflows on an Amazon EKS cluster with 50x m5.large nodes. We show the correlation between the various Argo Workflow's knobs and controls and the processing time as well as performance improvements you can get by determining how you supply the workflows to the control plane.
 
-## **Test Parameters**
+## Test Parameters
 
-### **Test Workflow**
+### Test Workflow 
 
 The test workflow is based on the lightweight whalesay container from docker which prints out some text and ASCII art to the terminal. The reason we chose a lightweight container is that we wanted to stress the Argo Workflows controller in managing the Workflow lifecycle (pod creation, scheduling, and cleanup) and minimize the extra overhead on the Kubernetes control plane in dealing with the data plane workloads. An example of the Workflow is below:
 
@@ -44,7 +44,7 @@ var helloWorldWorkflow = wfv1.Workflow{
     },
 }
 ```
-### **Argo Workflows Settings**
+### Argo Workflows Settings
 
 We will be detailing how each of these settings affect Argo Workflow in various experiments later in this blog post.
 
@@ -58,7 +58,7 @@ We will be detailing how each of these settings affect Argo Workflow in various 
 
 - Sharding: Sharding with multiple Argo Workflows controllers is possible by running each controller in its own namespace. The controller would only reconcile Workflows submitted in that particular namespace. The namespace of each controller can be specified with the `--namespaced` flag.
 
-## **Key Metrics**
+## Key Metrics
 
 We chose a set of key metrics for the scalability testing because we wanted to measure how many workflows the Argo Workflows controller can reconcile and process. We will also be looking into K8s control plane metrics which might indicate your control plane cannot keep up with the Argo Workflows workload. 
 
@@ -74,7 +74,7 @@ We didn’t include CPU/Memory as a key metric because during our testing we did
 
 We ran the experiments in an AWS environment utilizing a single Amazon EKS cluster. The Kubernetes version is 1.27 and Argo Workflows version is 3.5.4. No resource quotas were utilized on the Argo Workflows controller. For the cluster, we will start by provisioning 1x m5.8xlarge Amazon Elastic Compute Cloud (Amazon EC2) instances which will run the Argo Workflows controller and 50x m5.large instances for executing workflows. The number of execution instances is sufficient to run all 5000 workflows in parallel to ensure that pods are not waiting on resources to execute. Monitoring and metrics for Argo Workflows were provided by Prometheus/Grafana. 
 
-## **Methodology**
+## Methodology
 
 There will be two types of load patterns evaluated:
 
@@ -312,6 +312,6 @@ As we did in previous experiments, we again make the comparison between the two 
 
 In general, it appears that submitting all workflows at once performs slightly better than submitting workflows at a steady rate. More experiments will need to be done to further investigate this behavior.
 
-## **Conclusion**
+## Conclusion
 
 In this blog post we discussed our initial efforts in documenting and understanding the scaling characteristics of the Argo Workflows controller. Our findings show that the existing mechanisms for increasing workflow workers, increasing client and burst QPS settings and sharding the controller can help Argo Workflows scale better. Another interesting observation is that we saw differences in performance with how you submit your workflows.  For the next set of experiments, we plan to evaluate more environmental variables and different types of workflows: multi-step and/or long running. Stay tuned for the report on our next round of experiments and reach out on the CNCF [#argo-sig-scalability](https://cloud-native.slack.com/archives/C04SURUPDL2) Slack channel to get help optimizing for your use-cases and scenarios.
