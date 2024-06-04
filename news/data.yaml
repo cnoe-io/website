@@ -24,7 +24,7 @@
   date: April 29, 2024
   presentationLink: https://github.com/cnoe-io/presentations/blob/main/2024-04-CNOE-KubeCrash-presentation.pdf
 
-- title: "Kickstarting a Platform in 10 minutes using idpBuilder"
+- title: "Autonomy vs Standardization - Platform Engineering with CNOE"
   description: |
      Carlos Santana of AWS discusses how concepts like AI, DevOps, and cloud-native architectures might 
      influence this delicate balance between standardization and autonomy
