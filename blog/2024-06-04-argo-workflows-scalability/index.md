@@ -3,7 +3,7 @@ slug: argo-workflow-scalability
 title: Argo Workflows Controller Scalability Testing on Amazon EKS
 authors: [andklee, vsethi]
 tags: [workflows, benchmarking, scalability]
-image: https://cnoe.io/assets/images/image30-3953ec55f6ce3f531ad8325ac8a7e0f1.png
+image: https://cnoe.io/assets/images/ZgU_Image_3-9ca2e433fea080701af4ce97b19c38b2.png 
 hide_table_of_contents: false
 ---
 
