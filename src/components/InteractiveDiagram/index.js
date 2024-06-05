@@ -135,6 +135,24 @@ export default function InteractiveDiagram() {
             >
               Signing
             </div>
+            <div className={styles.bottomleftcolbottom}>
+              <div
+                className={styles.cell}
+                onClick={() => {
+                  setIsShow("block");
+                  setPromptTitle("Cloud Development Environment");
+                  setPromptText(
+                    parse(`
+                    <p>An automated environment in the cloud accessed directly from a code editor.</p>
+                    <br/>
+                    <b><a href="docs/intro/capabilities/cloud-development-environment">Read More</a></b>
+                `)
+                  );
+                }}
+              >
+                Cloud Development Environment
+              </div>
+            </div>
           </div>
         <div className={styles.bottomrightcol}>
           <p className={styles.labels}>Operation</p>
