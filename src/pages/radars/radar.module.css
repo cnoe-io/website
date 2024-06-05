@@ -35,3 +35,11 @@
 .radarCheckbox > span {
   color: var(--ifm-color-neutral-dark);
 }
+
+.staticText {
+  margin-bottom: 10px; /* Adjust the spacing between the text and the search box */
+  color: var(--ifm-color-neutral-darker); /* Adjust this to your preferred color */
+  font-size: 13px; /* Adjust the font size as needed */
+  font-style: italic;
+  width: 220px;
+}

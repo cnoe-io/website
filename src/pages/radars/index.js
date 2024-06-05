@@ -1,24 +1,22 @@
-import React, {useEffect, useState} from "react";
-import RadarChart from "./radar";
-import Layout from "@theme/Layout";
-import styles from './radar.module.css';
 import {
-    Grid,
-    Paper,
-    Stack,
-    Box,
-    Typography,
+  Box,
+  Grid,
+  Stack,
+  Typography
 } from '@mui/material';
+import Layout from "@theme/Layout";
+import React, { useEffect, useState } from "react";
+import RadarChart from "./radar";
+import styles from './radar.module.css';
 
-import TextField from '@mui/material/TextField';
-import List from '@mui/material/List';
-import Checkbox from '@mui/material/Checkbox';
-import ListItem from '@mui/material/ListItem';
-import Slider from '@mui/material/Slider';
-import ListItemText from '@mui/material/ListItemText';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { fontSize } from "@mui/system";
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Slider from '@mui/material/Slider';
+import TextField from '@mui/material/TextField';
 
 function fetchData(path) {
     return fetch(path)
@@ -180,6 +178,7 @@ const Radar = () => {
 
       return (
         <div className={styles.fixed}>
+          <p className={styles.staticText}>NOTE: Graphs here are based on the data provided by CNOE members on their select technology choices.</p>
           <TextField
             label="Search"
             variant="outlined"

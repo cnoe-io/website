@@ -89,31 +89,31 @@ const Partners = () => {
   var items =[]
   if(colorMode == 'light'){
     items = [
-      <img src={siteConfig.baseUrl + "img/members/AWS-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src={siteConfig.baseUrl + "img/members/Adobe-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src={siteConfig.baseUrl + "img/members/Autodesk-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src={siteConfig.baseUrl + "img/members/Twilio-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/AWS-light.svg"}        width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Adobe-light.svg"}      width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Autodesk-light.svg"}   width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Twilio-light.svg"}     width="128px" onDragStart={handleDragStart} role="presentation" />,
       <img src={siteConfig.baseUrl + "img/members/Salesforce-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src={siteConfig.baseUrl + "img/members/Intuit-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src={siteConfig.baseUrl + "img/members/Nike-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Intuit-light.svg"}     width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Nike-light.svg"}       width="128px" onDragStart={handleDragStart} role="presentation" />,
     ];
 
   } else {
     items = [
-      <img src={siteConfig.baseUrl + "img/members/AWS-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src={siteConfig.baseUrl + "img/members/Adobe-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src={siteConfig.baseUrl + "img/members/Autodesk-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src={siteConfig.baseUrl + "img/members/Twilio-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/AWS-dark.svg"}        width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Adobe-dark.svg"}      width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Autodesk-dark.svg"}   width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Twilio-dark.svg"}     width="128px" onDragStart={handleDragStart} role="presentation" />,
       <img src={siteConfig.baseUrl + "img/members/Salesforce-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src={siteConfig.baseUrl + "img/members/Intuit-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
-      <img src={siteConfig.baseUrl + "img/members/Nike-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Intuit-dark.svg"}     width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/Nike-dark.svg"}       width="128px" onDragStart={handleDragStart} role="presentation" />,
     ];
   }
 
   const responsive = {
     0: { items: 1 },
     568: { items: 3 },
-    1024: { items: 5 },
+    1024: { items: 6 },
 };
   return (
     <div className={styles.members}>
