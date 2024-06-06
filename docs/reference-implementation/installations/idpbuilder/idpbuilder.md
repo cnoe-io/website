@@ -117,8 +117,8 @@ The most basic command which creates a Kubernetes Cluster (Kind cluster) with th
 
 Once idpbuilder finishes provisioning cluster and packages, you can access GUIs by going to the following addresses in your browser.
 
-* ArgoCD: https://cnoe.localtest.me:8443/argocd/
-* Gitea: https://cnoe.localtest.me:8443/gitea/
+* ArgoCD: https://argocd.cnoe.localtest.me:8443/
+* Gitea: https://gitea.cnoe.localtest.me:8443/
 
 You can obtain credentials for them by running the following command:
 
@@ -180,14 +180,28 @@ Run the following commands for available flags and subcommands:
 
 ### Custom Packages
 
-Idpbuilder supports specifying custom packages using the flag `--package-dir` flag. This flag expects a directory containing ArgoCD application files.
+Idpbuilder supports specifying custom packages using the flag `--package-dir` flag. 
+This flag expects a directory (local or remote) containing ArgoCD application files and / or ArgoCD application set files.
+In case of a remote directory, it must be a directory in a git repository, 
+and the URL format must be a [kustomize remote URL format](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md).
 
-Let's take a look at [this example](examples/basic). This example defines two custom package directories to deploy to the cluster.
+Examples of using custom packages are available in the [example](./examples) directory. 
+Let's take a look at [this example](examples/basic). This defines two custom package directories to deploy to the cluster.
 
 To deploy these packages, run the following commands from this repository's root.
 
 ```
-./idpbuilder create --package-dir examples/basic/package1  --package-dir examples/basic/package2
+./idpbuilder create \
+  --package-dir examples/basic/package1\
+  --package-dir examples/basic/package2
+```
+
+Alternatively, you can use the URL format:
+
+```
+./idpbuilder create \
+  --package-dir https://github.com/cnoe-io/stacks//basic/package1 \
+  --package-dir https://github.com/cnoe-io/satcks//basic/package2
 ```
 
 Running this command should create three additional ArgoCD applications in your cluster.
@@ -222,7 +236,7 @@ As a result the following actions were taken by idpbuilder:
 
 You can verify this by going to this address in your browser: https://gitea.cnoe.localtest.me:8443/giteaAdmin/idpbuilder-localdev-my-app-manifests
 
-![img.png](./images/my-app-repo.png)
+![img.png](images/my-app-repo.png)
 
 
 This is the repository that corresponds to the [manifests](examples/basic/package1/manifests) folder.
@@ -230,11 +244,16 @@ It contains a file called `alpine.yaml`, synced from the `manifests` directory a
 
 You can also view the updated Application spec by going to this address: https://argocd.cnoe.localtest.me:8443/applications/argocd/my-app
 
-![myapp](./images/my-app.png)
+![myapp](images/my-app.png)
 
 
 The second package directory defines two normal ArgoCD applications referencing a remote repository.
 They are applied as-is.
+
+
+## Contributing
+
+If you'd like to contribute to the project or know the architecture and internals of this project, check out the [contribution doc](./CONTRIBUTING.md).
 
 ## Running in Codespaces
 
@@ -262,4 +281,3 @@ They are applied as-is.
 ## Extending the IDP builder
 
 We are actively working to include more patterns and examples of extending idpbuilder to get started easily.
-
