@@ -58,6 +58,7 @@
   imageSrc: '/news/images/autodesk-kubeconeu-2024.png'
   linkTo: "https://www.youtube.com/watch?v=x_cTXvRgwdA"
   date: March 22, 2024
+  presentationLink: https://github.com/cnoe-io/presentations/blob/main/2024-03-CNOE-KubeconEU2024-Rapid-IDP-Development-And-Automated-Testing-At-Autodesk.pdf
 
 - title: "Empowering Giants: Guide Your Enterprise with CNOE in Operational Tech Choices"
   description: |
