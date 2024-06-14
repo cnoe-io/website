@@ -85,11 +85,10 @@
   white-space: nowrap;
   padding: 30px;
   min-height: 405px;
-  max-height: 460px;
+  max-height: 435px;
   min-width: 865px;
   border-radius: 8px;
 }
-
 .diagramcontent:hover {
   cursor: pointer;
 }
@@ -120,16 +119,15 @@
   white-space: nowrap;
   min-height: 290px;
 }
-
 .diagramcontent .bottomrow .bottomleftcol {
   display: inline-block;
   width: 40%;
-  height: 100%;
+  height: 80%;
+  overflow: hidden;
   border: 2px dotted;
   margin-right: -15px;
   padding: 10px;
   padding-right: 30px;
-  padding-bottom: 55px;
   margin-bottom: 30px;
   min-height: 225px;
   border-radius: 8px;
@@ -138,7 +136,7 @@
 
 .diagramcontent .bottomrow .bottomleftcol .bottomleftcolleft {
   display: inline-block;
-  height: 95%;
+  height: 98%;
   overflow: hidden;
   writing-mode: vertical-lr;
   padding-left: 10px;
@@ -157,20 +155,11 @@
 }
 
 .diagramcontent .bottomrow .bottomleftcol .bottomleftcolright {
-  margin-bottom: -4px;
   display: inline-block;
   height: 100%;
   width: 85%;
   overflow: hidden;
   border-top: none;
-}
-
-.diagramcontent .bottomrow .bottomleftcol .bottomleftcolbottom {
-  height: 40px;
-  margin: auto;
-  width: 94%;
-  margin-left: 3%;
-  margin-right: 3%;
 }
 
 .diagramcontent .bottomrow .bottomrightcol {
