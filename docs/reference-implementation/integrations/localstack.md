@@ -11,8 +11,8 @@ Please use the below command to deploy an IDP reference implementation with an A
 ```bash
 idpbuilder create \
   --use-path-routing \
-  --package-dir examples/ref-implementation \
-  --package-dir examples/localstack-integration
+  --package-dir https://github.com/cnoe-io/satcks//ref-implementation \
+  --package-dir https://github.com/cnoe-io/satcks//localstack-integration
 ```
 
 As you see above, this add-on to `idpbuilder` has a dependency on the [reference implementation](reference-impl). This command primarily does the following:

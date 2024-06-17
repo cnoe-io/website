@@ -117,8 +117,8 @@ The most basic command which creates a Kubernetes Cluster (Kind cluster) with th
 
 Once idpbuilder finishes provisioning cluster and packages, you can access GUIs by going to the following addresses in your browser.
 
-* ArgoCD: https://cnoe.localtest.me:8443/argocd/
-* Gitea: https://cnoe.localtest.me:8443/gitea/
+* ArgoCD: https://argocd.cnoe.localtest.me:8443/
+* Gitea: https://gitea.cnoe.localtest.me:8443/
 
 You can obtain credentials for them by running the following command:
 
@@ -151,7 +151,7 @@ You can obtain credentials for them by running the following command:
 
 ###  Example commands
 
-**For more advanced use cases, check out the [examples](./examples) directory.**
+**For more advanced use cases, check out the [Stacks Repository](https://github.com/cnoe-io/stacks).**
 
 You can specify the kubernetes version by using the `--kube-version` flag. Supported versions are available [here](https://github.com/kubernetes-sigs/kind/releases).
 
@@ -180,14 +180,28 @@ Run the following commands for available flags and subcommands:
 
 ### Custom Packages
 
-Idpbuilder supports specifying custom packages using the flag `--package-dir` flag. This flag expects a directory containing ArgoCD application files.
+Idpbuilder supports specifying custom packages using the flag `--package-dir` flag. This flag expects a directory (local or remote) containing ArgoCD application files and / or ArgoCD application set files. In case of a remote directory, it must be a directory in a git repository, and the URL format must be a [kustomize remote URL format](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md).
 
-Let's take a look at [this example](examples/basic). This example defines two custom package directories to deploy to the cluster.
+Examples of using custom packages are available in the [stacks repository](https://github.com/cnoe-io/stacks). Let's take a look at [this example](https://github.com/cnoe-io/stacks/tree/main/basic). This defines two custom package directories to deploy to the cluster.
 
-To deploy these packages, run the following commands from this repository's root.
+To deploy these packages, run the following command:
 
 ```
-./idpbuilder create --package-dir examples/basic/package1  --package-dir examples/basic/package2
+./idpbuilder create \
+  --package-dir https://github.com/cnoe-io/stacks//basic/package1 \
+  --package-dir https://github.com/cnoe-io/satcks//basic/package2
+```
+
+Alternatively, you can use the local directory format.
+
+```bash
+# clone the stacks repository
+git clone https://github.com/cnoe-io/stacks.git
+cd stacks
+# run idpbuilder against the local directory
+./idpbuilder create \
+  --package-dir examples/basic/package1\
+  --package-dir examples/basic/package2
 ```
 
 Running this command should create three additional ArgoCD applications in your cluster.
@@ -200,9 +214,9 @@ guestbook2   Synced        Healthy
 my-app       Synced        Healthy
 ```
 
-Let's break this down. The [first package directory](examples/basic/package1) defines an application. This corresponds to the `my-app` application above. In this application, we want to deploy manifests from local machine in GitOps way.
+Let's break this down. The [first package directory](https://github.com/cnoe-io/stacks/tree/main/basic/package1) defines an application. This corresponds to the `my-app` application above. In this application, we want to deploy manifests from local machine in GitOps way.
 
-The directory contains an [ArgoCD application file](examples/basic/package1/app.yaml). This is a normal ArgoCD application file except for one field.
+The directory contains an [ArgoCD application file](https://github.com/cnoe-io/stacks/blob/main/basic/package1/app.yaml).  This is a normal ArgoCD application file except for one field.
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -213,7 +227,8 @@ spec:
 ```
 
 The `cnoe://` prefix in the `repoURL` field indicates that we want to sync from a local directory.
-Values after `cnoe://` is treated as a relative path from this file. In this example, we are instructing idpbuilder to make ArgoCD sync from files in the [manifests directory](examples/basic/package1/manifests).
+Values after `cnoe://` is treated as a relative path from this file. In this example, 
+we are instructing idpbuilder to make ArgoCD sync from files in the [manifests directory](https://github.com/cnoe-io/stacks/tree/main/basic/package1/manifests).
 
 As a result the following actions were taken by idpbuilder: 
 1. Create a Gitea repository.
@@ -222,23 +237,28 @@ As a result the following actions were taken by idpbuilder:
 
 You can verify this by going to this address in your browser: https://gitea.cnoe.localtest.me:8443/giteaAdmin/idpbuilder-localdev-my-app-manifests
 
-![img.png](./images/my-app-repo.png)
+![img.png](images/my-app-repo.png)
 
 
-This is the repository that corresponds to the [manifests](examples/basic/package1/manifests) folder.
+This is the repository that corresponds to the [manifests](https://github.com/cnoe-io/stacks/tree/main/basic/package1/manifests) folder.
 It contains a file called `alpine.yaml`, synced from the `manifests` directory above.
 
 You can also view the updated Application spec by going to this address: https://argocd.cnoe.localtest.me:8443/applications/argocd/my-app
 
-![myapp](./images/my-app.png)
+![myapp](images/my-app.png)
 
 
 The second package directory defines two normal ArgoCD applications referencing a remote repository.
 They are applied as-is.
 
+
+## Contributing
+
+If you'd like to contribute to the project or know the architecture and internals of this project, check out the [contribution doc](./CONTRIBUTING.md).
+
 ## Running in Codespaces
 
-1. Create a Codespaces instance. ![img](images/codespaces-create.png)
+ Create a Codespaces instance. ![img](https://github.com/cnoe-io/stacks/blob/main/ref-implementation/images/codespaces-create.png)
 2. Wait for it to be ready. It may take several minutes.
 3. Get the latest release of idpbuilder:
    ```bash
@@ -262,4 +282,3 @@ They are applied as-is.
 ## Extending the IDP builder
 
 We are actively working to include more patterns and examples of extending idpbuilder to get started easily.
-
