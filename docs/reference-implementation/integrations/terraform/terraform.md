@@ -12,8 +12,8 @@ Use the below command to deploy `idpbuilder` to make sure backstage terraform in
 ```bash
 idpbuilder create \
   --use-path-routing \
-  --package-dir https://github.com/cnoe-io/satcks//ref-implementation \
-  --package-dir https://github.com/cnoe-io/satcks//terraform-integrations
+  --package-dir https://github.com/cnoe-io/stacks//ref-implementation \
+  --package-dir https://github.com/cnoe-io/stacks//terraform-integrations
 ```
 
 As you see above, this add-on to `idpbuilder` has a dependency on the [reference implementation](reference-impl). This command primarily does the following:

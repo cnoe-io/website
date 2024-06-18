@@ -189,7 +189,7 @@ To deploy these packages, run the following command:
 ```
 ./idpbuilder create \
   --package-dir https://github.com/cnoe-io/stacks//basic/package1 \
-  --package-dir https://github.com/cnoe-io/satcks//basic/package2
+  --package-dir https://github.com/cnoe-io/stacks//basic/package2
 ```
 
 Alternatively, you can use the local directory format.

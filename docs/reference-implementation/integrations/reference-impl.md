@@ -34,7 +34,7 @@ Run the following command from the root of this repository.
 
 ```bash
 idpbuilder create --use-path-routing \
-  --package-dir https://github.com/cnoe-io/satcks//ref-implementation
+  --package-dir https://github.com/cnoe-io/stacks//ref-implementation
 ```
 
 This will take ~6 minutes for everything to come up. To track the progress, you can go to the [ArgoCD UI](https://cnoe.localtest.me:8443/argocd/applications).
