@@ -1,3 +1,12 @@
+- title: "Mastering Templating"
+  description: |
+    Jesse Sanford of Autodesk talks to Guy Menahem and Carlos Santana about how you can 
+    use a combination of templating and verification from the CNOE CLI when developing and
+    deploying Backstage templates
+  imageSrc: '/news/images/cnoe-series-e3.png'
+  linkTo: "https://www.youtube.com/watch?v=_Fz0r5g0ios"
+  date: June 10, 2024
+
 - title: "Unveiling Cloud Native Operational Excellence (CNOE)"
   description: |
     Tiara Sykes and Luke Philips of The New York Times discuss
