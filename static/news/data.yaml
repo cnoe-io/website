@@ -1,3 +1,22 @@
+# ******* NOTE *******
+# to update this file, go to the end of the file, pick the empty template
+# add it to the top of the document (right below this note) and modify it 
+# for the content to include details of the presentation you are adding
+
+- title: "The World of Kubernetes and Platform Engineering"
+  description: |
+     Michael Chenetz dives deep into the world of Kubernetes and platform engineering with special guest Carlos Santana, a specialist solutions architect at AWS.
+  imageSrc: '/news/images/the-world-of-platform-engineering.jpeg'
+  linkTo: "https://www.youtube.com/watch?v=N_TcGEIhzn4"
+  date: June 24, 2024
+
+- title: "How to get started with \"k8s\" local development"
+  description: |
+     Carlos Santana and Johannes Koch talk about how to set up your local k8s development environment using CNOE and the IDPBuilder to speed up your local development!
+  imageSrc: '/news/images/k8s-local-dev-getting-started.jpeg'
+  linkTo: "https://www.youtube.com/watch?v=TytnJrQ409c"
+  date: June 24, 2024
+
 - title: "Mastering Templating"
   description: |
     Jesse Sanford of Autodesk talks to Guy Menahem and Carlos Santana about how you can 
@@ -92,3 +111,4 @@
 #     This is a test 2 news article
 #   imageSrc: ''
 #   linkTo: "https://www.google.com"
+#   date:  
