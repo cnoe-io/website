@@ -6,7 +6,7 @@ title: Templating of CRDs / XRDs
 
 The CNOE CLI allows you to create Backstage developer workflows from existing Kubernetes
 Custom Resource Definitions (CRDs) and Crossplane Composite Resource Definitions
-(XRDs). 
+(XRDs).
 
 :::tip
 This is proven particularly useful for in-house Kubernetes controllers for which there
@@ -17,8 +17,7 @@ is a need for integration with Backstage.
 
 As shown below, the `./cnoe template crd` command allows you to specify an input
 directory for stored CRD specifications, the template that needs to be populated
-with the list of converted CRDs, definings whether or not the
-CRD is cluster-scoped or namespace-scoped, and configuration knobs to set the
+with the list of converted CRDs, and configuration knobs to set the
 name, title, and description of the generated template.
 
 The generated templates are stored in the defined output directory.
@@ -31,16 +30,19 @@ Usage:
 
 Flags:
   -h, --help                         help for crd
-  -n, --namespaced                   whether or not resources are namespaced
       --templateDescription string   sets the description of the template
       --templateName string          sets the name of the template
-  -t, --templatePath string          path to the template to be augmented with backstage info (default "scaffolding/template.yaml")
       --templateTitle string         sets the title of the template
   -v, --verifier stringArray         list of verifiers to test the resource against
 
 Global Flags:
-  -i, --inputDir string    input directory for CRDs and XRDs to be templatized
-  -o, --outputDir string   output directory for backstage templates to be stored in
+  -c, --collapse             if set to true, items are rendered and collapsed as drop down items in a single specified template
+      --depth uint32          depth from given directory to search for TF modules or CRDs (default 2)
+  -i, --inputDir string       input directory for CRDs and XRDs to be templatized
+  -p, --insertAt string       jq path within the template to insert backstage info (default ".spec.parameters[0]")
+  -o, --outputDir string      output directory for backstage templates to be stored in
+      --raw templatePath      prints the raw open API output without putting it into a template (ignoring templatePath and `insertAt`)
+  -t, --templatePath string   path to the template to be augmented with backstage info
 ```
 
 ## Example
@@ -51,7 +53,7 @@ You require the list of CRDs that you want to convert, and a Backstage template:
 
 For this example, let us look at the CRDs available in the [CNOE CLI repository](https://github.com/cnoe-io/cnoe-cli/tree/main/examples).
 In particular, the CRDs for [Amazon Controllers for
-Kubernetes (ACK)](https://github.com/aws-controllers-k8s). 
+Kubernetes (ACK)](https://github.com/aws-controllers-k8s).
 There is approximately 120 sample ACK CRDs in the [example repo](https://github.com/cnoe-io/cnoe-cli/tree/main/examples/ack-crds).
 
 ### The Backstage Scaffolding Template
@@ -88,28 +90,28 @@ spec:
         - awsResources
         - name
   steps:
-  - id: serialize
-    name: serialize
-    action: roadiehq:utils:serialize:yaml
-    input:
-      data:
-        apiVersion: ${{ parameters.apiVersion }}
-        kind: ${{ parameters.kind }}
-        metadata:
-          name: ${{ parameters.name }}
-          namespace: ${{ parameters.namespace }}
-        spec: ${{ parameters.config }}
-  - id: sanitize
-    name: sanitize
-    action: cnoe:utils:sanitize
-    input:
-      document: ${{ steps['serialize'].output.serialized }}
-  - id: apply
-    name: apply-manifest
-    action: cnoe:kubernetes:apply
-    input:
-      namespaced: true
-      manifest: ${{ steps['sanitize'].output.sanitized }}
+    - id: serialize
+      name: serialize
+      action: roadiehq:utils:serialize:yaml
+      input:
+        data:
+          apiVersion: ${{ parameters.apiVersion }}
+          kind: ${{ parameters.kind }}
+          metadata:
+            name: ${{ parameters.name }}
+            namespace: ${{ parameters.namespace }}
+          spec: ${{ parameters.config }}
+    - id: sanitize
+      name: sanitize
+      action: cnoe:utils:sanitize
+      input:
+        document: ${{ steps['serialize'].output.serialized }}
+    - id: apply
+      name: apply-manifest
+      action: cnoe:kubernetes:apply
+      input:
+        namespaced: true
+        manifest: ${{ steps['sanitize'].output.sanitized }}
 ```
 
 `metadata` and `spec.parameters` elements are placeholders that will be
@@ -132,10 +134,10 @@ Run the command below:
   --inputDir examples/ack-crds \
   --outputDir /tmp/templates-ack-deploy \
   --templatePath config/templates/k8s-apply-template.yaml \
-  --namespaced \
   --templateName deploy-ack-resource \
   --templateTitle "Deploy ACK Resource" \
-  --templateDescription "Deploy ACK Resource to Kubernetes"
+  --templateDescription "Deploy ACK Resource to Kubernetes" \
+  -c
 ```
 
 The output in the `/tmp/templates-ack-deploy` should look like below:
@@ -231,7 +233,7 @@ spec:
 ### Importing to Backstage
 
 The generated template can then registered with Backstage by pushing it to a
-repository and analyzing the generated content.  With a valid template, 
+repository and analyzing the generated content. With a valid template,
 the analysis would be successfully validated and you can import the template
 into Backstage.
 
@@ -243,7 +245,7 @@ template to "Deploy ACK Resources"):
 ![navigate](images/3-navigate-catalog.png)
 
 Choosing the template would load all the resources dynamically generated for the
-template. In case of Amazon Controller for Kubernetes (ACK), it will be the list 
+template. In case of Amazon Controller for Kubernetes (ACK), it will be the list
 of over 180 resources that we created from the available CRDs.
 
 ![load](images/4-load-resource.png)
