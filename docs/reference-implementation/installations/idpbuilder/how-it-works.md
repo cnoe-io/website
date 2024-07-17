@@ -17,7 +17,7 @@ When idpbuilder creates an environment for you, it performs the following tasks.
 
 ## Self Signed Certificate
 
-To ensure applications inside the cluster can talk to other services, idpbuilder creates a self signed TLS certificate. The certificate is a wild card certificate 
+To ensure applications inside the cluster can talk to other services, idpbuilder creates a self-signed TLS certificate. The certificate is a wild card certificate 
 for the domain name and any subdomains given by the `--host` flag. 
 For example, if you use the default domain name `cnoe.localtest.me` the certificate is issued for `cnoe.localtest.me` and `*.cnoe.localtest.me`
 
@@ -41,14 +41,14 @@ The default domain name, `cnoe.localtest.me`, resolves to a local loopback addre
 This works for accessing the ingress-nginx service from outside the cluster because the service port is exposed as NodePort on the local machine. 
 
 This approach does not work for in-cluster traffic because the address resolves to local loopback interface. 
-For example, if ArgoCD wants to access Gitea at `gitea.cnoe.localtest.me`, the address resolves to `127.0.0.1` which is the local loopback address within the node.
-To ensure ArgoCD can talk to Gitea services, in-cluster DNS must be configured:
+For example, if ArgoCD pod wants to access Gitea at `gitea.cnoe.localtest.me`, the address resolves to `127.0.0.1` which is the local loopback address within the node.
+To ensure ArgoCD can talk to Gitea services, in-cluster DNS must be configured like so:
 
 ```
 rewrite name gitea.cnoe.localtest.me ingress-nginx-controller.ingress-nginx.svc.cluster.local
 ```
 
-This CoreDNS rewrite rule instructs CoreDNS to resolve requests made for `gitea.cnoe.localtest.me` using adress given by `ingress-nginx-controller.ingress-nginx.svc.cluster.local`
+This CoreDNS rewrite rule instructs CoreDNS to resolve requests made for `gitea.cnoe.localtest.me` using the address given by `ingress-nginx-controller.ingress-nginx.svc.cluster.local`
 
 
 ## Core Packages
@@ -59,5 +59,5 @@ idpbuilder installs the following packages to the cluster.
 * **Gitea** server is the in-cluster Git server that ArgoCD can be configured to sync resources from. You can sync from local file systems to this.
 * **Ingress-nginx** is used as a method to access in-cluster resources such as ArgoCD UI and Gitea UI.
 
-Once installed, idpbuilder passes control over these packages to ArgoCD by storing manifests in Gitea repositories then creating ArgoCD applications.
+Once installed, idpbuilder passes control over these packages to ArgoCD by storing manifests in Gitea repositories then creating ArgoCD applications. From here on, ArgoCD manages them based on manifests checked into Git repositories.
 
