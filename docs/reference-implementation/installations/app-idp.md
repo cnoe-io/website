@@ -96,7 +96,7 @@ Follow the following steps to get started.
     # in the setups/config file, update the zone id.
     HOSTEDZONE_ID=ZO020111111
     ```
-5. Update the [`setups/config`](setups/config.yaml) file with your own values.
+5. Update the [`setups/config`](https://github.com/cnoe-io/reference-implementation-aws/blob/main/setups/config.yaml) file with your own values.
 6. Run `setups/install.sh` and follow the prompts. See the section below about monitoring installation progress.
 7. Once installation completes, navigate to `backstage.<DOMAIN_NAME>` and log in as `user1`. Password is available as a secret. You may need to wait for DNS propagation to complete to be able to login. May take ~10 minutes.
     ```bash
@@ -224,7 +224,7 @@ Currently resources created by applications are not deleted. For example, if you
 </details>
 
 ## What can you do in Backstage? 
-See [this doc](./demo.md) for demos!
+See [this doc](https://github.com/cnoe-io/reference-implementation-aws/blob/main/demo.md) for demos!
 
 ## Possible issues
 

@@ -24,11 +24,11 @@ Ensure you have the following tools installed on your computer.
 ## Installation
 
 **_NOTE:_**
-- If you'd like to run this in your web browser through Codespaces, please follow [the instructions here](./codespaces.md) to install instead. 
+- If you'd like to run this in your web browser through Codespaces, please follow [the instructions here](https://github.com/cnoe-io/stacks/blob/main/ref-implementation/codespaces.md) to install instead. 
 
 - _This example assumes that you run the reference implementation with the default port configguration of 8443 for the idpBuilder.
 If you happen to configure a different host or port for the idpBuilder, the manifests in the reference example need to be updated
-and be configured with the new host and port. you can use the [replace.sh](replace.sh) to change the port as desired prior to applying the manifest as instructed in the command above._
+and be configured with the new host and port. 
 
 Run the following command from the root of this repository.
 
@@ -49,7 +49,7 @@ This will take ~6 minutes for everything to come up. To track the progress, you 
 6. **Spark Operator** to demonstrate an example Spark workload through Backstage.
 
 If you don't want to install a package above, you can remove the ArgoCD Application file corresponding to the package you want to remove.
-For example, if you want to remove Spark Operator, you can delete [this file](./spark-operator.yaml).
+For example, if you want to remove Spark Operator, you can delete [this file](https://github.com/cnoe-io/stacks/blob/main/ref-implementation/spark-operator.yaml).
 
 ```bash
 # remove spark operator from this installation.
@@ -147,13 +147,15 @@ Back in the entity page, you can view more details about Spark jobs by navigatin
 Similar to the above, we can deploy an application with cloud resources using Backstage templates.
 In this example, we will create an application with a S3 Bucket.
 
+Add the Crossplane integration as discussed [here](https://github.com/cnoe-io/stacks/blob/main/crossplane-integrations/README.md).
+
 Choose a template named `App with S3 bucket`, type `demo3` as the name, then choose a region to create this bucket in.
 
 Once you click the create button, you will have a very similar setup as the basic example. 
 The only difference is we now have a resource for a S3 Bucket which is managed by Crossplane.
 
 Note that Bucket is **not** created because Crossplane doesn't have necessary credentials to do so.
-If you'd like it to actually create a bucket, update [the credentials secret file](crossplane-providers/provider-secret.yaml), then run `idpbuilder create --package-dir examples/ref-implementation`.
+If you'd like it to actually create a bucket, update [the credentials secret file](https://github.com/cnoe-io/stacks/blob/main/crossplane-integrations/crossplane-providers/provider-secret.yaml), then run `idpbuilder create --package-dir examples/ref-implementation`.
 
 In this example, we used Crossplane to provision resources, but you can use other cloud resource management tools such as Terraform instead. 
 Regardless of your tool choice, concepts are the same. We use Backstage as the templating mechanism and UI for users, then use Kubernetes API with GitOps to deploy resources. 

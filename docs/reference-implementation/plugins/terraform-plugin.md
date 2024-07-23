@@ -108,7 +108,7 @@ apiRouter.use('/terraform', await terraform(terraformEnv));
 
 #### AWS Credentials
 
-By default, the Terraform backend plugin relies on the [default behavior of the AWS SDK for Javascript](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_credential_provider_node.html) to determine the AWS credentials that it uses to authenticate an identity to use with AWS APIs.
+By default, the Terraform backend plugin relies on the [default behavior of the AWS SDK for Javascript](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-credential-providers) to determine the AWS credentials that it uses to authenticate an identity to use with AWS APIs.
 
 The Terraform backend plugin that runs in your Backstage app searches for credentials in the following order:
 

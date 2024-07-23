@@ -15,7 +15,7 @@ idpbuilder create \
   --package-dir https://github.com/cnoe-io/stacks//localstack-integration
 ```
 
-As you see above, this add-on to `idpbuilder` has a dependency on the [reference implementation](reference-impl). This command primarily does the following:
+As you see above, this add-on to `idpbuilder` has a dependency on the [reference implementation](https://github.com/cnoe-io/stacks/tree/main/ref-implementation). This command primarily does the following:
 
 1. Installs `localstack` helmchart as an `argo` application.
 2. Adds localstack crossplane ProviderConfig, targeting localstack

@@ -16,7 +16,7 @@ idpbuilder create \
   --package-dir https://github.com/cnoe-io/stacks//terraform-integrations
 ```
 
-As you see above, this add-on to `idpbuilder` has a dependency on the [reference implementation](reference-impl). This command primarily does the following:
+As you see above, this add-on to `idpbuilder` has a dependency on the [reference implementation](https://github.com/cnoe-io/stacks/tree/main/ref-implementation). This command primarily does the following:
 
 1. Installs the `Source Controller` from Flux CD to clone the terraform modules to Install
 1. Installs the `Tofu Controller` to run pull terraform values files and run `terraform apply` on the pulled modules
