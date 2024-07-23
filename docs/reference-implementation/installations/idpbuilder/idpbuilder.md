@@ -24,16 +24,11 @@ This can be useful in several ways:
 * Use as a local development environment for IDP engineers.
 
 
-
-
-
-## Contributing
-
-If you'd like to contribute to the project or know the architecture and internals of this project, check out the [contribution doc](./CONTRIBUTING.md).
-
 ## Running in Codespaces
 
- Create a Codespaces instance. ![img](https://github.com/cnoe-io/stacks/blob/main/ref-implementation/images/codespaces-create.png)
+If you are interested in running idpbuilder in Codespaces through your browser, follow the following steps.
+
+1. Create a Codespaces instance. ![img](https://github.com/cnoe-io/stacks/blob/main/ref-implementation/images/codespaces-create.png)
 2. Wait for it to be ready. It may take several minutes.
 3. Get the latest release of idpbuilder:
    ```bash
