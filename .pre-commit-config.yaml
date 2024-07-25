@@ -8,5 +8,5 @@ repos:
     rev: v2.2.6
     hooks:
       - id: codespell
-        args: ["--skip=*.excalidraw,*.git,*.png,*.jpg,*.svg,package.json,package-lock.json"]
-ß
+        args: ["--skip=*.excalidraw,*.git,*.png,*.jpg,*.svg,package.json,package-lock.json,yarn.lock"]
+
