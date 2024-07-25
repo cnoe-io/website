@@ -57,12 +57,12 @@ You can pull an image back to your local machine using your docker client like s
 docker pull gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
 ```
 #### No Pull Secret Needed
-The Gitea instance allows for anonymous read access to . This means that you can pull git repo contents and container images without logging in.
+The Gitea instance allows for anonymous read access. This means that you can pull git repo contents and container images without logging in.
 
 
 ### Referencing Images In Manifests On The Idpbuilder K8s Cluster
 
-Similarly, you can create a pod or a deployment that references images in the local registry. For example, to create a pod:
+You can create a pod or a deployment that references images in the local registry. For example, to create a pod:
 
 ```yaml
 apiVersion: v1
