@@ -1,10 +1,38 @@
 # Serverless Microservice
 
-This pattern demonstrates a [Serverless Microservice](https://github.com/aws-samples/appmod-partners-serverless/tree/main/serverless-microservice) built using Amazon API Gateway, AWS Lambda, and Amazon DynamoDB. You can download the respective Backstage templates from [serverless microservice](https://github.com/cnoe-io/backstage-terraform-integrations/tree/main/backstage-templates-for-eks/serverless-microservice) repo under [cnoe-io/backstage-terraform-integrations](https://github.com/cnoe-io/backstage-terraform-integrations/).
+This pattern demonstrates a [Serverless Microservice](https://github.com/aws-samples/appmod-partners-serverless/tree/main/serverless-microservice) built using Amazon API Gateway, AWS Lambda, and Amazon DynamoDB. You can download the respective Backstage templates from the [serverless microservice](https://github.com/cnoe-io/backstage-terraform-integrations/tree/main/backstage-templates-for-eks/serverless-microservice) folder under [cnoe-io/backstage-terraform-integrations](https://github.com/cnoe-io/backstage-terraform-integrations/).
 
 ## Prerequisite
 
 You need to [add AWS credentials](https://github.com/tgpadua/backstage-terraform-integrations/tree/main?tab=readme-ov-file#deploy-idpbuilder-with-terraform-integration-templates) before deployed this pattern. 
+
+## Deployment
+
+Navigate to [Backstage](https://cnoe.localtest.me:8443/), click on `Create` in the left pane to view the list of available platform templates, and click `Choose` on the **Serverless Microservice** pattern.
+
+Next, populate the Terraform variables for the pattern deployment as shown below and click on `Review`.
+
+![Backstage](./images/serverless-microservice-pattern/backstage1.png)
+
+Next, validate the entered variables in the below confirmation screen and click Create :
+
+![Backstage](./images/serverless-microservice-pattern/backstage2.png)
+
+Next, check on the steps of backstage template run as show below and click `Open In Catalog`:
+
+![Backstage](./images/serverless-microservice-pattern/backstage3.png)
+
+Next, check on the below screen showing the created Backstage component and click `View Source` to navigate to the Gitea repository:
+
+![Backstage](./images/serverless-microservice-pattern/backstage4.png)
+
+Next, check on the Gitea repo of the created component as shown below:
+
+![Backstage](./images/serverless-microservice-pattern/gitea1.png)
+
+Next, Navigate to [ArgoCD](https://cnoe.localtest.me:8443/argocd) console and navigate to Argo App by name `todo` view the below screen:
+
+![Backstage](./images/serverless-microservice-pattern/argocd1.png)
 
 ## Validation
 
@@ -57,11 +85,11 @@ Next, lets check on the logs of this `tf-controller-7f8c8bbdfc-c5xw7`as shown be
 ````
 Let's wait for 3 minutes for tofu controller to complete the `terraform apply` and navigate to API Gateway console and search for the API:
 
-![AWS Console](./images/apigateway1.png)
+![AWS Console](./images/serverless-microservice-pattern/apigateway1.png)
 
 Then, copy the microservice endpoint from the `Invoke URL` property for testing:  
 
-![AWS Console](./images/apigateway2.png)
+![AWS Console](./images/serverless-microservice-pattern/apigateway2.png)
 
 ## Testing
 
