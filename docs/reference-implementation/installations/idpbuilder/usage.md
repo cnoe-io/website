@@ -62,7 +62,7 @@ You can specify the kubernetes version by using the `--kube-version` flag. Suppo
 If you want to specify your own kind configuration file, use the `--kind-config` flag.
 
 ```
-./idpbuilder create --build-name local --kind-config ./my-kind.yaml`
+./idpbuilder create --build-name local --kind-config ./my-kind.yaml
 ```
 
 If you want to specify ArgoCD configmap.
