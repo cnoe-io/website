@@ -96,6 +96,7 @@ const Partners = () => {
       <img src={siteConfig.baseUrl + "img/members/Salesforce-light.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
       <img src={siteConfig.baseUrl + "img/members/Intuit-light.svg"}     width="128px" onDragStart={handleDragStart} role="presentation" />,
       <img src={siteConfig.baseUrl + "img/members/Nike-light.svg"}       width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/cisco-light.svg"}      width="128px" onDragStart={handleDragStart} role="presentation" height="128px"/>,
     ];
 
   } else {
@@ -107,6 +108,7 @@ const Partners = () => {
       <img src={siteConfig.baseUrl + "img/members/Salesforce-dark.svg"} width="128px" onDragStart={handleDragStart} role="presentation" />,
       <img src={siteConfig.baseUrl + "img/members/Intuit-dark.svg"}     width="128px" onDragStart={handleDragStart} role="presentation" />,
       <img src={siteConfig.baseUrl + "img/members/Nike-dark.svg"}       width="128px" onDragStart={handleDragStart} role="presentation" />,
+      <img src={siteConfig.baseUrl + "img/members/cisco-dark.svg"}      width="128px" onDragStart={handleDragStart} role="presentation" height="128px" />,
     ];
   }
 
