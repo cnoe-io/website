@@ -12,7 +12,7 @@ index: 2
 The most basic command which creates a Kubernetes Cluster (Kind cluster) with the core packages installed.
 
 ```bash
-./idpbuilder create
+idpbuilder create
 ```
 
 Once idpbuilder finishes provisioning cluster and packages, you can access GUIs by going to the following addresses in your browser.
@@ -23,59 +23,60 @@ Once idpbuilder finishes provisioning cluster and packages, you can access GUIs 
 You can obtain credentials for them by running the following command:
 
 ```bash
-./idpbuilder get secrets
+idpbuilder get secrets
 ```
-
-<details>
-  <summary> The "get secrets" command </summary>
-
-The `get secrets` command retrieves the following:
-- ArgoCD initial admin password.
-- Gitea admin user credentials.
--  Any secrets labeled with `cnoe.io/cli-secret=true`.
-
-You can think of the command as executing the following kubectl commands:
-
-  ```bash
-  kubectl -n argocd get secret argocd-initial-admin-secret
-  kubectl get secrets -n gitea gitea-admin-secret
-  kubectl get secrets -A -l cnoe.io/cli-secret=true
-  ```
-In addition, secrets labeled with `cnoe.io/package-name` can be specified with the `-p` flag. For example, for Gitea:
-
-  ```bash
-  ./idpbuilder get secrets -p gitea
-  ```
-
-</details>
 
 ###  Example commands
 
 **For more advanced use cases, check out the [Stacks Repository](https://github.com/cnoe-io/stacks).**
 
-You can specify the kubernetes version by using the `--kube-version` flag. Supported versions are available [here](https://github.com/kubernetes-sigs/kind/releases).
+
+#### Create
+
+Specify the kubernetes version by using the `--kube-version` flag. Supported versions are available [here](https://github.com/kubernetes-sigs/kind/releases).
 
 ```
-./idpbuilder create --kube-version v1.27.3
+idpbuilder create --kube-version v1.27.3
 ```
 
-If you want to specify your own kind configuration file, use the `--kind-config` flag.
+Specify your own kind configuration file, use the `--kind-config` flag.
 
 ```
-./idpbuilder create --build-name local --kind-config ./my-kind.yaml
+idpbuilder create --build-name local --kind-config ./my-kind.yaml
 ```
 
-If you want to specify ArgoCD configmap.
+Override ArgoCD configmap.
 
 ```
-./idpbuilder create --package-custom-file=argocd:path/to/argocd-cm.yaml
+idpbuilder create --package-custom-file=argocd:path/to/argocd-cm.yaml
 ```
 
-Run the following commands for available flags and subcommands:
+For available flags and subcommands:
 
 ```
-./idpbuilder --help
-./idpbuilder create --help
+idpbuilder create --help
+```
+
+#### Get
+
+Get all relevant secrets. See [this section](how-it-works.md#getting-relevant-secrets) for more information.
+
+```
+idpbuilder get secrets
+```
+
+Get secrets for a package named `gitea`.
+
+```
+idpbuilder get secrets -p gitea
+```
+
+#### Delete
+
+Delete a cluster named `localdev`.
+
+```
+idpbuilder delete --name localdev
 ```
 
 ### Custom Packages
