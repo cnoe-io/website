@@ -61,3 +61,37 @@ idpbuilder installs the following packages to the cluster.
 
 Once installed, idpbuilder passes control over these packages to ArgoCD by storing manifests in Gitea repositories then creating ArgoCD applications. From here on, ArgoCD manages them based on manifests checked into Git repositories.
 
+## Getting Relevant Secrets
+
+The `idpbuilder get secrets` command retrieves the following:
+- ArgoCD initial admin password.
+- Gitea admin user credentials.
+- Any secrets labeled with `cnoe.io/cli-secret=true`.
+
+You can think of the command as executing the following kubectl commands:
+
+  ```bash
+  kubectl -n argocd get secret argocd-initial-admin-secret
+  kubectl get secrets -n gitea gitea-admin-secret
+  kubectl get secrets -A -l cnoe.io/cli-secret=true
+  ```
+
+If you want to retrieve secrets for a package, you can use the `-p` flag. To get secrets for a package named `gitea`: 
+
+  ```bash
+  idpbuilder get secrets -p gitea
+  ```
+
+For the `-p` flag to work, you must label the secret with `cnoe.io/package-name`. 
+For example, to make secret values available in a secret named `my-secret` for a package named `foo`:
+
+  ```bash
+  kubectl label secret my-secret "cnoe.io/package-name=foo" "cnoe.io/cli-secret=true"
+  ```
+
+The secret will then be listed when issuing the `idpbuilder get secrets` command.
+Alternatively, you can use the following command to retrieve the individual secret:
+
+```
+idpbuilder get secrets -p foo
+```
