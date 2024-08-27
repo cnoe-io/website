@@ -82,8 +82,16 @@ If you want to retrieve secrets for a package, you can use the `-p` flag. To get
   idpbuilder get secrets -p gitea
   ```
 
-For the `-p` flag to work, you must label the secret with `cnoe.io/package-name`. For example, to make secret values available in a secret named `my-secret` for a package named `foo`:
+For the `-p` flag to work, you must label the secret with `cnoe.io/package-name`. 
+For example, to make secret values available in a secret named `my-secret` for a package named `foo`:
 
   ```bash
   kubectl label secret my-secret "cnoe.io/package-name=foo" "cnoe.io/cli-secret=true"
   ```
+
+The secret will then be listed when issuing the `idpbuilder get secrets` command.
+Alternatively, you can use the following command to retrieve the individual secret:
+
+```
+idpbuilder get secrets -p foo
+```
