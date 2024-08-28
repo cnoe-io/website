@@ -50,7 +50,7 @@ spec:
     - title: Enter some details
       properties:
         clusterName:
-          title: Name of the cluster to deploy manfiest into.
+          title: Name of the cluster to deploy manifest into.
           type: string
           ui:field: KubernetesClusterPicker
           ui:options:
