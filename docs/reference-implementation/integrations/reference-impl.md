@@ -34,7 +34,7 @@ Run the following command from the root of this repository.
 
 ```bash
 idpbuilder create --use-path-routing \
-  --package-dir https://github.com/cnoe-io/stacks//ref-implementation
+  --package https://github.com/cnoe-io/stacks//ref-implementation
 ```
 
 This will take ~6 minutes for everything to come up. To track the progress, you can go to the [ArgoCD UI](https://cnoe.localtest.me:8443/argocd/applications).
@@ -155,7 +155,7 @@ Once you click the create button, you will have a very similar setup as the basi
 The only difference is we now have a resource for a S3 Bucket which is managed by Crossplane.
 
 Note that Bucket is **not** created because Crossplane doesn't have necessary credentials to do so.
-If you'd like it to actually create a bucket, update [the credentials secret file](https://github.com/cnoe-io/stacks/blob/main/crossplane-integrations/crossplane-providers/provider-secret.yaml), then run `idpbuilder create --package-dir examples/ref-implementation`.
+If you'd like it to actually create a bucket, update [the credentials secret file](https://github.com/cnoe-io/stacks/blob/main/crossplane-integrations/crossplane-providers/provider-secret.yaml), then run `idpbuilder create --package examples/ref-implementation`.
 
 In this example, we used Crossplane to provision resources, but you can use other cloud resource management tools such as Terraform instead. 
 Regardless of your tool choice, concepts are the same. We use Backstage as the templating mechanism and UI for users, then use Kubernetes API with GitOps to deploy resources. 
