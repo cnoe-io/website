@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-description: Override built-in services
+description: Override built-in Services
 title: Override built-in services
 index: 4
 ---

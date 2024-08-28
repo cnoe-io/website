@@ -5,8 +5,6 @@ title: Local OCI Registry
 index: 5
 ---
 
-## Local OCI Registry
-
 The local Gitea instance created by idpbuilder contains a built-in OCI registry for hosting container images as "packages" in Gitea nomenclature.
 
 It is a standard OCI registry, so the API should be compatible with any tools that are OCI compliant. That includes the `docker` cli.

@@ -1,11 +1,9 @@
 ---
 sidebar_position: 1
-description: Using IDPBuilder
-title: Using IDPBuilder
+description: Using idpBuilder
+title: Using the idpBuilder
 index: 2
 ---
-
-## Using the idpbuilder
 
 ### Basic usage
 

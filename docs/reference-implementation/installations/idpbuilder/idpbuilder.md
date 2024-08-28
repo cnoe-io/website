@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 description: launch the CNOE IDP with a single binary 
-title: IDPBuilder on Local Machine
+title: idpBuilder on Local Machine
 index: 1
 ---
 
