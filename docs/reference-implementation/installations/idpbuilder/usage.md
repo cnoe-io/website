@@ -151,3 +151,50 @@ You can also view the updated Application spec by going to this address: https:/
 
 The second package directory defines two normal ArgoCD applications referencing a remote repository.
 They are applied as-is.
+
+### Exposing Services
+
+Idpbuilder comes with [ingress-nginx](https://github.com/kubernetes/ingress-nginx), and this is meant to be used as an easy way to expose services to the outside world.
+See [the networking overview section](how-it-works.md#networking) for more information.
+By default, idpbuilder exposes the ingress-nginx service on host port 8443 and Kubernetes Ingress objects are created for core packages.
+For example, an ingress object for Gitea looks something like this:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: gitea.cnoe.localtest.me
+      http:
+        paths:
+          - path: /
+            backend:
+              service:
+                name: my-gitea-http
+```
+
+With this configuration, nginx routes traffic to Gitea service when http requests are made for `gitea.cnoe.localtest.me`.
+
+Similarly, you can expose your own service by defining an ingress object.
+For example, to expose a service named my-service at `my-service.cnoe.localtest.me`, the ingress object may look something like this.
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-service
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: my-service.cnoe.localtest.me
+      http:
+        paths:
+          - backend:
+              service:
+                name: my-service
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+```
