@@ -31,13 +31,38 @@ Finally, the certificate is exposed as a secret named `idpbuilder-cert` in the d
 kubectl get secret -n default idpbuilder-cert
 ```
 
-## DNS Configuration
+## Networking
+
+### Overview
+
+With the default configuration on Docker on Linux, kind cluster is set up as follows:
+
+1. A Docker container runs as the Kubernetes node and the container port 443 is exposed on host port 8443. You can confirm this by running `docker container ls`
+1. Ingress-nginx service is configured as `NodePort` and listens on port 443. You can confirm with `kubectl get service -n ingress-nginx  ingress-nginx-controller`.
+
+With this setup, HTTP traffic for `https://gitea.cnoe.localtest.me:8443` roughly looks like this.
+
+1. Domain name resolves to the local loopback address.
+1. A request is made to `127.0.0.1:8443` with host set as `gitea.cnoe.localtest.me:8443`.
+1. The request is sent to the container port 443.
+1. Ingress-nginx looks at SNI and the host header, then routes the traffic to the Gitea service.
+1. Gitea receives the request then sends back a response.
+
+
+### DNS
+
+By default, idpbuilder uses the domain name `cnoe.localtest.me` as the base domain name to expose services such as ArgoCD and Gitea.
+Most subdomains under `localtest.me` resolves to the [local loopback address](https://en.wikipedia.org/wiki/Localhost).
+This allows us to have a consistent name that resolves to a known IP address without using the `localhost` name.
+See [the localtest.me documentation site](https://readme.localtest.me/) for more information.
+
+### In-cluster DNS Configuration
 
 idpbuilder configures in-cluster DNS service (CoreDNS) to ensure domain names are resolved correctly.
 The name given by the `--host` flag resolves to the ingress-nginx controller service address. 
 This allows us to resolve the domain name inside and outside cluster to the same endpoint. 
 
-The default domain name, `cnoe.localtest.me`, resolves to a local loopback address such as `127.0.0.1`. 
+As described above, the default domain name, `cnoe.localtest.me`, resolves to a local loopback address such as `127.0.0.1`. 
 This works for accessing the ingress-nginx service from outside the cluster because the service port is exposed as NodePort on the local machine. 
 
 This approach does not work for in-cluster traffic because the address resolves to local loopback interface. 
