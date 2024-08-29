@@ -83,8 +83,13 @@ Please see [the Kubernetes docs](https://kubernetes.io/docs/concepts/services-ne
 
 ## Core Packages
 
-Core Packages are fully customizable with the flag `-c`. This flag accepts a path to a file containing Kubernetes manifests. 
+Core Packages are fully customizable with the flag `-c`. This flag accepts a path to a file containing Kubernetes manifests.
+The specified file can contain multiple yaml documents.
 The format of this flag is `<PACKAGE_NAME>:<PATH>`. Where `<PACKAGE_NAME>` is one of `argocd`, `nginx`, and `gitea`.
+You can find the built-in manifests in your local Gitea repositories or in our source files:
+- [ArgoCD](https://github.com/cnoe-io/idpbuilder/blob/main/pkg/controllers/localbuild/resources/argo/install.yaml)
+- [Gitea](https://github.com/cnoe-io/idpbuilder/blob/main/pkg/controllers/localbuild/resources/gitea/k8s/install.yaml)
+- [Nginx](https://github.com/cnoe-io/idpbuilder/blob/main/pkg/controllers/localbuild/resources/nginx/k8s/ingress-nginx.yaml)
 
 For example, if you'd like to override [the ArgoCD ConfigMap](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/), you can run idpbuilder like this:
 
@@ -111,6 +116,6 @@ metadata:
   name: argocd-cm
 ```
 
-This instructs idpbuilder to use the provided manifest for `argocd-cm` only. The built-in Kubernetes manifests are used for everything but `argocd-cm`.
-The specified file can contain multiple yaml documents.
+The corresponding built-in manifest can be found [here](https://github.com/cnoe-io/idpbuilder/blob/eab34d6c75784f3dce44896e141afbc2a40de03c/pkg/controllers/localbuild/resources/argo/install.yaml#L21082-L21096).
 
+This instructs idpbuilder to use the provided manifest for `argocd-cm` only. The built-in Kubernetes manifests are used for everything but `argocd-cm`.
