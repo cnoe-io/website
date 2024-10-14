@@ -49,6 +49,19 @@ Override ArgoCD configmap.
 idpbuilder create --package-custom-file=argocd:path/to/argocd-cm.yaml
 ```
 
+Use a public repository to pull extra packages. See [this section](#custom-packages) for more information.
+
+```
+idpbuilder create -p https://github.com/cnoe-io/stacks//basic/package1
+```
+
+Use a private repository to pull extra packages.
+
+```bash
+git clone https://github.com/cnoe-io/stacks-private
+idpbuilder create -p ./stacks-private/basic/package1
+```
+
 For available flags and subcommands:
 
 ```
