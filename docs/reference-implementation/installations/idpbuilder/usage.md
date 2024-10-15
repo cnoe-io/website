@@ -5,6 +5,8 @@ title: Using the idpBuilder
 index: 2
 ---
 
+import ColorOutput from './images/color-output.png';
+
 ### Basic usage
 
 The most basic command which creates a Kubernetes Cluster (Kind cluster) with the core packages installed.
@@ -23,6 +25,20 @@ You can obtain credentials for them by running the following command:
 ```bash
 idpbuilder get secrets
 ```
+
+<details>
+  <summary>Color Output</summary>
+
+idpbuilder supports colored output with the `--color` flag.
+
+```bash
+idpbuilder create --color
+````
+<img src={ColorOutput} width="60%" height="60%" />
+
+</details>
+
+
 
 ###  Example commands
 
@@ -48,6 +64,34 @@ Override ArgoCD configmap.
 ```
 idpbuilder create --package-custom-file=argocd:path/to/argocd-cm.yaml
 ```
+<details>
+  <summary>Example Contents of argocd-cm.yaml</summary>
+
+This configuration allows for anonymous login
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    # Labels below are required by ArgoCD
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+    Test: Data
+  name: argocd-cm
+data:
+  # Enables anonymous user access. The anonymous users get default role permissions specified argocd-rbac-cm.yaml.
+  users.anonymous.enabled: "true"
+  application.resourceTrackingMethod: annotation
+  resource.exclusions: |
+    - kinds:
+        - ProviderConfigUsage
+      apiGroups:
+        - "*"
+```
+
+</details>
+
 
 Use a public repository to pull extra packages. See [this section](#custom-packages) for more information.
 
