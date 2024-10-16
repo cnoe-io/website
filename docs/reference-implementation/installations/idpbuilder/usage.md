@@ -90,6 +90,56 @@ Delete a cluster named `localdev`.
 idpbuilder delete --name localdev
 ```
 
+
+### Gitea Integration
+
+idpbuilder creates an internal [Gitea](https://about.gitea.com/) server (accessible from your laptop and kind cluster only).
+This can be used for various purposes such as sources for ArgoCD, container registry, and more.
+To facilitate interactions with Gitea, idpbuilder creates a token with administrator scope, then stores it in a Kubernetes secret.
+
+The token can be obtained by running the following command:
+
+```bash
+# print all secrets associated with gitea
+idpbuilder get secrets -p gitea
+
+# get token only
+idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token
+
+```
+
+Here are a some examples for using the token:
+
+<details>
+  <summary>Create a Gitea Organization</summary>
+
+```bash
+
+TOKEN=$(idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token' )
+curl -k -X POST \
+  https://gitea.cnoe.localtest.me:8443/api/v1/orgs \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"description": "my-org", "email": "my-org@my.m", "full_name": "my-org", "username": "my-org"}'
+```
+
+</details>
+
+<details>
+  <summary>Create a Gitea User</summary>
+
+```bash
+
+TOKEN=$(idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token' )
+curl -k -X POST \
+  https://gitea.cnoe.localtest.me:8443/api/v1/admin/users \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"email": "my-org@my.m", "full_name": "user one", "username": "user1", "password": "password", "must_change_password": true}'
+```
+
+</details>
+
 ### Custom Packages
 
 Idpbuilder supports specifying custom packages using the flag `-p` flag. This flag expects a directory (local or remote) containing ArgoCD application files and / or ArgoCD application set files. In case of a remote directory, it must be a directory in a git repository, and the URL format must be a [kustomize remote URL format](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md).
