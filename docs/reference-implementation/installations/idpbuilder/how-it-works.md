@@ -14,6 +14,8 @@ When idpbuilder creates an environment for you, it performs the following tasks.
 1. Configure CoreDNS to ensure names are resolved correctly.
 1. Install Core Packages, then hands control over to ArgoCD.
 
+![img.png](./images/idpbuilder-basic.png)
+
 
 ## Self Signed Certificate
 

@@ -106,6 +106,12 @@ git clone https://github.com/cnoe-io/stacks-private
 idpbuilder create -p ./stacks-private/basic/package1
 ```
 
+Increase the verbosity of idpbuilder for troubleshooting. 
+
+```
+idpbuilder create -l debug
+```
+
 For available flags and subcommands:
 
 ```
