@@ -14,6 +14,8 @@ When idpbuilder creates an environment for you, it performs the following tasks.
 1. Configure CoreDNS to ensure names are resolved correctly.
 1. Install Core Packages, then hands control over to ArgoCD.
 
+![img.png](./images/idpbuilder-basic.png)
+
 
 ## Self Signed Certificate
 
@@ -55,6 +57,8 @@ By default, idpbuilder uses the domain name `cnoe.localtest.me` as the base doma
 Most subdomains under `localtest.me` resolves to the [local loopback address](https://en.wikipedia.org/wiki/Localhost).
 This allows us to have a consistent name that resolves to a known IP address without using the `localhost` name.
 See [the localtest.me documentation site](https://readme.localtest.me/) for more information.
+
+![img.png](./images/idpbuilder-dns.png)
 
 ### In-cluster DNS Configuration
 
