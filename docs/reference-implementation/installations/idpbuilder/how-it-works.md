@@ -58,6 +58,8 @@ Most subdomains under `localtest.me` resolves to the [local loopback address](ht
 This allows us to have a consistent name that resolves to a known IP address without using the `localhost` name.
 See [the localtest.me documentation site](https://readme.localtest.me/) for more information.
 
+![img.png](./images/idpbuilder-dns.png)
+
 ### In-cluster DNS Configuration
 
 idpbuilder configures in-cluster DNS service (CoreDNS) to ensure domain names are resolved correctly.
