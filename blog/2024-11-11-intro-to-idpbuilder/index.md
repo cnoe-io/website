@@ -34,7 +34,7 @@ Let's explore how you can use idpBuilder in your development workflow. Whether y
 
 ## Demo your own IDP implementation
 
-idpBuilder comes with a set of technologies that enables GitOps workflows all contained within the ephemeral environment. Think of building your IDP soltuion in a box. It does this by provisioning a kind cluster, Gitea server, ArgoCD, and ingress-nginx. See[ our documentation](https://cnoe.io/docs/reference-implementation/installations/idpbuilder/usage) site for more information.
+idpBuilder comes with a set of technologies that enables GitOps workflows all contained within the ephemeral environment. Think of building your IDP solution in a box. It does this by provisioning a kind cluster, Gitea server, ArgoCD, and ingress-nginx. See[ our documentation](https://cnoe.io/docs/reference-implementation/installations/idpbuilder/usage) site for more information.
 
 in addition, idpbuilder can copy files and Kubernetes manifests checked into Git repositories to the in-cluster Gitrea repositories. Once copied to the in-cluster repositories, ArgoCD can use them to deploy your solutions in minutes. We have examples of this in the [Stacks repository.](https://github.com/cnoe-io/stacks/tree/main/ref-implementation).  You can run them in your browser using Codespaces as well.
 This approach also allows you to experiment with configuration changes and code changes without changing files checked into the external repositories because everything is contained in the cluster.
@@ -68,7 +68,7 @@ More details about their implementation can be found in their [repository](https
 
 ## Conclusion
 
-idpBuilder simplifies creating and testing Internal Developer Platform Capabilties, solving common development and maintenance challenges. It allows you to rapidly deploy functional solutions with minimal setup by offering consistency across development stages.
+idpBuilder simplifies creating and testing Internal Developer Platform Capabilities, solving common development and maintenance challenges. It allows you to rapidly deploy functional solutions with minimal setup by offering consistency across development stages.
 
 However, idpBuilder isn't a one-size-fits-all solution. Organizations must assess their specific needs and existing infrastructure. While it's excellent for testing and development, production deployments may need further adjustments.
 
