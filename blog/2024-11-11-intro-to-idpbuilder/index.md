@@ -44,12 +44,15 @@ Carlos Santana does an excellent job of show this in his video. https://www.yout
 
 ## Local Development and CI integrations
 
-Many organizations struggle with fragmented development environments. Different teams often work in silos, using disparate tools and workflows. This fragmentation can lead to inefficiencies, slower development cycles, and integration headaches.  idpBuilder can set up identical environments for local development and CI pipelines. With idpBuilder, you get:
+Many organizations struggle with fragmented development environments. Different teams often work in silos, using disparate tools and workflows.
+This fragmentation can lead to inefficiencies, slower development cycles, and integration headaches.  
+idpBuilder can set up identical environments for local development and CI pipelines. With idpBuilder, you get:
 
 1. **Reduced "It Works on My Machine" Syndrome**: With consistent environments, discrepancies between local and CI setups become a thing of the past.
 2. **Early Issue Detection**: Integration problems are caught earlier, saving time and resources in the long run.
 3. **Improved Collaboration**: Developers can confidently work on the same project, knowing they're all using identical environments.
 4. **Streamlined Workflow**: The seamless transition from local development to CI pipelines accelerates the development cycle.
+5. **Local GitOps Workflow**: A zero-configuration approach to GitOps: start immediately with a pre-configured local Git server, no external repositories or credentials required.
 
 During KubeCon 2024, AutoDesk touches on these topics and shares their experience using it for their platform development: https://www.youtube.com/watch?v=x_cTXvRgwdA
 
