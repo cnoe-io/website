@@ -79,6 +79,30 @@ rewrite name gitea.cnoe.localtest.me ingress-nginx-controller.ingress-nginx.svc.
 
 This CoreDNS rewrite rule instructs CoreDNS to resolve requests made for `gitea.cnoe.localtest.me` using the address given by `ingress-nginx-controller.ingress-nginx.svc.cluster.local`
 
+### Domain-based and Path-based routing
+
+idpbuilder supports two modes of routing requests to in-cluster resources: domain-based and path-based.
+The behavior is configured with the `--use-path-routing` flag, which defaults to `false`.
+
+#### Domain-based routing
+
+This is the default behavior of idpbuilder. In this mode, services are exposed under their own domain names.
+For example:
+- ArgoCD UI is accessed via `https://argocd.cnoe.localtest.me`
+- Gitea UI is accessed via `https://gitea.cnoe.localtest.me`
+
+This approach is generally cleaner and offers more flexible routing options because it requires less complex ingress configurations.
+
+#### Path-based routing
+
+When you use the `--use-path-routing` flag, idpbuilder configures all services under a single domain name, with routing based on path parameters.
+For example:
+- ArgoCD UI is accessed via `https://cnoe.localtest.me/argocd`
+- Gitea UI is accessed via `https://cnoe.localtest.me/gitea`
+
+This is useful when you are constrained to using a single domain name and cannot use subdomains.
+A good example is when using GitHub Codespaces. When [forwarding ports](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace) in Codespaces, you are given a single domain name (like `wild-broomstick-abc.github.dev`) to reach all services running in your codespace.
+In such situations, you cannot use subdomains (e.g., `argocd.wild-broomstick-abc.github.dev` would not work), making path-based routing the appropriate choice.
 
 ## Core Packages
 
