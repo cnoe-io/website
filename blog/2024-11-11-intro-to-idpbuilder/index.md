@@ -44,8 +44,8 @@ Carlos Santana does an excellent job of show this in his video. https://www.yout
 
 ## Local Development and CI integrations
 
-Many organizations struggle with fragmented development environments. Different teams often work in silos, using disparate tools and workflows.
-This fragmentation can lead to inefficiencies, slower development cycles, and integration headaches.  
+Due to the number of technologies involved and the complexity in integrating them, many organizations struggle with fragmented development environments. Different teams often work in silos, using disparate tools and workflows.
+This fragmentation is a major barrier for organizations hoping to create cohesive internal developer platforms as it is difficult to design and develop features which span multiple capabilities. Furthermore, the lack of a reference development environment leads to significant inefficiencies including slower development cycles, especially for cross-capability functionality.
 idpBuilder can set up identical environments for local development and CI pipelines. With idpBuilder, you get:
 
 1. **Reduced "It Works on My Machine" Syndrome**: With consistent environments, discrepancies between local and CI setups become a thing of the past.
