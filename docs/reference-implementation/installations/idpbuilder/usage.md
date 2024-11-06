@@ -7,7 +7,7 @@ index: 2
 
 import ColorOutput from './images/color-output.png';
 
-### Basic usage
+## Basic usage
 
 The most basic command which creates a Kubernetes Cluster (Kind cluster) with the core packages installed.
 
@@ -40,12 +40,12 @@ idpbuilder create --color
 
 
 
-###  Example commands
+##  Example commands
 
 **For more advanced use cases, check out the [Stacks Repository](https://github.com/cnoe-io/stacks).**
 
 
-#### Create
+### Create
 
 Specify the kubernetes version by using the `--kube-version` flag. Supported versions are available [here](https://github.com/kubernetes-sigs/kind/releases).
 
@@ -118,7 +118,7 @@ For available flags and subcommands:
 idpbuilder create --help
 ```
 
-#### Get
+### Get
 
 Get all relevant secrets. See [this section](how-it-works.md#getting-relevant-secrets) for more information.
 
@@ -132,7 +132,7 @@ Get secrets for a package named `gitea`.
 idpbuilder get secrets -p gitea
 ```
 
-#### Delete
+### Delete
 
 Delete a cluster named `localdev`.
 
@@ -141,7 +141,7 @@ idpbuilder delete --name localdev
 ```
 
 
-### Gitea Integration
+## Gitea Integration
 
 idpbuilder creates an internal [Gitea](https://about.gitea.com/) server (accessible from your laptop and kind cluster only).
 This can be used for various purposes such as sources for ArgoCD, container registry, and more.
@@ -190,7 +190,7 @@ curl -k -X POST \
 
 </details>
 
-### Custom Packages
+## Custom Packages
 
 Idpbuilder supports specifying custom packages using the flag `-p` flag. This flag expects a directory (local or remote) containing ArgoCD application files and / or ArgoCD application set files. In case of a remote directory, it must be a directory in a git repository, and the URL format must be a [kustomize remote URL format](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/remoteBuild.md).
 
@@ -263,7 +263,59 @@ You can also view the updated Application spec by going to this address: https:/
 The second package directory defines two normal ArgoCD applications referencing a remote repository.
 They are applied as-is.
 
-### Exposing Services
+## Workflows
+
+In some situations, you need to run imperative jobs such as creating users in your service, managing secrets, or calling APIs.
+ArgoCD [Resource Hooks](https://argo-cd.readthedocs.io/en/stable/user-guide/resource_hooks/) are perfect for these scenarios. 
+These hooks allow you to execute imperative workflows at various stages of the ArgoCD sync process.
+
+For example, you can create a Kubernetes job that runs after a PostgreSQL database is created and ready by using the `PostSync` hook. Here's an example:
+
+<details>
+  <summary>Example PostgreSQL User Creation Hook</summary>
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-db-user
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: create-user
+        image: bitnami/postgresql:latest
+        command: ["/bin/bash", "-c"]
+        args:
+        - |
+          PGPASSWORD=$POSTGRES_PASSWORD psql -h postgresql -U postgres <<'EOF'
+            DO $$ 
+            BEGIN
+              IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'myapp') THEN
+                CREATE USER myapp WITH PASSWORD 'mypassword';
+                GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myapp;
+              END IF;
+            END
+            $$;
+          EOF
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgresql
+              key: postgres-password
+      restartPolicy: Never
+  backoffLimit: 3
+```
+
+</details>
+
+More complex examples are available [here](https://github.com/cnoe-io/stacks/blob/main/ref-implementation/keycloak/manifests/keycloak-config.yaml) 
+
+## Exposing Services
 
 Idpbuilder comes with [ingress-nginx](https://github.com/kubernetes/ingress-nginx), and this is meant to be used as an easy way to expose services to the outside world.
 See [the networking overview section](how-it-works.md#networking) for more information.
