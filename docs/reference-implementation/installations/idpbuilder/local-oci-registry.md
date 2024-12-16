@@ -25,7 +25,7 @@ docker push gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
 ```
 > **NOTE**: You can get the giteaAdmin password in the same way as you do for the web or git interface.
 > 
-> `./idpbuilder get secrets -p gitea`
+> `idpbuilder get secrets -p gitea`
 > 
 > Or you can use this to login directly:
 > ```
@@ -33,6 +33,29 @@ docker push gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
 >   jq '.[0].data.password' -r | \
 >   docker login -u giteaAdmin --password-stdin gitea.cnoe.localtest.me:8443
 > ```
+
+### Path Based Routing
+
+You can also use the OCI registry with path based routing mode (the `--use-path-routing` flag). 
+When using this flag, you need to specify the host as `cnoe.localtest.me:8443`.
+
+Example:
+
+```bash
+# get the admin user password
+idbuilder get secrets -p gitea
+
+# login
+docker login cnoe.localtest.me:8443
+# Username (giteaAdmin): giteaAdmin
+# Password:
+
+# test with the ubuntu 24.04 image
+docker pull docker.io/library/ubuntu:24.04 
+docker tag docker.io/library/ubuntu:24.04 cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
+docker push cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
+
+```
 
 ### Image Tags
 
@@ -76,16 +99,6 @@ spec:
         - sleep
         - "3600"
 ```
-
-### Only Works with Subdomain Based Idpbuilder Installations
-Right now because of the way the OCI registry specifications discovers information about a repo, this will only work with subdomain `gitea.cnoe.localtest.me`
-based installations of idpbuilder's core capabilities.
-
-If you would like to use path based routing, you will have to install and manage your own OCI registry at this time.
-Other registries might be able to handle this better, however which registries and how to configure them is beyond the scope of this document.
-
-For more info on the OCI registry spec and the root cause of this "discovery" issue see the spec here:
-https://specs.opencontainers.org/distribution-spec/?v=v1.0.0#checking-if-content-exists-in-the-registry
 
 ### Pulling Images From Inside Idpbuilder K8s Cluster:
 
