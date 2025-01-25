@@ -63,7 +63,7 @@ function HomepageHeader() {
                 &nbsp;
                 <Link
                   className="button button--secondary button--lg"
-                  to="https://github.com/cnoe-io"            
+                  to="/docs/contribute"            
                   style={{textAlign:"center", width:"225px"}}
                 >
                   <img src="img/github.svg" 
