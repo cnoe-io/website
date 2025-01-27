@@ -1,4 +1,4 @@
-# Contibuting
+# Contributing
 
 We're glad you're interested in contributing to CNOE!
 
