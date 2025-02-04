@@ -1,0 +1,155 @@
+/* src/theme/CodeBlock/styles.module.css */
+.terminal {
+    background-color: #f6f8fa;
+    border-radius: 10px;
+    margin: 1rem 0;
+    overflow: hidden;
+    position: relative;
+    border: none;
+ }
+  
+ .terminalHeader {
+    background-color: #323232;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: relative;
+    z-index: 2;
+ }
+  
+ .terminalControls {
+    display: flex;
+    gap: 8px;
+ }
+  
+ .terminalButton {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+ }
+  
+ .terminalButton:nth-child(1) {
+    background-color: #ff5f56;
+ }
+  
+ .terminalButton:nth-child(2) {
+    background-color: #ffbd2e;
+ }
+  
+ .terminalButton:nth-child(3) {
+    background-color: #27c93f;
+ }
+  
+ .copyButton {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    margin-left: auto;
+ }
+  
+ .copyButton:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+ }
+  
+ .terminalBody {
+    padding: 16px 16px 4px 16px;
+    position: relative;
+    background-color: #f6f8fa;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #24292e;
+ }
+ 
+ .commandLine {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 2px 0;
+    margin-right: 16px;
+ }
+ 
+ .commandHighlighted {
+    background-color: #dde4ee;
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+    padding: 2px 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .inlineCopyButton {
+    position: absolute;
+    right: -20px;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    color: #24292e;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+ }
+ 
+ .inlineCopyButton:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.05);
+ }
+ 
+ .inlineCopyButton svg {
+    width: 16px;
+    height: 16px;
+    transition: all 0.2s ease;
+ }
+ 
+ .inlineCopyButton[data-copied="true"] {
+    color: #27c93f;
+    border-color: #27c93f;
+ }
+ 
+ .copyButton[data-copied="true"] {
+    color: #27c93f;
+    border-color: #27c93f;
+ }
+ 
+ /* Override any Docusaurus default styles that might add borders */
+ .terminal :global(.theme-code-block),
+ .terminal :global(pre),
+ .terminalBody :global(.theme-code-block) {
+    border: none !important;
+    background-color: transparent !important;
+    color: #24292e !important;
+ }
+  
+ .terminalBody :global(pre) {
+    margin: 0;
+    padding: 0;
+ }
+ 
+ .terminalBody :global(code) {
+    color: #24292e !important;
+    background-color: transparent !important;
+ }
+ 
+ .enhancedPre {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    font-family: var(--ifm-font-family-monospace);
+    font-size: var(--ifm-code-font-size);
+ }
