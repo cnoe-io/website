@@ -5,13 +5,14 @@ title: Set up IDP on EKS
 index: 1
 ---
 
-
 :::tip GitHub Repo
 
  [cnoe-io/reference-implementation-aws](https://github.com/cnoe-io/reference-implementation-aws)
 :::
 
-> **_NOTE:_**  Applications deployed in this repository are not meant or configured for production.
+:::danger 
+Applications deployed in this repository are not meant or configured for production.
+:::
 
 ![overview](../images/application-idp.png)
 
@@ -28,6 +29,7 @@ We may be able to use sealed secrets with full GitOps approach in the future.
 - AWS CLI (2.13+)
 - Kubectl CLI (1.27+)
 - jq
+- nc
 - git
 - yq
 - curl
@@ -87,22 +89,27 @@ github_pat_ABCDEDFEINDK....
 Follow the following steps to get started.
 
 1. Create GitHub apps and GitHub token as described above.
-2. Create a new EKS cluster. We do not include EKS cluster in the installation module because EKS cluster requirements vary between organizations and the focus of this is integration of different projects. If you prefer, you can create a new basic cluster with the included [`eksctl.yaml`](https://github.com/cnoe-io/reference-implementation-aws/blob/main/eksctl.yaml) file:
-    ```eksctl create -f eksctl.yaml```
+2. Fork the [repository](https://github.com/cnoe-io/reference-implementation-aws) into your your newly created GitHub Organziation
+3. After forking the repo clone it locally using:  `git clone https://github.com/<YOUR-ORGANIZATION-HERE>/reference-implementation-aws`
+4. Create a new EKS cluster. We do not include EKS cluster in the installation module because EKS cluster requirements vary between organizations and the focus of this is integration of different projects. If you prefer, you can create a new basic cluster with the included [eksctl.yaml](https://github.com/cnoe-io/reference-implementation-aws/blob/main/eksctl.yaml) file in the cloned repo. You can create a cluster using eksctl: `eksctl create -f eksctl.yaml`
     You can get eksctl from [this link](https://eksctl.io/).
-3. If you don't have a public registered Route53 zone, [register a Route53 domain](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html) (be sure to use Route53 as the DNS service for the domain). We **strongly encourage creating a dedicated sub domain** for this. If you'd rather manage DNS yourself, you can set `enable_dns_management` in the config file.
-4. Get the host zone id and put it in the config file. 
+5. If you don't have a public registered Route53 zone, [register a Route53 domain](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html) (be sure to use Route53 as the DNS service for the domain). We **strongly encourage creating a dedicated sub domain** for this. If you'd rather manage DNS yourself, you can set `enable_dns_management` in the config file.
+6. Get the host zone id and put it in the config file. 
     ```bash
     aws route53 list-hosted-zones-by-name --dns-name <YOUR_DOMAIN_NAME> --query 'HostedZones[0].Id' --output text | cut -d'/' -f3
     # in the setups/config file, update the zone id.
     HOSTEDZONE_ID=ZO020111111
     ```
-5. Update the [`setups/config`](https://github.com/cnoe-io/reference-implementation-aws/blob/main/setups/config.yaml) file with your own values.
-6. Run `setups/install.sh` and follow the prompts. See the section below about monitoring installation progress.
-7. Once installation completes, navigate to `backstage.<DOMAIN_NAME>` and log in as `user1`. Password is available as a secret. You may need to wait for DNS propagation to complete to be able to login. May take ~10 minutes.
+7. Navigate to the `setups/config` file in your repo and update the `repo_url` and the `hosted_zone_id`
+8. Run `setups/install.sh` and follow the prompts. See the section below about monitoring installation progress.
+:::info 
+It may require running the install.sh script twice to get it deployed successfully 
+:::
+9. Once the installation completes make sure to update your kube context and configure your kube config: `aws eks update-kubeconfig —name <cluster-name> —region <region>`
+
+10. Once installation completes, navigate to `backstage.<DOMAIN_NAME>` and log in as `user1`. Password is available as a secret. You may need to wait for DNS propagation to complete to be able to login. May take ~10 minutes.
     ```bash
     kubectl get secrets -n keycloak keycloak-user-config -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
-    ```
 
 
 ### Monitoring installation progress
