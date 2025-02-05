@@ -53,7 +53,7 @@ For example, if you want to remove Spark Operator, you can delete [this file](ht
 
 ```bash
 # remove spark operator from this installation.
-rm examples/ref-implementation/spark-operator.yaml
+$ rm examples/ref-implementation/spark-operator.yaml
 ```
 
 The only package that cannot be removed this way is Keycloak because other packages rely on it. 
@@ -84,7 +84,7 @@ Click on the Sign-In button, you will be asked to log into the Keycloak instance
 configuration, and their password can be retrieved with the following command:
 
 ```bash
-idpbuilder get secrets
+$ idpbuilder get secrets
 ```
 
 Use the username **`user1`** and the password value given by `USER_PASSWORD` field to login to the backstage instance.

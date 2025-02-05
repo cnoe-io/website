@@ -46,14 +46,14 @@ There are two ways to create GitHub integration with Backstage. You can use the 
 To create one with the CLI, follow the steps below.
 
 ```bash
-npx '@backstage/cli' create-github-app ${GITHUB_ORG_NAME}
+$ npx '@backstage/cli' create-github-app ${GITHUB_ORG_NAME}
 # If prompted, select all for permissions or select permissions listed in this page https://backstage.io/docs/integrations/github/github-apps#app-permissions
 # In the browser window, allow access to all repositories then install the app.
 
 # move it to a "private" location. 
-mkdir -p private
-GITHUB_APP_FILE=$(ls github-app-* | head -n1)
-mv ${GITHUB_APP_FILE} private/github-integration.yaml
+$ mkdir -p private
+$ GITHUB_APP_FILE=$(ls github-app-* | head -n1)
+$ mv ${GITHUB_APP_FILE} private/github-integration.yaml
 ```
 
 **The file created above contains credentials. Handle it with care.**
@@ -93,7 +93,7 @@ Follow the following steps to get started.
 3. If you don't have a public registered Route53 zone, [register a Route53 domain](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html) (be sure to use Route53 as the DNS service for the domain). We **strongly encourage creating a dedicated sub domain** for this. If you'd rather manage DNS yourself, you can set `enable_dns_management` in the config file.
 4. Get the host zone id and put it in the config file. 
     ```bash
-    aws route53 list-hosted-zones-by-name --dns-name <YOUR_DOMAIN_NAME> --query 'HostedZones[0].Id' --output text | cut -d'/' -f3
+    $ aws route53 list-hosted-zones-by-name --dns-name <YOUR_DOMAIN_NAME> --query 'HostedZones[0].Id' --output text | cut -d'/' -f3
     # in the setups/config file, update the zone id.
     HOSTEDZONE_ID=ZO020111111
     ```
@@ -101,7 +101,7 @@ Follow the following steps to get started.
 6. Run `setups/install.sh` and follow the prompts. See the section below about monitoring installation progress.
 7. Once installation completes, navigate to `backstage.<DOMAIN_NAME>` and log in as `user1`. Password is available as a secret. You may need to wait for DNS propagation to complete to be able to login. May take ~10 minutes.
     ```bash
-    kubectl get secrets -n keycloak keycloak-user-config -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+    $ kubectl get secrets -n keycloak keycloak-user-config -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
     ```
 
 
@@ -111,9 +111,9 @@ Components are installed as ArgoCD Applications. You can monitor installation pr
 
 ```bash
 # Get the admin password 
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+$ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 
-kubectl port-forward svc/argocd-server -n argocd 8081:80
+$ kubectl port-forward svc/argocd-server -n argocd 8081:80
 ```
 
 Go to [`http://localhost:8081`](http://localhost:8081) and login with the username `admin` and password obtained above. In the UI you can look at resources created, their logs, and events.
@@ -130,7 +130,7 @@ If you set `MANAGED_DNS=false`, you are responsible for updating DNS records, th
 Point these records to the value returned by the following command. 
 
 ```bash
-k get svc -n ingress-nginx ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+$ k get svc -n ingress-nginx ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
 ```
 
 ### If you installed it without Cert Manager.
@@ -140,9 +140,9 @@ If you set `MANAGED_CERT=false`, you are responsible for managing TLS certs, thu
 Run the following command to find where to create secrets.
 
 ```bash
-output=$(kubectl get ingress --all-namespaces -o json | jq -r '.items[] | "\(.metadata.namespace) \(.spec.rules[].host) \(.spec.tls[].secretName)"')
-echo -e "Namespace \t Hostname \t TLS Secret Name"
-echo -e "$output"
+$ output=$(kubectl get ingress --all-namespaces -o json | jq -r '.items[] | "\(.metadata.namespace) \(.spec.rules[].host) \(.spec.tls[].secretName)"')
+$ echo -e "Namespace \t Hostname \t TLS Secret Name"
+$ echo -e "$output"
 ```
 
 Secret format should be something like:
