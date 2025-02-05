@@ -14,11 +14,11 @@ To get started with Podman on MacOS, run the following:
 
 ```bash
 # create a local Linux VM
-podman machine init 
-podman machine start
+$ podman machine init 
+$ podman machine start
 
 # KIND_EXPERIMENTAL_PROVIDER instructs Kind to use podman as its provider
-KIND_EXPERIMENTAL_PROVIDER=podman idpbuilder create
+$ KIND_EXPERIMENTAL_PROVIDER=podman idpbuilder create
 ```
 
 ### Podman rootless
@@ -28,9 +28,9 @@ If you need rootful behaviours, run the following command:
 
 ```bash
 # verify if you are running rootful or rootless
-podman machine inspect | jq '.[0].Rootful'
+$ podman machine inspect | jq '.[0].Rootful'
 # https://docs.podman.io/en/stable/markdown/podman-machine-set.1.html
-podman machine set --rootful
+$ podman machine set --rootful
 ```
 
 ### Missing Kernel modules
@@ -47,12 +47,12 @@ You may need to enable the ip_table module.
 
 ```bash
 # check if ip_table is enabled
-lsmod | grep ip_table
+$ lsmod | grep ip_table
 # if not, enable it.
-sudo modprobe ip_tables
-echo 'ip_tables' | sudo tee -a /etc/modules-load.d/ip_tables.conf
+$ sudo modprobe ip_tables
+$ echo 'ip_tables' | sudo tee -a /etc/modules-load.d/ip_tables.conf
 # verify it's activated
-lsmod | grep ip_table
+$ lsmod | grep ip_table
 ```
 
 ## Gitea OCI registry

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import CodeBlock from '@theme-original/CodeBlock';
 import styles from './styles.module.css';
+import { index, text } from 'd3';
 
 function ClipboardIcon() {
   return (
@@ -62,15 +63,26 @@ export default function CodeBlockWrapper(props) {
       return { index, raw: line };
     });
 
-  const handleCopy = async (command, index) => {
+  const handleCopy = async (text, index) => {
     try {
-      await navigator.clipboard.writeText(command);
-      setCopiedIndex(index);
-      setTimeout(() => setCopiedIndex(-1), 2000);
-    } catch (err) {
-      console.error('Failed to copy text: ', err);
-    }
+      await navigator.clipboard.writeText(text);
+          setCopiedIndex(index);
+          setTimeout(() => setCopiedIndex(-1), 2000);
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+        }
   };
+  // Function to prepare the full block content for copying
+  const getFullBlockContent = () => {
+    return commands
+      .map((item) => {
+        if(item.command) {
+          return item.command; // use the command without the $ prefix
+        }
+        return item.raw; // Use the raw line if not start with $ prefix
+      })
+      .join('\n'); // Join the lines with newline for the codeBlock
+  }
 
   // Wrap each command line with copy button
   const enhancedContent = commands.map((item, idx) => {
@@ -112,7 +124,7 @@ export default function CodeBlockWrapper(props) {
         </div>
         <button
           className={styles.copyButton}
-          onClick={() => handleCopy(commands.filter(c => c.command).map(c => c.command).join('\n'), -2)}
+          onClick={() => handleCopy(getFullBlockContent(), -2)}
           aria-label="Copy all commands"
           data-copied={copiedIndex === -2}
         >
