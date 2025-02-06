@@ -1,31 +1,38 @@
 ---
+<<<<<<<< HEAD:docs/intro/cnoe.md
 sidebar_position: 1
 description: What is CNOE?
 title: What is CNOE?
 ---
 
 # Cloud Native Operational Excellence (CNOE)
+========
+sidebar_position: 2
+description: Concepts
+title: Concepts
+---
+>>>>>>>> 4bb8ec9 (restructuring the website):docs/intro/intro.md
 
-_( pronounced Kuh.noo )_
+# Concepts
 
-## What is CNOE?
+The Concepts section helps you learn about the parts of the CNOE components and helps you obtain a deeper understanding of how CNOE works.
 
-Enterprises that adopt OSS as the foundation of their cloud platforms face the challenge of choosing technologies that will support their business outcomes for 3-5 years. The cost of retooling and re-platforming for large organizations is high, which makes bets on specific technologies fundamental to their technology strategies. In order to de-risk these bets, enterprises take into consideration the investments of their peer organizations. The goal for the CNOE framework is to bring together a cohort of enterprises operating at the same scale so that they can navigate their operational technology decisions together, de-risk their tooling bets, coordinate contribution, and offer guidance to large enterprises on which CNCF technologies to use together to achieve the best cloud efficiencies.
+**[What is CNOE (Cloud Native Operational Excellence)?](./intro#what-is-cnoe)**
 
-## Problem Statement
+An initiative to help large enterprises navigate the complex cloud-native tooling landscape, make informed technology choices, and collaborate on building a robust operational platform.
 
-As software development processes have evolved, infrastructure and related tooling have become more and more fragmented and complex. Standalone tools (i.e., Spinnaker, Jenkins, CloudFormation) for operating in cloud-native environments are no longer effective for most customers on their own. While some of this is the nature of technology evolution and growth, a number of root causes are contributing to customers augmenting or replacing their existing tooling to address their larger-scale challenges.
 
-1. The current tooling “standard” is a moving target. The size and scope of the CNCF landscape alongside the ever-increasing breadth of tools creates a paralyzation of choice. Customers are forced to adopt a wide-ranging array of tools with minimal direction and implement them in environment-specific ways, leading to a lack of consensus between customers. This also contributes to significant supportability and maintainability problems within the communities that govern those tools.
+**[idpBuilder](./intro#idpbuilder)** 
 
-1. The definitions of traditional continuous integration and continuous delivery/deployment (CI/CD) have become blurry. Legacy systems have grown to be bloated and contributions have fallen behind in lieu of lighter more modern tools (i.e., ArgoCD, Flux, Tekton) that focus on newer paradigms like GitOps.
+A tool that simplifies the setup of a reference internal developer platform (IDP) by leveraging Kubernetes, ArgoCD, and other industry-standard technologies.
 
-1. The advent and growth of declarative, centralized control planes for infrastructure (e.g. Kubernetes) creates an ecosystem that is fundamentally different and arguably inoperable with previous generation tooling. However, many application environments still expect (and will continue to expect) to interface with “traditional” virtual machine or bare metal based infrastructure points.
+**[Technology Capabilities](./intro#capabilities)** 
 
-1. Developers’ core workflows have remained more-or-less the same over the past years, focused more on understanding the intricacies of a language or framework and implementing them using appropriate versioning and collaborative tooling. Many of the abstractions in `*-Ops` today were designed to accommodate differences in infrastructure, leading to a discontinuity between developers and delivery.
+CNOE defines a comprehensive set of core capabilities required for building a cloud-native operational platform, covering areas like deployment, application packaging, continuous delivery, identity management, and more.
 
-1. Fragmentation between software delivery and deployment methods have led to a multitude of languages, infrastructure as code platforms, templating engines, specs, and packaging systems. This creates an endless combination of non-portable software components that are difficult to reconcile into a singular application.
+**[Technology Radars](./intro#radar)**
 
+<<<<<<<< HEAD:docs/intro/cnoe.md
 ## Tenets 
 
 The CNOE working group will operate based on the following tenets.
@@ -76,3 +83,6 @@ CNOE takes a multitudinal and communal approach toward solving problems faced by
 * **Building Patterns and Tooling:** For seamless transition into a CNOE-compliant delivery pipeline, CNOE will aim at delivering "packaging specifications", "templating mechanisms", as well as "deployer technologies", an example of which is enabled via the [idpBuilder tool](reference-implementation/idpbuilder) we have released. The combination of templates, specifications, and deployers allow for bundling and then unpacking of CNOE recommended tools into a user's DevOps environment. This enables teams to share and deliver components that are deemed to be the best tools for the job.
 
     Modernizing a delivery pipeline according to CNOE guidelines then becomes the practice of devising a migration plan from the old set of tools used by an organization into the new set of tools endorsed by CNOE. This is another area where a community approach to endorsing, adhering to, and executing on CNOE-compliant delivery pipelines will be critical. For it to succeed, CNOE relies on commitments and contributions from its community members to develop and contribute migration plans and tools that empower transitioning from the legacy environments to the new environments.
+========
+CNOE maintains visual radars to help the community align on technology choices and identify collaboration opportunities.
+>>>>>>>> 4bb8ec9 (restructuring the website):docs/intro/intro.md
