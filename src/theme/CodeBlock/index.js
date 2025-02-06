@@ -48,20 +48,40 @@ export default function CodeBlockWrapper(props) {
     return <CodeBlock {...props} />;
   }
 
-  // Parse commands and their line numbers
-  const commands = props.children
-    .split('\n')
-    .map((line, index) => {
-      const trimmedLine = line.trim();
-      if (trimmedLine.startsWith('$')) {
-        return {
-          index,
-          command: trimmedLine.substring(1).trim(),
-          raw: line
-        };
+  // Parse commands and group multi-line commands
+  const commands = [];
+  let currentCommand = null;
+
+  props.children.split('\n').forEach((line, index) => {
+    const trimmedLine = line.trim();
+    if (trimmedLine.startsWith('$')) {
+      // Start a new command
+      if (currentCommand) {
+        commands.push(currentCommand);
       }
-      return { index, raw: line };
-    });
+      currentCommand = {
+        index,
+        command: trimmedLine.substring(1).trim(), // Remove the $ prefix
+        raw: line,
+        isMultiLine: trimmedLine.endsWith('\\'), // Check if the line ends with \
+        lines: [line], // Store all lines of the command
+      };
+    } else if (currentCommand && currentCommand.isMultiLine) {
+      // Append to the current multi-line command
+      currentCommand.lines.push(line);
+      currentCommand.command += ' ' + trimmedLine.replace(/\\$/, ''); // Remove the trailing \
+      currentCommand.isMultiLine = trimmedLine.endsWith('\\'); // Update isMultiLine
+    } else {
+      // Non-command line
+      commands.push({ index, raw: line });
+    }
+  });
+
+  // Push the last command if it exists
+  if (currentCommand) {
+    commands.push(currentCommand);
+  }
+
 
   const handleCopy = async (text, index) => {
     try {
@@ -72,17 +92,16 @@ export default function CodeBlockWrapper(props) {
           console.error('Failed to copy text: ', err);
         }
   };
+   
   // Function to prepare the full block content for copying
+     // Function to prepare the full block content for copying
   const getFullBlockContent = () => {
     return commands
-      .map((item) => {
-        if(item.command) {
-          return item.command; // use the command without the $ prefix
-        }
-        return item.raw; // Use the raw line if not start with $ prefix
-      })
-      .join('\n'); // Join the lines with newline for the codeBlock
-  }
+      .filter((item) => item.command) // Only include lines with commands
+      .map((item) => item.command) // Extract the command text
+      .join('\n'); // Join commands with newline
+  };
+
 
   // Wrap each command line with copy button
   const enhancedContent = commands.map((item, idx) => {
@@ -90,17 +109,25 @@ export default function CodeBlockWrapper(props) {
       return item.raw + '\n';
     }
 
+    const isHovered = hoveredIndex === idx;
+
     return (
-      <div 
+      <div
         key={idx}
         className={styles.commandLine}
         onMouseEnter={() => setHoveredIndex(idx)}
         onMouseLeave={() => setHoveredIndex(-1)}
       >
-        <span className={hoveredIndex === idx ? styles.commandHighlighted : ''}>
-          {item.raw}
-        </span>
-        {hoveredIndex === idx && (
+        {item.lines.map((line, lineIndex) => (
+          <span
+            key={lineIndex}
+            className={isHovered ? styles.commandHighlighted : ''}
+          >
+            {line}
+            {lineIndex < item.lines.length - 1 && '\n'} {/* Add newline between lines */}
+          </span>
+        ))}
+        {isHovered && (
           <button
             className={styles.inlineCopyButton}
             onClick={() => handleCopy(item.command, idx)}
