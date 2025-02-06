@@ -78,7 +78,8 @@ Once you have your token, save it under the private directory with the name `git
 ```bash
 # From the root of this repository.
 $ mkdir -p private
-$ vim private/github-token # paste your token
+# paste your token
+$ vim private/github-token 
 # example output
 $ cat private/github-token
 github_pat_ABCDEDFEINDK....
@@ -102,7 +103,7 @@ Follow the following steps to get started.
     ```
 7. Navigate to the `setups/config` file in your repo and update the `repo_url` and the `hosted_zone_id`
 8. Run `setups/install.sh` and follow the prompts. See the section below about monitoring installation progress.
-:::info 
+:::info Note
 It may require running the install.sh script twice to get it deployed successfully 
 :::
 9. Once the installation completes make sure to update your kube context and configure your kube config: `aws eks update-kubeconfig —name <cluster-name> —region <region>`

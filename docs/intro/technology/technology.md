@@ -11,7 +11,7 @@ Every organization has slightly different requirements for their internal
 developer platforms (IDPs) and as such designing an all inclusive solution for an IDP 
 is neither reasonable nor possible.
 
-:::tip
+:::note
 Despite the differences in IDPs, there are common tooling, patterns, and practices that
 emerge across organizations.
 :::
