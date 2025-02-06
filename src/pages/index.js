@@ -106,6 +106,24 @@ const Partners = () => {
         </Grid>
         <Grid item xs={1}/>
       </Grid>
+      &nbsp;
+      <Link
+        className="button button--primary button--lg"
+        to="/docs/contribute"            
+        style={{
+          textAlign: "center",
+          width: "200px",
+          display: "block",
+          margin: "0 auto"
+        }}
+      >
+        <img src="img/github.svg" 
+        style={{verticalAlign:"text-bottom", marginRight:"8px"}}
+        >
+        </img>
+
+        Contribute
+      </Link>
     </div>
   );
 }
