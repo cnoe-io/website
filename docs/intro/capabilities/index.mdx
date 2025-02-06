@@ -1,0 +1,258 @@
+---
+sidebar_position: 1.1
+id: capabilities-overview
+title: Technology Capabilities
+description: Overview of our platform's core technical capabilities and architecture
+slug: /capabilities
+sidebar_label: Technology Capabilities
+hide_title: false
+hide_table_of_contents: true
+---
+
+import InteractiveDiagram from '@site/src/components/InteractiveDiagram';
+
+# Technology Capabilities
+
+<InteractiveDiagram />
+
+## Artifact Registries
+
+The artifact registry allows for the packaged components endorsed by the CNOE community to be signed, accessible, and traceable for its users.
+By storing the list of components in an OCI registry or Git repository, the CNOE packaging framework will be able to deal with versioned and compatible artifacts that have already been tested and verified in working together. 
+This also allows the combination of the registry and the packaging mechanism to undergo secure software supply chain (SSSC) best practices to further increase the level of confidence in leveraging these tools by the CNOE users.
+
+- Canonical location for durable long term artifact storage.
+- Catalog + metadata about artifacts. Used for discovery of artifacts.
+- Can be used in conjunction with Role Based Access Control (RBAC) to limit access to artifacts.
+- Should be versioned and is often immutable
+- Often used with static analysis tools to verify artifacts are free from known vulnerabilities.
+
+## Code Repositories
+Code repositories are a historical lineage of changes to a codebase (think source code for apps and libraries).
+They allow for developers to work collaboratively on common codebases and often asynchronously.
+While git and other source control tooling can allow for decentralized collaboration, usually we choose to centralize the common workflows associated with code review and automation driven by git aka “git-ops”. 
+When appropriately hardened and durable, pull requests (and associated merges to protected branches) can be used as a “system of record” for change control and approval in regulatory environments
+
+- Allows for developers to collaborate on code asynchronously
+  - This includes peer reviews and change request approvals
+- Usually centralized even when using decentralized tooling like git for the purposes of building workflows
+- They can also be the mechanism used for peer reviews and change request approvals
+
+## Compute Platform
+
+<p>This is the platform runtime. It can also be thought of as a deployment target for the applications that make up the platform.
+It offers some formalized patterns for interoperability between platform capabilities.</p>
+<p>Can offer similar discoverability and uniformity as that of service oriented architectures (SOA)
+Can also offer a common medium for data exchange between services like an enterprise service bus or (ESB)</p>
+<p>Frequently Kubernetes is the compute and also the substrate for the foundation of platform capabilities.</p>
+
+## Config Repositories
+
+Config repositories are similar to code repositories but specific to application configuration.
+Often takes the form of serialized key value pairs or similar simple data structures.
+Frequently the keys are appended or tagged with meta-data about environment specifics so that they can be targeted.
+May be built on a hierarchy, tree or graph structure to further instill meta-data about the contents of the keys and values.
+Can be centralized or distributed, but should only have one source of truth for a fully qualified key-value pair.
+The values should not contain embedded secrets but often contains references to secrets that can be found within secret repositories.
+The data should be versioned and immutable to allow for point in time snapshots for things like rollbacks.
+
+- Usually key/value or other serialized structured data format
+- Often appended or tagged with meta-data about env specifics
+- Keys can be structured in hierarchical or graph format
+- Values should not contain secrets but can contain references
+- Values should be versioned and immutable
+- Keys should only have one current source of truth for their values
+
+## Continuous Delivery (CD)
+
+<p>Continuous delivery’s ultimate goal is to get infrastructure and application resources into a state, ready for receiving production workload.</p>
+<p>GitOps is a new trend in continuous delivery where automation is put in place to ensure the desired state of the world matches the perceived state of the world.
+This is achieved by connecting the source of truth (usually a git repository holding definition of application and infrastructure resources) to a reconciling controller that ensures consistency of the spun up resource to what is stored in Git.
+ArgoCD and FluxCD are two prominent implementations of these CD practices.
+While very similar in nature, ArgoCD and FluxCD and the likes could work in tandem and are not mutually exclusive.</p>
+<p>Under the CD category, the CNOE community can help users evaluate which personas (e.g operator, developer) would be the most likely beneficiaries from each category of tooling.
+It is also worth noting that while GitOps is the dominant CD strategy in the CNCF space, it does not need to be the one or the only practice adopted by the CNOE users.
+Pluggability aspects of CNOE should ensure that customers have enough freedom in choosing their alternative.</p>
+
+- Automation to build, test and release software upon every successful merge to a mainline branch
+- Allows for fully automated deployments when “Continuous Deployment” is enabled
+- Facilitates testing that goes beyond simple unit or integration tests. Frequently used in conjunction with end to end (E2E) or functional tests.
+- Can be used in conjunction with safe production deployment methods like Blue/Green or Canary deployments
+- Can also make use of feature flags to allow for “soft” or “dark launches” of features and functionality not yet ready for broad consumption
+- Generally gets code in the hands of consumers faster, surfacing bugs quicker and shortening product feedback loops.
+
+## Deployment Targets
+
+These are the runtime environments that product apps and services run on. This includes static content or data published for distribution.
+- Often abstractions hiding the details of underlying environments from the product developers.
+  - Regions or localities are a good example of what one might want to mask.
+- Common deployment targets include:
+  - Kubernetes
+  - Lambda
+  - Virtual Machines
+  - Elastic Container Service
+  - Static Content
+
+  
+## Developer Portal
+
+The CNOE cohort will work towards striking a balance on expectations across all its stake holders. This basically means that the set of tooling put together under CNOE will have to be as useful to the application developers as it is to other stakeholders. In order for this to be achieved, big emphasis is put on offering the right developer productivity tool that would serve as an overarching umbrella for including and presenting the underlying tooling in a user-friendly manner. Backstage is a popular open source tool supporting configurability and pluggability that can be utilized to achieve such level of developer productivity.
+
+- Software catalog of all components, systems and domains.
+- One-stop location to find all about the software we build (docs, source repository, dashboards, support location, owners, etc.)
+- API Documentation
+- Dependencies on other software
+- Documentation system using the docs-as-code approach. Docs are typically in Markdown, and stored in code repositories.
+- Software templates for creating new projects.
+- Onboarding automation for security and trust.
+
+## Identity and Access
+
+<p>In the context of a platform, identity and access is most frequently a service that can be used to wire up Authentication and Authorization in a common well understood manner.
+By offering Identity and Access management as a capability of the platform, we can avoid product applications from having to reinvent the wheel for such critical functionality.</p>
+<p>This capability can differ greatly depending on the needs of applications and services that consume it, but generally it will allow for an application to delegate the login, or challenge for proof of identity to the platform. Then the application can utilize the results of that challenge process to use credentials presented to the user by the identity access process to access sensitive information or processes.</p>
+<p>The technical aspects of how the Identity and Access service can be consumed by client apps should use rigourously tested standards.
+Often the Identity and Access service will allow for client apps to bring their own sources of identity through a process of federation. This allows for client apps to root their identity in their existing systems but still make use of the common Auth service offered by the platform.</p>
+
+<p>Machine identity and in particular the SPIFFE Protocol is a relatively new method to make use of trust built into workloads running in known good environments as an authentication mechanism. This is considered more secure than the use of long lived pre-shared secrets like those used by services users or API tokens.</p>
+
+- Must provide authentication
+- May provide primitives or framework for authorization
+- Must be well understood and easy to reason about 
+- Reduces duplication of effort through delegation
+- Can be tested independently and in conjunction with consumer applications
+- Identity can be federated
+- Machine Identity can use modern protocols like SPIFFE
+- Examples of Standard Protocols:
+  - OAuth and OpenID Connect
+  - SAML
+  - Mutual TLS and pre-shared certificates
+  - API tokens or Bearer Authentication
+
+## Infrastructure as Code (IaC)
+
+<p>Infrastructure as Code or IaC, builds upon the Infrastructure as a Service (IaaS) offerings from cloud providers and modern datacenter automation. It is the APIs and programmatic libraries utilized within software frameworks built specifically for managing the life cycles of cloud infrastructure.
+It frequently encapsulates the tooling and automation used to spin up infrastructure resources for a given application.</p>
+<p>By masking away the inconsistency of underlying cloud provider APIs, IaC offers the ability to build common patterns across a mix of heterogeneous resources.
+It also allows platform teams the ability to build higher order resources that meet specific business needs (beyond the low level APIs of the cloud providers).
+Furthermore, sane defaults and security and compliance concerns can be injected in a uniformly and made compulsory</p>
+
+<p>We are seeing two categories of OSS tools in use at large: That which is occasionally reconciled like Terraform, Pulumi, CDK and continuously reconciled solutions like Crossplane or Amazon Controllers for Kubernetes (ACK).</p>
+<p>The CNOE cohort will have to decide on the ideal IaC tool that works in tandem with the rest of delivery components, gains the overall community approval, and becomes the defacto service in use by the CNOE cohort.</p>
+
+- Cohesive libraries, APIs and patterns for reconciling IaaS provider resources
+- Allows for higher order abstractions to be built
+- Can inject sane defaults and enforce security best practices
+- Can be continuously reconciled when used in conjunction with Kubernetes
+- Common implementations are 
+  - Terraform
+  - CloudFormation
+  - Pulumi
+  - Crossplane
+
+## Observability
+
+<p>The overall well-being of the system is tracked via proper integration with state of the art observability tooling.</p>
+
+<p>Building on the existing set of technologies available in the CNCF ecosystem, CNOE needs to work in tandem with open telemetry data collectors and allow its users to view and analyze collected data using technologies such as Prometheus and Grafana.</p>
+
+
+## Packaging and Templating
+
+Packaging and templating languages and frameworks are required to ensure the delivery of complete and functional sets of tools to target specific capabilities endorsed and usable by the CNOE community.
+While opinionated, extensibility and configuration must meet the needs of users, but guide towards best practices when combining the tooling in the package.
+Some candidates for templating and packaging languages include the open component model, the Kubernetes packaging tool (KPT), and the OCI distribution specifications.
+
+- Packaged sets of tools and configuration endorsed and usable by the CNOE community
+- Opinionated and oriented toward producing best practices for the majority of use cases
+- Open and extensible, allowing for configurability of the targeted capabilities.
+
+## Secret Management
+
+<p>The life cycle and distribution of secrets must be managed safely and securely.
+Secrets Management aims to shift this important responsibility to the platform where it can be implemented and audited in one place rather than many.</p>
+<p>Secrets Management works in conjunction with secrets repositories to securely source and deliver secrets on demand and just-in-time to applications and services.</p>
+
+- Can be built with workflow-orchestration but must be treated with great care
+- Should have additional security scrutiny applied beyond other non-secret artifact delivery tooling
+- Often provides the ability to promote secrets between environments, distribute, roll and revoke secrets
+
+## Secret Repositories
+
+Secrets repositories are secure long term storage locations for sensitive data. 
+They parallel the centralized storage, versioning and meta-data capabilities offered by configuration repositories, but usually with stricter access controls and auditing.
+The storage of secrets should be encrypted. They may be encrypted with Hardware Security Modules or HSMs.
+They may be used in conjunction with other encryption and cryptographic solutions like Public Key Infrastructure or PKI.
+Secrets repositories may also offer the ability to generate, lease, rotate and revoke certain types of secrets like certificates.
+
+- Secure and durable
+- Usually key value pairs or similar structured data
+- Values must be encrypted
+- Keys and meta-data may not be encrypted
+- Must have canonical source of truth for a fully qualified key
+- May offer ability to generate/lease/rotate/revoke secret values such as certificates
+- Common tooling includes:
+  - Hashicorp Vault
+  - Cyberark Conjur
+  - AWS Secrets Manager
+  - Azure Key Vault
+  - Google Secret Manager
+
+## Service Discovery
+
+<p>Service discovery is a capability that allows for the dynamic lookup or querying of a producer’s interface/API details by consumers of that service. 
+Frequently this is based on some sort of centralized key/value or database called a Service Registry, but it can be distributed like in the case of the Domain Name System (DNS). When distributed, care must be taken to handle inconsistency in the results of queries to the Service Registry.</p>
+
+<p>Service discovery can be used in conjunction with configuration repositories, and secret repositories to allow for consumers to bootstrap themselves at startup or accept dynamic runtime changes to configuration.</p>
+
+- Allows for dynamic lookup or querying of service information
+- Usually based on a database or registry
+- Can be decentralized but care must be taken to handle inconsistency
+- Often used in conjunction with config and secret repositories for app bootstrapping
+- Common Tooling:
+  - DNS
+  - Consul
+  - ZooKeeper
+  - etcd
+
+## Signing
+Cryptographic signing of artifacts to allow for verification of the consistency and integrity of the data they contain.
+Data frequently includes source code commits, configs, binaries and meta-data but can also be any data blob.
+Cryptographic signatures can also provide attribution and provenance data (lineage and chain of custody).
+When combined with attestations (meta-data with a specific predicate in regards to the material being signed) they can be used to build up “trust telemetry” or verifiable signals about the material and how it was processed.
+These are foundational elements of a Secure Software Supply Chain.
+
+- Allows for verifying Consistency and Integrity of contents
+- Can also provide provenance and attribution
+- Can be combined with attestations to create "Trust Telemetry"
+- Foundational to Secure Software Supply Chain practices
+- Common tools to perform signing include:
+  - Sigstore
+  - PGP
+  - PKCS #11
+
+## Validation
+
+<p>Platforms can make use of API specifications and code generation to create validators for client interactions and data exchange. Kubernetes does this with its type system and Open API Spec V3 (at the time of this writing).
+Proper validation ensures that clients of the platform fail quickly and loudly if their requests are malformed or inconsistent with the platform’s API schemas.</p>
+<p>Kubernetes also offers “admission control” as a lifecycle hook on client requests in addition to validation against type schemas. However this type of ad-hoc validation can be implemented within many phases or locations with platform tooling.
+Admission control can also be a common substrate for injecting policy controls or building guardrails within the platform to meet security or regulatory requirements.</p>
+<p>When paired with Cryptographic signing, verification of the signatures on  configurations and artifacts (like container images) can be done with admission control. This allows for the enforcement of policy only allowing verifiably good materials into an environment.</p>
+
+- Ensures API specifications are abided
+- Can leverage code generation with proper tooling
+- Kubernetes Admission Control can enable a common policy plane
+- Crypographic signing can be used to enforce validation for things like binary authorization
+
+## Workflow Orchestration
+
+<p>This is the tooling that allows for explicit orchestration of tasks.
+Usually this involves the process to get applications ready for delivery.</p>
+<p>This can be things like defining the set of activities deemed necessary as part of CI, including but not limited to running tests (unit tests, smoke tests, integration tests, acceptance tests, etc), validations, verifications, and configuration changes to the deployment environments.</p>
+
+- Frequently imperative definitions of steps to be completed
+- Can use DSL for describing state machines or graphs
+- Can enable side effects like notifications or manual interventions
+
+
+

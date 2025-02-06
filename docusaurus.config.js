@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'CNOE',
   // tagline: 'Internal Developer Platforms are a strategic commitment. Share learnings & build in the open.',
-  tagline: 'Leverage Open Source Technology and build your Developer Platform now!',
+  tagline: 'Build your Internal Developer Platform with CNOE!',
   url: 'https://cnoe-io.github.io',
   baseUrl: '/',
   onBrokenLinks: 'warn',
@@ -72,20 +72,15 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: '/category/deploy-a-platform',
+            docId: '/category/getting-started',
             position: 'left',
-            label: 'Deploy'
+            label: 'Docs'
           },
           {
             type: 'doc',
             docId: 'intro/intro',
             position: 'left',
             label: 'Concepts',
-          },
-          {
-            to: '/radars',
-            position: 'left',
-            label: 'Technology Radars',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
