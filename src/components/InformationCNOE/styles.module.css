@@ -21,3 +21,11 @@
   font-size: 30px;
   text-align: left;
 }
+
+/* index.module.css */
+.learnMoreButton {
+  background-color: var(--ifm-color-neutral-lighter);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+}

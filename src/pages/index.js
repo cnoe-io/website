@@ -33,18 +33,15 @@ function HomepageHeader() {
         <Grid item xs={5} sm={6} md={7} lg={8} className="hero__subtitle tagline">
           <Grid container direction="column" spacing={2} style={{display: 'flex'}}>
             <Grid item style={{display: 'flex', alignItems: 'left'}}>
-              <p>{siteConfig.tagline}</p>
-            </Grid>
-            <Grid item>
+              <p>{siteConfig.tagline} &nbsp;&nbsp;
                 <Link
                   className="button button--primary button--lg"
                   to="/docs/category/getting-started" // go to getstarted
-                  style={{textAlign:"center", width:"225px"}}
-                >
+                  style={{textAlign:"center", width:"200px"}}>
                   <span style={{verticalAlign:"text-top"}}>
                   Get Started
                   </span>
-                </Link>
+                </Link></p>
             </Grid>
           </Grid>
         </Grid>
@@ -109,6 +106,24 @@ const Partners = () => {
         </Grid>
         <Grid item xs={1}/>
       </Grid>
+      &nbsp;
+      <Link
+        className="button button--primary button--lg"
+        to="/docs/contribute"            
+        style={{
+          textAlign: "center",
+          width: "200px",
+          display: "block",
+          margin: "0 auto"
+        }}
+      >
+        <img src="img/github.svg" 
+        style={{verticalAlign:"text-bottom", marginRight:"8px"}}
+        >
+        </img>
+
+        Contribute
+      </Link>
     </div>
   );
 }
@@ -124,7 +139,7 @@ export default function Home() {
       <HomepageHeader />
       <main>
         <InformationCNOE/>
-        <ValueProposition />
+         <ValueProposition />
         <MissionVision />
       </main>
       <Partners/>    
