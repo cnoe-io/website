@@ -5,7 +5,7 @@ description: |
 title: Technology Choices
 ---
 
-# Technologies
+# Technology Choices
 
 Every organization has slightly different requirements for their internal
 developer platforms (IDPs) and as such designing an all inclusive solution for an IDP 
