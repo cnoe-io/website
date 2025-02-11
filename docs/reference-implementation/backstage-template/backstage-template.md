@@ -13,18 +13,6 @@ The CNOE CLI is a powerful tool designed to enhance Internal Developer Platform 
 
 Folllow [cnoe-io/cnoe-cli](https://github.com/cnoe-io/cnoe-cli) documentation to install.
 
-## Available CNOE Backstage Plugins
-
-CNOE has developed and contributed several open-source Backstage plugins to the community, including the Terraform, Argo Workflows, Scaffolder, and Apache Spark plugins. These plugins integrate Backstage with various cloud-native technologies and workflows.
-
-| CNOE Backstage Plugin   | Mantainer | Respoistory Location | Description |
-|--------------|-------------|-----------|-------------------|
-| Terraform Backstage Plugin | CNOE | [cnoe-io/plugin-terraform](https://github.com/cnoe-io/plugin-terraform) | This plugin supports two storage locations for Terraform state files (tfstate): S3 and local file systems. S3 will require additional configuration for AWS credentials to access S3. To access local file systems, the terraform backend will need proper file permissions to access those files.|
-| Argo Workflows Backstage Plugin | CNOE | [cnoe-io/plugin-argo-workflows](https://github.com/cnoe-io/plugin-argo-workflows) | This plugin displays your Argo Workflows in Backstage |
-| Scaffolder Actions Plugin | CNOE | [cnoe-io/plugin-scaffolder-actions](https://github.com/cnoe-io/plugin-scaffolder-actions) | Collection of extended actions for the Backstage Scaffolder plugin, designed to enhance the developer experience and enable more customized scaffolding workflows within the Backstage ecosystem |
-| Scaffolder Frontend Plugin | CNOE | [cnoe-io/plugin-scaffolder-actions-frontend](https://github.com/cnoe-io/plugin-scaffolder-actions-frontend) | Allows you to display and select Kubernetes clusters configured in your Backstage configuration.|
- | Apache Spark Backstage Plugin | CNOE | [cnoe-io/plugin-apache-spark](https://github.com/cnoe-io/plugin-apache-spark) | This plugin displays your Argo Workflows in Backstage.|
-
 ## Generate CNOE Backstage Template
 
 You pick the option you want to use to generate the templates. Here we are demostrating with two examples one using [CRD](#using-crdxrds) and other with [Terraform](#using-terraform).
