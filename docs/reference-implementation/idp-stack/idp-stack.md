@@ -4,7 +4,7 @@ description: Create idp Stack on Local Machine
 title: Create idp Stack on Local Machine
 ---
 
-A Stack is a collection of Argo CD applications that defines what components should be included in an Internal Developer Platform (IDP). It works in tandem with IDP Builder, where the Stack specifies "what" needs to be installed while IDP Builder handles "how" to install it. To distinguish it from general technology stacks, it's specifically referred to as a "Kanu IDP stack" or "IDP stack."
+A Stack is a collection of Argo CD applications that defines what components should be included in an Internal Developer Platform (IDP). It works in tandem with Idpbuilder, where the Stack specifies "what" needs to be installed while Idpbuilder handles "how" to install it. To distinguish it from general technology stacks, it's specifically referred to as a "CNOE IDP stack" or "IDP stack."
 
 Each Stack can contain varying numbers of packages, where each package represents an Argo CD application. For example, one stack might include 4 packages while another might contain 10, depending on specific requirements. The stack implementation supports two primary integration mechanisms: local integration, which works with local files pushed into a Git repository using the 'kube' scheme, and remote integration, which can reference external repositories such as Helm charts.
 
