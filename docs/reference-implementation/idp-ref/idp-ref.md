@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
-title: Set up idp Reference Implementation on Local Machine
-description: Set up idp Reference Implementation on Local Machine
+title: Set up IDP Reference Implementation on Local Machine
+description: Set up IDP Reference Implementation on Local Machine
 index: 1
 ---
 

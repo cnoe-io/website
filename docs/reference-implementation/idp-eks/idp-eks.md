@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2.2
-description: Set up idp on EKS 
-title: Set up idp on EKS
+description: Set up IDP on EKS 
+title: Set up IDP on EKS
 index: 1
 ---
 

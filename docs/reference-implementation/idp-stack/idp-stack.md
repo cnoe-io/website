@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2.1
-description: Create idp Stack on Local Machine
-title: Create idp Stack on Local Machine
+description: Create IDP Stack on Local Machine
+title: Create IDP Stack on Local Machine
 ---
 
 A Stack is a collection of Argo CD applications that defines what components should be included in an Internal Developer Platform (IDP). It works in tandem with Idpbuilder, where the Stack specifies "what" needs to be installed while Idpbuilder handles "how" to install it. To distinguish it from general technology stacks, it's specifically referred to as a "CNOE IDP stack" or "IDP stack."

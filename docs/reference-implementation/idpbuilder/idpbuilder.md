@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
-description: Set up idp on Local Machine 
-title: Set up idp on Local Machine
+description: Set up IDP on Local Machine 
+title: Set up IDP on Local Machine
 index: 1
 ---
 
@@ -16,7 +16,7 @@ index: 1
 ## Introduction
 idpBuilder is a powerful tool that enables you to easily spin up a complete internal developer platform (IDP) on your local machine. 
 
-Go to [idpbuilder Overview page](/docs/intro/idpbuilder/idpbuilder-overview) to get more details on the concepts.
+Go to [idpbuilder Overview page](/docs/intro/idpbuilder) to get more details on the concepts.
 
 ## Running ipdbuilder in local machine
 
