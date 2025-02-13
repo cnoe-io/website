@@ -23,17 +23,18 @@ Ensure you have the following tools installed on your computer.
 
 ## Installation
 
-**_NOTE:_**
+:::note
 - If you'd like to run this in your web browser through Codespaces, please follow [the instructions here](https://github.com/cnoe-io/stacks/blob/main/ref-implementation/codespaces.md) to install instead. 
 
-- _This example assumes that you run the reference implementation with the default port configguration of 8443 for the idpBuilder.
+- This example assumes that you run the reference implementation with the default port configguration of 8443 for the idpBuilder.
 If you happen to configure a different host or port for the idpBuilder, the manifests in the reference example need to be updated
 and be configured with the new host and port. 
+:::
 
 Run the following command from the root of this repository.
 
 ```bash
-idpbuilder create --use-path-routing \
+$ idpbuilder create --use-path-routing \
   --package https://github.com/cnoe-io/stacks//ref-implementation
 ```
 

@@ -39,7 +39,7 @@ function CheckIcon() {
 }
 
 // List of common commands to highlight
-const COMMON_COMMANDS = ['git', 'mv', 'mkdir', 'ls', 'cat', 'cd', 'echo', 'rm', 'cp', 'chmod', 'npx', 'yarn', 'npm', 'docker', 'kubectl', 'idpbuilder', 'vim', './idpbuilder'];
+const COMMON_COMMANDS = ['git', 'mv', 'mkdir', 'curl', 'ls', 'cat', 'cd','podman', 'echo', 'rm', 'cp', 'chmod', 'npx', 'yarn', 'npm', 'docker', 'kubectl', 'idpbuilder', 'vim', './', 'cnoe '];
 
 // Function to highlight common commands
 const highlightCommonCommands = (text) => {
@@ -73,6 +73,8 @@ export default function CodeBlockWrapper(props) {
   let currentCommand = null;
 
   props.children.split('\n').forEach((line, index) => {
+    // Remove leading and trailing whitespace
+    line = line.trim();
     const trimmedLine = line.trim();
     // Start a new command
     if (trimmedLine.startsWith('$')) {
@@ -107,6 +109,9 @@ export default function CodeBlockWrapper(props) {
   if (currentCommand) {
     commands.push(currentCommand);
   }
+  
+  // loop the commmands and print each command object with each of the properties
+
 
   const handleCopy = async (text, index) => {
     try {
@@ -127,7 +132,8 @@ export default function CodeBlockWrapper(props) {
   };
 
   // Wrap each command line with copy button
-  const enhancedContent = commands.map((item, idx) => {
+  // make sure to maintain the order of the line from the original code using the index from the command
+  const enhancedContent = commands.sort((a, b) => a.index - b.index).map((item, idx) => {
     const isHovered = hoveredIndex === idx && item.isCommand; // Only hover for command lines
 
     return (

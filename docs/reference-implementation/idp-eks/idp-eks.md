@@ -11,7 +11,9 @@ index: 1
  [cnoe-io/reference-implementation-aws](https://github.com/cnoe-io/reference-implementation-aws)
 :::
 
-> **_NOTE:_**  Applications deployed in this repository are not meant or configured for production.
+:::caution
+Applications deployed in this repository are **not** meant or configured for production.
+:::
 
 ![overview](../images/application-idp.png)
 
@@ -30,6 +32,7 @@ We may be able to use sealed secrets with full GitOps approach in the future.
 - jq
 - git
 - yq
+- nc
 - curl
 - kustomize
 - node + npm (if you choose to create GitHub App via CLI)
@@ -56,7 +59,9 @@ $ GITHUB_APP_FILE=$(ls github-app-* | head -n1)
 $ mv ${GITHUB_APP_FILE} private/github-integration.yaml
 ```
 
-**The file created above contains credentials. Handle it with care.**
+:::caution
+  **The file created above contains credentials. Handle it with care.**
+:::
 
 The rest of the installation process assumes the GitHub app credentials are available at `private/github-integration.yaml`
 
@@ -76,10 +81,12 @@ Once you have your token, save it under the private directory with the name `git
 ```bash
 # From the root of this repository.
 $ mkdir -p private
-$ vim private/github-token # paste your token
+# paste your token
+$ vim private/github-token
+
 # example output
 $ cat private/github-token
-github_pat_ABCDEDFEINDK....
+github_pat_ABCDEDFEINDK...
 ```
 
 ## Install
@@ -188,16 +195,16 @@ If full installation is done, you should have these DNS entries available. They 
 You can confirm these by querying at a register.
 
 ```bash
-dig A `backstage.<DOMAIN_NAME>` @1.1.1.1
+$ dig A `backstage.<DOMAIN_NAME>` @1.1.1.1
 
-kubectl get svc -n ingress-nginx
+$ kubectl get svc -n ingress-nginx
 ```
 
 A Network Load Balancer is also created. This is managed by the AWS Load Balancer Controller and points to ingress-nginx pod. This pod is responsible for routing requests to correct places. As a result, HTTPS endpoints are created with valid certificates.
 
 ```bash
-openssl s_client -showcerts -servername id.<DOMAIN_NAME> -connect id.<DOMAIN_NAME>:443 <<< "Q"
-curl https://backstage.<DOMAIN_NAME>
+$ openssl s_client -showcerts -servername id.<DOMAIN_NAME> -connect id.<DOMAIN_NAME>:443 <<< "Q"
+$ curl https://backstage.<DOMAIN_NAME>
 ```
 
 ## How to access the Backstage instance?
@@ -206,7 +213,7 @@ When you open a browser window and go to `https://backstage.<DOMAIN_NAME>`, you 
 Two users are created during the installation process: `user1` and `user2`. Their passwords are available in the keycloak namespace.
 
 ```bash
-k get secrets -n keycloak keycloak-user-config -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+$ kubectl get secrets -n keycloak keycloak-user-config -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
 ```
 
 ## Uninstall

@@ -120,8 +120,8 @@ cluster.
 Run the command below to generate the template for ACK crds
 
 ```bash
-❯ cd ~/cnoe-cli
-❯ ./cnoe template crd \
+$ cd ~/cnoe-cli
+$ ./cnoe template crd \
   --inputDir examples/ack-crds \
   --outputDir /tmp/templates-ack-deploy \
   --templatePath config/templates/k8s-apply-template.yaml \
@@ -290,11 +290,11 @@ Global Flags:
 We can run the command against one of modules within the [Data on EKS](https://github.com/awslabs/data-on-eks) repository.
 
 ```bash
-git clone https://github.com/awslabs/data-on-eks.git /tmp/data-on-eks
+$ git clone https://github.com/awslabs/data-on-eks.git /tmp/data-on-eks
 
-git clone https://github.com/cnoe-io/reference-implementation-aws.git /tmp/ref-impl
+$ git clone https://github.com/cnoe-io/reference-implementation-aws.git /tmp/ref-impl
 
-cnoe template tf \
+$ cnoe template tf \
   -i /tmp/data-on-eks/analytics/terraform/spark-k8s-operator \
   -t /tmp/ref-impl/examples/template-generation/data-on-eks.yaml \
   -p '.spec.parameters[0].properties.tfVars' \
@@ -304,7 +304,7 @@ cnoe template tf \
 The `-i` flag specifies input Terraform module directory. In this example, the content looks like this: 
 
 ```bash
-ls /tmp/data-on-eks/analytics/terraform/spark-k8s-operator
+$ ls /tmp/data-on-eks/analytics/terraform/spark-k8s-operator
 README.md              data.tf                karpenter-provisioners spark-team.tf
 addons.tf              examples               main.tf                variables.tf
 amp.tf                 helm-values            outputs.tf             versions.tf
@@ -504,8 +504,8 @@ spec:
 The CLI support running verifications against a target cluster by running the
 command `./cnoe k8s verify`:
 
-```
-❯ ./cnoe k8s verify -h
+```bash
+$ ./cnoe k8s verify -h
 Verify if the required resources and controllers are working as expected
 
 Usage:
@@ -521,8 +521,8 @@ Global Flags:
 
 Below is an example successful output of running `verify` against a target cluster:
 
-```
-❯ ./cnoe k8s verify --config config/prereq/ack-s3-prerequisites.yaml
+```bash
+$ ./cnoe k8s verify --config config/prereq/ack-s3-prerequisites.yaml
 ✓ ack-s3 - s3.services.k8s.aws/v1alpha1, Kind=Buckets
 ✓ ack-s3 - acme.cert-manager.io/v1, Kind=Challenges
 ✓ ack-s3 - services.k8s.aws/v1alpha1, Kind=AdoptedResources
@@ -533,8 +533,8 @@ Below is an example successful output of running `verify` against a target clust
 
 And when things fail:
 
-```
-❯ ./cnoe k8s verify --config config/prereq/bad-spark-prerequisites.yaml
+```bash
+$ ./cnoe k8s verify --config config/prereq/bad-spark-prerequisites.yaml
 X bad-spark - sparkoperator.k8s.io/v2beta2, Kind=SparkApplication
 X bad-spark -  Pod=sprk-operator
 2 errors occurred:
