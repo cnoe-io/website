@@ -12,7 +12,7 @@ import ColorOutput from './images/color-output.png';
 The most basic command which creates a Kubernetes Cluster (Kind cluster) with the core packages installed.
 
 ```bash
-idpbuilder create
+$ idpbuilder create
 ```
 
 Once idpbuilder finishes provisioning cluster and packages, you can access GUIs by going to the following addresses in your browser.
@@ -23,7 +23,7 @@ Once idpbuilder finishes provisioning cluster and packages, you can access GUIs 
 You can obtain credentials for them by running the following command:
 
 ```bash
-idpbuilder get secrets
+$ idpbuilder get secrets
 ```
 
 <details>
@@ -32,7 +32,7 @@ idpbuilder get secrets
 idpbuilder supports colored output with the `--color` flag.
 
 ```bash
-idpbuilder create --color
+$ idpbuilder create --color
 ````
 <img src={ColorOutput} width="60%" height="60%" />
 
@@ -102,8 +102,8 @@ idpbuilder create -p https://github.com/cnoe-io/stacks//basic/package1
 Use a private repository to pull extra packages.
 
 ```bash
-git clone https://github.com/cnoe-io/stacks-private
-idpbuilder create -p ./stacks-private/basic/package1
+$ git clone https://github.com/cnoe-io/stacks-private
+$ idpbuilder create -p ./stacks-private/basic/package1
 ```
 
 Increase the verbosity of idpbuilder for troubleshooting. 
@@ -114,30 +114,30 @@ idpbuilder create -l debug
 
 For available flags and subcommands:
 
-```
-idpbuilder create --help
+```bash
+$ idpbuilder create --help
 ```
 
 ### Get
 
 Get all relevant secrets. See [this section](/docs/intro/idpbuilder/how-it-works#getting-relevant-secrets) for more information.
 
-```
-idpbuilder get secrets
+```bash
+$ idpbuilder get secrets
 ```
 
 Get secrets for a package named `gitea`.
 
-```
-idpbuilder get secrets -p gitea
+```bash
+$ idpbuilder get secrets -p gitea
 ```
 
 ### Delete
 
 Delete a cluster named `localdev`.
 
-```
-idpbuilder delete --name localdev
+```bash
+$ idpbuilder delete --name localdev
 ```
 
 
@@ -151,10 +151,10 @@ The token can be obtained by running the following command:
 
 ```bash
 # print all secrets associated with gitea
-idpbuilder get secrets -p gitea
+$ idpbuilder get secrets -p gitea
 
 # get token only
-idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token
+$ idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token
 
 ```
 
@@ -164,7 +164,6 @@ Here are a some examples for using the token:
   <summary>Create a Gitea Organization</summary>
 
 ```bash
-
 $ TOKEN=$(idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token' )
 ```
 ```bash
@@ -181,9 +180,8 @@ $ curl -k -X POST \
   <summary>Create a Gitea User</summary>
 
 ```bash
-
-TOKEN=$(idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token' )
-curl -k -X POST \
+$ TOKEN=$(idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token' )
+$ curl -k -X POST \
   https://gitea.cnoe.localtest.me:8443/api/v1/admin/users \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer $TOKEN" \
@@ -211,6 +209,7 @@ Alternatively, you can use the local directory format.
 ```bash
 # clone the stacks repository
 $ git clone https://github.com/cnoe-io/stacks.git
+
 $ cd stacks
 # run idpbuilder against the local directory
 $ ./idpbuilder create -p examples/basic/package1  -p examples/basic/package2
@@ -218,7 +217,7 @@ $ ./idpbuilder create -p examples/basic/package1  -p examples/basic/package2
 
 Running this command should create three additional ArgoCD applications in your cluster.
 
-```sh
+```bash
 $ kubectl get Applications -n argocd  -l example=basic
 NAME         SYNC STATUS   HEALTH STATUS
 guestbook    Synced        Healthy

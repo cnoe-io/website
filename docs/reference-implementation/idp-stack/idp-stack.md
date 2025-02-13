@@ -51,17 +51,17 @@ Alternatively, you can use the local directory format.
 
 ```bash
 # clone the stacks repository
-git clone https://github.com/cnoe-io/stacks.git
-cd stacks
+$ git clone https://github.com/cnoe-io/stacks.git
+$ cd stacks
 # run idpbuilder against the local directory
-./idpbuilder create \
+$ ./idpbuilder create \
   -p examples/basic/package1\
   -p examples/basic/package2
 ```
 
 Running this command should create three additional ArgoCD applications in your cluster.
 
-```sh
+```bash
 $ kubectl get Applications -n argocd  -l example=basic
 NAME         SYNC STATUS   HEALTH STATUS
 guestbook    Synced        Healthy
