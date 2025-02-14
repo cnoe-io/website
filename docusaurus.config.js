@@ -72,15 +72,9 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: '/category/getting-started',
+            docId: 'intro/cnoe',
             position: 'left',
             label: 'Docs'
-          },
-          {
-            type: 'doc',
-            docId: 'intro/intro',
-            position: 'left',
-            label: 'Concepts',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -111,7 +105,11 @@ const config = {
             items: [
               {
                 label: 'Introduction',
-                to: '/docs/intro',
+                to: '/docs/intro/cnoe',
+              },
+              {
+                label: 'Contribute',
+                to: '/docs/contribute',
               },
             ],
           },
