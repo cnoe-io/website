@@ -154,7 +154,7 @@ The token can be obtained by running the following command:
 idpbuilder get secrets -p gitea
 
 # get token only
-idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token
+idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token'
 
 ```
 
