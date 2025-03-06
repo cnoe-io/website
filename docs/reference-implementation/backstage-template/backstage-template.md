@@ -11,11 +11,11 @@ CNOE enhances your Backstage implementation by providing seamless integrations a
 
 The CNOE CLI is a powerful tool designed to enhance Internal Developer Platform (IDP) experiences by streamlining developer workflows through Kubernetes integration. It offers advanced templating capabilities that can automatically convert Kubernetes CRDs and Crossplane XRDs into Backstage templates, making it particularly valuable for organizations with custom Kubernetes controllers. The tool excels at transforming complex resources into user-friendly templates and supports bulk conversion with customizable parameters. By bridging the gap between developer workflows and underlying infrastructure, CNOE CLI helps organizations build cohesion in their development processes and simplify the migration of workflows to their developer portal, while adding necessary verifications and extensions.
 
-Folllow [cnoe-io/cnoe-cli](https://github.com/cnoe-io/cnoe-cli) documentation to install.
+Follow [cnoe-io/cnoe-cli](https://github.com/cnoe-io/cnoe-cli) documentation to install.
 
 ## Generate CNOE Backstage Template
 
-You pick the option you want to use to generate the templates. Here we are demostrating with two examples one using [CRD](#using-crdxrds) and other with [Terraform](#using-terraform).
+You pick the option you want to use to generate the templates. Here we are demonstrating with two examples one using [CRD](#using-crdxrds) and other with [Terraform](#using-terraform).
 
 ### Using CRD/XRDs
 
@@ -223,7 +223,7 @@ spec:
 
 #### Step-3
 
-In this step we will import the genrated template to Backstage. The generated template is registered with Backstage by pushing it to a repository and analyzing the generated content. With a valid template, the analysis would be successfully validated and you can import the template into Backstage.
+In this step we will import the generated template to Backstage. The generated template is registered with Backstage by pushing it to a repository and analyzing the generated content. With a valid template, the analysis would be successfully validated and you can import the template into Backstage.
 
 ![import](./images/2-import-template.png)
 

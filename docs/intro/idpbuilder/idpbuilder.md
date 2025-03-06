@@ -30,7 +30,7 @@ When idpbuilder creates an environment for you, it performs the following tasks.
   - **ArgoCD** is the GitOps solution to deploy manifests to Kubernetes clusters. In this project, a package is an ArgoCD application.
   - **Gitea** server is the in-cluster Git server that ArgoCD can be configured to sync resources from. You can sync from local file systems to this. This Gitea installation includes an embedded [OCI-compliant container registry](./idpbuilder/how-it-works/#local-oci-registry) for hosting container images as "packages" .
   - **Ingress-nginx** is used as a method to access in-cluster resources such as ArgoCD UI and Gitea UI.
-- **3.** Once the core pacakages are installed, idpbuilder passes control over these packages to ArgoCD by storing manifests in Gitea repositories then creating ArgoCD applications. From here on, ArgoCD manages them based on manifests checked into Git repositories.
+- **3.** Once the core packages are installed, idpbuilder passes control over these packages to ArgoCD by storing manifests in Gitea repositories then creating ArgoCD applications. From here on, ArgoCD manages them based on manifests checked into Git repositories.
 
 ![img.png](./images/idpbuilder-basic.png)
 

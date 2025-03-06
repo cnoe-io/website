@@ -10,7 +10,7 @@ CNOE team has developed and contributed several open-source Backstage plugins to
 
 ## Available CNOE Backstage Plugins
 
-| CNOE Backstage Plugin   | Mantainer | Respoistory Location | Description |
+| CNOE Backstage Plugin   | Maintainer | Respoistory Location | Description |
 |--------------|-------------|-----------|-------------------|
 | Terraform Backstage Plugin | CNOE | [cnoe-io/plugin-terraform](https://github.com/cnoe-io/plugin-terraform) | This plugin can show Terraform outputs/resources from TFState files associated with a particular Backstage components.|
 | Argo Workflows Backstage Plugin | CNOE | [cnoe-io/plugin-argo-workflows](https://github.com/cnoe-io/plugin-argo-workflows) | This plugin displays your Argo Workflows in Backstage |

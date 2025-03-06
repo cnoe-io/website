@@ -23,7 +23,7 @@ Idpbuilder supports adding stack by specifying custom packages using the flag `-
 
 ### CNOE IDP stacks available 
 
-| CNOE idp Stack   | Mantainer | Respoistory Location | Description |
+| CNOE idp Stack   | Maintainer | Respoistory Location | Description |
 |--------------|-------------|-----------|-------------------|
 | Localstack | CNOE | [stacks/localstack-integration/](https://github.com/cnoe-io/stacks/tree/main/localstack-integration) | Deploys an IDP reference implementation with an Argo application that adds Localstack, as well as integrating with Crossplane.|
 | Local Backup | CNOE | [stacks/local-backup/](https://github.com/cnoe-io/stacks/blob/main/local-backup) | creates a configuration that allows you to back up Kubernetes objects to your local machine (or wherever you are running idpbuilder from) |
