@@ -11,7 +11,7 @@ hide_table_of_contents: false
 Creating and managing an internal developer platform (IDP) is a complex and time-consuming challenge. As outlined on our website and in the [CNCF Platforms white paper](https://tag-app-delivery.cncf.io/whitepapers/platforms/), IDPs consist of [capabilities](https://cnoe.io/docs/category/technology-capabilities). This centralized system facilitates developers in designing, building, deploying, and managing applications and services within an organization. It offers a suite of tools, APIs, and services that streamline the development process by providing essential capabilities.
 
 
-[idpBuilder](https://cnoe.io/docs/reference-implementation/idpbuilder) is meant for application developers and platform engineers looking to quickly spin up a repeatable IDP environment. With just a single binary and Docker as the only dependency, idpBuilder allows you to create a fully functional IDP leveraging popular open source projects such as Kubernetes, ArgoCD, and Backstage.
+[idpBuilder](https://cnoe.io/docs/reference-implementation/idpbuilder) is meant for platform engineers looking to quickly spin up a repeatable IDP environment. With just a single binary and Docker as the only dependency, idpBuilder allows you to create a fully functional IDP leveraging popular open source projects such as Kubernetes, ArgoCD, and Backstage.
 
 For most use cases, you need to run one command to get started. For example, to get started with the CNOE reference implementation all you have to run is:
 
