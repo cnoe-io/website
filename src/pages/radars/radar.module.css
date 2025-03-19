@@ -43,3 +43,7 @@
   font-style: italic;
   width: 220px;
 }
+
+.radar-page-wrapper .navbar {
+  display: none !important;
+}

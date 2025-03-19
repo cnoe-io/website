@@ -4,6 +4,7 @@ import parse from "html-react-parser";
 import styles from "./styles.module.css";
 
 const { useState } = React;
+const { useEffect } = React;
 
 export default function InteractiveDiagram() {
   // and here we don't need to call React.useState because it has been
@@ -11,6 +12,24 @@ export default function InteractiveDiagram() {
   const [promptText, setPromptText] = useState("");
   const [promptTitle, setPromptTitle] = useState("");
   const [isShow, setIsShow] = useState("none");
+
+  // Add useEffect to handle auto-closing
+  useEffect(() => {
+    let timeoutId;
+    if (isShow === "block") {
+      timeoutId = setTimeout(() => {
+        setIsShow("none");
+      }, 3000); // Closes after 3 seconds (adjust time as needed)
+    }
+    
+    // Cleanup function to clear timeout if component unmounts or isShow changes
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [isShow]);
+  
   return (
     <div className={styles.interactivediagramcontainer}>
       <div className={styles.diagramcontent}>
@@ -25,7 +44,7 @@ export default function InteractiveDiagram() {
                     <p>The runtime environments that product apps and services run on.
                     This includes static content or data published for distribution.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/deployment-targets">Read More</a></b>
+                    <b><a href="./capabilities#deployment-targets">Read More</a></b>
                   `)
               );
             }}
@@ -46,7 +65,7 @@ export default function InteractiveDiagram() {
                     parse(`
                     <p>Ensures the delivery of a packaged up and functional set of software or tools.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/packaging-and-templating">Read More</a></b>
+                    <b><a href="./capabilities#packaging-and-templating">Read More</a></b>
                   `)
                   );
                 }}
@@ -62,7 +81,7 @@ export default function InteractiveDiagram() {
                     parse(`
                     <p>Enable developers to collaborate on code asynchronously while keeping historical lineage of changes.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/code-repository">Read More</a></b>
+                    <b><a href="./capabilities#code-repositories">Read More</a></b>
                   `)
                   );
                 }}
@@ -78,7 +97,7 @@ export default function InteractiveDiagram() {
                     parse(`
                     <p>Canonical data store for application configuration.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/config-repository">Read More</a></b>
+                    <b><a href="./capabilities#config-repositories">Read More</a></b>
                   `)
                   );
                 }}
@@ -95,7 +114,7 @@ export default function InteractiveDiagram() {
                     Preserves a signed, accessible, and traceable list of packaged components.
                     <br/>
                     <br/>
-                    <b><a href="docs/intro/capabilities/artifact-registry">Read More</a></b>
+                    <b><a href="./capabilities#artifact-registries">Read More</a></b>
                   `)
                   );
                 }}
@@ -111,7 +130,7 @@ export default function InteractiveDiagram() {
                     parse(`
                     <p>Secrets repositories are secure long term storage locations for sensitive data.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/secret-repository">Read More</a></b>
+                    <b><a href="./capabilities#secret-repositories">Read More</a></b>
                   `)
                   );
                 }}
@@ -128,7 +147,7 @@ export default function InteractiveDiagram() {
                   parse(`
                     <p>Cryptographic signing of artifacts to allow for verification of the consistency and integrity of the data they contain.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/signing">Read More</a></b>
+                    <b><a href="./capabilities#signing">Read More</a></b>
                 `)
                 );
               }}
@@ -148,7 +167,7 @@ export default function InteractiveDiagram() {
                     parse(`
                     <p>Software catalog of all components, systems and domains.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/developer-portal">Read More</a></b>
+                    <b><a href="./capabilities#developer-portal">Read More</a></b>
                   `)
                   );
                 }}
@@ -164,7 +183,7 @@ export default function InteractiveDiagram() {
                     parse(`
                     <p>A service that can be used to wire up Authentication and Authorization in a common well understood manner.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/identity-and-access">Read More</a></b>
+                    <b><a href="./capabilities#identity-and-access">Read More</a></b>
                   `)
                   );
                 }}
@@ -181,7 +200,7 @@ export default function InteractiveDiagram() {
                       parse(`
                     <p>Tooling required to spin up infrastructure resources for a given application.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/infra-as-code">Read More</a></b>
+                    <b><a href="./capabilities#infrastructure-as-code-iac">Read More</a></b>
                     `)
                     );
                   }}
@@ -197,7 +216,7 @@ export default function InteractiveDiagram() {
                       parse(`
                     <p>CD gets infrastructure and application resources into a state, ready for receiving production workload.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/continuous-delivery">Read More</a></b>
+                    <b><a href="./capabilities#continuous-delivery-cd">Read More</a></b>
                     `)
                     );
                   }}
@@ -213,7 +232,7 @@ export default function InteractiveDiagram() {
                       parse(`
                     <p>The orchestration process to get applications ready for delivery.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/workflow-orchestration">Read More</a></b>
+                    <b><a href="./capabilities#workflow-orchestration">Read More</a></b>
                     `)
                     );
                   }}
@@ -229,7 +248,7 @@ export default function InteractiveDiagram() {
                       parse(`
                     <p>Allows for the dynamic lookup or querying of service details.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/service-discovery">Read More</a></b>
+                    <b><a href="./capabilities#service-discovery">Read More</a></b>
                     `)
                     );
                   }}
@@ -246,7 +265,7 @@ export default function InteractiveDiagram() {
                     parse(`
                     <p>Secrets Management manages the life cycle and distribution of secrets safely and securely.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/secret-management">Read More</a></b>
+                    <b><a href="./capabilities#secret-management">Read More</a></b>
                   `)
                   );
                 }}
@@ -262,7 +281,7 @@ export default function InteractiveDiagram() {
                     parse(`
                     <p>Validation ensures that API specifications are abided. Can be used in conjunction with admission control to enable security controls</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/validation">Read More</a></b>
+                    <b><a href="./capabilities#validation">Read More</a></b>
                   `)
                   );
                 }}
@@ -278,7 +297,7 @@ export default function InteractiveDiagram() {
                     parse(`
                     <p>The runtime used by the platform. Hosts the platform capabilities or their integration points.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/compute-platform">Read More</a></b>
+                    <b><a href="./capabilities#compute-platform">Read More</a></b>
                   `)
                   );
                 }}
@@ -295,7 +314,7 @@ export default function InteractiveDiagram() {
                   parse(`
                     <p>Monitors, reports, and alerts on the overall well-being of the system.</p>
                     <br/>
-                    <b><a href="docs/intro/capabilities/observability">Read More</a></b>
+                    <b><a href="./capabilities#observability">Read More</a></b>
                   `)
                 );
               }}

@@ -40,7 +40,7 @@
   --ifm-color-search-radar-border: lightgray;
   --ifm-color-search-radar-border-hover: #3c6ead;
 
-  --ifm-image-portal: url("../../static/img/hero.png");
+  --ifm-image-portal: url("../../static/img/logo.png");
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -85,7 +85,11 @@
   --ifm-color-search-radar-border: lightgray;
   --ifm-color-search-radar-border-hover: #3c6ead;
 
-  --ifm-image-portal: url("../../static/img/hero.png");
+  --ifm-image-portal: url("../../static/img/logo.png");
+}
+
+.hero {
+  background-color: var(--ifm-color-neutral-lighter);
 }
 
 .hero .hero__subtitle {
@@ -95,10 +99,6 @@
   justify-content: "center";
   align-items: "center";
   color: var(--ifm-color-neutral-darkest);
-}
-
-.hero {
-  background-color: var(--ifm-color-neutral-lightest);
 }
 
 .tagline {
@@ -145,7 +145,7 @@
 
 .button--primary {
   color: white;
-  background-color: #0078c4;
+  background-color: #2984bd;
 }
 .button--primary:hover {
   color: white;

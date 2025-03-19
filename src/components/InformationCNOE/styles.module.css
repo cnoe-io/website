@@ -1,0 +1,31 @@
+.cnoeSection {
+  padding: 2rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  font-size: 38px;
+  text-align: left;
+}
+
+.description {
+  font-size: 30px;
+  text-align: left;
+}
+
+/* index.module.css */
+.learnMoreButton {
+  background-color: var(--ifm-color-neutral-lighter);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+}

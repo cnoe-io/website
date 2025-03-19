@@ -72,20 +72,9 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: '/category/deploy-a-platform',
+            docId: 'intro/cnoe',
             position: 'left',
-            label: 'Deploy'
-          },
-          {
-            type: 'doc',
-            docId: 'intro/intro',
-            position: 'left',
-            label: 'Concepts',
-          },
-          {
-            to: '/radars',
-            position: 'left',
-            label: 'Technology Radars',
+            label: 'Docs'
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -116,7 +105,11 @@ const config = {
             items: [
               {
                 label: 'Introduction',
-                to: '/docs/intro',
+                to: '/docs/intro/cnoe',
+              },
+              {
+                label: 'Contribute',
+                to: '/docs/contribute',
               },
             ],
           },

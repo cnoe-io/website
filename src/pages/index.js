@@ -3,7 +3,8 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
-import HomepageFeatures from "@site/src/components/HomepageFeatures";
+import InformationCNOE  from "@site/src/components/InformationCNOE";
+import ValueProposition  from "@site/src/components/ValueProposition";
 import MissionVision from "@site/src/components/MissionVision";
 import InteractiveDiagram from "@site/src/components/InteractiveDiagram";
 import Grid from '@mui/material/Grid';
@@ -28,54 +29,21 @@ function HomepageHeader() {
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <Grid container spacing={3} className="perspective-container">
-        <Grid item xs={6} className="hero hero--primary bgimg"/>
-        <Grid item xs={5} className="hero__subtitle tagline">
+        <Grid item xs={2.5} className="hero hero--primary bgimg"/>
+        <Grid item xs={5} sm={6} md={7} lg={8} className="hero__subtitle tagline">
           <Grid container direction="column" spacing={2} style={{display: 'flex'}}>
-            <Grid item style={{display: 'flex', alignItems: 'left', paddingRight: 50}}>
-              <p>{siteConfig.tagline}</p>
-            </Grid>
-            <Grid item>
+            <Grid item style={{display: 'flex', alignItems: 'left'}}>
+              <p>{siteConfig.tagline} &nbsp;&nbsp;
                 <Link
                   className="button button--primary button--lg"
-                  to="/docs/category/getting-started" // go to getstarted
-                  style={{textAlign:"center", width:"225px"}}
-                >
-                  <img src="img/terminal.svg" 
-                  style={{verticalAlign:"text-top", marginRight:"8px", marginTop:"1.5px"}}
-                  >
-                  </img>
+                  to="/docs/intro/cnoe" // go to getstarted
+                  style={{textAlign:"center", width:"200px"}}>
                   <span style={{verticalAlign:"text-top"}}>
-
                   Get Started
                   </span>
-                </Link>
-                &nbsp;
-                <Link
-                  className="button button--secondary button--lg"
-                  to="/docs/intro"            
-                  style={{textAlign:"center", width:"225px"}}
-                >
-                  <HelpIcon
-                  style={{verticalAlign:"text-top", marginRight:"8px", marginTop:"1px"}}
-                  />
-                  What is CNOE
-                </Link>
-                &nbsp;
-                <Link
-                  className="button button--secondary button--lg"
-                  to="/docs/contribute"            
-                  style={{textAlign:"center", width:"225px"}}
-                >
-                  <img src="img/github.svg" 
-                  style={{verticalAlign:"text-bottom", marginRight:"8px"}}
-                  >
-                  </img>
-
-                  Contribute
-                </Link>
+                </Link></p>
             </Grid>
           </Grid>
-          <Grid item xs={3}/>
         </Grid>
       </Grid>
     </header>
@@ -151,14 +119,12 @@ export default function Home() {
       description="Joint efforts to build Internal Developer Platforms"
     >
       <HomepageHeader />
-      <Stacks />
-      <h1 className="heading heading-center">Platform Architecture</h1>
-      <InteractiveDiagram />
       <main>
-        <HomepageFeatures />
+        <InformationCNOE/>
+         <ValueProposition />
         <MissionVision />
       </main>
-      <Partners/>
+      <Partners/>    
       <CNOENews />
     </Layout>
   );

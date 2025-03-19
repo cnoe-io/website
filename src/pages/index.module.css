@@ -26,5 +26,7 @@
 
 .members {
   margin-top: 40px;
+  padding: 40px 0;
+  background-color: var(--ifm-color-neutral-lighter); /* Uses Docusaurus theme color */
 }
 

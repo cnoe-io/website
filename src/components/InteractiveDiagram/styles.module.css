@@ -1,5 +1,6 @@
 .interactivediagramcontainer {
   position: relative;
+  left: 0;
   width: 100vw;
   background-color: var(--ifm-background-color);
   text-align: center;
@@ -79,7 +80,7 @@
   width: 70vw;
   background-color: var(--ifm-color-neutral-lightest);
   text-align: center;
-  margin-left: auto;
+  margin-left: 0;
   margin-right: auto;
   height: 50vh;
   white-space: nowrap;
