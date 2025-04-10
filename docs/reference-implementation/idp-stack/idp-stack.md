@@ -41,8 +41,8 @@ Let's take a look at [this example](https://github.com/cnoe-io/stacks/tree/main/
 
 To deploy these packages, run the following command:
 
-```
-./idpbuilder create \
+```bash
+$ ./idpbuilder create \
   -p https://github.com/cnoe-io/stacks//basic/package1 \
   -p https://github.com/cnoe-io/stacks//basic/package2
 ```

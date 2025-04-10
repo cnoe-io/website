@@ -20,7 +20,7 @@ The certificate is also [imported to ArgoCD](https://argo-cd.readthedocs.io/en/s
 Finally, the certificate is exposed as a secret named `idpbuilder-cert` in the default namespace. To retrieve it, run the following command:
 
 ```bash
-kubectl get secret -n default idpbuilder-cert
+$ kubectl get secret -n default idpbuilder-cert
 ```
 ### Getting Relevant Secrets
 
@@ -32,22 +32,22 @@ The `idpbuilder get secrets` command retrieves the following:
 You can think of the command as executing the following kubectl commands:
 
   ```bash
-  kubectl -n argocd get secret argocd-initial-admin-secret
-  kubectl get secrets -n gitea gitea-admin-secret
-  kubectl get secrets -A -l cnoe.io/cli-secret=true
+  $ kubectl -n argocd get secret argocd-initial-admin-secret
+  $ kubectl get secrets -n gitea gitea-admin-secret
+  $ kubectl get secrets -A -l cnoe.io/cli-secret=true
   ```
 
 If you want to retrieve secrets for a package, you can use the `-p` flag. To get secrets for a package named `gitea`: 
 
   ```bash
-  idpbuilder get secrets -p gitea
+  $ idpbuilder get secrets -p gitea
   ```
 
 For the `-p` flag to work, you must label the secret with `cnoe.io/package-name`. 
 For example, to make secret values available in a secret named `my-secret` for a package named `foo`:
 
   ```bash
-  kubectl label secret my-secret "cnoe.io/package-name=foo" "cnoe.io/cli-secret=true"
+  $ kubectl label secret my-secret "cnoe.io/package-name=foo" "cnoe.io/cli-secret=true"
   ```
 
 The secret will then be listed when issuing the `idpbuilder get secrets` command.
@@ -121,37 +121,36 @@ The local Gitea instance created by idpbuilder contains a built-in OCI registry 
 ### Pushing image
 
 ```bash
-docker login gitea.cnoe.localtest.me:8443                                          
+$ docker login gitea.cnoe.localtest.me:8443                                          
 # see the note section below for retrieving your password.
 Username: giteaAdmin
 Password: 
 
-docker pull docker.io/library/ubuntu:24.04 
+$ docker pull docker.io/library/ubuntu:24.04 
 # default way
-docker tag docker.io/library/ubuntu:24.04 gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
-docker push gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
+$ docker tag docker.io/library/ubuntu:24.04 gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
+$ docker push gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
 
 # Pushing image using path based routing. You can also use the OCI registry with path based routing mode (the `--use-path-routing` flag)
 # docker tag docker.io/library/ubuntu:24.04 cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
 # docker push cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
 
-```
-> **NOTE**: You can get the giteaAdmin password in the same way as you do for the web or git interface.
-> 
-> `idpbuilder get secrets -p gitea`
-> 
-> Or you can use this to login directly:
-> ```
-> idpbuilder get secrets -p gitea -o json | \
->   jq '.[0].data.password' -r | \
->   docker login -u giteaAdmin --password-stdin gitea.cnoe.localtest.me:8443
-> ```
+```bash
+ **NOTE**: You can get the giteaAdmin password in the same way as you do for the web or git interface.
+ $ idpbuilder get secrets -p gitea
+ 
+ Or you can use this to login directly:
+ 
+ $ idpbuilder get secrets -p gitea -o json | \
+   jq '.[0].data.password' -r | \
+   docker login -u giteaAdmin --password-stdin gitea.cnoe.localtest.me:8443
+ ```
 
 ### Tagging Image 
 
 Images pushed to Gitea OCI registry must be tagged with the following naming convention: 
 
-```
+```bash
 {registry}/{owner}/{image}
 ```
 
@@ -164,8 +163,8 @@ This is a naming convention enforced by Gitea. Please see [the Gitea documentati
 
 You can pull an image back to your local machine using your docker client like so:
 
-```
-docker pull gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
+``` bash
+$ docker pull gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
 ```
 #### No Pull Secret Needed
 The Gitea instance allows for anonymous read access. This means that you can pull git repo contents and container images without logging in.
@@ -174,7 +173,7 @@ The Gitea instance allows for anonymous read access. This means that you can pul
 
 You can create a pod or a deployment that references images in the local registry. For example, to create a pod:
 
-```yaml
+``` yaml
 apiVersion: v1
 kind: Pod
 metadata:

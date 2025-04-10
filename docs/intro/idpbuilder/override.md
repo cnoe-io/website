@@ -17,8 +17,8 @@ You can find the built-in manifests in your local Gitea repositories or in our s
 
 For example, if you'd like to override [the ArgoCD ConfigMap](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/), you can run idpbuilder like this:
 
-```
-idpbuilder create -c argocd:/tmp/override.yaml
+```bash 
+$ idpbuilder create -c argocd:/tmp/override.yaml
 ```
 
 The contents of `/tmp/override.yaml` is:

@@ -49,20 +49,20 @@ $ idpbuilder create --color
 
 Specify the kubernetes version by using the `--kube-version` flag. Supported versions are available [here](https://github.com/kubernetes-sigs/kind/releases).
 
-```
-idpbuilder create --kube-version v1.27.3
+```bash
+$ idpbuilder create --kube-version v1.27.3
 ```
 
 Specify your own kind configuration file, use the `--kind-config` flag.
 
-```
-idpbuilder create --build-name local --kind-config ./my-kind.yaml
+```bash
+$ idpbuilder create --build-name local --kind-config ./my-kind.yaml
 ```
 
 Override ArgoCD configmap.
 
-```
-idpbuilder create --package-custom-file=argocd:path/to/argocd-cm.yaml
+```bash 
+$ idpbuilder create --package-custom-file=argocd:path/to/argocd-cm.yaml
 ```
 <details>
   <summary>Example Contents of argocd-cm.yaml</summary>
@@ -95,8 +95,8 @@ data:
 
 Use a public repository to pull extra packages. See [this section](#custom-packages) for more information.
 
-```
-idpbuilder create -p https://github.com/cnoe-io/stacks//basic/package1
+```bash 
+$ idpbuilder create -p https://github.com/cnoe-io/stacks//basic/package1
 ```
 
 Use a private repository to pull extra packages.
@@ -108,8 +108,8 @@ $ idpbuilder create -p ./stacks-private/basic/package1
 
 Increase the verbosity of idpbuilder for troubleshooting. 
 
-```
-idpbuilder create -l debug
+```bash 
+$ idpbuilder create -l debug
 ```
 
 For available flags and subcommands:

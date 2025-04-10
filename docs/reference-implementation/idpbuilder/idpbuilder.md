@@ -31,7 +31,7 @@ You can execute the following bash script to get started with a running version 
 ``` bash
 $ curl -fsSL https://raw.githubusercontent.com/cnoe-io/idpbuilder/main/hack/install.sh | bash
 ```
-:::
+
 
 verify a successful installation by running the following command and inspecting the output for the right version:
 
