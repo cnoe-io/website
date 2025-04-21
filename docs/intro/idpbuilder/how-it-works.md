@@ -143,7 +143,7 @@ docker push gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
 > Or you can use this to login directly:
 > ```
 > idpbuilder get secrets -p gitea -o json | \
->   jq '.[0].data.password' -r | \
+>   jq '.[0].password' -r | \
 >   docker login -u giteaAdmin --password-stdin gitea.cnoe.localtest.me:8443
 > ```
 
