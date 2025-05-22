@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcnoe=self.webpackChunkcnoe||[]).push([[7122],{1037:a=>{a.exports=JSON.parse('{"tag":{"label":"argocd","permalink":"/blog/tags/argocd","allTagsPath":"/blog/tags","count":1,"unlisted":false},"listMetadata":{"permalink":"/blog/tags/argocd","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
