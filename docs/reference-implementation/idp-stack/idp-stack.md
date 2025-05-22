@@ -23,7 +23,7 @@ Idpbuilder supports adding stack by specifying custom packages using the flag `-
 
 ### CNOE IDP stacks available 
 
-| CNOE idp Stack   | Maintainer | Respoistory Location | Description |
+| CNOE idp Stack   | Maintainer | Repository Location | Description |
 |--------------|-------------|-----------|-------------------|
 | Localstack | CNOE | [stacks/localstack-integration/](https://github.com/cnoe-io/stacks/tree/main/localstack-integration) | Deploys an IDP reference implementation with an Argo application that adds Localstack, as well as integrating with Crossplane.|
 | Local Backup | CNOE | [stacks/local-backup/](https://github.com/cnoe-io/stacks/blob/main/local-backup) | creates a configuration that allows you to back up Kubernetes objects to your local machine (or wherever you are running idpbuilder from) |
@@ -41,8 +41,8 @@ Let's take a look at [this example](https://github.com/cnoe-io/stacks/tree/main/
 
 To deploy these packages, run the following command:
 
-```
-./idpbuilder create \
+```bash
+$ ./idpbuilder create \
   -p https://github.com/cnoe-io/stacks//basic/package1 \
   -p https://github.com/cnoe-io/stacks//basic/package2
 ```
@@ -51,17 +51,17 @@ Alternatively, you can use the local directory format.
 
 ```bash
 # clone the stacks repository
-git clone https://github.com/cnoe-io/stacks.git
-cd stacks
+$ git clone https://github.com/cnoe-io/stacks.git
+$ cd stacks
 # run idpbuilder against the local directory
-./idpbuilder create \
+$ ./idpbuilder create \
   -p examples/basic/package1\
   -p examples/basic/package2
 ```
 
 Running this command should create three additional ArgoCD applications in your cluster.
 
-```sh
+```bash
 $ kubectl get Applications -n argocd  -l example=basic
 NAME         SYNC STATUS   HEALTH STATUS
 guestbook    Synced        Healthy

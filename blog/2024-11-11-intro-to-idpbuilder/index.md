@@ -16,7 +16,7 @@ Creating and managing an internal developer platform (IDP) is a complex and time
 For most use cases, you need to run one command to get started. For example, to get started with the CNOE reference implementation all you have to run is:
 
 ```bash
-idpbuilder create --use-path-routing \
+$ idpbuilder create --use-path-routing \
   --package https://github.com/cnoe-io/stacks//ref-implementation
 ```
 
