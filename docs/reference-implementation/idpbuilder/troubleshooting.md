@@ -14,11 +14,11 @@ To get started with Podman on MacOS, run the following:
 
 ```bash
 # create a local Linux VM
-podman machine init 
-podman machine start
+$ podman machine init 
+$ podman machine start
 
 # KIND_EXPERIMENTAL_PROVIDER instructs Kind to use podman as its provider
-KIND_EXPERIMENTAL_PROVIDER=podman idpbuilder create
+$ KIND_EXPERIMENTAL_PROVIDER=podman idpbuilder create
 ```
 
 ### Podman rootless
@@ -28,9 +28,9 @@ If you need rootful behaviours, run the following command:
 
 ```bash
 # verify if you are running rootful or rootless
-podman machine inspect | jq '.[0].Rootful'
+$ podman machine inspect | jq '.[0].Rootful'
 # https://docs.podman.io/en/stable/markdown/podman-machine-set.1.html
-podman machine set --rootful
+$ podman machine set --rootful
 ```
 
 ### Missing Kernel modules
@@ -42,17 +42,20 @@ Failed to create pod sandbox: rpc error: code = Unknown desc = failed to setup n
 iptables v1.8.9 (legacy): can't initialize iptables table `nat': Table does not exist (do you need to insmod?)
 
 ```
-
+:::note
 You may need to enable the ip_table module.
+:::
 
 ```bash
 # check if ip_table is enabled
-lsmod | grep ip_table
+$ lsmod | grep ip_table
+
 # if not, enable it.
-sudo modprobe ip_tables
-echo 'ip_tables' | sudo tee -a /etc/modules-load.d/ip_tables.conf
+$ sudo modprobe ip_tables
+$ echo 'ip_tables' | sudo tee -a /etc/modules-load.d/ip_tables.conf
+
 # verify it's activated
-lsmod | grep ip_table
+$ lsmod | grep ip_table
 ```
 
 ## Gitea OCI registry
@@ -67,7 +70,7 @@ Error: initializing source docker://gitea.cnoe.localtest.me:8443/giteaadmin/ubun
 
 You may need to tell your client to not verify TLS, because the TLS certificate is self-signed and generated every time a new cluster is created.
 
-```
+```bash
 # use the --tls-verify=0 flag if you are using podman
-podman pull gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.08 --tls-verify=0
+$ podman pull gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.08 --tls-verify=0
 ```

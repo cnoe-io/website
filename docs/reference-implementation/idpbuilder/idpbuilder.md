@@ -8,7 +8,6 @@ index: 1
 ## About
 
 :::tip GitHub Repo
-
 [cnoe-io/idpbuilder](https://github.com/cnoe-io/idpbuilder)
 :::
 
@@ -28,29 +27,29 @@ A container engine is needed locally.
 
 You can execute the following bash script to get started with a running version of the idpBuilder (inspect the script first if you have concerns):
 
-:::warning
 
+``` bash
+$ curl -fsSL https://raw.githubusercontent.com/cnoe-io/idpbuilder/main/hack/install.sh | bash
 ```
-curl -fsSL https://raw.githubusercontent.com/cnoe-io/idpbuilder/main/hack/install.sh | bash
-```
-:::
+
 
 verify a successful installation by running the following command and inspecting the output for the right version:
 
-```
-idpbuilder version
+```bash
+$ idpbuilder version
 ```
 
 **Option 2: Manual installation**
 
 You can run the following commands for a manual installation:
 ```bash
-version=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/cnoe-io/idpbuilder/releases/latest)
-version=${version##*/}
-curl -L -o ./idpbuilder.tar.gz "https://github.com/cnoe-io/idpbuilder/releases/download/${version}/idpbuilder-$(uname | awk '{print tolower($0)}')-$(uname -m | sed 's/x86_64/amd64/').tar.gz"
-tar xzf idpbuilder.tar.gz
+$ version=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/cnoe-io/idpbuilder/releases/latest)
+$ version=${version##*/}
+$ curl -L -o ./idpbuilder.tar.gz "https://github.com/cnoe-io/idpbuilder/releases/download/${version}/idpbuilder-$(uname | awk '{print tolower($0)}')-$(uname -m | sed 's/x86_64/amd64/').tar.gz"
 
-./idpbuilder version
+$ tar xzf idpbuilder.tar.gz
+
+$ ./idpbuilder version
 # example output
 # idpbuilder 0.4.1 go1.21.5 linux/amd64
 ```
@@ -59,13 +58,15 @@ tar xzf idpbuilder.tar.gz
 
 The easiest way to get started is to grab the idpbuilder binary for your platform and run it. You can visit our nightly releases page to download the version for your system, or run the following commands:
 
-```
-arch=$(if [[ "$(uname -m)" == "x86_64" ]]; then echo "amd64"; else uname -m; fi)
-os=$(uname -s | tr '[:upper:]' '[:lower:]')
+```bash
+$ arch=$(if [[ "$(uname -m)" == "x86_64" ]]; then echo "amd64"; else uname -m; fi)
+$ os=$(uname -s | tr '[:upper:]' '[:lower:]')
 
-idpbuilder_latest_tag=$(curl --silent "https://api.github.com/repos/cnoe-io/idpbuilder/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-curl -LO  https://github.com/cnoe-io/idpbuilder/releases/download/$idpbuilder_latest_tag/idpbuilder-$os-$arch.tar.gz
-tar xvzf idpbuilder-$os-$arch.tar.gz
+$ idpbuilder_latest_tag=$(curl --silent "https://api.github.com/repos/cnoe-io/idpbuilder/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+
+$ curl -LO  https://github.com/cnoe-io/idpbuilder/releases/download/$idpbuilder_latest_tag/idpbuilder-$os-$arch.tar.gz
+
+$ tar xvzf idpbuilder-$os-$arch.tar.gz
 ```
 
 ## Running ipdbuilder in Codespaces
@@ -76,14 +77,14 @@ Create a Codespaces instance. ![img](./images/codespaces-create.png)
 1. Wait for it to be ready. It may take several minutes.
 1. Get the latest release of idpbuilder:
    ```bash
-    version=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/cnoe-io/idpbuilder/releases/latest)
-    version=${version##*/}
-    curl -L -o ./idpbuilder.tar.gz "https://github.com/cnoe-io/idpbuilder/releases/download/${version}/idpbuilder-$(uname | awk '{print tolower($0)}')-$(uname -m | sed 's/x86_64/amd64/').tar.gz"
-    tar xzf idpbuilder.tar.gz
+    $ version=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/cnoe-io/idpbuilder/releases/latest)
+    $ version=${version##*/}
+    $ curl -L -o ./idpbuilder.tar.gz "https://github.com/cnoe-io/idpbuilder/releases/download/${version}/idpbuilder-$(uname | awk '{print tolower($0)}')-$(uname -m | sed 's/x86_64/amd64/').tar.gz"
+    $ tar xzf idpbuilder.tar.gz
    ```
 1. Run idpbuilder:
-   ```
-    idpbuilder create --protocol http  \
+   ``` bash
+    $ idpbuilder create --protocol http  \
     --host ${CODESPACE_NAME}-8080.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN} \
     --port 8080 --use-path-routing
    ```
@@ -107,7 +108,7 @@ To do this, make sure you have the latest github cli installed. Instructions her
 
 Next you will need to login to github and give your CLI access to the codespace:
 
-```
+```bash
 $ gh auth login -h github.com -s codespace
 ```
 
@@ -174,7 +175,7 @@ As long as you tag your images and push them to `cnoe.localtest.me:8443/gitea/gi
 So to be clear. On your local machine you have to tag your images appropriately like so:
 
 ```bash
-docker tag alpine:latest cnoe.localtest.me:8443/gitea/giteaadmin/alpine:latest
+$ docker tag alpine:latest cnoe.localtest.me:8443/gitea/giteaadmin/alpine:latest
 ```
 
 Then you can push once your port-forwarding is working:
@@ -189,7 +190,7 @@ latest: digest: sha256:fa7042902b0e812e73bbee26a6918a6138ccf6d7ecf1746e1488c0bd7
 Then on the cli inside your codespace you can pull it:
 
 ```bash
-docker pull cnoe.localtest.me:8443/gitea/giteaadmin/alpine:latest
+$ docker pull cnoe.localtest.me:8443/gitea/giteaadmin/alpine:latest
 latest: Pulling from gitea/giteaadmin/alpine
 Digest: sha256:fa7042902b0e812e73bbee26a6918a6138ccf6d7ecf1746e1488c0bd76cf1f34
 Status: Image is up to date for cnoe.localtest.me:8443/gitea/giteaadmin/alpine:latest
