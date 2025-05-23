@@ -135,6 +135,7 @@ $ docker push gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
 # docker tag docker.io/library/ubuntu:24.04 cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
 # docker push cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
 
+
 ```bash
  **NOTE**: You can get the giteaAdmin password in the same way as you do for the web or git interface.
  $ idpbuilder get secrets -p gitea
@@ -142,7 +143,7 @@ $ docker push gitea.cnoe.localtest.me:8443/giteaadmin/ubuntu:24.04
  Or you can use this to login directly:
  
  $ idpbuilder get secrets -p gitea -o json | \
-   jq '.[0].data.password' -r | \
+   jq '.[0].password' -r | \
    docker login -u giteaAdmin --password-stdin gitea.cnoe.localtest.me:8443
  ```
 
