@@ -154,7 +154,7 @@ The token can be obtained by running the following command:
 $ idpbuilder get secrets -p gitea
 
 # get token only
-$ idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token
+$ idpbuilder get secrets -p gitea -o json | jq  -r '.[0].token'
 
 ```
 
@@ -164,7 +164,7 @@ Here are a some examples for using the token:
   <summary>Create a Gitea Organization</summary>
 
 ```bash
-$ TOKEN=$(idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token' )
+$ TOKEN=$(idpbuilder get secrets -p gitea -o json | jq  -r '.[0].token' )
 ```
 ```bash
 $ curl -k -X POST \
@@ -180,7 +180,7 @@ $ curl -k -X POST \
   <summary>Create a Gitea User</summary>
 
 ```bash
-$ TOKEN=$(idpbuilder get secrets -p gitea -o json | jq  -r '.[0].data.token' )
+$ TOKEN=$(idpbuilder get secrets -p gitea -o json | jq  -r '.[0].token' )
 $ curl -k -X POST \
   https://gitea.cnoe.localtest.me:8443/api/v1/admin/users \
   -H 'Content-Type: application/json' \
