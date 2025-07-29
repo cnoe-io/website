@@ -24,13 +24,22 @@ for mapping in "${REPO_MAPPINGS[@]}"; do
   if [[ "$dest_path" == *.* ]]; then
     # Destination is a file - create parent directory and copy single file
     mkdir -p "$(dirname "$dest_path")"
-    {
-      echo "---"
-      echo "custom_edit_url: $repo_url/blob/main/$source_path"
-      echo "---"
-      echo
-      cat "$tmp_dir/$source_path"
-    } > "$dest_path"
+    if head -1 "$tmp_dir/$source_path" | grep -q "^---$"; then
+      # File has frontmatter - insert custom_edit_url
+      awk -v url="$repo_url/blob/main/$source_path" '
+        /^---$/ && NR==1 { print; getline; print "custom_edit_url: " url; print $0; next }
+        { print }
+      ' "$tmp_dir/$source_path" > "$dest_path"
+    else
+      # No frontmatter - add it
+      {
+        echo "---"
+        echo "custom_edit_url: $repo_url/blob/main/$source_path"
+        echo "---"
+        echo
+        cat "$tmp_dir/$source_path"
+      } > "$dest_path"
+    fi
   else
     # Destination is a directory - remove and recreate to overwrite files
     mkdir -p "$dest_path"
@@ -43,13 +52,22 @@ for mapping in "${REPO_MAPPINGS[@]}"; do
         target_dir="$dest_path/$(dirname "$rel_subpath")"
         mkdir -p "$target_dir"
         target="$dest_path/$rel_subpath"
-        {
-          echo "---"
-          echo "custom_edit_url: $repo_url/blob/main/$rel_path"
-          echo "---"
-          echo
-          cat "$file"
-        } > "$target"
+        if head -1 "$file" | grep -q "^---$"; then
+          # File has frontmatter - insert custom_edit_url
+          awk -v url="$repo_url/blob/main/$rel_path" '
+            /^---$/ && NR==1 { print; getline; print "custom_edit_url: " url; print $0; next }
+            { print }
+          ' "$file" > "$target"
+        else
+          # No frontmatter - add it
+          {
+            echo "---"
+            echo "custom_edit_url: $repo_url/blob/main/$rel_path"
+            echo "---"
+            echo
+            cat "$file"
+          } > "$target"
+        fi
       done
       
       # Copy non-markdown files maintaining structure
@@ -61,13 +79,22 @@ for mapping in "${REPO_MAPPINGS[@]}"; do
       done
     elif [[ -f "$tmp_dir/$source_path" ]]; then
       target="$dest_path/$(basename "$source_path")"
-      {
-        echo "---"
-        echo "custom_edit_url: $repo_url/blob/main/$source_path"
-        echo "---"
-        echo
-        cat "$tmp_dir/$source_path"
-      } > "$target"
+      if head -1 "$tmp_dir/$source_path" | grep -q "^---$"; then
+        # File has frontmatter - insert custom_edit_url
+        awk -v url="$repo_url/blob/main/$source_path" '
+          /^---$/ && NR==1 { print; getline; print "custom_edit_url: " url; print $0; next }
+          { print }
+        ' "$tmp_dir/$source_path" > "$target"
+      else
+        # No frontmatter - add it
+        {
+          echo "---"
+          echo "custom_edit_url: $repo_url/blob/main/$source_path"
+          echo "---"
+          echo
+          cat "$tmp_dir/$source_path"
+        } > "$target"
+      fi
     fi
   fi
 done

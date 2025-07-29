@@ -21,3 +21,13 @@ yarn-error.log*
 
 # IDEs
 .idea
+
+# Ignore all files in docs/reference-implementation except _category_.json files
+docs/reference-implementation/*
+!docs/reference-implementation/*_category_.json
+
+docs/tutorials/aws/*
+!docs/tutorials/aws/*_category_.json
+
+docs/contributing/*
+!docs/contributing/*_category_.json
