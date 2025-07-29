@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Clone reference implementation
         run: |
-          chmod +x .github/scripts/clone-reference-impl.sh
+          chmod +x .github/scripts/clone-external-docs.sh
           ./.github/scripts/clone-external-docs.sh
       - uses: actions/setup-node@v3
         with:
