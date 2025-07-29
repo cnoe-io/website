@@ -36,7 +36,7 @@ function HomepageHeader() {
               <p>{siteConfig.tagline} &nbsp;&nbsp;
                 <Link
                   className="button button--primary button--lg"
-                  to="/docs/intro/cnoe" // go to get started
+                  to="/docs/overview/cnoe" // go to get started
                   style={{textAlign:"center", width:"200px"}}>
                   <span style={{verticalAlign:"text-top"}}>
                   Get Started

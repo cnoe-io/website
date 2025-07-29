@@ -4,8 +4,9 @@ on:
   push:
     branches:
       - main
-    # Review gh actions docs if you want to further define triggers, paths, etc
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+  schedule:
+    - cron: '0 2 * * *'  # Run every night at 2 AM UTC
+  workflow_dispatch:  # Allow manual trigger
 
 jobs:
   deploy:
@@ -16,6 +17,10 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v2
+      - name: Clone reference implementation
+        run: |
+          chmod +x .github/scripts/clone-reference-impl.sh
+          ./.github/scripts/clone-external-docs.sh
       - uses: actions/setup-node@v3
         with:
           node-version: 18

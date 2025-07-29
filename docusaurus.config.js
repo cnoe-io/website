@@ -1,5 +1,6 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
+import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives";
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
@@ -40,11 +41,30 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          beforeDefaultRemarkPlugins: [remarkGithubAdmonitionsToDirectives],
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/cnoe-io/website/tree/main',
+          sidebarItemsGenerator: async function ({
+                      defaultSidebarItemsGenerator,
+                      ...args
+                    }) {
+                      const sidebarItems = await defaultSidebarItemsGenerator(args);
+                      
+                      // Find the directory you want to flatten
+                      const processItems = (items) => {
+                        return items.flatMap(item => {
+                          if (item.type === 'category' && item.label === 'Parent DOC Directory') {
+                            // Return the items inside the category instead of the category itself
+                            return item.items || [];
+                          }
+                          if (item.items) {
+                            return [{...item, items: processItems(item.items)}];
+                          }
+                          return [item];
+                        });
+                      };
+                      
+                      return processItems(sidebarItems);
+                    },
         },
         blog: {
           showReadingTime: true,
@@ -60,6 +80,13 @@ const config = {
     ],
   ],
 
+  themes: ['@docusaurus/theme-mermaid'],
+  
+  // Enable Mermaid in markdown
+  markdown: {
+    mermaid: true,
+  },
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -72,7 +99,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro/cnoe',
+            docId: 'overview/cnoe',
             position: 'left',
             label: 'Docs'
           },
@@ -105,7 +132,7 @@ const config = {
             items: [
               {
                 label: 'Introduction',
-                to: '/docs/intro/cnoe',
+                to: '/docs/overview/cnoe',
               },
               {
                 label: 'Contribute',
