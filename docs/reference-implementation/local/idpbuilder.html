@@ -13,8 +13,8 @@
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><link rel="stylesheet" href="/assets/css/styles.9e0168f8.css">
-<script src="/assets/js/runtime~main.3b14b417.js" defer="defer"></script>
-<script src="/assets/js/main.51c6886a.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.9558baa6.js" defer="defer"></script>
+<script src="/assets/js/main.1afa7d26.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
@@ -28,7 +28,7 @@
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="running-ipdbuilder-in-local-machine">Running ipdbuilder in local machine<a href="#running-ipdbuilder-in-local-machine" class="hash-link" aria-label="Direct link to Running ipdbuilder in local machine" title="Direct link to Running ipdbuilder in local machine">​</a></h2>
 <p>A container engine is needed locally.</p>
 <ul>
-<li><a href="https://www.docker.com/get-started/" target="_blank" rel="noopener noreferrer">Docker desktop</a> is supported.</li>
+<li><a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener noreferrer">Docker desktop</a> is supported.</li>
 <li><a href="https://podman-desktop.io/" target="_blank" rel="noopener noreferrer">Podman desktop</a> is not supported however idpbuilder can create a cluster using <a href="https://docs.podman.io/en/latest/markdown/podman-machine-set.1.html#rootful" target="_blank" rel="noopener noreferrer">rootful</a>. You need tp set the <code>DOCKER_HOST</code> env var property using <code>podman</code> to let idpbuilder to talk with the engine (e.g  <code>export DOCKER_HOST=&quot;unix:///var/run/docker.sock&quot;</code>)</li>
 </ul>
 <p><strong>Option 1: Using Bash Script</strong></p>
