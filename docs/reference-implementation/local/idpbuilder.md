@@ -20,7 +20,7 @@ Go to [idpbuilder Overview page](/docs/intro/idpbuilder) to get more details on 
 ## Running ipdbuilder in local machine
 
 A container engine is needed locally. 
-* [Docker desktop](https://www.docker.com/get-started/) is supported. 
+* [Docker desktop](https://www.docker.com/products/docker-desktop/) is supported.
 * [Podman desktop](https://podman-desktop.io/) is not supported however idpbuilder can create a cluster using [rootful](https://docs.podman.io/en/latest/markdown/podman-machine-set.1.html#rootful). You need tp set the `DOCKER_HOST` env var property using `podman` to let idpbuilder to talk with the engine (e.g  ```export DOCKER_HOST="unix:///var/run/docker.sock"```)
 
 **Option 1: Using Bash Script**
