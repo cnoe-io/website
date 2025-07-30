@@ -5,23 +5,48 @@ import yaml from 'js-yaml';
 import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import clsx from 'clsx';
 import styles from './styles.module.css';
 
-const { useState, useEffect } = React;
+const { useState, useEffect, useRef } = React;
 
 function News({title, description, imageSrc, linkTo, date, presentationLink}){
     return(
-        <div className={styles.NewsCard}>
-
-        <a  href={linkTo} target="_blank" style={{ textDecoration: 'none', padding:"0px", cornerRadius:"8px" }}>
-            <img src={imageSrc} width="100%" height="230px" objectFit="contain" style={{ marginBottom: '16px', borderRadius:"5px"}}/>
-            <h2 align="left" style={{color: "var(--ifm-color-neutral-darkest)"}}>
-                {title}<br/>
-                {date && <small style={{fontSize: "15px"}}> {date}</small>}
-            </h2>
-            <p align="left" style={{ color: "var(--ifm-color-neutral-darker)" }}>{description} <br/>
-            {presentationLink && <small align="left"><a href={presentationLink} target="_blank">Presentation Link</a></small>}</p>
-        </a>
+        <div className={styles.newsCard}>
+            <a href={linkTo} target="_blank" className={styles.newsCardLink}>
+                <div className={styles.newsImageContainer}>
+                    <img 
+                        src={imageSrc} 
+                        alt={title}
+                        className={styles.newsImage}
+                    />
+                    <div className={styles.newsImageOverlay}></div>
+                </div>
+                
+                <div className={styles.newsContent}>
+                    <div className={styles.newsHeader}>
+                        <h3 className={styles.newsTitle}>{title}</h3>
+                        {date && (
+                            <span className={styles.newsDate}>{date}</span>
+                        )}
+                    </div>
+                    
+                    <p className={styles.newsDescription}>{description}</p>
+                    
+                    {presentationLink && (
+                        <div className={styles.newsLinks}>
+                            <a 
+                                href={presentationLink} 
+                                target="_blank" 
+                                className={styles.presentationLink}
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                View Presentation →
+                            </a>
+                        </div>
+                    )}
+                </div>
+            </a>
         </div>
     );
 }
@@ -31,12 +56,14 @@ function News({title, description, imageSrc, linkTo, date, presentationLink}){
 export default function CNOENews() {
   const { siteConfig } = useDocusaurusContext();
   const [newsList, setNewsList] = useState([]);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     // Function to fetch and parse YAML data
     const fetchYAMLData = async () => {
       try {
-        const response = await axios.get('/news/data.yaml'); // Adjust the path to your YAML file
+        const response = await axios.get('/news/data.yaml');
         const yamlData = response.data;
         const parsedData = yaml.load(yamlData);
         setNewsList(parsedData);
@@ -45,48 +72,97 @@ export default function CNOENews() {
       }
     };
 
-    // Call the function to fetch YAML data
     fetchYAMLData();
   }, []); 
 
-   const items = newsList.map((news, index) => (
-      <News
-        key={index}
-        title={news.title}
-        description={news.description}
-        imageSrc={news.imageSrc}
-        linkTo={news.linkTo}
-        date={news.date}
-        presentationLink={news.presentationLink}
-      />
+  useEffect(() => {
+    // Initialize scroll animation
+    if (typeof window !== 'undefined' && containerRef.current) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setIsVisible(true);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      observer.observe(containerRef.current);
+
+      return () => {
+        if (containerRef.current) {
+          observer.unobserve(containerRef.current);
+        }
+      };
+    }
+  }, []);
+
+  // Randomize the news items
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  const items = shuffleArray(newsList).map((news, index) => (
+    <News
+      key={index}
+      title={news.title}
+      description={news.description}
+      imageSrc={news.imageSrc}
+      linkTo={news.linkTo}
+      date={news.date}
+      presentationLink={news.presentationLink}
+    />
   ));
 
   const responsive = {
-    0: { items: 3 },
-    568: { items: 3 },
+    0: { items: 1 },
+    568: { items: 2 },
     1024: { items: 3 },
   };
 
   return (
-    <div className={styles.members}>
-    <h1 className="heading heading-center">In the News</h1>
-      <a target="_blank" href="https://github.com/cnoe-io/website/blob/main/static/news/data.yaml" className={styles.addTalkLink}> ► Add your talk!</a>
-      <Grid container className="sliderStyle">
-        <Grid item xs={1}/>
-          <Grid item xs={10} >
-            <AliceCarousel mouseTracking
-              items={items}
-              autoPlay={false}
-              disableSlideInfo={true}
-              disableButtonsControls={true}
-              autoPlayInterval={2500}
-              infinite={false}
-              responsive={responsive}
-            />
-        </Grid>
-        <Grid item xs={1}/>
-      </Grid>
-    </div>
+    <section 
+      ref={containerRef}
+      className={clsx(styles.newsSection, isVisible && styles.newsSectionVisible)}
+    >
+      <div className="container">
+        <div className={styles.newsHeader}>
+          <h2 className={styles.newsTitle}>In the News</h2>
+          <p className={styles.newsSubtitle}>
+            Stay updated with the latest CNOE community talks, presentations, and insights
+          </p>
+          <a 
+            target="_blank" 
+            href="https://github.com/cnoe-io/website/blob/main/static/news/data.yaml" 
+            className={styles.addTalkLink}
+          >
+            ► Add your talk!
+          </a>
+        </div>
+        
+        <div className={styles.newsCarousel}>
+          <AliceCarousel 
+            mouseTracking
+            items={items}
+            autoPlay={false}
+            disableSlideInfo={true}
+            disableButtonsControls={false}
+            autoPlayInterval={4000}
+            infinite={false}
+            responsive={responsive}
+            controlsStrategy="alternate"
+          />
+        </div>
+      </div>
+    </section>
   );
 }
   

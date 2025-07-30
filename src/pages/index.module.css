@@ -10,23 +10,545 @@
   overflow: hidden;
 }
 
+/* Modern Hero Section Styles */
+.modernHero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.heroContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 3rem;
+}
+
+.logoSection {
+  opacity: 0;
+  animation-delay: 0.3s;
+}
+
+.heroLogo {
+  width: 400px;
+  height: auto;
+  filter:
+    drop-shadow(0 10px 20px rgba(0, 86, 140, 0.2)) drop-shadow(0 20px 40px rgba(0, 86, 140, 0.15)) drop-shadow(0 30px 60px rgba(0, 86, 140, 0.1));
+}
+
+.heroTextContent {
+  max-width: 800px;
+  opacity: 0;
+  animation-delay: 0.6s;
+}
+
+.heroTitle {
+  font-size: var(--ifm-font-size-5xl);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-neutral-900);
+  letter-spacing: -0.02em;
+  text-shadow:
+    0 2px 4px rgba(0, 86, 140, 0.1),
+    0 4px 8px rgba(0, 86, 140, 0.08),
+    0 0 20px rgba(255, 152, 0, 0.1);
+}
+
+[data-theme="dark"] .heroTitle {
+  color: var(--ifm-neutral-100) !important;
+  text-shadow:
+    0 2px 4px rgba(77, 166, 255, 0.15),
+    0 4px 8px rgba(77, 166, 255, 0.12),
+    0 0 20px rgba(255, 152, 0, 0.15);
+}
+
+.heroTitleAccent {
+  background: linear-gradient(135deg, var(--ifm-primary) 0%, var(--ifm-primary-600) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.heroSubtitle {
+  font-size: var(--ifm-font-size-2xl);
+  line-height: 1.5;
+  color: var(--ifm-neutral-700);
+  margin-bottom: 2.5rem;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 86, 140, 0.05);
+}
+
+[data-theme="dark"] .heroSubtitle {
+  color: var(--ifm-neutral-400) !important;
+  text-shadow: 0 1px 2px rgba(77, 166, 255, 0.08);
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation-delay: 0.9s;
+}
+
+/* Base Hero Button Styles - All buttons have same rounded shape */
+.heroButton {
+  min-width: 180px;
+  padding: 0.75rem 2rem;
+  font-size: var(--ifm-font-size-lg);
+  font-weight: 600;
+  border-radius: 50px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--ifm-duration-normal) var(--ifm-easing-ease);
+  box-shadow: 0 4px 15px rgba(0, 86, 140, 0.1);
+  border: 2px solid var(--ifm-primary);
+}
+
+.heroButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 86, 140, 0.25);
+}
+
+[data-theme="dark"] .heroButton {
+  box-shadow: 0 4px 15px rgba(77, 166, 255, 0.1);
+  border-color: var(--ifm-primary-300);
+}
+
+[data-theme="dark"] .heroButton:hover {
+  box-shadow: 0 8px 25px rgba(77, 166, 255, 0.25);
+}
+
+/* Get Started Button - Has gradient by default */
+.getStartedButton {
+  background: linear-gradient(45deg, var(--ifm-accent-600) 0%, var(--ifm-accent-700) 20%, var(--ifm-accent-800) 80%, var(--ifm-accent-900) 100%) !important;
+  color: white !important;
+  border-color: transparent !important;
+  transition: all var(--ifm-duration-normal) var(--ifm-easing-ease) !important;
+}
+
+.getStartedButton:hover {
+  background: linear-gradient(135deg, var(--ifm-accent-600) 0%, var(--ifm-accent-700) 20%, var(--ifm-accent-800) 80%, var(--ifm-accent-900) 100%) !important;
+  color: white !important;
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.8);
+}
+
+[data-theme="dark"] .getStartedButton {
+  background: linear-gradient(135deg, var(--ifm-accent) 0%, var(--ifm-accent-700) 100%) !important;
+  color: white !important;
+  border-color: transparent !important;
+}
+
+[data-theme="dark"] .getStartedButton:hover {
+  background: linear-gradient(135deg, var(--ifm-accent-600) 0%, var(--ifm-accent-800) 100%) !important;
+  color: white !important;
+  box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
+}
+
+/* Overview and Join Community Buttons - Gradient on hover */
+.heroButton:not(.getStartedButton) {
+  background: transparent;
+}
+
+.heroButton:not(.getStartedButton):hover {
+  background: linear-gradient(135deg, var(--ifm-accent-600) 0%, var(--ifm-accent-700) 20%, var(--ifm-accent-800) 80%, var(--ifm-accent-900) 100%) !important;
+  background-size: 400% 400% !important;
+  animation: cnoe-gradient-shift 3s ease infinite !important;
+  color: white !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 25px rgba(255, 140, 90, 0.8);
+}
+
+[data-theme="dark"] .heroButton:not(.getStartedButton) {
+  border-color: var(--ifm-primary-300);
+}
+
+[data-theme="dark"] .heroButton:not(.getStartedButton):hover {
+  background: linear-gradient(45deg, #1a8dff 0%, #ff6b35 50%, #1a8dff 100%) !important;
+  background-size: 400% 400% !important;
+  animation: cnoe-gradient-shift 3s ease infinite !important;
+  color: white !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.8);
+}
+
+/* Remove Get Started button gradient when other buttons are hovered */
+.heroButtons:hover .getStartedButton:not(:hover) {
+  background: transparent !important;
+  color: var(--ifm-primary) !important;
+  border-color: var(--ifm-primary) !important;
+  animation: none !important;
+}
+
+[data-theme="dark"] .heroButtons:hover .getStartedButton:not(:hover) {
+  color: var(--ifm-primary-300) !important;
+  border-color: var(--ifm-primary-300) !important;
+}
+
+/* Remove Get Started button gradient when Learn More button is hovered */
+.learnMoreButton:hover~.heroButtons .getStartedButton,
+.heroTextContent:has(.learnMoreButton:hover) .heroButtons .getStartedButton {
+  background: transparent !important;
+  color: var(--ifm-primary) !important;
+  border-color: var(--ifm-primary) !important;
+  animation: none !important;
+}
+
+[data-theme="dark"] .learnMoreButton:hover~.heroButtons .getStartedButton,
+[data-theme="dark"] .heroTextContent:has(.learnMoreButton:hover) .heroButtons .getStartedButton {
+  color: var(--ifm-primary-300) !important;
+  border-color: var(--ifm-primary-300) !important;
+}
+
+/* Button Icons */
+.buttonIcon {
+  transition: transform var(--ifm-duration-normal) var(--ifm-easing-ease);
+}
+
+.heroButton:hover .buttonIcon {
+  transform: scale(1.1);
+}
+
+/* Learn More Button in Hero */
+.learnMoreHero {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+  opacity: 0;
+  animation-delay: 1.2s;
+}
+
+.learnMoreButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  padding: 0.75rem 1.5rem;
+  font-size: var(--ifm-font-size-lg);
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  color: var(--ifm-primary);
+  border-radius: 0;
+  transition: all var(--ifm-duration-normal) var(--ifm-easing-ease);
+  cursor: pointer;
+  box-shadow: none;
+  text-shadow: 0 2px 4px rgba(0, 86, 140, 0.1);
+  letter-spacing: 0.5px;
+}
+
+[data-theme="dark"] .learnMoreButton {
+  color: var(--ifm-primary-300);
+  text-shadow: 0 2px 4px rgba(77, 166, 255, 0.2);
+}
+
+.learnMoreButton:hover {
+  background: transparent;
+  color: var(--ifm-accent-900);
+  transform: translateY(-3px);
+  box-shadow: none;
+  border-color: transparent;
+  text-shadow: 0 4px 8px rgba(0, 86, 140, 0.3), 0 0 20px rgba(0, 86, 140, 0.2);
+  filter: brightness(1.2);
+  border-color: transparent !important;
+}
+
+[data-theme="dark"] .learnMoreButton:hover {
+  background: transparent;
+  color: var(--ifm-primary-300);
+  border-color: transparent;
+  text-shadow: 0 4px 8px rgba(77, 166, 255, 0.4), 0 0 20px rgba(77, 166, 255, 0.3);
+  filter: brightness(1.3);
+}
+
+.learnMoreContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.downArrow {
+  transition: transform var(--ifm-duration-normal) var(--ifm-easing-ease);
+}
+
+.learnMoreButton:hover .downArrow {
+  transform: translateY(3px);
+}
+
+/* Mobile Responsive */
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;
   }
+
+  .modernHero {
+    min-height: 80vh;
+    padding: 2rem 0;
+  }
+
+  .heroTitle {
+    font-size: var(--ifm-font-size-3xl);
+  }
+
+  .heroSubtitle {
+    font-size: var(--ifm-font-size-lg);
+  }
+
+  .heroLogo {
+    width: 200px;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .heroButton {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .learnMoreHero {
+    margin-top: 2rem;
+  }
+
+  .learnMoreButton {
+    min-width: 160px;
+    padding: 0.65rem 1.5rem;
+    font-size: var(--ifm-font-size-base);
+  }
 }
+
+@media screen and (max-width: 576px) {
+  .heroTitle {
+    font-size: var(--ifm-font-size-2xl);
+  }
+
+  .heroSubtitle {
+    font-size: var(--ifm-font-size-base);
+  }
+
+  .heroContainer {
+    gap: 2rem;
+  }
+}
+
 .mybutton:hover {
   cursor: pointer;
 }
+
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* Modern Partners Section */
 .members {
-  margin-top: 40px;
-  padding: 40px 0;
-  background-color: var(--ifm-color-neutral-lighter); /* Uses Docusaurus theme color */
+  padding: 5rem 0;
+  background: linear-gradient(135deg,
+      var(--ifm-primary-50) 0%,
+      var(--ifm-primary-100) 25%,
+      var(--ifm-neutral-50) 50%,
+      var(--ifm-primary-100) 75%,
+      var(--ifm-primary-50) 100%) !important;
+  background-size: 400% 400% !important;
+  animation: cnoe-gradient-shift 15s ease infinite !important;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s var(--ifm-easing-ease);
 }
 
+[data-theme="dark"] .members {
+  background: linear-gradient(135deg,
+      var(--ifm-neutral-900) 0%,
+      var(--ifm-primary-900) 25%,
+      var(--ifm-neutral-800) 50%,
+      var(--ifm-primary-800) 75%,
+      var(--ifm-neutral-900) 100%) !important;
+  background-size: 400% 400% !important;
+  animation: cnoe-gradient-shift 15s ease infinite !important;
+}
+
+.members.membersVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.members::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23cbd5e1" fill-opacity="0.05"><rect width="2" height="2" x="19" y="19"/></g></svg>') repeat;
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .members::before {
+  background: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23475569" fill-opacity="0.05"><rect width="2" height="2" x="19" y="19"/></g></svg>') repeat;
+}
+
+/* Partners Header */
+.partnersHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.partnersTitle {
+  font-size: var(--ifm-font-size-3xl);
+  font-weight: 700;
+  color: var(--ifm-neutral-900);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="dark"] .partnersTitle {
+  color: var(--ifm-neutral-100) !important;
+}
+
+.partnersSubtitle {
+  font-size: var(--ifm-font-size-lg);
+  color: var(--ifm-neutral-600);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+[data-theme="dark"] .partnersSubtitle {
+  color: var(--ifm-neutral-400) !important;
+}
+
+/* Partners Carousel */
+.partnersCarousel {
+  margin: 3rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.partnerLogoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  height: 120px;
+  transition: all var(--ifm-duration-normal) var(--ifm-easing-ease);
+}
+
+.partnerLogo {
+  width: auto;
+  height: auto;
+  filter: grayscale(100%) opacity(0.7);
+  transition: all var(--ifm-duration-normal) var(--ifm-easing-ease);
+}
+
+.partnerLogoContainer:hover .partnerLogo {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.1);
+}
+
+/* Alice Carousel Customization */
+.partnersCarousel .alice-carousel {
+  padding: 1rem 0;
+}
+
+.partnersCarousel .alice-carousel__stage {
+  padding: 0 2rem;
+}
+
+.partnersCarousel .alice-carousel__stage-item {
+  opacity: 0.6;
+  transition: opacity var(--ifm-duration-normal) var(--ifm-easing-ease);
+}
+
+.partnersCarousel .alice-carousel__stage-item.__active {
+  opacity: 1;
+}
+
+/* Partners Action */
+.partnersAction {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.partnersAction .button {
+  min-width: 200px;
+  font-weight: 600;
+  box-shadow: var(--ifm-shadow-lg);
+}
+
+.partnersAction .button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--ifm-shadow-xl);
+}
+
+/* Mobile Responsive */
+@media (max-width: 996px) {
+  .members {
+    padding: 3rem 0;
+  }
+
+  .partnersTitle {
+    font-size: var(--ifm-font-size-2xl);
+  }
+
+  .partnersSubtitle {
+    font-size: var(--ifm-font-size-base);
+  }
+
+  .partnerLogoContainer {
+    padding: 1rem;
+    height: 100px;
+  }
+
+  .partnerLogo {
+    max-width: 100px;
+    max-height: 60px;
+  }
+}
+
+@media (max-width: 576px) {
+  .partnersHeader {
+    margin-bottom: 2rem;
+  }
+
+  .partnersTitle {
+    font-size: var(--ifm-font-size-xl);
+  }
+
+  .partnerLogoContainer {
+    height: 80px;
+  }
+
+  .partnerLogo {
+    max-width: 80px;
+    max-height: 50px;
+  }
+}

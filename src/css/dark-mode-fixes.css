@@ -1,0 +1,679 @@
+/* Critical Dark Mode Fixes */
+
+/* Fix dark mode backgrounds */
+[data-theme="dark"] {
+  /* Ensure proper dark backgrounds - using lighter shades for better readability */
+  --ifm-background-color: #1a202c !important;
+  --ifm-background-surface-color: #2d3748 !important;
+  
+  /* Fix text colors - using lighter text for better contrast */
+  --ifm-font-color-base: #e2e8f0 !important;
+  --ifm-font-color-secondary: #cbd5e1 !important;
+  
+  /* Fix card backgrounds */
+  --ifm-card-background-color: #2d3748 !important;
+  
+  /* Fix content wrapper backgrounds */
+  --ifm-color-content-secondary: #cbd5e1 !important;
+  --ifm-color-emphasis-100: #2d3748 !important;
+  --ifm-color-emphasis-200: #4a5568 !important;
+  --ifm-color-emphasis-300: #718096 !important;
+}
+
+/* Fix dark mode for all page backgrounds */
+[data-theme="dark"] html,
+[data-theme="dark"] body,
+[data-theme="dark"] main,
+[data-theme="dark"] .theme-doc-root,
+[data-theme="dark"] .theme-blog-wrapper {
+  background: #1a202c !important;
+  color: #e2e8f0 !important;
+}
+
+/* Fix dark mode for components - Animated Gradient Sync */
+[data-theme="dark"] .features,
+[data-theme="dark"] .cnoeSection,
+[data-theme="dark"] .members,
+[data-theme="dark"] .newsSection,
+[data-theme="dark"] .learnMoreSection,
+[data-theme="dark"] .partnerContainer,
+[data-theme="dark"] .modernHero,
+[data-theme="dark"] .heroBanner,
+[data-theme="dark"] .heroContainer,
+[data-theme="dark"] .missionVisionSection,
+[data-theme="dark"] .valuePropositionSection {
+  background: linear-gradient(135deg,
+      var(--ifm-neutral-900) 0%,
+      var(--ifm-primary-900) 25%,
+      var(--ifm-neutral-800) 50%,
+      var(--ifm-primary-800) 75%,
+      var(--ifm-neutral-900) 100%) !important;
+  background-size: 400% 400% !important;
+  animation: cnoe-gradient-shift 15s ease infinite !important;
+}
+
+/* Fix dark mode for hero section */
+[data-theme="dark"] .hero {
+  background: linear-gradient(135deg,
+      var(--ifm-neutral-900) 0%,
+      var(--ifm-primary-900) 25%,
+      var(--ifm-neutral-800) 50%,
+      var(--ifm-primary-800) 75%,
+      var(--ifm-neutral-900) 100%) !important;
+  background-size: 400% 400% !important;
+  animation: cnoe-gradient-shift 15s ease infinite !important;
+}
+
+/* Ensure all homepage sections have animated dark background */
+[data-theme="dark"] .homepage section,
+[data-theme="dark"] .homepage div[class*="section"],
+[data-theme="dark"] .homepage div[class*="Section"] {
+  background: linear-gradient(135deg,
+      var(--ifm-neutral-900) 0%,
+      var(--ifm-primary-900) 25%,
+      var(--ifm-neutral-800) 50%,
+      var(--ifm-primary-800) 75%,
+      var(--ifm-neutral-900) 100%) !important;
+  background-size: 400% 400% !important;
+  animation: cnoe-gradient-shift 15s ease infinite !important;
+}
+
+/* Dark mode body and main containers with animation */
+[data-theme="dark"] body.homepage,
+[data-theme="dark"] .main-wrapper,
+[data-theme="dark"] .docMainContainer,
+[data-theme="dark"] .docRoot {
+  background: linear-gradient(135deg,
+      var(--ifm-neutral-900) 0%,
+      var(--ifm-primary-900) 25%,
+      var(--ifm-neutral-800) 50%,
+      var(--ifm-primary-800) 75%,
+      var(--ifm-neutral-900) 100%) !important;
+  background-size: 400% 400% !important;
+  animation: cnoe-gradient-shift 15s ease infinite !important;
+}
+
+[data-theme="dark"] .hero-gradient-bg {
+  background: linear-gradient(135deg,
+      #1a202c 0%,
+      #2d3748 25%,
+      #4a5568 50%,
+      #2d3748 75%,
+      #1a202c 100%) !important;
+  background-size: 400% 400%;
+}
+
+/* Fix dark mode text colors */
+[data-theme="dark"] .heroTitle,
+[data-theme="dark"] .sectionTitle,
+[data-theme="dark"] .partnersTitle,
+[data-theme="dark"] .newsTitle,
+[data-theme="dark"] .missionVisionTitle,
+[data-theme="dark"] .featureTitle {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .heroSubtitle,
+[data-theme="dark"] .sectionSubtitle,
+[data-theme="dark"] .partnersSubtitle,
+[data-theme="dark"] .newsSubtitle,
+[data-theme="dark"] .missionVisionDescription,
+[data-theme="dark"] .featureDescription,
+[data-theme="dark"] .description {
+  color: #94a3b8 !important;
+}
+
+/* Fix dark mode for sidebar */
+[data-theme="dark"] .theme-doc-sidebar-container {
+  background: #1a202c !important;
+  border-right: 1px solid #4a5568 !important;
+}
+
+[data-theme="dark"] .menu__link {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .menu__link:hover {
+  background: rgba(77, 166, 255, 0.1) !important;
+  color: #4da6ff !important;
+}
+
+[data-theme="dark"] .menu__link--active {
+  background: linear-gradient(135deg, #4da6ff 0%, #80c0ff 100%) !important;
+  color: white !important;
+}
+
+/* Fix dark mode for navbar */
+[data-theme="dark"] .navbar {
+  background: linear-gradient(135deg, 
+    rgba(15, 23, 42, 0.7) 0%, 
+    rgba(30, 41, 59, 0.85) 20%,
+    rgba(15, 23, 42, 0.9) 100%) !important;
+  border-bottom: 1px solid rgba(77, 166, 255, 0.12) !important;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(77, 166, 255, 0.08),
+    inset 0 1px 0 rgba(77, 166, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .navbar__link {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .navbar__link:hover {
+  color: #4da6ff !important;
+  background: rgba(77, 166, 255, 0.1) !important;
+}
+
+/* Fix dark mode for cards and components */
+[data-theme="dark"] .featureCardInner,
+[data-theme="dark"] .missionVisionCard,
+[data-theme="dark"] .newsCardLink {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 1px solid rgba(71, 85, 105, 0.3) !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .featureCardInner:hover,
+[data-theme="dark"] .missionVisionCard:hover,
+[data-theme="dark"] .newsCardLink:hover {
+  border-color: #80c0ff !important;
+}
+
+/* Fix dark mode for table of contents */
+[data-theme="dark"] .theme-doc-toc-desktop {
+  background: #1a202c !important;
+  border-left-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .table-of-contents__link {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .table-of-contents__link:hover {
+  background: rgba(77, 166, 255, 0.1) !important;
+  color: #4da6ff !important;
+}
+
+/* Fix dark mode for blog sidebar */
+[data-theme="dark"] .theme-blog-sidebar {
+  background: #1a202c !important;
+  border-right-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .theme-blog-sidebar .menu__link {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .theme-blog-sidebar .menu__link:hover {
+  background: rgba(77, 166, 255, 0.1) !important;
+  color: #4da6ff !important;
+}
+
+/* Fix dark mode for footer */
+[data-theme="dark"] .footer--dark {
+  background-color: #1a202c !important;
+}
+
+/* Fix dark mode for content areas */
+[data-theme="dark"] .markdown,
+[data-theme="dark"] .theme-doc-markdown {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .markdown h1,
+[data-theme="dark"] .markdown h2,
+[data-theme="dark"] .markdown h3,
+[data-theme="dark"] .markdown h4,
+[data-theme="dark"] .markdown h5,
+[data-theme="dark"] .markdown h6 {
+  color: #e2e8f0 !important;
+}
+
+/* Fix dark mode for search */
+[data-theme="dark"] .navbar__search-input {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-color: #4a5568 !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .navbar__search-input:focus {
+  border-color: #4da6ff !important;
+  box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.2) !important;
+}
+
+/* Fix dark mode for main content wrapper */
+[data-theme="dark"] .main-wrapper,
+[data-theme="dark"] .docMainContainer,
+[data-theme="dark"] .docRoot {
+  background: #1a202c !important;
+}
+
+/* Fix dark mode for documentation pages */
+[data-theme="dark"] .theme-doc-markdown > div,
+[data-theme="dark"] .theme-doc-markdown {
+  background: #1a202c !important;
+}
+
+/* Fix dark mode for code blocks */
+[data-theme="dark"] .theme-code-block {
+  background: #2d3748 !important;
+  border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .prism-code {
+  background: #2d3748 !important;
+}
+
+[data-theme="dark"] .token.comment,
+[data-theme="dark"] .token.prolog,
+[data-theme="dark"] .token.doctype,
+[data-theme="dark"] .token.cdata {
+  color: #718096 !important;
+}
+
+/* Fix dark mode for breadcrumbs */
+[data-theme="dark"] .breadcrumbs {
+  background: #1a202c !important;
+}
+
+[data-theme="dark"] .breadcrumbs__link {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .breadcrumbs__link:hover {
+  color: #4da6ff !important;
+}
+
+/* Fix dark mode for pagination */
+[data-theme="dark"] .pagination-nav__link {
+  background: #2d3748 !important;
+  border-color: #4a5568 !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .pagination-nav__link:hover {
+  background: #4a5568 !important;
+  color: #e2e8f0 !important;
+}
+
+/* Fix dark mode for tabs */
+[data-theme="dark"] .tabs {
+  background: #1a202c !important;
+}
+
+[data-theme="dark"] .tabs__item {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .tabs__item--active {
+  color: #4da6ff !important;
+  border-bottom-color: #4da6ff !important;
+}
+
+[data-theme="dark"] .tabs__item:hover {
+  color: #e2e8f0 !important;
+}
+
+/* Fix dark mode for admonitions */
+[data-theme="dark"] .admonition {
+  background: #2d3748 !important;
+  border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .admonition-heading {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .admonition-content {
+  color: #94a3b8 !important;
+}
+
+/* Fix dark mode for dropdown menus */
+[data-theme="dark"] .dropdown__menu {
+  background: #2d3748 !important;
+  border: 1px solid #4a5568 !important;
+}
+
+[data-theme="dark"] .dropdown__link {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .dropdown__link:hover {
+  background: rgba(77, 166, 255, 0.1) !important;
+  color: #4da6ff !important;
+}
+
+/* Fix dark mode for mobile menu */
+[data-theme="dark"] .navbar-sidebar {
+  background: rgba(15, 23, 42, 0.95) !important;
+}
+
+[data-theme="dark"] .navbar-sidebar__backdrop {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .navbar-sidebar__brand {
+  background: #2d3748 !important;
+  border-bottom-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .navbar-sidebar__item {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .navbar-sidebar__link {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .navbar-sidebar__link:hover {
+  background: rgba(77, 166, 255, 0.1) !important;
+  color: #4da6ff !important;
+}
+
+/* Fix dark mode for blog components */
+[data-theme="dark"] .theme-blog-wrapper {
+  background: #1a202c !important;
+}
+
+[data-theme="dark"] .blogPostContainer {
+  background: #1a202c !important;
+}
+
+[data-theme="dark"] .blogPostTitle {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .blogPostContent {
+  color: #94a3b8 !important;
+}
+
+/* Fix dark mode for homepage components */
+[data-theme="dark"] .heroBanner {
+  background: #1a202c !important;
+}
+
+[data-theme="dark"] .modernHero {
+  background: #1a202c !important;
+}
+
+/* Fix dark mode for homepage hero */
+[data-theme="dark"] .heroContainer {
+  background: #1a202c !important;
+}
+
+[data-theme="dark"] .heroTitle {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .heroSubtitle {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .trustLabel {
+  color: #94a3b8 !important;
+}
+
+/* Fix dark mode for partners */
+[data-theme="dark"] .members {
+  background: #1a202c !important;
+}
+
+[data-theme="dark"] .partnerLogo {
+  filter: brightness(0.8) !important;
+}
+
+[data-theme="dark"] .partnerContainer {
+  background: #1a202c !important;
+}
+
+/* Fix dark mode for learn more section */
+[data-theme="dark"] .learnMoreSection {
+  background: #1a202c !important;
+}
+
+/* Fix dark mode for any remaining elements */
+[data-theme="dark"] .container,
+[data-theme="dark"] .row,
+[data-theme="dark"] .col {
+  background: transparent !important;
+}
+
+/* Fix dark mode for buttons in dark theme */
+[data-theme="dark"] .button--secondary {
+  background: transparent !important;
+  border: 2px solid #94a3b8 !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .button--secondary:hover {
+  background: #4da6ff !important;
+  border-color: #4da6ff !important;
+  color: white !important;
+}
+
+/* Fix dark mode for any cards */
+[data-theme="dark"] .card,
+[data-theme="dark"] .panel {
+  background: #2d3748 !important;
+  border-color: #4a5568 !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .panel:hover {
+  border-color: #80c0ff !important;
+}
+
+/* Fix dark mode for text elements */
+[data-theme="dark"] p,
+[data-theme="dark"] li,
+[data-theme="dark"] span,
+[data-theme="dark"] div {
+  color: #94a3b8 !important;
+}
+
+/* Ensure proper contrast for links */
+[data-theme="dark"] a {
+  color: #4da6ff !important;
+}
+
+[data-theme="dark"] a:hover {
+  color: #80c0ff !important;
+}
+
+/* Fix dark mode for any modals */
+[data-theme="dark"] .modal,
+[data-theme="dark"] .overlay {
+  background: #2d3748 !important;
+  border-color: #4a5568 !important;
+}
+
+/* Fix dark mode for form elements */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background: #2d3748 !important;
+  border: 1px solid #4a5568 !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+  border-color: #4da6ff !important;
+  box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.2) !important;
+}
+
+/* Fix dark mode for any tooltips */
+[data-theme="dark"] .tooltip {
+  background: #4a5568 !important;
+  color: #e2e8f0 !important;
+  border-color: #718096 !important;
+}
+
+/* Ensure proper dark mode scrollbars */
+[data-theme="dark"] * {
+  scrollbar-color: #4a5568 #2d3748;
+}
+
+/* Fix any potential white backgrounds that might appear */
+[data-theme="dark"] [style*="background-color: white"],
+[data-theme="dark"] [style*="background-color: #fff"],
+[data-theme="dark"] [style*="background: white"] {
+  background: #1a202c !important;
+}
+
+[data-theme="dark"] [style*="color: black"],
+[data-theme="dark"] [style*="color: #000"],
+[data-theme="dark"] [style*="color:#000"] {
+  color: #94a3b8 !important;
+}
+
+/* Fix dark mode for search plugin */
+[data-theme="dark"] .DocSearch {
+  --docsearch-primary-color: #94a3b8 !important;
+  --docsearch-text-color: #94a3b8 !important;
+  --docsearch-muted-color: #718096 !important;
+  --docsearch-container-background: rgba(15, 23, 42, 0.8) !important;
+  --docsearch-modal-background: #2d3748 !important;
+  --docsearch-searchbox-background: #4a5568 !important;
+  --docsearch-searchbox-focus-background: #4a5568 !important;
+  --docsearch-hit-color: #94a3b8 !important;
+  --docsearch-hit-active-color: #e2e8f0 !important;
+  --docsearch-hit-background: #4a5568 !important;
+  --docsearch-hit-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+  --docsearch-key-gradient: linear-gradient(-225deg, #4a5568, #4a5568) !important;
+  --docsearch-key-shadow: inset 0 -2px 0 0 #2d3748, inset 0 0 1px 1px #4a5568, 0 1px 2px 1px rgba(0, 0, 0, 0.3) !important;
+  --docsearch-footer-background: #2d3748 !important;
+}
+
+[data-theme="dark"] .DocSearch-Button {
+  background: #2d3748 !important;
+  border-color: #4a5568 !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .DocSearch-Button:hover {
+  background: #4a5568 !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .DocSearch-Button-Key {
+  background: #4a5568 !important;
+  color: #94a3b8 !important;
+}
+
+/* Fix dark mode for lunr search plugin if present */
+[data-theme="dark"] .search-bar {
+  background: #2d3748 !important;
+  border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .search-bar input {
+  background: #4a5568 !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .search-bar input::placeholder {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .search-results {
+  background: #2d3748 !important;
+  border-color: #4a5568 !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .search-result-item {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .search-result-item:hover {
+  background: rgba(77, 166, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .search-result-title {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .search-result-snippet {
+  color: #94a3b8 !important;
+}
+
+/* Fix dark mode for any remaining Docusaurus components */
+[data-theme="dark"] .theme-doc-version-banner {
+  background: #2d3748 !important;
+  border-color: #4a5568 !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .theme-doc-version-badge {
+  background: #4a5568 !important;
+  color: #e2e8f0 !important;
+}
+
+/* Fix dark mode for any alert/callout components */
+[data-theme="dark"] .alert {
+  background: #2d3748 !important;
+  border-color: #4a5568 !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .alert--primary {
+  background: rgba(77, 166, 255, 0.1) !important;
+  border-color: #4da6ff !important;
+}
+
+[data-theme="dark"] .alert--secondary {
+  background: rgba(148, 163, 184, 0.1) !important;
+  border-color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .alert--success {
+  background: rgba(16, 185, 129, 0.1) !important;
+  border-color: #10b981 !important;
+}
+
+[data-theme="dark"] .alert--info {
+  background: rgba(59, 130, 246, 0.1) !important;
+  border-color: #3b82f6 !important;
+}
+
+[data-theme="dark"] .alert--warning {
+  background: rgba(245, 158, 11, 0.1) !important;
+  border-color: #f59e0b !important;
+}
+
+[data-theme="dark"] .alert--danger {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: #ef4444 !important;
+}
+
+/* Fix dark mode for any remaining interactive elements */
+[data-theme="dark"] .badge {
+  background: #4a5568 !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .badge--primary {
+  background: #4da6ff !important;
+  color: white !important;
+}
+
+[data-theme="dark"] .badge--secondary {
+  background: #94a3b8 !important;
+  color: white !important;
+}
+
+/* Final catch-all for any missed elements */
+[data-theme="dark"] .clean-btn {
+  background: rgba(77, 166, 255, 0.1) !important;
+  border-color: rgba(77, 166, 255, 0.2) !important;
+  color: #4da6ff !important;
+}
+
+[data-theme="dark"] .clean-btn:hover {
+  background: #4da6ff !important;
+  color: white !important;
+}

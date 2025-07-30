@@ -90,11 +90,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
+      },
       navbar: {
         title: '',
         logo: {
           alt: 'CNOE Logo',
-          src: 'img/logo.png',
+          src: 'img/logo-no-name.png',
         },
         items: [
           {

@@ -1,0 +1,106 @@
+/* Emergency homepage gap fix - highest specificity */
+
+/* Apply background to the root elements with maximum specificity */
+html[data-theme="light"] body.homepage,
+html[data-theme="light"] .homepage,
+html[data-theme="light"] .homepage .main-wrapper,
+html[data-theme="light"] .homepage main,
+html[data-theme="light"] .homepage .theme-doc-wrapper {
+  background: linear-gradient(135deg,
+      #e6f2ff 0%,
+      #b3d9ff 25%,
+      #f8fafc 50%,
+      #b3d9ff 75%,
+      #e6f2ff 100%) !important;
+  background-size: 400% 400% !important;
+  animation: cnoe-gradient-shift 15s ease infinite !important;
+  background-attachment: fixed !important;
+  min-height: 100vh !important;
+}
+
+html[data-theme="dark"] body.homepage,
+html[data-theme="dark"] .homepage,
+html[data-theme="dark"] .homepage .main-wrapper,
+html[data-theme="dark"] .homepage main,
+html[data-theme="dark"] .homepage .theme-doc-wrapper {
+  background: linear-gradient(135deg,
+      #0f172a 0%,
+      #002444 25%,
+      #1e293b 50%,
+      #003156 75%,
+      #0f172a 100%) !important;
+  background-size: 400% 400% !important;
+  animation: cnoe-gradient-shift 15s ease infinite !important;
+  background-attachment: fixed !important;
+  min-height: 100vh !important;
+}
+
+/* Make all sections completely transparent */
+html body.homepage .hero,
+html body.homepage .cnoeSection,
+html body.homepage .features,
+html body.homepage .members,
+html body.homepage .newsSection,
+html body.homepage .learnMoreSection,
+html body.homepage main,
+html body.homepage main>div,
+html body.homepage div[data-scroll-animation] {
+  background: transparent !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Restore only vertical padding for content spacing */
+html body.homepage .hero {
+  padding: 5rem 0 !important;
+}
+
+html body.homepage .cnoeSection {
+  padding: 4rem 0 !important;
+}
+
+html body.homepage .features {
+  padding: 5rem 0 !important;
+}
+
+html body.homepage .members {
+  padding: 5rem 0 !important;
+}
+
+html body.homepage .newsSection {
+  padding: 5rem 0 !important;
+}
+
+html body.homepage .learnMoreSection {
+  padding: 4rem 0 !important;
+}
+
+/* Remove any container backgrounds */
+html body.homepage .container,
+html body.homepage .container-fluid {
+  background: transparent !important;
+  margin: 0 auto !important;
+  padding: 0 2rem !important;
+}
+
+/* Ensure no white backgrounds anywhere */
+html body.homepage *:not(.button):not(input):not(select):not(textarea) {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Force remove any inline styles */
+html body.homepage [style*="background"] {
+  background: transparent !important;
+}
+
+/* Remove all margins and borders */
+html body.homepage * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
