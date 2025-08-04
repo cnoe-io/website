@@ -7,11 +7,6 @@
 /* Import Inter font family for modern typography */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Import dark mode fixes */
-@import './dark-mode-fixes.css';
-
-/* Import homepage gap fix */
-@import './homepage-fix.css';
 
 /* CNOE Modern Design System - CNOE Brand Color Palette */
 :root {
@@ -446,13 +441,19 @@
 }
 
 .footer--dark {
-  background-color: var(--ifm-color-black);
+  background: linear-gradient(45deg,
+      var(--ifm-primary-500) 0%,
+      var(--ifm-primary-600) 15%,
+      var(--ifm-primary-700) 50%,
+      var(--ifm-primary-800) 75%,
+      var(--ifm-primary-900) 100%);
   color: var(--ifm-color-white);
   text-align: center;
+  font-weight: 400;
 }
 
 .footer--dark .footer__items :hover {
-  color: var(--ifm-color-primary-lightest);
+  color: var(--ifm-accent);
 }
 
 .footer__copyright {
@@ -511,19 +512,17 @@ p>img {
   transition: background var(--ifm-transition-fast);
 }
 
-.navbar--calendar-link:hover {
-  background: var(--ifm-color-emphasis-200);
-}
-
 .navbar--calendar-link:before {
   content: '';
   height: 100%;
   display: block;
-  background: url('data:image/svg+xml,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3 9H21M7 3V5M17 3V5M6 12H8M11 12H13M16 12H18M6 15H8M11 15H13M16 15H18M6 18H8M11 18H13M16 18H18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke="%23000000" stroke-width="2" stroke-linecap="round"></path></g></svg>');
+  background: url('data:image/svg+xml;charset=utf-8,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 2V6M16 2V6M3 10H21M5 4H19C20.1046 4 21 4.89543 21 6V20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V6C3 4.89543 3.89543 4 5 4Z" stroke="%23000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center;
+  background-size: contain;
 }
 
 html[data-theme='dark'] .navbar--calendar-link:before {
-  background: url('data:image/svg+xml,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3 9H21M7 3V5M17 3V5M6 12H8M11 12H13M16 12H18M6 15H8M11 15H13M16 15H18M6 18H8M11 18H13M16 18H18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke="%23ffffff" stroke-width="2" stroke-linecap="round"></path></g></svg>');
+  background: url('data:image/svg+xml;charset=utf-8,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 2V6M16 2V6M3 10H21M5 4H19C20.1046 4 21 4.89543 21 6V20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V6C3 4.89543 3.89543 4 5 4Z" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center;
+  background-size: contain;
 }
 
 /* navbar */
@@ -685,146 +684,6 @@ h3 {
   background-size: 400% 400%;
 }
 
-.floating-shape {
-  position: absolute;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--ifm-primary-200), var(--ifm-primary-300));
-  opacity: 0.1;
-  animation: cnoe-float-shapes 20s ease-in-out infinite;
-}
-
-[data-theme="dark"] .floating-shape {
-  background: linear-gradient(135deg, var(--ifm-primary-600), var(--ifm-primary-700));
-  opacity: 0.05;
-}
-
-.floating-shape:nth-child(1) {
-  width: 80px;
-  height: 80px;
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-  animation-duration: 25s;
-}
-
-.floating-shape:nth-child(2) {
-  width: 120px;
-  height: 120px;
-  top: 60%;
-  right: 15%;
-  animation-delay: -5s;
-  animation-duration: 30s;
-}
-
-.floating-shape:nth-child(3) {
-  width: 60px;
-  height: 60px;
-  top: 40%;
-  left: 70%;
-  animation-delay: -10s;
-  animation-duration: 20s;
-}
-
-.floating-shape:nth-child(4) {
-  width: 100px;
-  height: 100px;
-  top: 80%;
-  left: 20%;
-  animation-delay: -15s;
-  animation-duration: 35s;
-}
-
-.floating-shape:nth-child(5) {
-  width: 40px;
-  height: 40px;
-  top: 15%;
-  right: 30%;
-  animation-delay: -8s;
-  animation-duration: 22s;
-}
-
-/* Cloud-Native Themed Shapes */
-.floating-shape.container {
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--ifm-primary-200), var(--ifm-primary-300));
-  position: relative;
-}
-
-.floating-shape.container::before {
-  content: '📦';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 24px;
-  opacity: 0.6;
-}
-
-.floating-shape.kubernetes {
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--ifm-info), #326ce5);
-  position: relative;
-}
-
-.floating-shape.kubernetes::before {
-  content: '☸️';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 20px;
-  opacity: 0.7;
-}
-
-.floating-shape.cloud {
-  border-radius: 20px;
-  background: linear-gradient(135deg, var(--ifm-neutral-300), var(--ifm-neutral-400));
-  position: relative;
-}
-
-.floating-shape.cloud::before {
-  content: '☁️';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 22px;
-  opacity: 0.6;
-}
-
-.floating-shape.platform {
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--ifm-accent), var(--ifm-accent-dark));
-  position: relative;
-  transform: rotate(15deg);
-}
-
-.floating-shape.platform::before {
-  content: '🚀';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-15deg);
-  font-size: 20px;
-  opacity: 0.7;
-}
-
-[data-theme="dark"] .floating-shape.container {
-  background: linear-gradient(135deg, var(--ifm-primary-600), var(--ifm-primary-700));
-}
-
-[data-theme="dark"] .floating-shape.kubernetes {
-  background: linear-gradient(135deg, var(--ifm-info), #4da6ff);
-}
-
-[data-theme="dark"] .floating-shape.cloud {
-  background: linear-gradient(135deg, var(--ifm-neutral-600), var(--ifm-neutral-700));
-}
-
-[data-theme="dark"] .floating-shape.platform {
-  background: linear-gradient(135deg, var(--ifm-accent-light), var(--ifm-accent));
-}
-
 @keyframes cnoe-float-shapes {
 
   0%,
@@ -847,11 +706,6 @@ h3 {
 
 /* Performance optimizations for mobile */
 @media (max-width: 768px) {
-  .floating-shape {
-    animation-duration: 15s;
-    will-change: transform;
-  }
-
   .hero-gradient-bg {
     animation-duration: 20s;
   }
@@ -859,32 +713,11 @@ h3 {
 
 /* Reduced motion support for background elements */
 @media (prefers-reduced-motion: reduce) {
-
-  .floating-shape,
   .hero-gradient-bg {
     animation: none;
   }
-
-  .floating-shape {
-    opacity: 0.05;
-  }
-
-  [data-theme="dark"] .floating-shape {
-    opacity: 0.02;
-  }
 }
 
-/* Synchronized Gradient Animation for Body - Global Sync Point */
-body {
-  background: linear-gradient(135deg,
-      var(--ifm-primary-50) 0%,
-      var(--ifm-primary-100) 25%,
-      var(--ifm-neutral-50) 50%,
-      var(--ifm-primary-100) 75%,
-      var(--ifm-primary-50) 100%);
-  background-size: 400% 400%;
-  animation: var(--cnoe-gradient-animation);
-}
 
 [data-theme="dark"] body {
   background: linear-gradient(135deg,
@@ -1147,13 +980,6 @@ body {
   box-shadow: var(--ifm-shadow-sm) !important;
 }
 
-[data-theme="dark"] .navbar--calendar-link:hover,
-[data-theme="dark"] .navbar--slack-link:hover,
-[data-theme="dark"] .navbar--github-link:hover {
-  background: rgba(77, 166, 255, 0.08) !important;
-  color: var(--ifm-primary-300) !important;
-}
-
 /* Icon styling for navbar links */
 .navbar--calendar-link:before,
 .navbar--slack-link:before,
@@ -1212,21 +1038,6 @@ body {
   font-size: var(--ifm-font-size-sm);
 }
 
-[data-theme="dark"] .menu__link {
-  color: var(--ifm-neutral-300);
-}
-
-.menu__link:hover {
-  background: rgba(0, 86, 140, 0.08);
-  color: var(--ifm-primary);
-  transform: translateX(4px);
-  box-shadow: var(--ifm-shadow-sm);
-}
-
-[data-theme="dark"] .menu__link:hover {
-  background: rgba(77, 166, 255, 0.08);
-  color: var(--ifm-primary-300);
-}
 
 .menu__link--active {
   background: linear-gradient(135deg, var(--ifm-primary) 0%, var(--ifm-primary-600) 100%);
@@ -1236,38 +1047,23 @@ body {
   position: relative;
 }
 
-.menu__link--active::before {
+.menu__link--active::before,
+.menu__list-item-collapsible:hover::before,
+.menu__link:hover::before {
   content: '';
   position: absolute;
   left: -1rem;
   top: 50%;
   transform: translateY(-50%);
   width: 4px;
-  height: 20px;
+  height: 70%;
   background: var(--ifm-accent);
   border-radius: 2px;
 }
 
-/* Sidebar Categories */
-.menu__list-item-collapsible {
-  margin: 0.5rem 0;
-}
-
-.menu__list-item-collapsible .menu__link {
-  font-weight: 600;
-  color: var(--ifm-neutral-800);
-  font-size: var(--ifm-font-size-base);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 1rem;
-}
-
-[data-theme="dark"] .menu__list-item-collapsible .menu__link {
-  color: var(--ifm-neutral-200);
-}
-
-.menu__list-item-collapsible .menu__link:hover {
-  background: rgba(0, 86, 140, 0.05);
+.menu__list-item .menu__link:hover {
+  background: var(--ifm-primary-50);
+  color: var(--ifm-primary) !important;
   transform: none;
 }
 
@@ -1290,28 +1086,6 @@ body {
 
 [data-theme="dark"] .menu__list .menu__list .menu__link {
   color: var(--ifm-neutral-400);
-}
-
-/* Mobile Sidebar */
-@media (max-width: 996px) {
-  .theme-doc-sidebar-container {
-    background: rgba(248, 250, 252, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-
-  [data-theme="dark"] .theme-doc-sidebar-container {
-    background: rgba(30, 41, 59, 0.95);
-  }
-
-  .menu__link {
-    padding: 1rem;
-    font-size: var(--ifm-font-size-base);
-  }
-
-  .menu__link:hover {
-    transform: translateX(8px);
-  }
 }
 
 /* Touch-friendly enhancements for mobile */
@@ -1384,8 +1158,8 @@ body {
 
 /* Copy Button Enhancement */
 .clean-btn {
-  background: rgba(0, 86, 140, 0.1) !important;
-  border: 1px solid rgba(0, 86, 140, 0.2) !important;
+  /* background: rgba(0, 86, 140, 0.1) !important;
+  border: 1px solid rgba(0, 86, 140, 0.2) !important; */
   color: var(--ifm-primary) !important;
   border-radius: 8px !important;
   padding: 0.5rem 1rem !important;
@@ -1604,6 +1378,38 @@ main>div:not(:last-child) {
   margin-bottom: 2rem;
 }
 
+/* Remove gaps between homepage sections by overlapping them slightly */
+.homepage main>div:not(:last-child) {
+  margin-bottom: -5px !important;
+}
+
+/* Remove gap between main and following sections */
+.homepage main+div {
+  margin-top: -5px !important;
+}
+
+/* Ensure all homepage sections have seamless backgrounds */
+.homepage .features,
+.homepage .members {
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="dark"] html,
+[data-theme="dark"] body,
+[data-theme="dark"] #__docusaurus,
+[data-theme="dark"] .main-wrapper,
+[data-theme="dark"] main {
+  background: linear-gradient(135deg,
+      var(--ifm-neutral-900) 0%,
+      var(--ifm-primary-900) 25%,
+      var(--ifm-neutral-800) 50%,
+      var(--ifm-primary-800) 75%,
+      var(--ifm-neutral-900) 100%) !important;
+  background-size: 400% 400% !important;
+  animation: cnoe-gradient-shift 15s ease infinite !important;
+}
+
 /* Loading states for better UX */
 .loading-skeleton {
   background: linear-gradient(90deg, var(--ifm-neutral-200) 25%, var(--ifm-neutral-100) 50%, var(--ifm-neutral-200) 75%);
@@ -1631,7 +1437,6 @@ main>div:not(:last-child) {
 
   .navbar,
   .footer,
-  .floating-shape,
   .hero-background {
     display: none !important;
   }
@@ -1647,20 +1452,6 @@ main>div:not(:last-child) {
   }
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  :root {
-    --ifm-primary: #000080;
-    --ifm-neutral-600: #000000;
-    --ifm-neutral-400: #666666;
-  }
-
-  [data-theme="dark"] {
-    --ifm-primary: #4da6ff;
-    --ifm-neutral-600: #ffffff;
-    --ifm-neutral-400: #cccccc;
-  }
-}
 
 /* Ensure all interactive elements are accessible */
 button,
@@ -1706,31 +1497,6 @@ main {
   background: var(--ifm-neutral-900);
 }
 
-/* Fix search plugin styling */
-.navbar__search {
-  margin-right: 1rem;
-}
-
-.navbar__search-input {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid var(--ifm-neutral-300);
-  border-radius: 6px;
-  color: var(--ifm-neutral-700);
-  padding: 0.5rem 1rem;
-  transition: all var(--ifm-duration-normal) var(--ifm-easing-ease);
-}
-
-[data-theme="dark"] .navbar__search-input {
-  background: rgba(0, 0, 0, 0.2);
-  border-color: var(--ifm-neutral-600);
-  color: var(--ifm-neutral-300);
-}
-
-.navbar__search-input:focus {
-  border-color: var(--ifm-primary);
-  box-shadow: 0 0 0 2px rgba(0, 86, 140, 0.2);
-}
-
 /* Fix white sections between homepage components */
 .cnoe-section-spacing {
   margin: 0;
@@ -1768,6 +1534,7 @@ main {
   font-size: var(--ifm-font-size-sm);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
+  word-wrap: normal;
   transition: all var(--ifm-duration-normal) var(--ifm-easing-ease);
 }
 
@@ -1791,38 +1558,7 @@ main {
   font-weight: 600;
 }
 
-/* Blog sidebar styling */
-.theme-blog-sidebar {
-  background: var(--ifm-neutral-50);
-  border-right: 1px solid var(--ifm-neutral-200);
-  padding: 1rem;
-}
-
-[data-theme="dark"] .theme-blog-sidebar {
-  background: var(--ifm-neutral-900);
-  border-right-color: var(--ifm-neutral-700);
-}
-
-.theme-blog-sidebar .menu__link {
-  color: var(--ifm-neutral-700);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: all var(--ifm-duration-normal) var(--ifm-easing-ease);
-}
-
-[data-theme="dark"] .theme-blog-sidebar .menu__link {
-  color: var(--ifm-neutral-300);
-}
-
-.theme-blog-sidebar .menu__link:hover {
-  background: rgba(0, 86, 140, 0.1);
-  color: var(--ifm-primary);
-}
-
-[data-theme="dark"] .theme-blog-sidebar .menu__link:hover {
-  background: rgba(77, 166, 255, 0.1);
-  color: var(--ifm-primary-300);
-}
+/* Duplicate blog sidebar section removed - using enhanced version below */
 
 /* Fix sidebar proportions and active state visibility */
 .menu__link--active {
@@ -1832,64 +1568,11 @@ main {
   box-shadow: var(--ifm-shadow-md) !important;
 }
 
-.menu__list-item-collapsible .menu__link {
-  font-size: var(--ifm-font-size-sm) !important;
-  padding: 0.75rem 1rem !important;
-  font-weight: 600 !important;
-}
-
 /* Fix logo sizing for different screen sizes */
 .navbar__logo img {
   height: auto;
   width: auto;
   transition: all var(--ifm-duration-normal) var(--ifm-easing-ease);
-}
-
-/* Fix search plugin styling */
-.navbar__search {
-  margin-right: 1rem;
-  order: 2;
-}
-
-.navbar__search-input {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid var(--ifm-neutral-300);
-  border-radius: 6px;
-  color: var(--ifm-neutral-700);
-  padding: 0.5rem 1rem;
-  transition: all var(--ifm-duration-normal) var(--ifm-easing-ease);
-}
-
-[data-theme="dark"] .navbar__search-input {
-  background: rgba(0, 0, 0, 0.2);
-  border-color: var(--ifm-neutral-600);
-  color: var(--ifm-neutral-300);
-}
-
-.navbar__search-input:focus {
-  border-color: var(--ifm-primary);
-  box-shadow: 0 0 0 2px rgba(0, 86, 140, 0.2);
-}
-
-/* Fix sidebar active state visibility and proportions */
-.menu__link--active {
-  background: linear-gradient(135deg, var(--ifm-primary) 0%, var(--ifm-primary-600) 100%) !important;
-  color: white !important;
-  font-weight: 600 !important;
-  box-shadow: var(--ifm-shadow-md) !important;
-  position: relative;
-}
-
-.menu__link--active::before {
-  content: '';
-  position: absolute;
-  left: -1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 20px;
-  background: var(--ifm-accent);
-  border-radius: 2px;
 }
 
 /* Fix sidebar category proportions */
@@ -1902,12 +1585,8 @@ main {
   letter-spacing: 0.05em;
 }
 
-[data-theme="dark"] .menu__list-item-collapsible .menu__link {
-  color: var(--ifm-neutral-200) !important;
-}
-
 .menu__list-item-collapsible .menu__link:hover {
-  background: rgba(0, 86, 140, 0.05) !important;
+  background: var(--ifm-primary-50) !important;
   transform: none !important;
 }
 
@@ -1922,11 +1601,6 @@ main {
   border-left-color: var(--ifm-neutral-700);
 }
 
-.menu__list .menu__list .menu__link {
-  font-size: var(--ifm-font-size-sm) !important;
-  padding: 0.5rem 1rem !important;
-  color: var(--ifm-neutral-600) !important;
-}
 
 [data-theme="dark"] .menu__list .menu__list .menu__link {
   color: var(--ifm-neutral-400) !important;
@@ -2008,40 +1682,61 @@ main {
   font-weight: 600;
 }
 
-/* Blog sidebar styling */
-.theme-blog-sidebar {
+/* Enhanced Blog Sidebar Styling */
+[class*="sidebar"] {
   background: var(--ifm-neutral-50);
   border-right: 1px solid var(--ifm-neutral-200);
-  padding: 1rem;
 }
 
-[data-theme="dark"] .theme-blog-sidebar {
-  background: var(--ifm-neutral-900);
-  border-right-color: var(--ifm-neutral-700);
-}
-
-.theme-blog-sidebar .menu__link {
+/* Enhanced Blog Sidebar Menu Links */
+[class*="sidebarItemLink"] {
+  font-weight: 500;
   color: var(--ifm-neutral-700);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin: 0.25rem 0;
   transition: all var(--ifm-duration-normal) var(--ifm-easing-ease);
+  position: relative;
   font-size: var(--ifm-font-size-sm);
 }
 
-[data-theme="dark"] .theme-blog-sidebar .menu__link {
-  color: var(--ifm-neutral-300);
-}
-
-.theme-blog-sidebar .menu__link:hover {
-  background: rgba(0, 86, 140, 0.1);
+[class*="sidebarItemLink"]:hover {
+  background: var(--ifm-primary-50);
   color: var(--ifm-primary);
   transform: translateX(4px);
+  box-shadow: var(--ifm-shadow-sm);
 }
 
-[data-theme="dark"] .theme-blog-sidebar .menu__link:hover {
-  background: rgba(77, 166, 255, 0.1);
-  color: var(--ifm-primary-300);
+[class*="sidebarItemLink"]:hover::before {
+  content: '';
+  position: absolute;
+  left: 0rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 75%;
+  background: var(--ifm-accent);
+  border-radius: 2px;
 }
+
+/* Enhanced Blog Sidebar Active Link */
+[class*="sidebarItemLinkActive"] {
+  font-weight: 600;
+  box-shadow: var(--ifm-shadow-md);
+  position: relative;
+}
+
+[class*="sidebarItemLinkActive"]::before {
+  content: '';
+  position: absolute;
+  left: 0rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 70%;
+  background: var(--ifm-accent);
+  border-radius: 2px;
+} 
 
 /* Global background consistency */
 html {
@@ -2136,28 +1831,6 @@ l Dark Mode Enhancements */
       rgba(15, 23, 42, 0.95) 75%,
       var(--ifm-neutral-900) 100%) !important;
   background-size: 400% 400%;
-}
-
-/* Enhanced dark mode for floating shapes */
-[data-theme="dark"] .floating-shape {
-  background: linear-gradient(135deg, rgba(77, 166, 255, 0.08), rgba(77, 166, 255, 0.12)) !important;
-  opacity: 0.6;
-}
-
-[data-theme="dark"] .floating-shape.container {
-  background: linear-gradient(135deg, rgba(77, 166, 255, 0.1), rgba(100, 116, 139, 0.1)) !important;
-}
-
-[data-theme="dark"] .floating-shape.kubernetes {
-  background: linear-gradient(135deg, rgba(77, 166, 255, 0.12), rgba(59, 130, 246, 0.1)) !important;
-}
-
-[data-theme="dark"] .floating-shape.cloud {
-  background: linear-gradient(135deg, rgba(100, 116, 139, 0.1), rgba(71, 85, 105, 0.1)) !important;
-}
-
-[data-theme="dark"] .floating-shape.platform {
-  background: linear-gradient(135deg, rgba(255, 139, 90, 0.1), rgba(255, 107, 53, 0.1)) !important;
 }
 
 /* Enhanced dark mode for glassmorphism effects */
@@ -2486,33 +2159,16 @@ age Background Consistency */
   padding-top: 0;
 }
 
-/* Remove any conflicting backgrounds */
-.container,
-.row,
-.col {
-  background: transparent !important;
-}
-
-/* Ensure main content wrapper has consistent background */
-.main-wrapper,
-.docMainContainer,
-.docRoot {
-  background: transparent !important;
-}
-
-/* Homepage specific body background */
-body[class*="homepage"] {
-  background: linear-gradient(135deg,
-      var(--ifm-neutral-50) 0%,
-      rgba(248, 250, 252, 0.8) 50%,
-      var(--ifm-neutral-50) 100%);
-}
 
 [data-theme="dark"] body[class*="homepage"] {
   background: linear-gradient(135deg,
       var(--ifm-neutral-900) 0%,
-      rgba(15, 23, 42, 0.8) 50%,
-      var(--ifm-neutral-900) 100%);
+      var(--ifm-primary-900) 25%,
+      var(--ifm-neutral-800) 50%,
+      var(--ifm-primary-800) 75%,
+      var(--ifm-neutral-900) 100%) !important;
+  background-size: 400% 400% !important;
+  animation: cnoe-gradient-shift 15s ease infinite !important;
 }
 
 /* Enhanced navbar brand area */
@@ -2533,47 +2189,194 @@ body[class*="homepage"] {
   color: var(--ifm-primary-300);
 }
 
-/* Enhanced search styling if present */
+/* Enhanced modern search styling with magnifying glass icon */
 .navbar__search {
-  margin-right: 1rem;
+  position: relative;
+  transform: translateY(-2px);
+  /* Move search bar 2px up from navbar bottom */
 }
 
 .navbar__search-input {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(0, 86, 140, 0.2);
-  border-radius: 6px;
-  color: var(--ifm-neutral-700);
-  padding: 0.5rem 1rem;
-  transition: all var(--ifm-duration-normal) var(--ifm-easing-ease);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.2) !important;
+  /* More noticeable background */
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(0, 86, 140, 0.25) !important;
+  /* More visible border */
+  border-radius: 12px !important;
+  padding: 0.75rem 1.25rem 0.75rem 2.75rem !important;
+  /* Left padding for search icon */
+  font-size: var(--ifm-font-size-sm) !important;
+  font-family: var(--ifm-font-family) !important;
+  font-weight: 400 !important;
+  color: var(--ifm-neutral-800) !important;
+  width: 15rem !important;
+  /* Slightly wider for better visibility */
+  transition: all var(--ifm-duration-normal) var(--ifm-easing-ease) !important;
+  box-shadow:
+    0 3px 12px rgba(0, 86, 140, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  /* Enhanced shadow for visibility */
+}
+
+/* Magnifying glass search icon */
+.navbar__search::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  background: url('data:image/svg+xml;charset=utf-8,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21L16.514 16.506M19 10.5C19 15.194 15.194 19 10.5 19S2 15.194 2 10.5 5.806 2 10.5 2 19 5.806 19 10.5Z" stroke="%23444444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.navbar__search-input::placeholder {
+  color: var(--ifm-neutral-600) !important;
+  font-weight: 400 !important;
+}
+
+/* Dark theme support for search bar */
+[data-theme="dark"] .navbar__search::before {
+  background: url('data:image/svg+xml;charset=utf-8,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21L16.514 16.506M19 10.5C19 15.194 15.194 19 10.5 19S2 15.194 2 10.5 5.806 2 10.5 2 19 5.806 19 10.5Z" stroke="%23999999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center;
+  background-size: contain;
 }
 
 [data-theme="dark"] .navbar__search-input {
-  background: rgba(0, 0, 0, 0.2);
-  border-color: rgba(77, 166, 255, 0.2);
-  color: var(--ifm-neutral-300);
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(77, 166, 255, 0.2) !important;
+  color: var(--ifm-neutral-200) !important;
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(77, 166, 255, 0.15) !important;
 }
 
+[data-theme="dark"] .navbar__search-input::placeholder {
+  color: var(--ifm-neutral-500) !important;
+}
+
+/* Focus states for enhanced interactivity */
 .navbar__search-input:focus {
+  border-color: var(--ifm-primary) !important;
+  box-shadow:
+    0 0 0 3px rgba(0, 86, 140, 0.15),
+    0 4px 16px rgba(0, 86, 140, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+  outline: none !important;
+  transform: translateY(-1px) !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+[data-theme="dark"] .navbar__search-input:focus {
+  border-color: var(--ifm-primary-300) !important;
+  box-shadow:
+    0 0 0 3px rgba(77, 166, 255, 0.2),
+    0 4px 16px rgba(77, 166, 255, 0.15),
+    inset 0 1px 0 rgba(77, 166, 255, 0.2) !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Hover states for better UX */
+.navbar__search-input:hover {
+  border-color: var(--ifm-primary-light) !important;
+  transform: translateY(-1px) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 86, 140, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+[data-theme="dark"] .navbar__search-input:hover {
+  border-color: var(--ifm-primary-400) !important;
+  box-shadow:
+    0 4px 16px rgba(77, 166, 255, 0.12),
+    inset 0 1px 0 rgba(77, 166, 255, 0.18) !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Responsive adjustments for search bar */
+@media (max-width: 996px) {
+  .navbar__search-input {
+    width: 220px !important;
+    padding: 0.65rem 1rem 0.65rem 2.5rem !important;
+  }
+
+  .navbar__search::before {
+    left: 10px;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar__search-input {
+    width: 180px !important;
+    padding: 0.6rem 0.8rem 0.6rem 2.2rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .navbar__search::before {
+    left: 8px;
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* [data-theme="dark"] .navbar__search-input {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: rgba(77, 166, 255, 0.15);
+  color: var(--ifm-neutral-200);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(77, 166, 255, 0.1);
+}
+
+[data-theme="dark"] .navbar__search-input::placeholder {
+  color: var(--ifm-neutral-500);
+} */
+
+/* .navbar__search-input:focus {
   border-color: var(--ifm-primary);
-  box-shadow: 0 0 0 2px rgba(0, 86, 140, 0.2);
+  box-shadow: 
+    0 0 0 3px rgba(0, 86, 140, 0.15),
+    0 4px 12px rgba(0, 86, 140, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  outline: none;
+  transform: translateY(-1px);
   background: rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="dark"] .navbar__search-input:focus {
   border-color: var(--ifm-primary-300);
-  box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.2);
-  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 
+    0 0 0 3px rgba(77, 166, 255, 0.15),
+    0 4px 12px rgba(77, 166, 255, 0.12),
+    inset 0 1px 0 rgba(77, 166, 255, 0.15);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.navbar__search-input:hover {
+  border-color: var(--ifm-primary-light);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 4px 12px rgba(0, 86, 140, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+[data-theme="dark"] .navbar__search-input:hover {
+  border-color: var(--ifm-primary-400);
+  box-shadow: 
+    0 4px 12px rgba(77, 166, 255, 0.1),
+    inset 0 1px 0 rgba(77, 166, 255, 0.12);
 }
 
 /* Responsive navbar adjustments */
 @media (max-width: 996px) {
   .navbar__items {
     gap: 0.25rem;
-  }
-
-  .navbar__search {
-    margin-right: 0.5rem;
   }
 
   .navbar--calendar-link,
@@ -2593,55 +2396,9 @@ body[class*="homepage"] {
   .navbar__title {
     font-size: 1.1rem;
   }
-
-  .navbar__search {
-    display: none;
-    /* Hide search on very small screens */
-  }
 }
 
-/
-/* Homepage Background Consistency - Animated Gradient Sync */
-.hero,
-.features,
-.cnoeSection,
-.members,
-.newsSection,
-.learnMoreSection,
-.partnerContainer,
-.modernHero,
-.heroBanner,
-.heroContainer,
-.missionVisionSection,
-.valuePropositionSection {
-  background: linear-gradient(135deg,
-      var(--ifm-primary-50) 0%,
-      var(--ifm-primary-100) 25%,
-      var(--ifm-neutral-50) 50%,
-      var(--ifm-primary-100) 75%,
-      var(--ifm-primary-50) 100%) !important;
-  background-size: 400% 400% !important;
-  animation: cnoe-gradient-shift 15s ease infinite !important;
-  position: relative;
-}
-
-/* Ensure body and main containers also have animated background */
-body.homepage,
-.main-wrapper,
-.docMainContainer,
-.docRoot {
-  background: linear-gradient(135deg,
-      var(--ifm-primary-50) 0%,
-      var(--ifm-primary-100) 25%,
-      var(--ifm-neutral-50) 50%,
-      var(--ifm-primary-100) 75%,
-      var(--ifm-primary-50) 100%) !important;
-  background-size: 400% 400% !important;
-  animation: cnoe-gradient-shift 15s ease infinite !important;
-}
-
-/* Remove any conflicting backgrounds from containers */
-.container,
+Remove any conflicting backgrounds from containers .container,
 .row,
 .col,
 .container-fluid {
@@ -2724,21 +2481,6 @@ body.homepage,
   background: #1a202c !important;
 }
 
-/* En
-sure all homepage sections have animated background synchronized with hero */
-.homepage section,
-.homepage div[class*="section"],
-.homepage div[class*="Section"] {
-  background: linear-gradient(135deg,
-      var(--ifm-primary-50) 0%,
-      var(--ifm-primary-100) 25%,
-      var(--ifm-neutral-50) 50%,
-      var(--ifm-primary-100) 75%,
-      var(--ifm-primary-50) 100%) !important;
-  background-size: 400% 400% !important;
-  animation: cnoe-gradient-shift 15s ease infinite !important;
-}
-
 [data-theme="dark"] .homepage section,
 [data-theme="dark"] .homepage div[class*="section"],
 [data-theme="dark"] .homepage div[class*="Section"] {
@@ -2748,21 +2490,6 @@ sure all homepage sections have animated background synchronized with hero */
       var(--ifm-neutral-800) 50%,
       var(--ifm-primary-800) 75%,
       var(--ifm-neutral-900) 100%) !important;
-  background-size: 400% 400% !important;
-  animation: cnoe-gradient-shift 15s ease infinite !important;
-}
-
-/* Override any Docusaurus default backgrounds for homepage */
-.homepage .main-wrapper,
-.homepage .docMainContainer,
-.homepage .docRoot,
-.homepage main {
-  background: linear-gradient(135deg,
-      var(--ifm-primary-50) 0%,
-      var(--ifm-primary-100) 25%,
-      var(--ifm-neutral-50) 50%,
-      var(--ifm-primary-100) 75%,
-      var(--ifm-primary-50) 100%) !important;
   background-size: 400% 400% !important;
   animation: cnoe-gradient-shift 15s ease infinite !important;
 }
@@ -2777,25 +2504,6 @@ sure all homepage sections have animated background synchronized with hero */
       var(--ifm-neutral-800) 50%,
       var(--ifm-primary-800) 75%,
       var(--ifm-neutral-900) 100%) !important;
-  background-size: 400% 400% !important;
-  animation: cnoe-gradient-shift 15s ease infinite !important;
-}
-
-/* 
-Final comprehensive rule to ensure all homepage sections sync with hero animation */
-body[class*="homepage"] *[class*="Section"],
-body[class*="homepage"] *[class*="section"],
-body[class*="homepage"] .features,
-body[class*="homepage"] .members,
-body[class*="homepage"] .newsSection,
-body[class*="homepage"] .cnoeSection,
-body[class*="homepage"] .learnMoreSection {
-  background: linear-gradient(135deg,
-      var(--ifm-primary-50) 0%,
-      var(--ifm-primary-100) 25%,
-      var(--ifm-neutral-50) 50%,
-      var(--ifm-primary-100) 75%,
-      var(--ifm-primary-50) 100%) !important;
   background-size: 400% 400% !important;
   animation: cnoe-gradient-shift 15s ease infinite !important;
 }
@@ -3018,7 +2726,7 @@ sive fix for white lines between homepage sections */
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
-/ * Target specific Docusaurus layout elements that might cause white lines */ .homepage .theme-doc-wrapper .main-wrapper {
+.homepage .theme-doc-wrapper .main-wrapper {
   padding: 0 !important;
   margin: 0 !important;
 }
@@ -3150,7 +2858,6 @@ Target the exact HTML structure causing white gaps */
   margin: 0 !important;
   padding: 5rem 0 !important;
   border: none !important;
-  vertical-align: top !important;
 }
 
 /* Remove any line-height or font-size that might create spacing */
@@ -3189,7 +2896,7 @@ Target the exact HTML structure causing white gaps */
   padding: 2rem !important;
 }
 
-/ * Overlap sections slightly to eliminate any potential gaps */ .homepage .cnoeSection {
+.homepage .cnoeSection {
   margin-top: -1px !important;
 }
 
@@ -3253,7 +2960,7 @@ Target the exact HTML structure causing white gaps */
   position: relative;
 }
 
-/ * Aggressive approach: Extend backgrounds to cover any gaps */ .homepage .hero,
+.homepage .hero,
 .homepage .cnoeSection,
 .homepage .features,
 .homepage .members,
@@ -3279,28 +2986,6 @@ Target the exact HTML structure causing white gaps */
   padding-bottom: 4rem !important;
 }
 
-/* Alternative approach: Use pseudo-elements to fill gaps */
-.homepage .cnoeSection::after,
-.homepage .features::after,
-.homepage .members::after,
-.homepage .newsSection::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background: linear-gradient(135deg,
-      var(--ifm-primary-50) 0%,
-      var(--ifm-primary-100) 25%,
-      var(--ifm-neutral-50) 50%,
-      var(--ifm-primary-100) 75%,
-      var(--ifm-primary-50) 100%) !important;
-  background-size: 400% 400% !important;
-  animation: cnoe-gradient-shift 15s ease infinite !important;
-  z-index: 10;
-}
-
 [data-theme="dark"] .homepage .cnoeSection::after,
 [data-theme="dark"] .homepage .features::after,
 [data-theme="dark"] .homepage .members::after,
@@ -3315,18 +3000,6 @@ Target the exact HTML structure causing white gaps */
   animation: cnoe-gradient-shift 15s ease infinite !important;
 }
 
-/* Nuclear option: Apply background to the entire page */
-.homepage {
-  background: linear-gradient(135deg,
-      var(--ifm-primary-50) 0%,
-      var(--ifm-primary-100) 25%,
-      var(--ifm-neutral-50) 50%,
-      var(--ifm-primary-100) 75%,
-      var(--ifm-primary-50) 100%) !important;
-  background-size: 400% 400% !important;
-  animation: cnoe-gradient-shift 15s ease infinite !important;
-  background-attachment: fixed !important;
-}
 
 [data-theme="dark"] .homepage {
   background: linear-gradient(135deg,
@@ -3350,20 +3023,6 @@ Target the exact HTML structure causing white gaps */
   background: transparent !important;
 }
 
-/* Apply the animated background to the html and body elements */
-.homepage html,
-.homepage body {
-  background: linear-gradient(135deg,
-      var(--ifm-primary-50) 0%,
-      var(--ifm-primary-100) 25%,
-      var(--ifm-neutral-50) 50%,
-      var(--ifm-primary-100) 75%,
-      var(--ifm-primary-50) 100%) !important;
-  background-size: 400% 400% !important;
-  animation: cnoe-gradient-shift 15s ease infinite !important;
-  background-attachment: fixed !important;
-}
-
 [data-theme="dark"] .homepage html,
 [data-theme="dark"] .homepage body {
   background: linear-gradient(135deg,
@@ -3375,4 +3034,73 @@ Target the exact HTML structure causing white gaps */
   background-size: 400% 400% !important;
   animation: cnoe-gradient-shift 15s ease infinite !important;
   background-attachment: fixed !important;
+}
+
+/* ===== FLOATING SHAPES SYSTEM ===== */
+
+/* Hero Section Animated Background Elements */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+[data-theme="dark"] .hero-gradient-bg {
+  background: linear-gradient(135deg,
+      var(--ifm-neutral-900) 0%,
+      var(--ifm-primary-900) 25%,
+      var(--ifm-neutral-800) 50%,
+      var(--ifm-primary-800) 75%,
+      var(--ifm-neutral-900) 100%);
+  background-size: 400% 400%;
+}
+
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+
+  .hero-gradient-bg {
+    animation-duration: 20s;
+  }
+}
+
+/* Reduced motion support for background elements */
+@media (prefers-reduced-motion: reduce) {
+  .hero-gradient-bg {
+    animation: none;
+  }
+
+}
+
+/* Gradient Animation Keyframes */
+@keyframes cnoe-gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/*
+ Make docs content area background match the light sidebar background */
+.theme-doc-root [data-theme="light"] .main-wrapper,
+.theme-doc-root [data-theme="light"] .container-fluid,
+.theme-doc-root [data-theme="light"] .theme-doc-markdown,
+.theme-doc-root [data-theme="light"] .col--9,
+.theme-doc-root [data-theme="light"] .docItemContainer_Djhp,
+.theme-doc-root [data-theme="light"] .docItemCol_VOVn,
+.theme-doc-root [data-theme="light"] .docItemWrapper_J1Ly,
+.theme-doc-root [data-theme="light"] .row,
+.theme-doc-root [data-theme="light"] .col,
+.theme-doc-root [data-theme="light"] article,
+.theme-doc-root [data-theme="light"] .markdown {
+  background: var(--ifm-background-color) !important;
 }

@@ -44,27 +44,27 @@ const config = {
           beforeDefaultRemarkPlugins: [remarkGithubAdmonitionsToDirectives],
           sidebarPath: require.resolve('./sidebars.js'),
           sidebarItemsGenerator: async function ({
-                      defaultSidebarItemsGenerator,
-                      ...args
-                    }) {
-                      const sidebarItems = await defaultSidebarItemsGenerator(args);
-                      
-                      // Find the directory you want to flatten
-                      const processItems = (items) => {
-                        return items.flatMap(item => {
-                          if (item.type === 'category' && item.label === 'Parent DOC Directory') {
-                            // Return the items inside the category instead of the category itself
-                            return item.items || [];
-                          }
-                          if (item.items) {
-                            return [{...item, items: processItems(item.items)}];
-                          }
-                          return [item];
-                        });
-                      };
-                      
-                      return processItems(sidebarItems);
-                    },
+            defaultSidebarItemsGenerator,
+            ...args
+          }) {
+            const sidebarItems = await defaultSidebarItemsGenerator(args);
+
+            // Find the directory you want to flatten
+            const processItems = (items) => {
+              return items.flatMap(item => {
+                if (item.type === 'category' && item.label === 'Parent DOC Directory') {
+                  // Return the items inside the category instead of the category itself
+                  return item.items || [];
+                }
+                if (item.items) {
+                  return [{ ...item, items: processItems(item.items) }];
+                }
+                return [item];
+              });
+            };
+
+            return processItems(sidebarItems);
+          },
         },
         blog: {
           showReadingTime: true,
@@ -81,7 +81,7 @@ const config = {
   ],
 
   themes: ['@docusaurus/theme-mermaid'],
-  
+
   // Enable Mermaid in markdown
   markdown: {
     mermaid: true,
@@ -92,7 +92,7 @@ const config = {
     ({
       colorMode: {
         defaultMode: 'light',
-        disableSwitch: false,
+        disableSwitch: true,
         respectPrefersColorScheme: true,
       },
       navbar: {
@@ -108,7 +108,7 @@ const config = {
             position: 'left',
             label: 'Docs'
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/blog', label: 'Blog', position: 'left' },
           {
             'aria-label': 'Community Calendar',
             'className': 'navbar--calendar-link',

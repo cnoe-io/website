@@ -10,45 +10,45 @@ import styles from './styles.module.css';
 
 const { useState, useEffect, useRef } = React;
 
-function News({title, description, imageSrc, linkTo, date, presentationLink}){
-    return(
-        <div className={styles.newsCard}>
-            <a href={linkTo} target="_blank" className={styles.newsCardLink}>
-                <div className={styles.newsImageContainer}>
-                    <img 
-                        src={imageSrc} 
-                        alt={title}
-                        className={styles.newsImage}
-                    />
-                    <div className={styles.newsImageOverlay}></div>
-                </div>
-                
-                <div className={styles.newsContent}>
-                    <div className={styles.newsHeader}>
-                        <h3 className={styles.newsTitle}>{title}</h3>
-                        {date && (
-                            <span className={styles.newsDate}>{date}</span>
-                        )}
-                    </div>
-                    
-                    <p className={styles.newsDescription}>{description}</p>
-                    
-                    {presentationLink && (
-                        <div className={styles.newsLinks}>
-                            <a 
-                                href={presentationLink} 
-                                target="_blank" 
-                                className={styles.presentationLink}
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                View Presentation →
-                            </a>
-                        </div>
-                    )}
-                </div>
-            </a>
+function News({ title, description, imageSrc, linkTo, date, presentationLink }) {
+  return (
+    <div className={styles.newsCard}>
+      <a href={linkTo} target="_blank" className={styles.newsCardLink}>
+        <div className={styles.newsImageContainer}>
+          <img
+            src={imageSrc}
+            alt={title}
+            className={styles.newsImage}
+          />
+          <div className={styles.newsImageOverlay}></div>
         </div>
-    );
+
+        <div className={styles.newsContent}>
+          <div className={styles.newsHeader}>
+            <h3 className={styles.newsCardTitle}>{title}</h3>
+            {date && (
+              <span className={styles.newsDate}>{date}</span>
+            )}
+          </div>
+
+          <p className={styles.newsDescription}>{description}</p>
+
+          {presentationLink && (
+            <div className={styles.newsLinks}>
+              <a
+                href={presentationLink}
+                target="_blank"
+                className={styles.presentationLink}
+                onClick={(e) => e.stopPropagation()}
+              >
+                View Presentation →
+              </a>
+            </div>
+          )}
+        </div>
+      </a>
+    </div>
+  );
 }
 
 
@@ -73,7 +73,7 @@ export default function CNOENews() {
     };
 
     fetchYAMLData();
-  }, []); 
+  }, []);
 
   useEffect(() => {
     // Initialize scroll animation
@@ -129,7 +129,7 @@ export default function CNOENews() {
   };
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className={clsx(styles.newsSection, isVisible && styles.newsSectionVisible)}
     >
@@ -139,22 +139,32 @@ export default function CNOENews() {
           <p className={styles.newsSubtitle}>
             Stay updated with the latest CNOE community talks, presentations, and insights
           </p>
-          <a 
-            target="_blank" 
-            href="https://github.com/cnoe-io/website/blob/main/static/news/data.yaml" 
-            className={styles.addTalkLink}
+          <a
+            target="_blank"
+            href="https://github.com/cnoe-io/website/blob/main/static/news/data.yaml"
+            className={styles.addTalkButton}
           >
-            ► Add your talk!
+            <svg
+              width="1.2em"
+              height="1.2em"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className={styles.buttonIcon}
+            >
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+            </svg>
+            Add your talk!
           </a>
         </div>
-        
+
         <div className={styles.newsCarousel}>
-          <AliceCarousel 
+          <AliceCarousel
             mouseTracking
             items={items}
             autoPlay={false}
             disableSlideInfo={true}
             disableButtonsControls={false}
+            disableDotsControls={false}
             autoPlayInterval={4000}
             infinite={false}
             responsive={responsive}
@@ -165,4 +175,4 @@ export default function CNOENews() {
     </section>
   );
 }
-  
+

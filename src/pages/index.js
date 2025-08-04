@@ -5,9 +5,6 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import ValueProposition from "@site/src/components/ValueProposition";
 import MissionVision from "@site/src/components/MissionVision";
-import InteractiveDiagram from "@site/src/components/InteractiveDiagram";
-import Grid from '@mui/material/Grid';
-import HelpIcon from '@mui/icons-material/Help';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { useColorMode } from '@docusaurus/theme-common';
@@ -34,12 +31,6 @@ function HomepageHeader() {
       {/* Animated Background Elements */}
       <div className="hero-background">
         <div className="hero-gradient-bg"></div>
-        <div className="floating-shape container"></div>
-        <div className="floating-shape kubernetes"></div>
-        <div className="floating-shape cloud"></div>
-        <div className="floating-shape platform"></div>
-        <div className="floating-shape container"></div>
-        <div className="floating-shape kubernetes"></div>
       </div>
 
       {/* Hero Content */}
@@ -109,7 +100,7 @@ function HomepageHeader() {
                 >
                   <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H16c-.8 0-1.5.7-1.5 1.5v3.5c0 1.1-.9 2-2 2s-2-.9-2-2V10c0-1.1-.9-2-2-2H5.46c-.8 0-1.46.54-1.64 1.37L1.28 15.63 3.78 16l2.54-7.63H8.5V13c0 2.2 1.8 4 4 4s4-1.8 4-4V22h3.5z" />
                 </svg>
-                Join Community
+                Community
               </Link>
             </div>
 
@@ -118,9 +109,15 @@ function HomepageHeader() {
               <button
                 className={clsx("button button--secondary button--lg", styles.learnMoreButton)}
                 onClick={() => {
-                  const nextSection = document.querySelector('main');
+                  const nextSection = document.querySelector('section[class*="features"]');
                   if (nextSection) {
-                    nextSection.scrollIntoView({ behavior: 'smooth' });
+                    // Account for navbar height to make section top touch navbar
+                    const navbarHeight = 60;
+                    const targetPosition = nextSection.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    window.scrollTo({
+                      top: targetPosition,
+                      behavior: 'smooth'
+                    });
                   }
                 }}
                 style={{ animationDelay: '1.2s' }}
@@ -250,18 +247,7 @@ const Partners = () => {
           />
         </div>
 
-        <div className={styles.partnersAction}>
-          <Link
-            className="button button--primary button--lg"
-            to="/docs/contribute"
-          >
-            <img src="img/github.svg"
-              style={{ verticalAlign: "text-bottom", marginRight: "8px" }}
-              alt="GitHub"
-            />
-            Join the Community
-          </Link>
-        </div>
+
       </div>
     </div>
   );
@@ -287,20 +273,20 @@ export default function Home() {
       description="Joint efforts to build Internal Developer Platforms"
     >
       <HomepageHeader />
-      <main>
-        <div data-scroll-animation="fade-in-up" data-animation-delay="200">
+      <main style={{ margin: 0, padding: 0, display: 'flex', flexDirection: 'column' }}>
+        <div data-scroll-animation="fade-in-up" data-animation-delay="200" style={{ margin: 0, padding: 0 }}>
           <ValueProposition />
         </div>
-        <div data-scroll-animation="fade-in-up" data-animation-delay="400">
+        <div data-scroll-animation="fade-in-up" data-animation-delay="400" style={{ margin: 0, padding: 0 }}>
           <MissionVision />
         </div>
+        <div data-scroll-animation="fade-in-up" data-animation-delay="600" style={{ margin: 0, padding: 0 }}>
+          <Partners />
+        </div>
+        <div data-scroll-animation="fade-in-up" data-animation-delay="800" style={{ margin: 0, padding: 0 }}>
+          <CNOENews />
+        </div>
       </main>
-      <div data-scroll-animation="fade-in-up" data-animation-delay="600">
-        <Partners />
-      </div>
-      <div data-scroll-animation="fade-in-up" data-animation-delay="800">
-        <CNOENews />
-      </div>
 
 
     </Layout>

@@ -1,13 +1,12 @@
 .interactivediagramcontainer {
   position: relative;
-  left: 0;
-  width: 100vw;
+  width: 100%;
   background-color: var(--ifm-background-color);
   text-align: center;
   padding-top: 15px;
   padding-bottom: 15px;
   font-weight: bold;
-  color: var(--ifm-color-neutral-darkest);
+  color: var(--ifm-color-neutral-lightest);
   min-height: 405px;
   max-height: 465px;
   border-color: var(--ifm-color-primary-lightest);
@@ -20,7 +19,7 @@
   left: 15%;
   width: 70vw;
   height: 435px;
-  background-color: rgba(var(--ifm-color-neutral-light-rgb), 0.8);
+  background-color: none;
   z-index: 100;
   border-radius: 8px;
 }
@@ -31,20 +30,35 @@
   flex-direction: column;
   width: 50%;
   left: 25%;
-  height: 50%;
   top: 20%;
-  background-color: var(--ifm-color-neutral-lightest);
+  background-color: var(--ifm-primary-50);
   border-radius: 8px;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 10px 0px var(--ifm-accent);
+  max-height: 60%;
   overflow-y: auto;
 }
+
+.readMoreButton {
+  background: var(--ifm-primary-500);
+  color: var(--ifm-color-neutral-lightest);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.readMoreButton:hover {
+  background: var(--ifm-accent);
+}
+
 .closeIcon {
   text-align: center;
   width: 25px;
   cursor: pointer;
 }
 
-.closeIcon > path {
+.closeIcon>path {
   fill: var(--ifm-color-neutral-darkest);
 }
 
@@ -90,15 +104,17 @@
   min-width: 865px;
   border-radius: 8px;
 }
+
 .diagramcontent:hover {
   cursor: pointer;
 }
 
 .cell {
-  background-color: var(--ifm-color-neutral-lighter);
+  background-color: var(--ifm-primary-500);
   padding: 2px;
   border-radius: 8px;
 }
+
 .cellmobile {
   background-color: var(--ifm-color-neutral-lighter);
   padding: 2px;
@@ -120,6 +136,7 @@
   white-space: nowrap;
   min-height: 290px;
 }
+
 .diagramcontent .bottomrow .bottomleftcol {
   display: inline-block;
   width: 40%;
@@ -144,7 +161,7 @@
   padding-right: 5px;
   margin-left: 10px;
   border-radius: 8px;
-  background-color: var(--ifm-color-neutral-lighter);
+  background-color: var(--ifm-primary-500);
 }
 
 .diagramcontent .bottomrow .bottomleftcol .bottomleftcolright .cell {
@@ -176,6 +193,7 @@
   border-radius: 8px;
   border-color: var(--ifm-color-primary-lightest);
 }
+
 .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft {
   display: inline-block;
   height: 100%;
@@ -195,7 +213,7 @@
   margin-right: 10px;
   max-height: 268px;
   border-radius: 8px;
-  background-color: var(--ifm-color-neutral-lighter);
+  background-color: var(--ifm-primary-500);
   margin-bottom: 8px;
 }
 
@@ -206,6 +224,7 @@
   margin-bottom: 5px;
   border-radius: 8px;
 }
+
 .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .cellmobile {
   width: 98.5%;
   height: 14%;
@@ -213,10 +232,12 @@
   margin-bottom: 5px;
   border-radius: 8px;
 }
+
 .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .rowcell {
   width: 100%;
   margin-left: -4px;
 }
+
 .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .rowcell .cell {
   width: 24%;
   height: 100%;
@@ -226,12 +247,8 @@
   border-radius: 8px;
   padding: 2px;
 }
-.diagramcontent
-  .bottomrow
-  .bottomrightcol
-  .bottomrightcolleft
-  .rowcell
-  .cellmobile {
+
+.diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .rowcell .cellmobile {
   width: 24%;
   height: 100%;
   display: inline-block;
@@ -239,7 +256,14 @@
   font-size: 16px;
   border-radius: 8px;
   padding: 2px;
+  background-color: var(--ifm-primary-500);
 }
+
+.diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .rowcell .cellmobile:hover {
+  cursor: pointer;
+  background-color: var(--ifm-accent);
+}
+
 .endcell {
   width: 22.5%;
   padding: 2px;
@@ -249,8 +273,9 @@
   margin: 0px 4px;
   font-size: 16px;
   border-radius: 8px;
-  background-color: var(--ifm-color-neutral-lighter);
+  background-color: var(--ifm-primary-500);
 }
+
 .interactivediagramcontainer .Modal {
   all: unset;
   background-color: white;
@@ -258,32 +283,37 @@
   height: 20px;
   width: 50vw;
 }
+
 .endcell:hover {
   cursor: pointer;
-  background-color: var(--ifm-color-primary-lightest);
+  background-color: var(--ifm-accent);
   color: white;
 }
 
 .cell:hover {
   cursor: pointer;
-  background-color: var(--ifm-color-primary-lightest);
+  background-color: var(--ifm-accent);
   color: white;
 }
+
 .cellmobile:hover {
   cursor: pointer;
   background-color: var(--ifm-color-primary-lightest);
   color: white;
 }
+
 .diagramcontent .bottomrow .bottomleftcol .bottomleftcolleft:hover {
   cursor: pointer;
-  background-color: var(--ifm-color-primary-lightest);
+  background-color: var(--ifm-accent);
   color: white;
 }
+
 .diagramcontent .bottomrow .bottomrightcol .bottomrightcolright:hover {
   cursor: pointer;
-  background-color: var(--ifm-color-primary-lightest);
+  background-color: var(--ifm-accent);
   color: white;
 }
+
 .diagramcontent .labels {
   position: absolute;
   margin-top: -30px;
@@ -291,27 +321,31 @@
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 600;
-  
+
 }
 
-
 @media only screen and (max-width: 768px) {
+
   /* For mobile phones: */
   .interactivediagramcontainer {
     font-size: 10px;
     padding: 0px;
   }
+
   .diagramcontent {
     min-width: 390px;
     padding: 0px;
     width: 95vw;
   }
+
   .toprow {
     padding-top: 10px;
   }
+
   .rowcell {
     font-size: 10px;
   }
+
   .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .rowcell {
     width: 95%;
     margin-left: unset;
@@ -322,6 +356,7 @@
     width: unset;
     padding-right: 17px;
   }
+
   .diagramcontent .bottomrow .bottomrightcol {
     padding-left: 10px;
     margin-left: -2px;
@@ -333,12 +368,8 @@
     margin-left: 5px;
     margin-right: 7px;
   }
-  .diagramcontent
-    .bottomrow
-    .bottomrightcol
-    .bottomrightcolleft
-    .rowcell
-    .cell {
+
+  .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .rowcell .cell {
     width: 24%;
     height: 100%;
     display: inline-block;
@@ -347,12 +378,8 @@
     border-radius: 5px;
     padding: 2px;
   }
-  .diagramcontent
-    .bottomrow
-    .bottomrightcol
-    .bottomrightcolleft
-    .rowcell
-    .cellmobile {
+
+  .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft .rowcell .cellmobile {
     width: 28%;
     height: 100%;
     display: inline-block;
@@ -361,6 +388,7 @@
     border-radius: 5px;
     padding: 2px;
   }
+
   .endcell {
     width: 22.5%;
     padding: 2px;
@@ -372,6 +400,7 @@
     border-radius: 5px;
     background-color: var(--ifm-color-neutral-lighter);
   }
+
   .diagramcontent .bottomrow .bottomleftcol .bottomleftcolright {
     display: inline-block;
     height: 100%;
@@ -379,6 +408,7 @@
     overflow: hidden;
     border-top: none;
   }
+
   .diagramcontent .bottomrow .bottomrightcol .bottomrightcolright {
     display: inline-block;
     height: 88%;
@@ -393,6 +423,7 @@
     background-color: var(--ifm-color-neutral-lighter);
     margin-bottom: 33px;
   }
+
   .diagramcontent .bottomrow .bottomrightcol .bottomrightcolleft {
     display: inline-block;
     height: 85%;
@@ -400,6 +431,7 @@
     overflow: hidden;
     min-height: 267px;
   }
+
   .popUpPrompt {
     position: absolute;
     top: 15px;
@@ -410,6 +442,7 @@
     z-index: 100;
     border-radius: 8px;
   }
+
   .innerPromptBox {
     position: absolute;
     display: flex;

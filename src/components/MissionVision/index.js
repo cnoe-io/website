@@ -17,14 +17,14 @@ const FeatureList = [
     Svg: require('@site/static/img/vision.svg').default,
     description: (
       <>
-        CNOE strives to be the goto framework for leading software companies 
+        CNOE strives to be the goto framework for leading software companies
         to build their cloud-native internal developer platform
       </>
     ),
   },
 ];
 
-function Feature({Svg, title, description, index, isVisible}) {
+function Feature({ Svg, title, description, index, isVisible }) {
   return (
     <div className={clsx(styles.missionVisionItem, isVisible && styles.visible)}>
       <div className={styles.missionVisionCard}>
