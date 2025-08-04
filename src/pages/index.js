@@ -74,7 +74,7 @@ function HomepageHeader() {
               </Link>
               <Link
                 className={clsx("button button--primary button--lg", styles.heroButton, styles.getStartedButton)}
-                to="/docs/overview/cnoe"
+                to="/docs/reference-implementation/local"
                 style={{ animationDelay: '0.7s' }}>
                 <svg
                   width="1.2em"
@@ -89,7 +89,7 @@ function HomepageHeader() {
               </Link>
               <Link
                 className={clsx("button button--secondary button--lg", styles.heroButton)}
-                to="/docs/contribute"
+                to="/docs/contributing/aws-ref-impl-CONTRIBUTING"
                 style={{ animationDelay: '0.8s' }}>
                 <svg
                   width="1.2em"
@@ -100,7 +100,7 @@ function HomepageHeader() {
                 >
                   <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H16c-.8 0-1.5.7-1.5 1.5v3.5c0 1.1-.9 2-2 2s-2-.9-2-2V10c0-1.1-.9-2-2-2H5.46c-.8 0-1.46.54-1.64 1.37L1.28 15.63 3.78 16l2.54-7.63H8.5V13c0 2.2 1.8 4 4 4s4-1.8 4-4V22h3.5z" />
                 </svg>
-                Community
+                Contribute
               </Link>
             </div>
 
@@ -225,9 +225,9 @@ const Partners = () => {
     <div ref={containerRef} className={clsx(styles.members, isVisible && styles.membersVisible)}>
       <div className="container">
         <div className={styles.partnersHeader}>
-          <h2 className={styles.partnersTitle}>Trusted by Industry Leaders</h2>
+          <h2 className={styles.partnersTitle}>Members</h2>
           <p className={styles.partnersSubtitle}>
-            Join leading companies building the future of internal developer platforms
+            Led by companies building the internal developer platforms at scale
           </p>
         </div>
 

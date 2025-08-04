@@ -89,9 +89,9 @@ export default function ValueProposition() {
     <section className={styles.features}>
       <div className="container">
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Why Choose CNOE?</h2>
+          <h2 className={styles.sectionTitle}>Why CNOE?</h2>
           <p className={styles.sectionSubtitle}>
-            Built on proven principles for modern internal developer platforms
+            To share proven principles of building robust internal developer platforms
           </p>
         </div>
         <div

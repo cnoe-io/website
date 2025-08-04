@@ -93,7 +93,7 @@ const config = {
       colorMode: {
         defaultMode: 'light',
         disableSwitch: true,
-        respectPrefersColorScheme: true,
+        respectPrefersColorScheme: false,
       },
       navbar: {
         title: '',
@@ -141,7 +141,7 @@ const config = {
               },
               {
                 label: 'Contribute',
-                to: '/docs/contribute',
+                to: '/docs/contributing/aws-ref-impl-CONTRIBUTING',
               },
             ],
           },
