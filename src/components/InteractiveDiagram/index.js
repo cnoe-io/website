@@ -21,7 +21,7 @@ export default function InteractiveDiagram() {
         setIsShow("none");
       }, 3000); // Closes after 3 seconds (adjust time as needed)
     }
-    
+
     // Cleanup function to clear timeout if component unmounts or isShow changes
     return () => {
       if (timeoutId) {
@@ -29,7 +29,7 @@ export default function InteractiveDiagram() {
       }
     };
   }, [isShow]);
-  
+
   return (
     <div className={styles.interactivediagramcontainer}>
       <div className={styles.diagramcontent}>
@@ -40,12 +40,17 @@ export default function InteractiveDiagram() {
               setIsShow("block");
               setPromptTitle("Deployment Targets");
               setPromptText(
-                parse(`
-                    <p>The runtime environments that product apps and services run on.
+                <div>
+                  <p>The runtime environments that product apps and services run on.
                     This includes static content or data published for distribution.</p>
-                    <br/>
-                    <b><a href="./capabilities#deployment-targets">Read More</a></b>
-                  `)
+                  <br />
+                  <button
+                    onClick={() => window.location.href = './capabilities#deployment-targets'}
+                    className={styles.readMoreButton}
+                  >
+                    Read More
+                  </button>
+                </div>
               );
             }}
           >
@@ -54,7 +59,7 @@ export default function InteractiveDiagram() {
         </div>
         <div className={styles.bottomrow}>
           <div className={styles.bottomleftcol}>
-              <p className={styles.labels}>Application</p>
+            <p className={styles.labels}>Application</p>
             <div className={styles.bottomleftcolright}>
               <div
                 className={styles.cell}
@@ -62,11 +67,16 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Packaging / Templating");
                   setPromptText(
-                    parse(`
-                    <p>Ensures the delivery of a packaged up and functional set of software or tools.</p>
-                    <br/>
-                    <b><a href="./capabilities#packaging-and-templating">Read More</a></b>
-                  `)
+                    <div>
+                      <p>Ensures the delivery of a packaged up and functional set of software or tools.</p>
+                      <br />
+                      <button
+                        onClick={() => window.location.href = './capabilities#packaging-and-templating'}
+                        className={styles.readMoreButton}
+                      >
+                        Read More
+                      </button>
+                    </div>
                   );
                 }}
               >
@@ -78,11 +88,16 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Code Repository");
                   setPromptText(
-                    parse(`
-                    <p>Enable developers to collaborate on code asynchronously while keeping historical lineage of changes.</p>
-                    <br/>
-                    <b><a href="./capabilities#code-repositories">Read More</a></b>
-                  `)
+                    <div>
+                      <p>Enable developers to collaborate on code asynchronously while keeping historical lineage of changes.</p>
+                      <br />
+                      <button
+                        onClick={() => window.location.href = './capabilities#code-repositories'}
+                        className={styles.readMoreButton}
+                      >
+                        Read More
+                      </button>
+                    </div>
                   );
                 }}
               >
@@ -94,11 +109,16 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Config Repository");
                   setPromptText(
-                    parse(`
-                    <p>Canonical data store for application configuration.</p>
-                    <br/>
-                    <b><a href="./capabilities#config-repositories">Read More</a></b>
-                  `)
+                    <div>
+                      <p>Canonical data store for application configuration.</p>
+                      <br />
+                      <button
+                        onClick={() => window.location.href = './capabilities#config-repositories'}
+                        className={styles.readMoreButton}
+                      >
+                        Read More
+                      </button>
+                    </div>
                   );
                 }}
               >
@@ -110,12 +130,16 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Artifact Registries");
                   setPromptText(
-                    parse(`
-                    Preserves a signed, accessible, and traceable list of packaged components.
-                    <br/>
-                    <br/>
-                    <b><a href="./capabilities#artifact-registries">Read More</a></b>
-                  `)
+                    <div>
+                      <p>Preserves a signed, accessible, and traceable list of packaged components.</p>
+                      <br />
+                      <button
+                        onClick={() => window.location.href = './capabilities#artifact-registries'}
+                        className={styles.readMoreButton}
+                      >
+                        Read More
+                      </button>
+                    </div>
                   );
                 }}
               >
@@ -127,11 +151,16 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Secret Repository");
                   setPromptText(
-                    parse(`
-                    <p>Secrets repositories are secure long term storage locations for sensitive data.</p>
-                    <br/>
-                    <b><a href="./capabilities#secret-repositories">Read More</a></b>
-                  `)
+                    <div>
+                      <p>Secrets repositories are secure long term storage locations for sensitive data.</p>
+                      <br />
+                      <button
+                        onClick={() => window.location.href = './capabilities#secret-repositories'}
+                        className={styles.readMoreButton}
+                      >
+                        Read More
+                      </button>
+                    </div>
                   );
                 }}
               >
@@ -144,19 +173,24 @@ export default function InteractiveDiagram() {
                 setIsShow("block");
                 setPromptTitle("Signing");
                 setPromptText(
-                  parse(`
+                  <div>
                     <p>Cryptographic signing of artifacts to allow for verification of the consistency and integrity of the data they contain.</p>
-                    <br/>
-                    <b><a href="./capabilities#signing">Read More</a></b>
-                `)
+                    <br />
+                    <button
+                      onClick={() => window.location.href = './capabilities#signing'}
+                      className={styles.readMoreButton}
+                    >
+                      Read More
+                    </button>
+                  </div>
                 );
               }}
             >
               Signing
             </div>
           </div>
-        <div className={styles.bottomrightcol}>
-          <p className={styles.labels}>Operation</p>
+          <div className={styles.bottomrightcol}>
+            <p className={styles.labels}>Operation</p>
             <div className={styles.bottomrightcolleft}>
               <div
                 className={styles.cell}
@@ -164,11 +198,16 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Developer Portal");
                   setPromptText(
-                    parse(`
-                    <p>Software catalog of all components, systems and domains.</p>
-                    <br/>
-                    <b><a href="./capabilities#developer-portal">Read More</a></b>
-                  `)
+                    <div>
+                      <p>Software catalog of all components, systems and domains.</p>
+                      <br />
+                      <button
+                        onClick={() => window.location.href = './capabilities#developer-portal'}
+                        className={styles.readMoreButton}
+                      >
+                        Read More
+                      </button>
+                    </div>
                   );
                 }}
               >
@@ -180,11 +219,16 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Identity and Access");
                   setPromptText(
-                    parse(`
-                    <p>A service that can be used to wire up Authentication and Authorization in a common well understood manner.</p>
-                    <br/>
-                    <b><a href="./capabilities#identity-and-access">Read More</a></b>
-                  `)
+                    <div>
+                      <p>A service that can be used to wire up Authentication and Authorization in a common well understood manner.</p>
+                      <br />
+                      <button
+                        onClick={() => window.location.href = './capabilities#identity-and-access'}
+                        className={styles.readMoreButton}
+                      >
+                        Read More
+                      </button>
+                    </div>
                   );
                 }}
               >
@@ -197,11 +241,16 @@ export default function InteractiveDiagram() {
                     setIsShow("block");
                     setPromptTitle("Infra as Code");
                     setPromptText(
-                      parse(`
-                    <p>Tooling required to spin up infrastructure resources for a given application.</p>
-                    <br/>
-                    <b><a href="./capabilities#infrastructure-as-code-iac">Read More</a></b>
-                    `)
+                      <div>
+                        <p>Tooling required to spin up infrastructure resources for a given application.</p>
+                        <br />
+                        <button
+                          onClick={() => window.location.href = './capabilities#infrastructure-as-code-iac'}
+                          className={styles.readMoreButton}
+                        >
+                          Read More
+                        </button>
+                      </div>
                     );
                   }}
                 >
@@ -213,11 +262,16 @@ export default function InteractiveDiagram() {
                     setIsShow("block");
                     setPromptTitle("Continuous Delivery");
                     setPromptText(
-                      parse(`
-                    <p>CD gets infrastructure and application resources into a state, ready for receiving production workload.</p>
-                    <br/>
-                    <b><a href="./capabilities#continuous-delivery-cd">Read More</a></b>
-                    `)
+                      <div>
+                        <p>CD gets infrastructure and application resources into a state, ready for receiving production workload.</p>
+                        <br />
+                        <button
+                          onClick={() => window.location.href = './capabilities#continuous-delivery-cd'}
+                          className={styles.readMoreButton}
+                        >
+                          Read More
+                        </button>
+                      </div>
                     );
                   }}
                 >
@@ -229,11 +283,16 @@ export default function InteractiveDiagram() {
                     setIsShow("block");
                     setPromptTitle("Workflow Orchestration");
                     setPromptText(
-                      parse(`
-                    <p>The orchestration process to get applications ready for delivery.</p>
-                    <br/>
-                    <b><a href="./capabilities#workflow-orchestration">Read More</a></b>
-                    `)
+                      <div>
+                        <p>The orchestration process to get applications ready for delivery.</p>
+                        <br />
+                        <button
+                          onClick={() => window.location.href = './capabilities#workflow-orchestration'}
+                          className={styles.readMoreButton}
+                        >
+                          Read More
+                        </button>
+                      </div>
                     );
                   }}
                 >
@@ -245,11 +304,16 @@ export default function InteractiveDiagram() {
                     setIsShow("block");
                     setPromptTitle("Service Discovery");
                     setPromptText(
-                      parse(`
-                    <p>Allows for the dynamic lookup or querying of service details.</p>
-                    <br/>
-                    <b><a href="./capabilities#service-discovery">Read More</a></b>
-                    `)
+                      <div>
+                        <p>Allows for the dynamic lookup or querying of service details.</p>
+                        <br />
+                        <button
+                          onClick={() => window.location.href = './capabilities#service-discovery'}
+                          className={styles.readMoreButton}
+                        >
+                          Read More
+                        </button>
+                      </div>
                     );
                   }}
                 >
@@ -262,11 +326,16 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Secret Management");
                   setPromptText(
-                    parse(`
-                    <p>Secrets Management manages the life cycle and distribution of secrets safely and securely.</p>
-                    <br/>
-                    <b><a href="./capabilities#secret-management">Read More</a></b>
-                  `)
+                    <div>
+                      <p>Secrets Management manages the life cycle and distribution of secrets safely and securely.</p>
+                      <br />
+                      <button
+                        onClick={() => window.location.href = './capabilities#secret-management'}
+                        className={styles.readMoreButton}
+                      >
+                        Read More
+                      </button>
+                    </div>
                   );
                 }}
               >
@@ -278,11 +347,16 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Validation");
                   setPromptText(
-                    parse(`
-                    <p>Validation ensures that API specifications are abided. Can be used in conjunction with admission control to enable security controls</p>
-                    <br/>
-                    <b><a href="./capabilities#validation">Read More</a></b>
-                  `)
+                    <div>
+                      <p>Validation ensures that API specifications are abided. Can be used in conjunction with admission control to enable security controls</p>
+                      <br />
+                      <button
+                        onClick={() => window.location.href = './capabilities#validation'}
+                        className={styles.readMoreButton}
+                      >
+                        Read More
+                      </button>
+                    </div>
                   );
                 }}
               >
@@ -294,11 +368,16 @@ export default function InteractiveDiagram() {
                   setIsShow("block");
                   setPromptTitle("Compute Platform");
                   setPromptText(
-                    parse(`
-                    <p>The runtime used by the platform. Hosts the platform capabilities or their integration points.</p>
-                    <br/>
-                    <b><a href="./capabilities#compute-platform">Read More</a></b>
-                  `)
+                    <div>
+                      <p>The runtime used by the platform. Hosts the platform capabilities or their integration points.</p>
+                      <br />
+                      <button
+                        onClick={() => window.location.href = './capabilities#compute-platform'}
+                        className={styles.readMoreButton}
+                      >
+                        Read More
+                      </button>
+                    </div>
                   );
                 }}
               >
@@ -311,11 +390,16 @@ export default function InteractiveDiagram() {
                 setIsShow("block");
                 setPromptTitle("Observability");
                 setPromptText(
-                  parse(`
+                  <div>
                     <p>Monitors, reports, and alerts on the overall well-being of the system.</p>
-                    <br/>
-                    <b><a href="./capabilities#observability">Read More</a></b>
-                  `)
+                    <br />
+                    <button
+                      onClick={() => window.location.href = './capabilities#observability'}
+                      className={styles.readMoreButton}
+                    >
+                      Read More
+                    </button>
+                  </div>
                 );
               }}
             >

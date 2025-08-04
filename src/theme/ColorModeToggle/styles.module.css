@@ -1,0 +1,105 @@
+/* Match the exact styling pattern of other navbar icons */
+.toggle {
+  width: auto !important;
+  height: 69% !important;
+  padding: 0.4rem 1rem !important;
+  margin: 0 0.25rem !important;
+  border-radius: 8px !important;
+  transition: all var(--ifm-duration-normal) var(--ifm-easing-ease) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  font-weight: 500 !important;
+  color: var(--ifm-neutral-900) !important;
+  text-decoration: none !important;
+  position: relative !important;
+}
+
+.toggle:hover {
+  background: rgba(0, 86, 140, 0.08) !important;
+  color: var(--ifm-neutral-900) !important;
+  transform: translateX(4px) !important;
+  box-shadow: var(--ifm-shadow-sm) !important;
+}
+
+[data-theme="dark"] .toggle:hover {
+  background: rgba(77, 166, 255, 0.1) !important;
+}
+
+/* Add the orange accent bar like other navbar icons */
+.toggle:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background: var(--ifm-accent, #FF9800);
+  border-radius: 2px;
+  z-index: 10;
+}
+
+.toggleButton {
+  /* Complete reset of all button styles */
+  all: unset !important;
+  align-items: center !important;
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  cursor: pointer !important;
+  font: inherit !important;
+  text-align: inherit !important;
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+.toggleButton:hover,
+.toggleButton:focus,
+.toggleButton:active,
+.toggleButton:visited {
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  border: none !important;
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.toggleIcon {
+  display: none !important;
+  width: 24px !important;
+  height: 25px !important;
+}
+
+[data-theme-choice='system'] .systemToggleIcon,
+[data-theme-choice='light'] .lightToggleIcon,
+[data-theme-choice='dark'] .darkToggleIcon {
+  display: initial !important;
+}
+
+.toggleButtonDisabled {
+  cursor: not-allowed !important;
+}
+
+/* Nuclear option - override any possible conflicting styles */
+.toggle *,
+.toggle *::before,
+.toggle *::after {
+  box-sizing: border-box !important;
+}
+
+/* Ensure the hover effect only applies to the container, not the button */
+.toggle:hover .toggleButton {
+  background: transparent !important;
+}
+
+/* Removed orange bar to match GitHub icon pattern */
