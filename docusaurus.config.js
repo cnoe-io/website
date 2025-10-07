@@ -10,7 +10,7 @@ const config = {
   title: 'CNOE',
   // tagline: 'Internal Developer Platforms are a strategic commitment. Share learnings & build in the open.',
   tagline: 'Build your Internal Developer Platform with CNOE!',
-  url: 'https://cnoe-io.github.io',
+  url: 'https://cnoe.io',
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
