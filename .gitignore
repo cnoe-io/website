@@ -23,8 +23,8 @@ yarn-error.log*
 .idea
 
 # Ignore all files in docs/reference-implementation except _category_.json files
-docs/reference-implementation/*
-!docs/reference-implementation/*_category_.json
+docs/reference-implementation/**/*
+!docs/reference-implementation/**/_category_.json
 
 docs/tutorials/aws/*
 !docs/tutorials/aws/*_category_.json
