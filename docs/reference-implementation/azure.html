@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-reference-implementation/azure/README" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.8.1">
+<title data-rh="true">README | CNOE</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://cnoe.io/docs/reference-implementation/azure"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="README | CNOE"><meta data-rh="true" name="description" content="overview"><meta data-rh="true" property="og:description" content="overview"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://cnoe.io/docs/reference-implementation/azure"><link data-rh="true" rel="alternate" href="https://cnoe.io/docs/reference-implementation/azure" hreflang="en"><link data-rh="true" rel="alternate" href="https://cnoe.io/docs/reference-implementation/azure" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"README","item":"https://cnoe.io/docs/reference-implementation/azure/"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="CNOE RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="CNOE Atom Feed">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><link rel="stylesheet" href="/assets/css/styles.b79d7a1f.css">
+<script src="/assets/js/runtime~main.571d996a.js" defer="defer"></script>
+<script src="/assets/js/main.6d958ce1.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t="light";var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",e||t),document.documentElement.setAttribute("data-theme-choice",e||t)}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/img/logo-no-name.png"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo-no-name.png" alt="CNOE Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo-no-name.png" alt="CNOE Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/overview/cnoe">Docs</a><a class="navbar__item navbar__link" href="/blog">Blog</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://calendar.google.com/calendar/u/0/embed?src=064a2adfce866ccb02e61663a09f99147f22f06374e7a8994066bdc81e066986@group.calendar.google.com&amp;ctz=America/Los_Angeles" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link navbar--calendar-link" aria-label="Community Calendar"></a><a href="https://cloud-native.slack.com/archives/C05TN9WFN5S" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link navbar--slack-link" aria-label="Slack Channel"></a><a href="https://github.com/cnoe-io" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link navbar--github-link" aria-label="GitHub Repository"></a><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/overview/cnoe">Overview</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/docs/reference-implementation/local">IDP Reference Implementation</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/docs/reference-implementation/local">Setup IDP on Local Machine</a><button aria-label="Expand sidebar category &#x27;Setup IDP on Local Machine&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/docs/reference-implementation/aws">Setup IDP on AWS</a><button aria-label="Expand sidebar category &#x27;Setup IDP on AWS&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible menu__list-item-collapsible--active"><a class="menu__link menu__link--sublist menu__link--active" aria-current="page" tabindex="0" href="/docs/reference-implementation/azure">README</a><button aria-label="Collapse sidebar category &#x27;README&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/docs/reference-implementation/azure/docs/DEMO">docs</a></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/idpbuilder">IDPBuilder</a><button aria-label="Expand sidebar category &#x27;IDPBuilder&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/tutorials/idpbuilder/idpbuilder-stack">Tutorials</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/contributing/aws-ref-impl-CONTRIBUTING">Contributing</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">IDP Reference Implementation</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">README</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><p><img decoding="async" loading="lazy" alt="overview" src="/assets/images/overview-4de6eb099bbec3455b7798de1f4de02a.png" width="2000" height="1418" class="img_ev3q"></p>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>Applications deployed in this repository are a starting point to get environment into production.</p></div></div>
+<header><h1>CNOE Azure Reference Implementation</h1></header>
+<p>This repository provides a reference implementation for deploying Cloud Native Operations Enabler (CNOE) components on Azure Kubernetes Service (AKS) using GitOps principles.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="table-of-contents">Table of Contents<a href="#table-of-contents" class="hash-link" aria-label="Direct link to Table of Contents" title="Direct link to Table of Contents">​</a></h2>
+<ul>
+<li><a href="#architecture">Architecture</a>
+<ul>
+<li><a href="#deployed-components">Deployed Components</a></li>
+</ul>
+</li>
+<li><a href="#important-notes">Important Notes</a></li>
+<li><a href="#prerequisites">Prerequisites</a>
+<ul>
+<li><a href="#required-azure-resources">Required Azure Resources</a>
+<ul>
+<li><a href="#setup-guidance-for-azure-resources">Setup Guidance for Azure Resources</a></li>
+</ul>
+</li>
+<li><a href="#github-integration-setup">GitHub Integration Setup</a>
+<ul>
+<li><a href="#create-github-app-for-backstage">Create GitHub App for Backstage</a></li>
+<li><a href="#create-github-token">Create GitHub Token</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#installation-flow">Installation Flow</a></li>
+<li><a href="#security-notes">Security Notes</a></li>
+<li><a href="#installation-steps">Installation Steps</a>
+<ul>
+<li><a href="#installation-requirements">Installation Requirements</a></li>
+<li><a href="#1-configure-the-installation">1. Configure the Installation</a>
+<ul>
+<li><a href="#dns-and-tls-configuration">DNS and TLS Configuration</a>
+<ul>
+<li><a href="#automatic-recommended">Automatic (Recommended)</a></li>
+<li><a href="#manual">Manual</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-install-components">2. Install Components</a></li>
+<li><a href="#3-monitor-installation">3. Monitor Installation</a></li>
+<li><a href="#4-get-access-urls">4. Get Access URLs</a></li>
+<li><a href="#5-access-backstage">5. Access Backstage</a></li>
+</ul>
+</li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#update-component-configurations">Update Component Configurations</a>
+<ul>
+<li><a href="#backstage-templates">Backstage Templates</a></li>
+</ul>
+</li>
+<li><a href="#uninstall">Uninstall</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#potential-enhancements">Potential Enhancements</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="architecture">Architecture<a href="#architecture" class="hash-link" aria-label="Direct link to Architecture" title="Direct link to Architecture">​</a></h2>
+<ul>
+<li>Installation is managed through <strong>Taskfile</strong> and <strong>Helmfile</strong>
+<ul>
+<li>See <a href="/docs/reference-implementation/azure/docs/TASKFILE">TASKFILE.md</a> for information about the tasks defined in the <code>Taskfile.yml</code> file.</li>
+</ul>
+</li>
+<li>Components are deployed as <strong>ArgoCD Applications</strong></li>
+<li>Uses <strong>Azure Workload Identity</strong> for secure authentication to Azure services</li>
+<li>Files under the <code>/packages</code> directory are meant to be usable without modifications</li>
+<li>Configuration is externalised through the <code>config.yaml</code> file</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="deployed-components">Deployed Components<a href="#deployed-components" class="hash-link" aria-label="Direct link to Deployed Components" title="Direct link to Deployed Components">​</a></h3>
+<table><thead><tr><th>Component</th><th>Version</th><th>Purpose</th></tr></thead><tbody><tr><td>ArgoCD</td><td>8.0.14</td><td>GitOps continuous deployment</td></tr><tr><td>Crossplane</td><td>2.0.2-up.4</td><td>Infrastructure as Code</td></tr><tr><td>Ingress-nginx</td><td>4.7.0</td><td>Ingress controller</td></tr><tr><td>ExternalDNS</td><td>1.16.1</td><td>Automatic DNS management</td></tr><tr><td>External-secrets</td><td>0.17.0</td><td>Secret management</td></tr><tr><td>Cert-manager</td><td>1.17.2</td><td>TLS certificate management</td></tr><tr><td>Keycloak</td><td>24.7.3</td><td>Identity and access management</td></tr><tr><td>Backstage</td><td>2.6.0</td><td>Developer portal</td></tr><tr><td>Argo-workflows</td><td>0.45.18</td><td>Workflow orchestration</td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="important-notes">Important Notes<a href="#important-notes" class="hash-link" aria-label="Direct link to Important Notes" title="Direct link to Important Notes">​</a></h2>
+<ul>
+<li><strong>Azure Resource Management</strong>: This repository does not manage Azure infrastructure. AKS cluster, DNS zone, Key Vault, and related resources must be provisioned separately using your organization&#x27;s infrastructure management approach.</li>
+<li><strong>Production Readiness</strong>: The helper tasks in this repository are for creating Azure resources for demo purposes only. Any production deployments should follow enterprise infrastructure management practices.</li>
+<li><strong>Configuration Management</strong>: All configuration is centralised in <code>config.yaml</code>. The <code>private/</code> directory is only for temporary files during development.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="prerequisites">Prerequisites<a href="#prerequisites" class="hash-link" aria-label="Direct link to Prerequisites" title="Direct link to Prerequisites">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="required-azure-resources">Required Azure Resources<a href="#required-azure-resources" class="hash-link" aria-label="Direct link to Required Azure Resources" title="Direct link to Required Azure Resources">​</a></h3>
+<p>Before using this reference implementation, you <strong>MUST</strong> have the following Azure resources already created and configured:</p>
+<ol>
+<li><strong>AKS Cluster</strong> (1.27+) with:<!-- -->
+<ul>
+<li>OIDC Issuer enabled (<code>--enable-oidc-issuer</code>)</li>
+<li>Workload Identity enabled (<code>--enable-workload-identity</code>)</li>
+<li>Sufficient node capacity for all components<!-- -->
+<ul>
+<li>For example, the demonstration AKS cluster created with the helper task <code>azure:creds:create</code> has node pool with the node size set to <code>standard_d4alds_v6</code> by default</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Azure DNS Zone</strong>
+<ul>
+<li>A registered domain with Azure DNS as the authoritative DNS service</li>
+</ul>
+</li>
+<li><strong>Azure Key Vault</strong>
+<ul>
+<li>For storing configuration secrets and certificates</li>
+<li>Must be accessible from the AKS cluster</li>
+</ul>
+</li>
+<li><strong>Crossplane Workload Identity</strong>
+<ul>
+<li>Azure Managed Identity with appropriate permissions</li>
+<li>Federated credentials configured for the AKS cluster OIDC issuer</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>Important</strong>:</p>
+<ul>
+<li>All Azure resources must be in the same subscription and resource group</li>
+<li>These resources are prerequisites and must be provisioned using your organisation&#x27;s preferred infrastructure management approach (Terraform, Bicep, ARM templates, etc.). The tasks in this repository that create Azure resources (<code>azure:creds:create</code>, <code>test:aks:create</code>, etc.) are helper functions for demonstration purposes only and are <strong>NOT recommended for production deployments</strong>.</li>
+</ul>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="setup-guidance-for-azure-resources">Setup Guidance for Azure Resources<a href="#setup-guidance-for-azure-resources" class="hash-link" aria-label="Direct link to Setup Guidance for Azure Resources" title="Direct link to Setup Guidance for Azure Resources">​</a></h4>
+<p>For setting up the prerequisite Azure resources, refer to the official Azure documentation:</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough" target="_blank" rel="noopener noreferrer">Create an AKS cluster</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/dns/" target="_blank" rel="noopener noreferrer">Azure DNS zones</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/key-vault/" target="_blank" rel="noopener noreferrer">Azure Key Vault</a></li>
+<li><a href="https://azure.github.io/azure-workload-identity/" target="_blank" rel="noopener noreferrer">Azure Workload Identity</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="github-integration-setup">GitHub Integration Setup<a href="#github-integration-setup" class="hash-link" aria-label="Direct link to GitHub Integration Setup" title="Direct link to GitHub Integration Setup">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="create-github-app-for-backstage">Create GitHub App for Backstage<a href="#create-github-app-for-backstage" class="hash-link" aria-label="Direct link to Create GitHub App for Backstage" title="Direct link to Create GitHub App for Backstage">​</a></h4>
+<p>You need a GitHub App to enable Backstage integration with your GitHub organisation.</p>
+<p><strong>Option 1: Using Backstage CLI (Recommended)</strong></p>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">npx &#x27;@backstage/cli&#x27; create-github-app ${GITHUB_ORG_NAME}</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Select appropriate permissions when prompted</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Install the app to your organisation in the browser</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Move the credentials file to a temporary location</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">mkdir -p private</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">GITHUB_APP_FILE=$(ls github-app-* | head -n1)</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">mv ${GITHUB_APP_FILE} private/github-integration.yaml</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
+<p><strong>Option 2: Manual Creation</strong>
+Follow <a href="https://backstage.io/docs/integrations/github/github-apps" target="_blank" rel="noopener noreferrer">Backstage GitHub App documentation</a> and save the credentials as <code>private/github-integration.yaml</code>.</p>
+<blockquote>
+<p><strong>Note</strong>: The <code>private/</code> directory is for temporary files during development/testing only. All configuration must be properly stored in <code>config.yaml</code> for the actual deployment.</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="create-github-token">Create GitHub Token<a href="#create-github-token" class="hash-link" aria-label="Direct link to Create GitHub Token" title="Direct link to Create GitHub Token">​</a></h4>
+<p>Create a GitHub Personal Access Token with these permissions:</p>
+<ul>
+<li>Repository access for all repositories</li>
+<li>Read-only access to: Administration, Contents, and Metadata</li>
+</ul>
+<p>Save the token value temporarily as you will need it when creating the <code>config.yaml</code> file.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="installation-flow">Installation Flow<a href="#installation-flow" class="hash-link" aria-label="Direct link to Installation Flow" title="Direct link to Installation Flow">​</a></h2>
+<p>The installation process follows this pattern:</p>
+<ol>
+<li>Configure your environment settings in <code>config.yaml</code>
+<ul>
+<li>The <a href="#installation">Installation</a> process will include creating a <code>config.yaml</code> file using the <a href="https://github.com/livewyer-ops/reference-implementation-azure/blob/v2/config.yaml.template" target="_blank" rel="noopener noreferrer"><code>config.yaml.template</code></a> in this repository</li>
+</ul>
+</li>
+<li>Run <code>task install</code> which:<!-- -->
+<ul>
+<li>Sets up Azure Workload Identity credentials</li>
+<li>Deploys ArgoCD via Helmfile</li>
+<li>Creates ArgoCD ApplicationSets that deploy all other components</li>
+<li>Configures workload identities and RBAC automatically</li>
+</ul>
+</li>
+</ol>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="security-notes">Security Notes<a href="#security-notes" class="hash-link" aria-label="Direct link to Security Notes" title="Direct link to Security Notes">​</a></h2>
+<ul>
+<li>GitHub App credentials contain sensitive information - handle with care</li>
+<li>Configuration secrets are stored in Azure Key Vault</li>
+<li>Workload Identity is used for secure Azure authentication</li>
+<li>TLS encryption is used for all external traffic</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="installation-steps">Installation Steps<a href="#installation-steps" class="hash-link" aria-label="Direct link to Installation Steps" title="Direct link to Installation Steps">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="installation-requirements">Installation Requirements<a href="#installation-requirements" class="hash-link" aria-label="Direct link to Installation Requirements" title="Direct link to Installation Requirements">​</a></h3>
+<ul>
+<li><strong>Azure CLI</strong> (2.13+) with subscription access</li>
+<li><strong>kubectl</strong> (1.27+)</li>
+<li><strong>kubelogin</strong> for AKS authentication</li>
+<li><strong>yq</strong> for YAML processing</li>
+<li><strong>jq</strong> for JSON processing</li>
+<li><strong>curl</strong> and <strong>git</strong></li>
+<li><strong>helm</strong> (3.x)</li>
+<li><strong>helmfile</strong></li>
+<li><strong>task</strong> (Taskfile executor)</li>
+<li>A <strong>GitHub Organisation</strong> (free to create)</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-configure-the-installation">1. Configure the Installation<a href="#1-configure-the-installation" class="hash-link" aria-label="Direct link to 1. Configure the Installation" title="Direct link to 1. Configure the Installation">​</a></h3>
+<p>Copy and customise the configuration:</p>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">cp config.yaml.template config.yaml</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Edit config.yaml with your values</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
+<p>Key configuration sections in <code>config.yaml</code>:</p>
+<ul>
+<li><code>repo</code>: The details of the repository hosting the reference azure implementation code</li>
+<li><code>cluster_name</code>: Your AKS cluster name</li>
+<li><code>subscription</code>: Your Azure subscription ID</li>
+<li><code>location</code>: The target Azure region</li>
+<li><code>resource_group</code>: Your Azure resource group</li>
+<li><code>cluster_oidc_issuer_url</code>: The AKS OIDC issuer URL</li>
+<li><code>domain</code>: The base domain name you will be using for exposing services</li>
+<li><code>keyvault</code>: Your Azure Key Vault name</li>
+<li><code>github</code>: GitHub App credentials (from the <a href="#github-integration-setup">Github Integration Setup</a>)</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dns-and-tls-configuration">DNS and TLS Configuration<a href="#dns-and-tls-configuration" class="hash-link" aria-label="Direct link to DNS and TLS Configuration" title="Direct link to DNS and TLS Configuration">​</a></h4>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="automatic-recommended">Automatic (Recommended)<a href="#automatic-recommended" class="hash-link" aria-label="Direct link to Automatic (Recommended)" title="Direct link to Automatic (Recommended)">​</a></h5>
+<ul>
+<li>Set your domain in <code>config.yaml</code></li>
+<li>ExternalDNS manages DNS records automatically</li>
+<li>Cert-manager handles Let&#x27;s Encrypt certificates</li>
+</ul>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="manual">Manual<a href="#manual" class="hash-link" aria-label="Direct link to Manual" title="Direct link to Manual">​</a></h5>
+<ul>
+<li>Set DNS records to point to the ingress load balancer IP</li>
+<li>Provide your own TLS certificates as Kubernetes secrets</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-install-components">2. Install Components<a href="#2-install-components" class="hash-link" aria-label="Direct link to 2. Install Components" title="Direct link to 2. Install Components">​</a></h3>
+<p>If installing the reference implementation on a machine for the first time run:</p>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">task init</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
+<p>If you haven&#x27;t previously run <code>task init</code>, then you will be prompted to install several Helm plugins required by Helmfile when you run the next command:</p>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Install all components</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">task install</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
+<blockquote>
+<p><strong>Notes</strong>:</p>
+<ul>
+<li><code>task install</code> will update the <code>config.yaml</code> file</li>
+<li>Post-installation, use <code>task sync</code> (the equivalent to running <code>helmfile sync</code>) to apply updates. See the <a href="/docs/reference-implementation/azure/docs/TASKFILE">Task Usage Guidelines</a> for more information.</li>
+</ul>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-monitor-installation">3. Monitor Installation<a href="#3-monitor-installation" class="hash-link" aria-label="Direct link to 3. Monitor Installation" title="Direct link to 3. Monitor Installation">​</a></h3>
+<p>Once ArgoCD is running, monitor the installation progress of the other components by checking the Argo CD UI:</p>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Get ArgoCD admin password</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=&quot;{.data.password}&quot; | base64 -d</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Port forward to ArgoCD</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">kubectl port-forward svc/argocd-server -n argocd 8080:80</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
+<p>Access the ArgoCD UI at <a href="http://localhost:8080" target="_blank" rel="noopener noreferrer">http://localhost:8080</a> with username <code>admin</code>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-get-access-urls">4. Get Access URLs<a href="#4-get-access-urls" class="hash-link" aria-label="Direct link to 4. Get Access URLs" title="Direct link to 4. Get Access URLs">​</a></h3>
+<p>Use the <code>task get:urls</code> command to fetch all the URLs.</p>
+<p>The URL structure of the URLs will depend on the type of routing you set in the configuration. Examples of the set of URLs that can be outputted are below:</p>
+<p><strong>Domain-based routing</strong> (default):</p>
+<ul>
+<li>Backstage: <code>https://backstage.YOUR_DOMAIN</code></li>
+<li>ArgoCD: <code>https://argocd.YOUR_DOMAIN</code></li>
+<li>Keycloak: <code>https://keycloak.YOUR_DOMAIN</code></li>
+<li>Argo Workflows: <code>https://argo-workflows.YOUR_DOMAIN</code></li>
+</ul>
+<p><strong>Path-based routing</strong> (set <code>path_routing: true</code>):</p>
+<ul>
+<li>Backstage: <code>https://YOUR_DOMAIN/</code></li>
+<li>ArgoCD: <code>https://YOUR_DOMAIN/argocd</code></li>
+<li>Keycloak: <code>https://YOUR_DOMAIN/keycloak</code></li>
+<li>Argo Workflows: <code>https://YOUR_DOMAIN/argo-workflows</code></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-access-backstage">5. Access Backstage<a href="#5-access-backstage" class="hash-link" aria-label="Direct link to 5. Access Backstage" title="Direct link to 5. Access Backstage">​</a></h3>
+<p>Once the Keycloak and Backstage are installed, check you can login to the Backstage UI with a default user:</p>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Get user password</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">kubectl -n keycloak get secret keycloak-config -o yaml | yq &#x27;.data.USER1_PASSWORD | @base64d&#x27;</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="usage">Usage<a href="#usage" class="hash-link" aria-label="Direct link to Usage" title="Direct link to Usage">​</a></h2>
+<p>See <a href="/docs/reference-implementation/azure/docs/DEMO">DEMO.md</a> for information on how to navigate the platform and for usage examples.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="update-component-configurations">Update Component Configurations<a href="#update-component-configurations" class="hash-link" aria-label="Direct link to Update Component Configurations" title="Direct link to Update Component Configurations">​</a></h2>
+<p>If you want to try customising component configurations, you can do so by updating the <code>packages/addons/values.yaml</code> file and using <code>task sync</code> to apply the updates.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="backstage-templates">Backstage Templates<a href="#backstage-templates" class="hash-link" aria-label="Direct link to Backstage Templates" title="Direct link to Backstage Templates">​</a></h3>
+<p>Backstage templates can be found in the <code>templates/</code> directory</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="uninstall">Uninstall<a href="#uninstall" class="hash-link" aria-label="Direct link to Uninstall" title="Direct link to Uninstall">​</a></h2>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Remove all components</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">task uninstall</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Clean up GitHub App and tokens manually</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Delete the GitHub organisation if no longer needed</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="contributing">Contributing<a href="#contributing" class="hash-link" aria-label="Direct link to Contributing" title="Direct link to Contributing">​</a></h2>
+<p>This reference implementation is designed to be:</p>
+<ul>
+<li><strong>Forkable</strong>: Create your own version for your organisation</li>
+<li><strong>Customizable</strong>: Modify configurations without changing core packages</li>
+<li><strong>Extensible</strong>: Add new components following the established patterns</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="troubleshooting">Troubleshooting<a href="#troubleshooting" class="hash-link" aria-label="Direct link to Troubleshooting" title="Direct link to Troubleshooting">​</a></h2>
+<p>See <a href="/docs/reference-implementation/azure/docs/TROUBLESHOOTING">TROUBLESHOOTING.md</a> for common issues and detailed troubleshooting steps.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="potential-enhancements">Potential Enhancements<a href="#potential-enhancements" class="hash-link" aria-label="Direct link to Potential Enhancements" title="Direct link to Potential Enhancements">​</a></h2>
+<p>The installation of this Azure reference implemenation will give you a starting point for the platform, however as previously stated applications deployed in this repository are not meant or configured for production. To push it towards production ready, you can make further enhancements that could include:</p>
+<ol>
+<li>Modifying the basic and Argo workflow templates for your specific Azure use cases</li>
+<li>Intergrating additional Azure services with Crossplane</li>
+<li>Configuring auto-scaling for AKS and Azure resources</li>
+<li>Adding OPA Gatekeeper for governance</li>
+<li>Intergrating a monitoring stack. For example:<!-- -->
+<ol>
+<li>Deploy Prometheus and Grafana</li>
+<li>Configure service monitors for Azure resources</li>
+<li>View metrics and Azure resource status in Backstage</li>
+</ol>
+</li>
+<li>Implementing GitOps-based environment promotion:<!-- -->
+<ol>
+<li><strong>Development</strong>: Deploy to dev environment via Git push</li>
+<li><strong>Testing</strong>: Promote to test environment via ArgoCD</li>
+<li><strong>Production</strong>: Use ArgoCD sync waves for controlled rollout</li>
+</ol>
+</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/cnoe-io/reference-implementation-azure/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/reference-implementation/aws/docs/installation_with_idpbuilder"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Using IDPBuilder (Optional)</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/reference-implementation/azure/docs/DEMO"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">DEMO</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#table-of-contents" class="table-of-contents__link toc-highlight">Table of Contents</a></li><li><a href="#architecture" class="table-of-contents__link toc-highlight">Architecture</a><ul><li><a href="#deployed-components" class="table-of-contents__link toc-highlight">Deployed Components</a></li></ul></li><li><a href="#important-notes" class="table-of-contents__link toc-highlight">Important Notes</a></li><li><a href="#prerequisites" class="table-of-contents__link toc-highlight">Prerequisites</a><ul><li><a href="#required-azure-resources" class="table-of-contents__link toc-highlight">Required Azure Resources</a></li><li><a href="#github-integration-setup" class="table-of-contents__link toc-highlight">GitHub Integration Setup</a></li></ul></li><li><a href="#installation-flow" class="table-of-contents__link toc-highlight">Installation Flow</a></li><li><a href="#security-notes" class="table-of-contents__link toc-highlight">Security Notes</a></li><li><a href="#installation-steps" class="table-of-contents__link toc-highlight">Installation Steps</a><ul><li><a href="#installation-requirements" class="table-of-contents__link toc-highlight">Installation Requirements</a></li><li><a href="#1-configure-the-installation" class="table-of-contents__link toc-highlight">1. Configure the Installation</a></li><li><a href="#2-install-components" class="table-of-contents__link toc-highlight">2. Install Components</a></li><li><a href="#3-monitor-installation" class="table-of-contents__link toc-highlight">3. Monitor Installation</a></li><li><a href="#4-get-access-urls" class="table-of-contents__link toc-highlight">4. Get Access URLs</a></li><li><a href="#5-access-backstage" class="table-of-contents__link toc-highlight">5. Access Backstage</a></li></ul></li><li><a href="#usage" class="table-of-contents__link toc-highlight">Usage</a></li><li><a href="#update-component-configurations" class="table-of-contents__link toc-highlight">Update Component Configurations</a><ul><li><a href="#backstage-templates" class="table-of-contents__link toc-highlight">Backstage Templates</a></li></ul></li><li><a href="#uninstall" class="table-of-contents__link toc-highlight">Uninstall</a></li><li><a href="#contributing" class="table-of-contents__link toc-highlight">Contributing</a></li><li><a href="#troubleshooting" class="table-of-contents__link toc-highlight">Troubleshooting</a></li><li><a href="#potential-enhancements" class="table-of-contents__link toc-highlight">Potential Enhancements</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">DOCS</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/overview/cnoe">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/contributing/aws-ref-impl-CONTRIBUTING">Contribute</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">SOCIAL</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://cloud-native.slack.com/archives/C05TN9WFN5S" target="_blank" rel="noopener noreferrer" class="footer__link-item">Slack<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://calendar.google.com/calendar/u/0/embed?src=064a2adfce866ccb02e61663a09f99147f22f06374e7a8994066bdc81e066986@group.calendar.google.com&amp;ctz=America/Los_Angeles" target="_blank" rel="noopener noreferrer" class="footer__link-item">Community Meeting Calendar<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">MORE</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/cnoe-io" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 CNOE</div></div></div></footer></div>
+</body>
+</html>
