@@ -3,10 +3,15 @@ set -euo pipefail
 
 # Repository mapping table: SOURCE_REPO_URL SOURCE_REPO_PATH DESTINATION_REPO_PATH
 REPO_MAPPINGS=(
+  # AWS Reference Implementation
   "https://github.com/cnoe-io/reference-implementation-aws docs docs/reference-implementation/aws/docs"
   "https://github.com/cnoe-io/reference-implementation-aws README.md docs/reference-implementation/aws"
   "https://github.com/cnoe-io/reference-implementation-aws examples docs/tutorials/aws"
   "https://github.com/cnoe-io/reference-implementation-aws CONTRIBUTING.md docs/contributing/aws-ref-impl-CONTRIBUTING.md"
+
+  # Azure Reference Implementation
+  "https://github.com/cnoe-io/reference-implementation-azure docs docs/reference-implementation/azure/docs"
+  "https://github.com/cnoe-io/reference-implementation-azure README.md docs/reference-implementation/azure"
 )
 
 for mapping in "${REPO_MAPPINGS[@]}"; do
