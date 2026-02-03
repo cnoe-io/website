@@ -13,8 +13,8 @@
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><link rel="stylesheet" href="/assets/css/styles.b79d7a1f.css">
-<script src="/assets/js/runtime~main.c56a1d2d.js" defer="defer"></script>
-<script src="/assets/js/main.1cc32b80.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.4e0b6ba5.js" defer="defer"></script>
+<script src="/assets/js/main.478fb963.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
@@ -86,8 +86,9 @@
 <li>See <a href="/docs/reference-implementation/azure/docs/TASKFILE">TASKFILE.md</a> for information about the tasks defined in the <code>Taskfile.yml</code> file.</li>
 </ul>
 </li>
+<li>Uses a <strong>local Kind cluster</strong> as a bootstrap environment to deploy CNOE to the target AKS cluster</li>
 <li>Components are deployed as <strong>ArgoCD Applications</strong></li>
-<li>Uses <strong>Azure Workload Identity</strong> for secure authentication to Azure services</li>
+<li>Uses <strong>Azure Workload Identity</strong> for secure authentication to Azure services (created automatically via Crossplane)</li>
 <li>Files under the <code>/packages</code> directory are meant to be usable without modifications</li>
 <li>Configuration is externalised through the <code>config.yaml</code> file</li>
 </ul>
@@ -95,9 +96,10 @@
 <table><thead><tr><th>Component</th><th>Version</th><th>Purpose</th></tr></thead><tbody><tr><td>ArgoCD</td><td>8.0.14</td><td>GitOps continuous deployment</td></tr><tr><td>Crossplane</td><td>2.0.2-up.4</td><td>Infrastructure as Code</td></tr><tr><td>Ingress-nginx</td><td>4.7.0</td><td>Ingress controller</td></tr><tr><td>ExternalDNS</td><td>1.16.1</td><td>Automatic DNS management</td></tr><tr><td>External-secrets</td><td>0.17.0</td><td>Secret management</td></tr><tr><td>Cert-manager</td><td>1.17.2</td><td>TLS certificate management</td></tr><tr><td>Keycloak</td><td>24.7.3</td><td>Identity and access management</td></tr><tr><td>Backstage</td><td>2.6.0</td><td>Developer portal</td></tr><tr><td>Argo-workflows</td><td>0.45.18</td><td>Workflow orchestration</td></tr></tbody></table>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="important-notes">Important Notes<a href="#important-notes" class="hash-link" aria-label="Direct link to Important Notes" title="Direct link to Important Notes">​</a></h2>
 <ul>
-<li><strong>Azure Resource Management</strong>: This repository does not manage Azure infrastructure. AKS cluster, DNS zone, Key Vault, and related resources must be provisioned separately using your organization&#x27;s infrastructure management approach.</li>
+<li><strong>Azure Resource Management</strong>: This repository does not manage Azure infrastructure. AKS cluster and DNS zone must be provisioned separately using your organization&#x27;s infrastructure management approach.</li>
 <li><strong>Production Readiness</strong>: The helper tasks in this repository are for creating Azure resources for demo purposes only. Any production deployments should follow enterprise infrastructure management practices.</li>
 <li><strong>Configuration Management</strong>: All configuration is centralised in <code>config.yaml</code>. The <code>private/</code> directory is only for temporary files during development.</li>
+<li><strong>Bootstrap Approach</strong>: The installation uses a local Kind cluster to bootstrap the installation to the target AKS cluster. The Kind cluster can be deleted after installation is complete.</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="prerequisites">Prerequisites<a href="#prerequisites" class="hash-link" aria-label="Direct link to Prerequisites" title="Direct link to Prerequisites">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="required-azure-resources">Required Azure Resources<a href="#required-azure-resources" class="hash-link" aria-label="Direct link to Required Azure Resources" title="Direct link to Required Azure Resources">​</a></h3>
@@ -109,7 +111,7 @@
 <li>Workload Identity enabled (<code>--enable-workload-identity</code>)</li>
 <li>Sufficient node capacity for all components<!-- -->
 <ul>
-<li>For example, the demonstration AKS cluster created with the helper task <code>azure:creds:create</code> has node pool with the node size set to <code>standard_d4alds_v6</code> by default</li>
+<li>For example, the demonstration AKS cluster created with the helper task <code>test:aks:create</code> has node pool with the node size set to <code>standard_d4alds_v6</code> by default</li>
 </ul>
 </li>
 </ul>
@@ -119,24 +121,13 @@
 <li>A registered domain with Azure DNS as the authoritative DNS service</li>
 </ul>
 </li>
-<li><strong>Azure Key Vault</strong>
-<ul>
-<li>For storing configuration secrets and certificates</li>
-<li>Must be accessible from the AKS cluster</li>
-</ul>
-</li>
-<li><strong>Crossplane Workload Identity</strong>
-<ul>
-<li>Azure Managed Identity with appropriate permissions</li>
-<li>Federated credentials configured for the AKS cluster OIDC issuer</li>
-</ul>
-</li>
 </ol>
 <blockquote>
 <p><strong>Important</strong>:</p>
 <ul>
 <li>All Azure resources must be in the same subscription and resource group</li>
-<li>These resources are prerequisites and must be provisioned using your organisation&#x27;s preferred infrastructure management approach (Terraform, Bicep, ARM templates, etc.). The tasks in this repository that create Azure resources (<code>azure:creds:create</code>, <code>test:aks:create</code>, etc.) are helper functions for demonstration purposes only and are <strong>NOT recommended for production deployments</strong>.</li>
+<li>Azure Key Vault and Crossplane Workload Identity are <strong>NO LONGER</strong> prerequisites - they will be created automatically during installation</li>
+<li>These resources are prerequisites and must be provisioned using your organisation&#x27;s preferred infrastructure management approach (Terraform, Bicep, ARM templates, etc.). The tasks in this repository that create Azure resources (<code>test:aks:create</code>, etc.) are helper functions for demonstration purposes only and are <strong>NOT recommended for production deployments</strong>.</li>
 </ul>
 </blockquote>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="setup-guidance-for-azure-resources">Setup Guidance for Azure Resources<a href="#setup-guidance-for-azure-resources" class="hash-link" aria-label="Direct link to Setup Guidance for Azure Resources" title="Direct link to Setup Guidance for Azure Resources">​</a></h4>
@@ -144,8 +135,6 @@
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough" target="_blank" rel="noopener noreferrer">Create an AKS cluster</a></li>
 <li><a href="https://docs.microsoft.com/en-us/azure/dns/" target="_blank" rel="noopener noreferrer">Azure DNS zones</a></li>
-<li><a href="https://docs.microsoft.com/en-us/azure/key-vault/" target="_blank" rel="noopener noreferrer">Azure Key Vault</a></li>
-<li><a href="https://azure.github.io/azure-workload-identity/" target="_blank" rel="noopener noreferrer">Azure Workload Identity</a></li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="github-integration-setup">GitHub Integration Setup<a href="#github-integration-setup" class="hash-link" aria-label="Direct link to GitHub Integration Setup" title="Direct link to GitHub Integration Setup">​</a></h3>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="create-github-app-for-backstage">Create GitHub App for Backstage<a href="#create-github-app-for-backstage" class="hash-link" aria-label="Direct link to Create GitHub App for Backstage" title="Direct link to Create GitHub App for Backstage">​</a></h4>
@@ -165,28 +154,34 @@ Follow <a href="https://backstage.io/docs/integrations/github/github-apps" targe
 </ul>
 <p>Save the token value temporarily as you will need it when creating the <code>config.yaml</code> file.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="installation-flow">Installation Flow<a href="#installation-flow" class="hash-link" aria-label="Direct link to Installation Flow" title="Direct link to Installation Flow">​</a></h2>
-<p>The installation process follows this pattern:</p>
+<p>The installation process follows this new pattern using a local Kind cluster as bootstrap:</p>
 <ol>
-<li>Configure your environment settings in <code>config.yaml</code>
-<ul>
-<li>The <a href="#installation">Installation</a> process will include creating a <code>config.yaml</code> file using the <a href="https://github.com/livewyer-ops/reference-implementation-azure/blob/v2/config.yaml.template" target="_blank" rel="noopener noreferrer"><code>config.yaml.template</code></a> in this repository</li>
-</ul>
-</li>
+<li>Configure your environment settings in <code>config.yaml</code></li>
+<li>Set up Azure credentials in <code>private/azure-credentials.json</code></li>
 <li>Run <code>task install</code> which:<!-- -->
 <ul>
-<li>Sets up Azure Workload Identity credentials</li>
-<li>Deploys ArgoCD via Helmfile</li>
-<li>Creates ArgoCD ApplicationSets that deploy all other components</li>
-<li>Configures workload identities and RBAC automatically</li>
+<li>Creates a local Kind cluster using the configuration in <code>kind.yaml</code></li>
+<li>Deploys components to Kind cluster via Helmfile as specified in <code>bootstrap-addons.yaml</code></li>
+<li>Crossplane on Kind cluster connects to Azure and creates necessary cloud resources:<!-- -->
+<ul>
+<li>Crossplane Workload Identity</li>
+<li>Azure Key Vault</li>
+<li>DNS records (<code>*.local.&lt;domain&gt;</code>) for observing local installation</li>
 </ul>
 </li>
+<li>Deploys CNOE components to the target AKS cluster via ArgoCD</li>
+</ul>
+</li>
+<li>Monitor installation progress via local ArgoCD at <code>argocd.local.&lt;domain&gt;</code> and Crossplane at <code>crossplane.local.&lt;domain&gt;</code></li>
+<li>Once installation is complete, the local Kind cluster is no longer needed</li>
 </ol>
 <!-- -->
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="security-notes">Security Notes<a href="#security-notes" class="hash-link" aria-label="Direct link to Security Notes" title="Direct link to Security Notes">​</a></h2>
 <ul>
 <li>GitHub App credentials contain sensitive information - handle with care</li>
-<li>Configuration secrets are stored in Azure Key Vault</li>
-<li>Workload Identity is used for secure Azure authentication</li>
+<li>Azure credentials are stored in <code>private/azure-credentials.json</code> (copy from your Azure credential)</li>
+<li>Configuration secrets are stored in Azure Key Vault (created automatically)</li>
+<li>Workload Identity is used for secure Azure authentication (created automatically)</li>
 <li>TLS encryption is used for all external traffic</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="installation-steps">Installation Steps<a href="#installation-steps" class="hash-link" aria-label="Direct link to Installation Steps" title="Direct link to Installation Steps">​</a></h2>
@@ -196,16 +191,18 @@ Follow <a href="https://backstage.io/docs/integrations/github/github-apps" targe
 <li><strong>kubectl</strong> (1.27+)</li>
 <li><strong>kubelogin</strong> for AKS authentication</li>
 <li><strong>yq</strong> for YAML processing</li>
-<li><strong>jq</strong> for JSON processing</li>
-<li><strong>curl</strong> and <strong>git</strong></li>
 <li><strong>helm</strong> (3.x)</li>
 <li><strong>helmfile</strong></li>
 <li><strong>task</strong> (Taskfile executor)</li>
+<li><strong>kind</strong> for local Kubernetes cluster</li>
+<li><strong>yamale</strong> for configuration validation</li>
 <li>A <strong>GitHub Organisation</strong> (free to create)</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-configure-the-installation">1. Configure the Installation<a href="#1-configure-the-installation" class="hash-link" aria-label="Direct link to 1. Configure the Installation" title="Direct link to 1. Configure the Installation">​</a></h3>
 <p>Copy and customise the configuration:</p>
 <div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">cp config.yaml.template config.yaml</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Edit config.yaml with your values</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
+<p>Set up Azure credentials:</p>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Copy your Azure credentials to the private directory</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">cp private/azure-credentials.template.json private/azure-credentials.json</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Edit private/azure-credentials.json with your actual Azure credentials</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
 <p>Key configuration sections in <code>config.yaml</code>:</p>
 <ul>
 <li><code>repo</code>: The details of the repository hosting the reference azure implementation code</li>
@@ -215,7 +212,6 @@ Follow <a href="https://backstage.io/docs/integrations/github/github-apps" targe
 <li><code>resource_group</code>: Your Azure resource group</li>
 <li><code>cluster_oidc_issuer_url</code>: The AKS OIDC issuer URL</li>
 <li><code>domain</code>: The base domain name you will be using for exposing services</li>
-<li><code>keyvault</code>: Your Azure Key Vault name</li>
 <li><code>github</code>: GitHub App credentials (from the <a href="#github-integration-setup">Github Integration Setup</a>)</li>
 </ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="dns-and-tls-configuration">DNS and TLS Configuration<a href="#dns-and-tls-configuration" class="hash-link" aria-label="Direct link to DNS and TLS Configuration" title="Direct link to DNS and TLS Configuration">​</a></h4>
@@ -238,16 +234,18 @@ Follow <a href="https://backstage.io/docs/integrations/github/github-apps" targe
 <blockquote>
 <p><strong>Notes</strong>:</p>
 <ul>
-<li><code>task install</code> will update the <code>config.yaml</code> file</li>
-<li>Post-installation, use <code>task sync</code> (the equivalent to running <code>helmfile sync</code>) to apply updates. See the <a href="/docs/reference-implementation/azure/docs/TASKFILE">Task Usage Guidelines</a> for more information.</li>
+<li><code>task install</code> will create a local Kind cluster and use it to bootstrap the installation to your AKS cluster</li>
+<li>Post-installation, use <code>task apply</code> (the equivalent to running <code>helmfile apply</code>) to apply updates. See the <a href="/docs/reference-implementation/azure/docs/TASKFILE">Task Usage Guidelines</a> for more information.</li>
 </ul>
 </blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-monitor-installation">3. Monitor Installation<a href="#3-monitor-installation" class="hash-link" aria-label="Direct link to 3. Monitor Installation" title="Direct link to 3. Monitor Installation">​</a></h3>
-<p>Once ArgoCD is running, monitor the installation progress of the other components by checking the Argo CD UI:</p>
-<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Get ArgoCD admin password</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=&quot;{.data.password}&quot; | base64 -d</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Port forward to ArgoCD</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">kubectl port-forward svc/argocd-server -n argocd 8080:80</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
-<p>Access the ArgoCD UI at <a href="http://localhost:8080" target="_blank" rel="noopener noreferrer">http://localhost:8080</a> with username <code>admin</code>.</p>
+<p>During installation, you can monitor progress using the local Kind cluster:</p>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Access local ArgoCD (running on Kind cluster)</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Navigate to: https://argocd.local.&lt;your-domain&gt;</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Access local Crossplane dashboard</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Navigate to: https://crossplane.local.&lt;your-domain&gt;</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Get ArgoCD admin password for local cluster</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=&quot;{.data.password}&quot; | base64 -d</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
+<p>Once the AKS installation is complete, you can also access ArgoCD on the target cluster:</p>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Switch to AKS cluster context</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">task kubeconfig:set-context:aks</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Get ArgoCD admin password</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=&quot;{.data.password}&quot; | base64 -d</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Access ArgoCD (running on AKS cluster)</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Navigate to: https://argocd.&lt;your-domain&gt;</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-get-access-urls">4. Get Access URLs<a href="#4-get-access-urls" class="hash-link" aria-label="Direct link to 4. Get Access URLs" title="Direct link to 4. Get Access URLs">​</a></h3>
-<p>Use the <code>task get:urls</code> command to fetch all the URLs.</p>
+<p>Use the <code>task get:urls</code> command to fetch all the URLs from the target AKS cluster:</p>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">task get:urls</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
 <p>The URL structure of the URLs will depend on the type of routing you set in the configuration. Examples of the set of URLs that can be outputted are below:</p>
 <p><strong>Domain-based routing</strong> (default):</p>
 <ul>
@@ -264,8 +262,8 @@ Follow <a href="https://backstage.io/docs/integrations/github/github-apps" targe
 <li>Argo Workflows: <code>https://YOUR_DOMAIN/argo-workflows</code></li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-access-backstage">5. Access Backstage<a href="#5-access-backstage" class="hash-link" aria-label="Direct link to 5. Access Backstage" title="Direct link to 5. Access Backstage">​</a></h3>
-<p>Once the Keycloak and Backstage are installed, check you can login to the Backstage UI with a default user:</p>
-<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Get user password</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">kubectl -n keycloak get secret keycloak-config -o yaml | yq &#x27;.data.USER1_PASSWORD | @base64d&#x27;</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
+<p>Once the Keycloak and Backstage are installed on the target AKS cluster, check you can login to the Backstage UI with a default user:</p>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Switch to AKS cluster context</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">task kubeconfig:set-context:aks</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Get user password</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">kubectl -n keycloak get secret keycloak-config -o yaml | yq &#x27;.data.USER1_PASSWORD | @base64d&#x27;</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="usage">Usage<a href="#usage" class="hash-link" aria-label="Direct link to Usage" title="Direct link to Usage">​</a></h2>
 <p>See <a href="/docs/reference-implementation/azure/docs/DEMO">DEMO.md</a> for information on how to navigate the platform and for usage examples.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="update-component-configurations">Update Component Configurations<a href="#update-component-configurations" class="hash-link" aria-label="Direct link to Update Component Configurations" title="Direct link to Update Component Configurations">​</a></h2>
@@ -273,7 +271,10 @@ Follow <a href="https://backstage.io/docs/integrations/github/github-apps" targe
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="backstage-templates">Backstage Templates<a href="#backstage-templates" class="hash-link" aria-label="Direct link to Backstage Templates" title="Direct link to Backstage Templates">​</a></h3>
 <p>Backstage templates can be found in the <code>templates/</code> directory</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="uninstall">Uninstall<a href="#uninstall" class="hash-link" aria-label="Direct link to Uninstall" title="Direct link to Uninstall">​</a></h2>
-<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Remove all components</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">task uninstall</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Clean up GitHub App and tokens manually</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Delete the GitHub organisation if no longer needed</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
+<div class="terminal_w2Kt"><div class="terminalHeader_Kk1r"><div class="terminalControls_X6oT"><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span><span class="terminalButton__Yhu"></span></div><button class="copyButton_H_xL" aria-label="Copy all commands" data-copied="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div><div class="terminalBody_tZ9P"><pre class="enhancedPre_UwTO"><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Remove all components and clean up Azure resources</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK">task uninstall</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Clean up GitHub App and tokens manually</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="comment_cniX"># Delete the GitHub organisation if no longer needed</div></div></div><div class="commandLine__eue"><div class="" style="white-space:pre-wrap"><div class="text_hPwK"></div></div></div></pre></div></div>
+<blockquote>
+<p><strong>Note</strong>: The <code>task uninstall</code> command will clean up both the local Kind cluster and remove CNOE components from the target AKS cluster. Azure resources created by Crossplane (Key Vault, Workload Identity) will also be cleaned up automatically.</p>
+</blockquote>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="contributing">Contributing<a href="#contributing" class="hash-link" aria-label="Direct link to Contributing" title="Direct link to Contributing">​</a></h2>
 <p>This reference implementation is designed to be:</p>
 <ul>
@@ -284,13 +285,13 @@ Follow <a href="https://backstage.io/docs/integrations/github/github-apps" targe
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="troubleshooting">Troubleshooting<a href="#troubleshooting" class="hash-link" aria-label="Direct link to Troubleshooting" title="Direct link to Troubleshooting">​</a></h2>
 <p>See <a href="/docs/reference-implementation/azure/docs/TROUBLESHOOTING">TROUBLESHOOTING.md</a> for common issues and detailed troubleshooting steps.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="potential-enhancements">Potential Enhancements<a href="#potential-enhancements" class="hash-link" aria-label="Direct link to Potential Enhancements" title="Direct link to Potential Enhancements">​</a></h2>
-<p>The installation of this Azure reference implemenation will give you a starting point for the platform, however as previously stated applications deployed in this repository are not meant or configured for production. To push it towards production ready, you can make further enhancements that could include:</p>
+<p>The installation of this Azure reference implementation will give you a starting point for the platform, however as previously stated applications deployed in this repository are not meant or configured for production. To push it towards production ready, you can make further enhancements that could include:</p>
 <ol>
 <li>Modifying the basic and Argo workflow templates for your specific Azure use cases</li>
-<li>Intergrating additional Azure services with Crossplane</li>
+<li>Integrating additional Azure services with Crossplane</li>
 <li>Configuring auto-scaling for AKS and Azure resources</li>
 <li>Adding OPA Gatekeeper for governance</li>
-<li>Intergrating a monitoring stack. For example:<!-- -->
+<li>Integrating a monitoring stack. For example:<!-- -->
 <ol>
 <li>Deploy Prometheus and Grafana</li>
 <li>Configure service monitors for Azure resources</li>
